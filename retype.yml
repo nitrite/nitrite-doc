@@ -1,0 +1,50 @@
+input: .
+output: .retype
+url: https://nitrite.dizitart.com
+
+branding:
+  title: Nitrite
+  label: v4.2.0
+  logo: /assets/nitrite-logo.svg
+
+favicon: /assets/favicon.png
+
+links:
+  - text: Home
+    icon: home
+    link: https://nitrite.dizitart.com
+
+  - text: Github
+    link: https://github.com/nitrite
+    icon: mark-github
+    target: blank
+
+footer:
+  copyright: "&copy; Copyright {{ year }} Dizitart. All rights reserved."
+  links:
+    - text: License
+      link: license.md
+
+meta:
+  title: " | Nitrite"
+
+search:
+  hotkeys:
+    - "/"
+  maxResults: 20
+  minChars: 2
+  mode: full 
+  noResultsFoundMsg: "No Results"
+  placeholder: Search
+
+integrations:
+  googleAnalytics:
+    id: ""
+
+cname: nitrite.dizitart.com
+
+serve:
+  watch:
+    mode: disk
+    polling: true
+    validation: optimal

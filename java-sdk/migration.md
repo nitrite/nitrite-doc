@@ -299,7 +299,7 @@ instruction.forRepository(OldClass.class, "demo1")
 
 The new field will be added to all the entities of the repository. The value of the new field will be the value returned by the `Generator` function.
 
-More information about the `Generator` can be found [here](#generator-function).
+More information about the `Generator` can be found [here](#generator).
 
 ### Rename Field
 

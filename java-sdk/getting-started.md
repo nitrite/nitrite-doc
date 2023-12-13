@@ -7,7 +7,9 @@ order: 20
 
 # Getting Started in Java
 
-To get started with Nitrite database, you can follow the steps below:
+To get started with Nitrite database, you need to add the Nitrite BOM to your project. The BOM will help you to manage the dependencies. Details of the BOM can be found [here](modules/module-system.md#nitrite-bill-of-materials).
+
+To add the BOM to your project, follow the steps below:
 
 ## Add dependency
 
@@ -80,3 +82,13 @@ repositories {
     }
 }
 ```
+
+## Upgrade from 3.x
+
+If you are upgrading from 3.x, please note that there are lots of breaking changes in the API. The whole API is re-written from scratch. It is recommended to go through this guide before upgrading. 
+
+!!!info Important
+You need to use the MVStore module as your storage module to upgrade from 3.x. The RocksDB module is not backward compatible.
+!!!
+
+Nitrite will try to migrate your existing database to the latest version on the [!badge variant="warning" text="best effort basis without any guarantee"] provided you are using the MVStore module. If you are using the RocksDB module, you need to migrate your database manually. However, it is recommended to take a backup of your database before upgrading.

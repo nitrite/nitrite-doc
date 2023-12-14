@@ -4,7 +4,9 @@ icon: search
 order: 15
 ---
 
-## Search Operations
+
+
+## Find Operations
 
 You can search documents in a collection using `find()` method. There are several overloaded version of `find()` method using a filter or find options or both. You can also search a document using it's `NitriteId`.
 
@@ -12,7 +14,7 @@ You can search documents in a collection using `find()` method. There are severa
 
 Nitrite uses filters to find documents in a collection. A filter is a simple expression which evaluates to `true` or `false`. More information about filters can be found [here](../filter.md).
 
-### Find all documents
+### Find All Documents
 
 You can find all documents in a collection by calling `find()`. It returns a `DocumentCursor` object.
 
@@ -20,7 +22,7 @@ You can find all documents in a collection by calling `find()`. It returns a `Do
 DocumentCursor cursor = collection.find();
 ```
 
-### Finding a document using NitriteId
+### Finding a Document Using NitriteId
 
 You can find a document using it's `NitriteId` by calling `getById()`. It takes a `NitriteId` as input parameter. It returns a `Document` object if the document is found. Otherwise, it returns `null`.
 
@@ -28,17 +30,17 @@ You can find a document using it's `NitriteId` by calling `getById()`. It takes 
 Document doc = collection.getById(someNitriteId);
 ```
 
-### Finding a document using a filter
+### Finding a Document Using a Filter
 
 You can find a document using a filter. It takes a `Filter` object as input parameter. It returns a `DocumentCursor` object. 
 
-If there is an index on the value specified in the filter, this operation will use the index to find the document. Otherwise, it will scan the entire collection to find the document.
+If there is an index on the field specified in the filter, this operation will use the index to find the document. Otherwise, it will scan the entire collection to find the document.
 
 ```java
 DocumentCursor cursor = collection.find(where("firstName").eq("John"));
 ```
 
-### Finding a document using a filter and options
+### Finding a Document Using a Filter and Options
 
 You can find a document using a filter and options. It takes a `Filter` object as the first input parameter. It takes a `FindOptions` object as the second input parameter. It returns a `DocumentCursor` object.
 
@@ -48,7 +50,7 @@ You can find a document using a filter and options. It takes a `Filter` object a
 
 - `limit`: It specifies the maximum number of documents to be returned by the find operation.
 - `skip`: It specifies the number of documents to be skipped from the beginning of the result set.
-- `orderBy`: It specifies a collection of fields to be sorted by along with sort order for each field. The sort order can be `SortOrder.Ascending` or `SortOrder.Descending`.
+- `orderBy`: It specifies a collection of fields to be sorted by, along with sort order for each field. The sort order can be `SortOrder.Ascending` or `SortOrder.Descending`.
 - `collator`: It specifies a collator to be used for sorting. If this option is not specified, then the default collator will be used.
 - `distinct`: It specifies if the find operation should return distinct documents. If this option is `true`, then it will return only the distinct documents. Otherwise, it will return all the documents matched by the filter.
 
@@ -61,9 +63,9 @@ DocumentCursor cursor = collection.find(where("firstName").eq("John"), findOptio
 
 ## DocumentCursor
 
-`DocumentCursor` is an iterator over a set of documents. It provides methods to iterate over the documents and get the documents. It also provides methods like projection, join etc. to get the desired result.
+`DocumentCursor` represents a result set of a find operation. It provides methods to iterate over the result of a find operation and retrieve the documents. It also provides methods like projection, join etc. to get the desired result.
 
-### Iterating over documents
+### Iterating over Documents
 
 The `DocumentCursor` extends `Iterable` interface. So, you can iterate over the documents using `for-each` loop.
 
@@ -75,9 +77,14 @@ for (Document doc : cursor) {
 }
 ```
 
-### Getting the documents
+!!!info
+A `DocumentCursor` is a lazy iterable. It does not load all the documents in memory at once. It loads the documents in memory as needed. So, it is memory efficient.
+!!!
 
-You can get the documents using `toList()` and `toSet()` methods. It returns a `List` and `Set` of documents respectively.
+
+### Getting the Documents
+
+You can get the documents at once using `toList()` and `toSet()` methods. It returns a `List` and `Set` of documents respectively.
 
 ```java
 DocumentCursor cursor = collection.find(where("firstName").eq("John"));
@@ -86,7 +93,7 @@ List<Document> documents = cursor.toList();
 Set<Document> documents = cursor.toSet();
 ```
 
-### Getting the first document
+### Getting the First Document
 
 You can get the first document using `firstOrNull()` method. It returns the first document if the cursor has any document. Otherwise, it returns `null`.
 
@@ -96,7 +103,7 @@ DocumentCursor cursor = collection.find(where("firstName").eq("John"));
 Document doc = cursor.firstOrNull();
 ```
 
-### Getting the size of the result set
+### Getting the Size of the Result Set
 
 You can get the size of the result set using `size()` method. It returns the number of documents in the result set.
 
@@ -283,11 +290,3 @@ DocumentCursor cursor = collection.find(where("firstName").eq("John"));
 
 FindPlan findPlan = cursor.getFindPlan();
 ```
-
-
-
-
-
-
-
-

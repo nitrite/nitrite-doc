@@ -49,6 +49,14 @@ Nitrite db = Nitrite.builder()
 
 A dynamic module is useful when you want to create a module from a set of plugins at runtime.
 
+### Available Modules
+
+The following modules are available from Nitrite.
+
+- [Storage Module](store-modules/store-modules.md)
+- [Jackson Module](jackson.md)
+- [Geo-spatial Module](spatial.md)
+
 ## NitritePlugin
 
 The `NitritePlugin` interface is the base interface for all the plugins. A plugin is a single unit of functionality. A plugin must be loaded via a `NitriteModule` before opening a database. 
@@ -87,13 +95,209 @@ public class MyPlugin implements NitritePlugin {
 }
 ```
 
-## Modules
+### Available Plugins
 
-The following modules are available from Nitrite.
+Following are the available plugins in Nitrite which can be used to extend the functionality of Nitrite:
 
-- [Storage Module](store-modules/store-modules.md)
-- [Jackson Module](jackson.md)
-- [Geo-spatial Module](spatial.md)
+- `NitriteStore` - A plugin to provide storage functionality.
+- `NitriteMapper` - A plugin to provide object mapping functionality.
+- `NitriteIndexer` - A plugin to provide indexing functionality.
+
+You can implement any of the above plugins to extend the functionality of Nitrite.
+
+## NitriteStore
+
+The `NitriteStore` interface is the base interface for all the storage plugins. A storage plugin is responsible for storing and retrieving data from the underlying storage. The `NitriteStore` interface extends the `NitritePlugin` interface. 
+
+```java
+public class MyStore implements NitriteStore {
+    @Override
+    public void initialize(NitriteConfig nitriteConfig) {
+        // initialize the store
+    }
+
+    @Override
+    public void openOrCreate() {
+        // open or create the store
+    }
+
+    @Override
+    public boolean isClosed() {
+        // check if the store is closed
+    }
+
+    @Override
+    public Set<String> getCollectionNames() {
+        // get all the collection names
+    }
+
+    @Override
+    public Set<String> getRepositoryRegistry() {
+        // get all the repositories
+    }
+
+    @Override
+    public Map<String, Set<String>> getKeyedRepositoryRegistry() {
+        // get all the keyed repositories
+    }
+
+    @Override
+    public boolean hasUnsavedChanges() {
+        // check if there are any unsaved changes
+    }
+
+    @Override
+    public boolean isReadOnly() {
+        // check if the store is read-only
+    }
+
+    @Override
+    public void commit() {
+        // commit the changes to the store
+    }
+
+    @Override
+    public void beforeClose() {
+        // do something before closing the store
+    }
+
+    @Override
+    public boolean hasMap(String mapName) {
+        // check if a NitriteMap exists
+    }
+
+    @Override
+    public void closeMap(String mapName) {
+        // close a NitriteMap
+    }
+
+    @Override
+    public void removeMap(String mapName) {
+        // remove a NitriteMap
+    }
+
+    @Override
+    public void closeRTree(String rTreeName) {
+        // close a NitriteRTree
+    }
+
+    @Override
+    public void removeRTree(String rTreeName) {
+        // remove a NitriteRTree
+    }
+
+    @Override
+    public void subscribe(StoreEventListener listener) {
+        // subscribe to store events
+    }
+
+    @Override
+    public void unsubscribe(StoreEventListener listener) {
+        // unsubscribe from store events
+    }
+
+    @Override
+    public String getStoreVersion() {
+        // get the store version
+    }
+
+    @Override
+    public StoreConfig getStoreConfig() {
+        // get the store configuration
+    }
+
+    @Override
+    public StoreCatalog getCatalog() {
+        // get the store catalog
+    }
+
+    @Override
+    public NitriteRTree openRTree(String rTreeName, Class keyType, Class valueType) {
+        // open a NitriteRTree
+    }
+
+    @Override
+    public NitriteMap openMap(String mapName, Class keyType, Class valueType) {
+        // open a NitriteMap
+    }
+}
+```
+
+A reference implementation of the `NitriteStore` interface can be found [here](store-modules/custom.md).
+
+## NitriteMapper
+
+The `NitriteMapper` interface is the base interface for all the object mapping plugins. A mapper plugin is responsible for mapping an object to a document and vice-versa. The `NitriteMapper` interface extends the `NitritePlugin` interface. 
+
+```java
+public class CustomNitriteMapper implements NitriteMapper {
+
+    @Override
+    public <Source, Target> Target tryConvert(Source source, Class<Target> type) {
+        // try to convert a source object to a target object
+    }
+
+    @Override
+    public void initialize(NitriteConfig nitriteConfig) {
+        // initialize the mapper
+    }
+}
+```
+
+`JacksonMapper` is one of the available mapper plugins in Nitrite. It uses Jackson to map an object to a document and vice-versa. You can find more information about `JacksonMapper` [here](jackson.md).
+
+## NitriteIndexer
+
+The `NitriteIndexer` interface is the base interface for all the indexing plugins. An indexer plugin is responsible for indexing a document. The `NitriteIndexer` interface extends the `NitritePlugin` interface. 
+
+```java
+public class CustomIndexer implements NitriteIndexer {
+    public static final String INDEX_TYPE = "custom";
+
+    @Override
+    public String getIndexType() {
+        // get the index type
+        return INDEX_TYPE;
+    }
+
+    @Override
+    public void validateIndex(Fields fields) {
+        // validate the index
+    }
+
+    @Override
+    public void dropIndex(IndexDescriptor indexDescriptor, NitriteConfig nitriteConfig) {
+        // drop the index
+    }
+
+    @Override
+    public void writeIndexEntry(FieldValues fieldValues, IndexDescriptor indexDescriptor, NitriteConfig nitriteConfig) {
+        // write an index entry
+    }
+
+    @Override
+    public void removeIndexEntry(FieldValues fieldValues, IndexDescriptor indexDescriptor, NitriteConfig nitriteConfig) {
+        // remove an index entry
+    }
+
+    @Override
+    public LinkedHashSet<NitriteId> findByFilter(FindPlan findPlan, NitriteConfig nitriteConfig) {
+        // find documents by filter
+    }
+
+
+    @Override
+    public void initialize(NitriteConfig nitriteConfig) {
+        // initialize the indexer
+    }
+}
+```
+
+While creating a new index, Nitrite uses the `getIndexType()` method of the `NitriteIndexer` interface to determine the type of the index. The `getIndexType()` method returns a string which represents the type of the index. So when you create a new index, you need to pass the same string to the `IndexOptions.indexType`.
+
+```java
+collection.createIndex(indexOptions(CustomIndexer.INDEX_TYPE), "firstName");
+```
 
 ## Nitrite Bill of Materials
 

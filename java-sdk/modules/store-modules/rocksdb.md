@@ -6,7 +6,7 @@ order: 2
 
 Nitrite provides a persistent storage module based on [RocksDB](https://rocksdb.org/). RocksDB is a persistent key-value store for fast storage. It is based on a log-structured merge-tree (LSM tree) data structure. It is very fast and lightweight. Nitrite uses the JNI wrapper of RocksDB. 
 
-!!!info Information
+!!!info
 RocksDB's column family feature is used to store the data of each collection.
 !!!
 
@@ -107,6 +107,8 @@ Nitrite db = Nitrite.builder()
             .loadModule(storeModule)
             .openOrCreate();
 ```
+
+Normally, you don't need to implement your own `ObjectFormatter`. The default implementation is good enough for most of the use cases.
 
 
 

@@ -1,14 +1,14 @@
 ---
 label: Import/Export
 icon: arrow-switch
-order: 3
+order: 2
 ---
 
 Nitrite provides import/export functionality via `nitrite-support` library. You can import/export your database to/from a file in JSON format. You can choose to import/export the entire database or a specific collection.
 
 ## Exporting Database
 
-To export the entire database in JSON format, you can use the `Exporter` class of `nitrite-support` library. You can construct an instance of `Exporter` from an `ExportOptions` instance using `Exporter.withOptions` method. The `ExportOptions` class provides various options to configure the export process.
+To export the entire database in JSON format, you can use the `Exporter` class of `nitrite-support` library. You can construct an instance of `Exporter` from an `ExportOptions` instance using `Exporter.withOptions()` method. The `ExportOptions` class provides various options to configure the export process.
 
 ```java
 // create an exporter with export options
@@ -18,9 +18,9 @@ Exporter exporter = new Exporter(exportOptions);
 exporter.exportTo(dataFile);
 ```
 
-The `exportTo` method can take a `File` or a `String` or an `OutputStream` or a `Writer` as an argument. If you pass a `File` or a `String` argument, the exporter will create a `FileOutputStream` and write the exported data to the file. If you pass an `OutputStream` or a `Writer` argument, the exporter will write the exported data to the stream or writer.
+The `exportTo()` method can take a `File` or a `String` or an `OutputStream` or a `Writer` as an argument. If you pass a `File` or a `String` argument, the exporter will create a `FileOutputStream` and write the exported data to the file. If you pass an `OutputStream` or a `Writer` argument, the exporter will write the exported data to the stream or writer.
 
-!!!info Important
+!!!primary
 The database must be in closed state before exporting.
 !!!
 
@@ -40,7 +40,7 @@ The `ExportOptions` class provides various options to configure the export proce
     - If null is specified, all repositories will be exported.
     - If an empty list is specified, no repository will be exported.
     - If a non-empty list is specified, only the repositories in the list will be exported.
-- `keyedRepositories` - the list of keyed repositories to export. The rules for specifying the keyed repository names are as follows:
+- `keyedRepositories` - the map of keyed repositories to export. The rules for specifying the keyed repository names are as follows:
     - If null is specified, all keyed repositories will be exported.
     - If an empty map is specified, no keyed repository will be exported.
     - If a non-empty map is specified, only the keyed repositories in the map will be exported.
@@ -97,7 +97,7 @@ The `test.json` file will contain the exported data.
 
 ## Importing Database
 
-To import the entire database from an exported JSON data, you can use the `Importer` class of `nitrite-support` library. You can construct an instance of `Importer` from an `ImportOptions` instance using `Importer.withOptions` method. The `ImportOptions` class provides various options to configure the import process.
+To import the entire database from an exported JSON data, you can use the `Importer` class of `nitrite-support` library. You can construct an instance of `Importer` from an `ImportOptions` instance using `Importer.withOptions()` method. The `ImportOptions` class provides various options to configure the import process.
 
 ```java
 // create an importer with import options
@@ -107,9 +107,9 @@ Importer importer = new Importer(importOptions);
 importer.importFrom(dataFile);
 ```
 
-The `importFrom` method can take a `File` or a `String` or an `InputStream` or a `Reader` as an argument. If you pass a `File` or a `String` argument, the importer will create a `FileInputStream` and read the exported data from the file. If you pass an `InputStream` or a `Reader` argument, the importer will read the exported data from the stream or reader.
+The `importFrom()` method can take a `File` or a `String` or an `InputStream` or a `Reader` as an argument. If you pass a `File` or a `String` argument, the importer will create a `FileInputStream` and read the exported data from the file. If you pass an `InputStream` or a `Reader` argument, the importer will read the exported data from the stream or reader.
 
-!!!info Important
+!!!primary
 The database must be in closed state before importing.
 !!!
 
@@ -122,7 +122,7 @@ The `ImportOptions` class provides various options to configure the import proce
 
 ### Example
 
-First create a `ImportOptions` instance and configure it using the `createDb` method from the previous example.
+First create a `ImportOptions` instance and configure it using the `createDb()` method from the previous example.
 
 ```java
 // create import options

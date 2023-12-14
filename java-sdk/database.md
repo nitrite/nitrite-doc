@@ -4,6 +4,8 @@ label: Nitrite Database
 order: 19
 ---
 
+Nitrite database is a serverless, embedded, and self-contained Java NoSQL database. It is an open-source project that provides a simple API for persistent data storage. Nitrite database is designed to be lightweight, fast, and easy to use.
+
 ## Creating a Database
 
 Nitrite database can be created in-memory or on-disk. By default, Nitrite database is created in-memory. To create a database on-disk, you need to add a storage module dependency to your project.
@@ -15,20 +17,20 @@ To create a database, you need to use `NitriteBuilder` class. To get an instance
 NitriteBuilder builder = Nitrite.builder();
 ```
 
-### In-memory database
+### In-memory Database
 
-The below code snippet shows how to create a database in-memory.
+If you don't load any on-disk storage module, then Nitrite will create an in-memory database. The below code snippet shows how to create a database in-memory.
 
 ```java
 Nitrite db = Nitrite.builder()
     .openOrCreate();
 ```
 
-### On-disk database
+### On-disk Database
 
-The below code snippet shows how to create a database on-disk using H2's MVStore.
+The below code snippet shows how to create a database on-disk.
 
-#### MVStore backed database
+#### MVStore Backed Database
 
 ```java
 MVStoreModule storeModule = MVStoreModule.withConfig()
@@ -42,7 +44,7 @@ Nitrite db = Nitrite.builder()
 
 More details about MVStore configuration can be found [here](modules/store-modules/mvstore/).
 
-#### RocksDB backed database
+#### RocksDB Backed Database
 
 ```java
 RocksDBModule storeModule = RocksDBModule.withConfig()
@@ -60,13 +62,11 @@ More details about RocksDB configuration can be found [here](modules/store-modul
 
 `NitriteBuilder` provides a fluent API to configure and create a Nitrite database instance.
 
-### Open or create a database
+### Open or Create a Database
 
 To open or create a database, you need to call `openOrCreate()` method on `NitriteBuilder` instance. This method returns a `Nitrite` instance.
 
-If no `StoreModule` is configured, then Nitrite will create an in-memory database. If a `StoreModule` is configured, then Nitrite will create a file-based database.
-
-If the database file does not exist, then Nitrite will create a new database file. If the database file already exists, then Nitrite will open the existing database file.
+If no `StoreModule` is configured, then Nitrite will create an in-memory database. If a `StoreModule` is configured, then Nitrite will create a file-based database. If the database file does not exist, then Nitrite will create a new database file. If the database file already exists, then Nitrite will open the existing database file.
 
 ```java
 Nitrite db = Nitrite.builder()
@@ -74,7 +74,7 @@ Nitrite db = Nitrite.builder()
     .openOrCreate();
 ```
 
-### Securing a database
+### Securing a Database
 
 To secure a database, you need to call `openOrCreate()` method with username and password on `NitriteBuilder` instance. This method returns a `Nitrite` instance with the given username and password.
 
@@ -84,17 +84,32 @@ Nitrite db = Nitrite.builder()
     .openOrCreate("user", "password");
 ```
 
-!!!warning Warning
+!!!warning
 If you are using a file-based database, then you need to use the same username and password to open the database again. Otherwise, you will get a `NitriteSecurityException`.
 
 Both username and password must be provided or both must be null.
 !!!
 
-### Load a Module
+### Registering an EntityConverter
+
+Nitrite database uses a mapper to map Java entities to Nitrite documents and vice-versa. By default, Nitrite uses `SimpleNitriteMapper` as its mapper. This mapper uses `EntityConverter`s to map Java entities to Nitrite documents and vice-versa. To register an `EntityConverter`, you need to call `registerEntityConverter()` method on `NitriteBuilder` instance. This method returns the same `NitriteBuilder` instance.
+
+```java
+Nitrite db = Nitrite.builder()
+    .loadModule(storeModule)
+    .registerEntityConverter(new ProductConverter())
+    .registerEntityConverter(new ProductIdConverter())
+    .registerEntityConverter(new ManufacturerConverter())
+    .openOrCreate();
+```
+
+More on `EntityConverter` can be found [here](repository/mapper.md#entityconverter).
+
+### Loading a Module
 
 Nitrite database is modular in nature. It provides various modules to extend its functionality. To load a module, you need to call `loadModule()` method on `NitriteBuilder` instance. This method returns the same `NitriteBuilder` instance.
 
-#### Loading a storage module
+#### Loading a Storage Module
 
 ```java
 Nitrite db = Nitrite.builder()
@@ -102,7 +117,7 @@ Nitrite db = Nitrite.builder()
     .openOrCreate();
 ```
 
-#### Loading a Jackson based mapper module
+#### Loading a Jackson Based Mapper Module
 
 ```java
 Nitrite db = Nitrite.builder()
@@ -112,7 +127,7 @@ Nitrite db = Nitrite.builder()
 
 More on the Nitrite's module system can be found [here](/java-sdk/modules/module-system/).
 
-### Add Migration steps
+### Adding Migration Steps
 
 Nitrite database supports schema migration. To configure a migration step, you need to call `addMigrations()` method on `NitriteBuilder` instance. This method returns the same `NitriteBuilder` instance.
 
@@ -121,7 +136,7 @@ Migration migration = new Migration(Constants.INITIAL_SCHEMA_VERSION, 2) {
     @Override
     public void migrate(InstructionSet instruction) {
         instruction.forDatabase()
-            .addPassword("test-user", "test-password");
+            .addUser("test-user", "test-password");
 
         instruction.forRepository(OldClass.class, "demo1")
             .renameRepository("new", null)
@@ -145,7 +160,7 @@ Nitrite db = Nitrite.builder()
 
 More on the schema migration can be found [here](migration.md).
 
-### Current Schema version
+### Current Schema Version
 
 To configure the current schema version, you need to call `schemaVersion()` method on `NitriteBuilder` instance. This method returns the same `NitriteBuilder` instance.
 
@@ -156,11 +171,11 @@ Nitrite db = Nitrite.builder()
     .openOrCreate();
 ```
 
-!!!primary Important
+!!!info
 By default, the initial schema version is set to `1`.
 !!!
 
-### Field separator character
+### Field Separator Character
 
 To configure the field separator character, you need to call `fieldSeparator()` method on `NitriteBuilder` instance. This method returns the same `NitriteBuilder` instance.
 
@@ -173,6 +188,6 @@ Nitrite db = Nitrite.builder()
     .openOrCreate();
 ```
 
-!!!primary Important
+!!!info
 The default field separator character is set to `.`.
 !!!

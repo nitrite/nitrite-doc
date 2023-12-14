@@ -4,7 +4,7 @@ icon: cpu
 order: 11
 ---
 
-## Size of a repository
+## Size of a Repository
 
 You can get the size of a repository using `size()` method. It returns the number of entities in the repository.
 
@@ -12,7 +12,7 @@ You can get the size of a repository using `size()` method. It returns the numbe
 long size = productRepository.size();
 ```
 
-## Clearing a repository
+## Clearing a Repository
 
 You can clear all the entities from a repository using `clear()` method. It removes all the entities from the repository and index entries from the indexes. It does not drop the repository.
 
@@ -20,7 +20,7 @@ You can clear all the entities from a repository using `clear()` method. It remo
 productRepository.clear();
 ```
 
-## Dropping a repository
+## Dropping a Repository
 
 You can drop a repository using `drop()` method. It removes all the entities from the repository and index entries from the indexes. It also drops all the indexes associated with the repository. It also removes the repository from the database.
 
@@ -34,11 +34,11 @@ You can call `isDropped()` method to check if the repository is dropped or not.
 boolean isDropped = productRepository.isDropped();
 ```
 
-!!!warning Warning
+!!!warning
 Any further operation on a dropped repository will throw `NitriteIOException`.
 !!!
 
-## Closing a repository
+## Closing a Repository
 
 You can close a repository using `close()` method. Any further operation on a closed repository will throw `NitriteIOException`.
 
@@ -99,7 +99,7 @@ String value = attributes.get("key");
 
 Processor can be used to process the underlying documents of a repository. More on processors can be found [here](../collection/other.md#processors).
 
-### Registering a processor
+### Registering a Processor
 
 You can register a processor on a repository using `addProcessor()` method. It takes a `Processor` as input parameter.
 
@@ -114,8 +114,8 @@ processor.process(productRepository);
 productRepository.addProcessor(processor);
 ```
 
-### Available processors
+### Available Processors
 
 Nitrite provides a `StringFieldEncryptionProcessor` which can be used to encrypt a field before writing it into a repository and decrypt a field after reading it from a repository.
 
-More on this is described in [Support](../support/encryption.md).
+More on this is described in [Support](../support/encryption.md#field-level-encryption).

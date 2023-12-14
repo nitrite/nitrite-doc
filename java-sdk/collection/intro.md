@@ -10,7 +10,7 @@ Each document in a collection is associated with a unique `NitriteId`. It expose
 
 `NitriteCollection` is thread-safe and supports concurrent read and write operations.
 
-## Creating a collection
+## Creating a Collection
 
 A `NitriteCollection` can be created using `Nitrite` class. You need to call `getCollection()` method on `Nitrite` class to get an instance of a `NitriteCollection`.
 
@@ -23,7 +23,7 @@ Nitrite db = Nitrite.builder()
 NitriteCollection collection = db.getCollection("myCollection");
 ```
 
-## Limitations on collection name
+## Limitations on Collection Name
 
 A collection name cannot be `null` or empty string. It cannot contains any of the following characters:
 

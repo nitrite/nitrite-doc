@@ -1,7 +1,7 @@
 ---
-label: Installation
+label: Usage
 icon: code
-order: 1
+order: 3
 ---
 
 Nitrite provides some additional functionalities via `nitrite-support` library. You can use the library to enable encryption, import/export database, and database recovery.

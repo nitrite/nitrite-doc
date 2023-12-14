@@ -1,10 +1,10 @@
 ---
-label: Nitrite Mapper
+label: NitriteMapper
 icon: workflow
 order: 15
 ---
 
-Nitrite Mapper is a simple and lightweight object mapper which can be used to map Java objects to Nitrite documents and vice-versa. Nitrite uses a `NitriteMapper` implementation to map Java entities to Nitrite documents and vice-versa while storing and retrieving objects from an `ObjectRepository`.
+`NitriteMapper` is a simple and lightweight object mapper which can be used to map Java objects to Nitrite documents and vice-versa. Nitrite uses a `NitriteMapper` implementation to map Java entities to Nitrite documents and vice-versa while storing and retrieving objects from an `ObjectRepository`.
 
 ## SimpleNitriteMapper
 
@@ -123,25 +123,35 @@ public class ManufacturerConverter implements EntityConverter<Manufacturer> {
 }
 ```
 
-Once the converters are ready, we need to register them with `SimpleNitriteMapper`.
+Once the converters are ready, we need to register them with `registerEntityConverter()` method on `NitriteBuilder` instance.
 
 ```java
-SimpleNitriteMapper nitriteMapper = new SimpleNitriteMapper();
+Nitrite db = Nitrite.builder()
+    .registerEntityConverter(new ProductConverter())
+    .registerEntityConverter(new ProductIdConverter())
+    .registerEntityConverter(new ManufacturerConverter())
+    .openOrCreate();
+```
+
+we can also register the converters with `SimpleNitriteMapper` instance and then pass the instance to `loadModule()` method.
+
+```java
+NitriteMapper nitriteMapper = new SimpleNitriteMapper();
 nitriteMapper.registerEntityConverter(new ProductConverter());
 nitriteMapper.registerEntityConverter(new ProductIdConverter());
 nitriteMapper.registerEntityConverter(new ManufacturerConverter());
-```
 
-Now, we need to load this mapper while building the database.
-
-```java
 Nitrite db = Nitrite.builder()
     .loadModule(module(nitriteMapper))
     .openOrCreate();
 ```
 
-!!! info
+!!!info
 `NitriteMapper` is a `NitritePlugin`. So, you need to load it using `loadModule()` method on `NitriteBuilder`. More on Nitrite's module system can be found [here](../modules/module-system.md).
+!!!
+
+!!!warning Warning
+If you have used the `registerEntityConverter()` method on `NitriteBuilder` instance, Nitrite will only use `SimpleNitriteMapper` to map the entities. It will ignore any other `NitriteMapper` implementation you have provided using `loadModule()` method.
 !!!
 
 ## JacksonMapper
@@ -159,7 +169,5 @@ Nitrite db = Nitrite.builder()
     .loadModule(module(new CustomNitriteMapper()))
     .openOrCreate();
 ```
-
-
 
 

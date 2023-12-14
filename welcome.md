@@ -26,7 +26,7 @@ Nitrite database is designed to be simple and easy to use, making it a good choi
 - Simple API
 - Document-oriented
 - Schemaless document collection and object repository
-- Pluggable storage engines
+- Extensible storage engines
 - Indexing and full-text search
 - Simple query api
 - In-memory and file-based store
@@ -34,9 +34,9 @@ Nitrite database is designed to be simple and easy to use, making it a good choi
 - Schema migration support
 - Encryption support
 
-## What Nitrite is not
+## ⛔ What Nitrite is not
 
-Nitrite is not an RDBMS. It is also not a distributed nosql database like MongoDB or Cassandra. It does not have any server for external application to connect to.
+Nitrite is not an RDBMS. It is also not a distributed NoSQL database like MongoDB or Cassandra. It does not have any server for external application to connect to.
 
 ## 🚀 Getting Started
 

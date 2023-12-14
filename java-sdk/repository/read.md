@@ -4,7 +4,7 @@ icon: search
 order: 13
 ---
 
-## Search Operations
+## Find Operations
 
 You can search entities in a repository using `find()` method. There are several overloaded version of `find()` method using a filter or find options or both. You can also search an entity using it's id.
 
@@ -12,7 +12,7 @@ You can search entities in a repository using `find()` method. There are several
 
 Nitrite uses filters to find entities in a repository. A filter is a simple expression which evaluates to `true` or `false`. More information about filters can be found [here](../filter.md).
 
-### Find all entities
+### Find All Entities
 
 You can find all entities in a repository by calling `find()`. It returns a `Cursor` object.
 
@@ -20,7 +20,7 @@ You can find all entities in a repository by calling `find()`. It returns a `Cur
 Cursor<Product> cursor = productRepository.find();
 ```
 
-### Finding an entity using id
+### Finding an Entity Using Id
 
 You can find an entity using it's id by calling `getById()`. It takes an id as input parameter. It returns an entity if the entity is found. Otherwise, it returns `null`.
 
@@ -28,17 +28,17 @@ You can find an entity using it's id by calling `getById()`. It takes an id as i
 Product product = productRepository.getById(new ProductId(1));
 ```
 
-### Finding an entity using a filter
+### Finding an Entity Using a Filter
 
 You can find an entity using a filter. It takes a `Filter` object as input parameter. It returns a `Cursor` object.
 
-If there is an index on the value specified in the filter, this operation will use the index to find the entity. Otherwise, it will scan the entire repository to find the entity.
+If there is an index on the field specified in the filter, this operation will use the index to find the entity. Otherwise, it will scan the entire repository to find the entity.
 
 ```java
 Cursor<Product> cursor = productRepository.find(where("productName").eq("Apple iPhone 6"));
 ```
 
-### Finding an entity using a filter and options
+### Finding an Entity Using a Filter and Options
 
 You can find an entity using a filter and options. It takes a `Filter` object as the first input parameter. It takes a `FindOptions` object as the second input parameter. It returns a `Cursor` object.
 
@@ -49,11 +49,11 @@ More information about `FindOptions` can be found [here](../collection/read.md#f
 
 ## Cursor
 
-`Cursor` is an iterator over a set of entities. It contains several methods to iterate over the entities. It also provides methods like projection, join etc. to get the desired result.
+`Cursor` represents a result set of a find operation. It provides methods to iterate over the result of a find operation and retrieve the entities. It also provides methods like projection, join etc. to get the desired result.
 
-### Iterating over entities
+### Iterating over Entities
 
-The `Cursor` object implements `Iterable` interface. So, you can iterate over the entities using `for-each` loop.
+The `Cursor` extends `Iterable` interface. So, you can iterate over the entities using `for-each` loop.
 
 ```java
 Cursor<Product> cursor = productRepository.find();
@@ -63,9 +63,13 @@ for (Product product : cursor) {
 }
 ```
 
-### Getting the entities
+!!!info
+A `Cursor` is a lazy iterable. It will not load all the entities in memory at once. It will load the entities in memory as needed. So, it is memory efficient.
+!!!
 
-You can get the entities from the cursor using `toList()` and `toSet()` method. It returns a `List` and `Set` of documents respectively.
+### Getting the Entities
+
+You can get the entities from the cursor at once using `toList()` and `toSet()` method. It returns a `List` and `Set` of entities respectively.
 
 ```java
 Cursor<Product> cursor = productRepository.find();
@@ -74,7 +78,7 @@ List<Product> products = cursor.toList();
 Set<Product> productSet = cursor.toSet();
 ```
 
-### Getting the first entity
+### Getting the First Entity
 
 You can get the first entity from the cursor using `firstOrNull()` method. It returns the first entity if the cursor is not empty. Otherwise, it returns `null`.
 
@@ -84,7 +88,7 @@ Cursor<Product> cursor = productRepository.find();
 Product product = cursor.firstOrNull();
 ```
 
-### Getting the size of the cursor
+### Getting the Size of the Cursor
 
 You can get the size of the cursor using `size()` method. It returns the number of entities in the cursor.
 

@@ -4,7 +4,7 @@ icon: cpu
 order: 13
 ---
 
-## Size of a collection
+## Size of a Collection
 
 You can get the size of a collection using `size()` method. It returns the number of documents in the collection.
 
@@ -12,7 +12,7 @@ You can get the size of a collection using `size()` method. It returns the numbe
 long size = collection.size();
 ```
 
-## Clearing a collection
+## Clearing a Collection
 
 You can clear all the documents from a collection using `clear()` method. It removes all the documents from the collection and index entries from the indexes. It does not drop the collection.
 
@@ -20,7 +20,7 @@ You can clear all the documents from a collection using `clear()` method. It rem
 collection.clear();
 ```
 
-## Dropping a collection
+## Dropping a Collection
 
 You can drop a collection using `drop()` method. It removes all the documents from the collection and index entries from the indexes. It also drops all the indexes associated with the collection. It also removes the collection from the database.
 
@@ -34,11 +34,11 @@ You can call `isDropped()` method to check if the collection is dropped or not.
 boolean isDropped = collection.isDropped();
 ```
 
-!!!warning Warning
+!!!warning
 Any further operation on a dropped collection will throw `NitriteIOException`.
 !!!
 
-## Closing a collection
+## Closing a Collection
 
 You can close a collection using `close()` method. Any further operation on a closed collection will throw `NitriteIOException`.
 
@@ -113,7 +113,7 @@ Processors are useful when you want to add some additional information in a docu
 
 Processors are registered on a collection. A collection can have multiple processors. Processors are executed in the order they are registered.
 
-### Registering a processor
+### Registering a Processor
 
 You can register a processor on a collection using `addProcessor()` method. It takes a `Processor` as input parameter.
 
@@ -144,10 +144,10 @@ processor.process(collection);
 collection.addProcessor(processor);
 ```
 
-### Available processors
+### Available Processors
 
 Nitrite provides a `StringFieldEncryptionProcessor` which can be used to encrypt a field before writing it into a collection and decrypt a field after reading it from a collection.
 
-More on this is described in [Support](../support/encryption.md).
+More on this is described in [Support](../support/encryption.md#field-level-encryption).
 
 

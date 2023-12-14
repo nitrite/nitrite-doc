@@ -10,9 +10,9 @@ Nitrite supports indexing on a repository. It supports indexing on a single fiel
 
 Indexes for an entity can be defined using various annotations like `@Id`, `@Index`, `@Indices` etc. More information about annotations can be found [here](entity.md#annotations). It can also be managed using various methods of `ObjectRepository` interface.
 
-## Index types
+## Index Types
 
-Nitrite supports the following types of index:
+Nitrite supports the following types of index out of the box:
 
 - Unique Index
 - Non-Unique Index
@@ -22,7 +22,7 @@ Nitrite supports the following types of index:
 
 A unique index ensures that the indexed field contains unique value. It does not allow duplicate value in the indexed field. It also ensures that the indexed field is not `null`.
 
-### Non-Unique Index
+### Non-unique Index
 
 A non-unique index does not ensure that the indexed field contains unique value. It allows duplicate value in the indexed field.
 
@@ -30,19 +30,23 @@ A non-unique index does not ensure that the indexed field contains unique value.
 
 A full-text index is used to search text content in an entity. It is useful when you want to search text content in an entity. It is also useful when you want to search text content in an entity in a language other than English.
 
-!!!primary Note
+!!!primary
 Indexing on non-comparable value is not supported.
 !!!
 
-## Creating an index
+### Custom Index
+
+You can also create your own custom index. More information about custom index can be found [here](../collection/indexing.md#custom-index).
+
+## Creating an Index
 
 You can define indexes for an entity using annotations. You can also create indexes using `ObjectRepository` interface.
 
-### Creating a unique index
+### Creating a Unique Index
 
 You can create a unique index on a single field or multiple fields. It takes the name of the fields on which the index will be created as input parameter.
 
-#### Using annotations
+#### Using Annotations
 
 You can create a unique index on a single field or multiple fields using annotations. You can use `@Id` annotation to create a unique index on a single field. You can use `@Index` annotation to create a unique index on multiple fields.
 
@@ -71,17 +75,17 @@ productRepository.createIndex("productName");
 productRepository.createIndex("category", "manufacturer");
 ```
 
-### Creating a non-unique index
+### Creating a Non-unique Index
 
-You can create a non-unique index on a single field or multiple fields by passing the index type as `IndexType.NON_UNIQUE.
+You can create a non-unique index on a single field or multiple fields by passing the index type as `IndexType.NON_UNIQUE`.
 
-#### Using annotations
+#### Using Annotations
 
 You can create a non-unique index on a single field or multiple fields using annotations. You can use `@Index` annotation to create a non-unique index on multiple fields.
 
 ```java
 @Indices(
-    @Index(value = "productName", type = IndexType.UNIQUE)
+    @Index(value = "productName", type = IndexType.NON_UNIQUE)
     @Index(value = {"category", "price"}, type = IndexType.NON_UNIQUE)
 )
 public class Product {
@@ -100,14 +104,15 @@ public class Product {
 You can create a non-unique index on a single field or multiple fields using `createIndex()` method. It takes the name of the fields on which the index will be created as input parameter and the index type as `IndexType.NON_UNIQUE`.
 
 ```java
+productRepository.createIndex(IndexOptions.indexOptions(IndexType.NON_UNIQUE), "productName");
 productRepository.createIndex(IndexOptions.indexOptions(IndexType.NON_UNIQUE), "category", "price");
 ```
 
-### Creating a full-text index
+### Creating a Full-text Index
 
 You can create a full-text index on a single field by passing the index type as `IndexType.FULL_TEXT`.
 
-#### Using annotations
+#### Using Annotations
 
 You can create a full-text index on a single field using annotations. You can use `@Index` annotation to create a full-text index on a single field.
 
@@ -135,11 +140,11 @@ You can create a full-text index on a single field using `createIndex()` method.
 productRepository.createIndex(IndexOptions.indexOptions(IndexType.FULL_TEXT), "description");
 ```
 
-!!!warning
+!!!primary
 Full-text index is not supported on multiple fields.
 !!!
 
-### Creating index on array field
+### Creating Index on Array Field
 
 Nitrite supports creating index on array field. It will create index on each element of the array. For example, if you have an entity like this:
 
@@ -159,10 +164,10 @@ public class Product {
 You can create index on `tags` field like this:
 
 ```java
-productRepository.createIndex("tags");
+productRepository.createIndex(IndexOptions.indexOptions(IndexType.NON_UNIQUE), "tags");
 ```
 
-### Creating index on embedded field
+### Creating Index on Embedded Field
 
 Nitrite supports creating index on embedded field. For example, if you have entities like this:
 
@@ -207,11 +212,11 @@ Or you can create index on name of `Manufacturer` entity via `ObjectRepository` 
 productRepository.createIndex("manufacturer.name");
 ```
 
-!!!warning
+!!!primary
 You cannot create index on nested field if the parent field is an array.
 !!!
 
-## Rebuilding an index
+## Rebuilding an Index
 
 You can rebuild an index on a repository using `rebuildIndex()` method. It takes the name of the fields on which the index will be rebuilt as input parameter.
 
@@ -223,7 +228,7 @@ productRepository.rebuildIndex("productName");
 productRepository.rebuildIndex("category", "manufacturer.name");
 ```
 
-## Dropping an index
+## Dropping an Index
 
 You can drop an index on a repository using `dropIndex()` method. It takes the name of the fields on which the index will be dropped as input parameter.
 
@@ -235,7 +240,7 @@ productRepository.dropIndex("productName");
 productRepository.dropIndex("category", "manufacturer.name");
 ```
 
-## Dropping all indexes
+## Dropping All Indexes
 
 You can drop all indexes on a repository using `dropAllIndices()` method.
 
@@ -243,7 +248,7 @@ You can drop all indexes on a repository using `dropAllIndices()` method.
 productRepository.dropAllIndices();
 ```
 
-## Getting all indexes
+## Getting All Indexes
 
 You can get all indexes on a repository using `listIndices()` method. It returns a `Collection` of `IndexDescriptor` object.
 
@@ -259,7 +264,7 @@ Collection<IndexDescriptor> indexes = productRepository.listIndices();
 - `indexType`: The type of the index.
 - `fields`: A `Fields` object containing the name of the fields on which the index is created.
 
-## Checking if an index exists
+## Checking If an Index Exists
 
 You can check if an index exists on a repository using `hasIndex()` method. It takes the name of the fields on which the index will be dropped as input parameter.
 
@@ -271,7 +276,7 @@ boolean exists = productRepository.hasIndex("productName");
 boolean exists = productRepository.hasIndex("category", "manufacturer.name");
 ```
 
-## Error scenarios
+## Error Scenarios
 
 The following error scenarios are possible while creating an index:
 

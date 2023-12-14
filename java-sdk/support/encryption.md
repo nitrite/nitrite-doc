@@ -1,7 +1,7 @@
 ---
 label: Encryption
 icon: key
-order: 2
+order: 1
 ---
 
 Nitrite provides encryption support via `nitrite-support` module. You can encrypt your data using a password. Nitrite provides an `Encryptor` interface to encrypt and decrypt data. Nitrite also provides an [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) based implementation of `Encryptor` interface, which uses AES/GCM/NoPadding algorithm to encrypt and decrypt data.
@@ -20,7 +20,7 @@ To use AES based encryption you need to use the `AESEncryptor` class. The class 
 Encryptor encryptor = new AESEncryptor("my-password");
 ```
 
-There is another constructor also which takes a password along with the algorithm, tag length, IV length, and salt length. You can use the default constructor if you don't want to provide these parameters.
+There is another constructor also which takes a password along with the algorithm, tag length, IV length, and salt length.
     
 ```java
 // create an AES encryptor with a password and algorithm parameters
@@ -104,6 +104,6 @@ collection.addProcessor(processor);
 collection.insert(doc);
 ```
 
-!!!info Note
+!!!info
 The encrypted data is a base64 encoded string of the encrypted bytes.
 !!!

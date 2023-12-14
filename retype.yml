@@ -3,8 +3,7 @@ output: .retype
 url: https://nitrite.dizitart.com
 
 branding:
-  title: Nitrite
-  label: v4.2.0
+  title: Nitrite Database
   logo: /assets/nitrite-logo.svg
 
 favicon: /assets/favicon.png

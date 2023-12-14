@@ -43,7 +43,7 @@ Nitrite db = Nitrite.builder()
 
 ### Using Spatial Modules with Jackson
 
-If you are using Jackson module for serialization, you need to register the `SpatialModule` with Jackson as well.
+If you are using Jackson module for serialization, you need to register the `GeometryModule` with Jackson as well.
 
 ```java
 Nitrite db = Nitrite.builder()
@@ -66,4 +66,4 @@ collection.createIndex(IndexOptions.indexOptions(SpatialIndexer.SPATIAL_INDEX), 
 
 ## Spatial Filter
 
-Spatial module supports several filters to query spatial data. To know more about filters, please refer to [Geospatial Filters](../filter.md#geospatial-filters).
+Spatial module supports several filters to query spatial data. To know more about filters, please refer to [Spatial Filters](../filter.md#spatial-filters).

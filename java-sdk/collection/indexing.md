@@ -8,9 +8,9 @@ Indexing is a way to optimize the performance of a database by minimizing the nu
 
 Nitrite supports indexing on a collection. It supports indexing on a single field or multiple fields. It also supports full-text indexing.
 
-## Index types
+## Index Types
 
-Nitrite supports the following types of index:
+Nitrite supports the following types of index out of the box:
 
 - Unique Index
 - Non-Unique Index
@@ -20,7 +20,7 @@ Nitrite supports the following types of index:
 
 A unique index ensures that the indexed field contains unique value. It does not allow duplicate value in the indexed field. It also ensures that the indexed field is not `null`.
 
-### Non-Unique Index
+### Non-unique Index
 
 A non-unique index does not ensure that the indexed field contains unique value. It allows duplicate value in the indexed field.
 
@@ -28,16 +28,23 @@ A non-unique index does not ensure that the indexed field contains unique value.
 
 A full-text index is used to search text content in a document. It is useful when you want to search text content in a document. It is also useful when you want to search text content in a document in a language other than English.
 
-!!!primary Note
+!!!info
 - Document's `_id` field is always indexed.
 - Indexing on non-comparable value is not supported.
 !!!
 
-## Creating an index
+### Custom Index
+
+You can also create your own custom index. You need to implement `NitriteIndexer` interface to create your own custom index. `NitriteIndexer` is a [`NitritePlugin`](../modules/module-system.md#nitriteplugin), so you need to register it using `loadModule()` method while opening a database. During index creation you need to pass the type of the custom index in `IndexOptions` object.
+
+One of such custom index implementation can be found in spatial module. It provides spatial indexing on a collection. More on spatial indexing can be found [here](../modules/spatial.md#spatial-index).
+
+
+## Creating an Index
 
 You can create an index on a collection using `createIndex()` method. There are several overloaded version of `createIndex()` method. You can create an index on a single field or multiple fields.
 
-### Creating a unique index
+### Creating a Unique Index
 
 You can create a unique index on a single field or multiple fields. It takes the name of the fields on which the index will be created as input parameter.
 
@@ -49,21 +56,21 @@ collection.createIndex("firstName");
 collection.createIndex("firstName", "lastName");
 ```
 
-### Creating a non-unique index
+### Creating a Non-unique Index
 
 You can create a non-unique index on a single field or multiple fields by passing the index type as `IndexType.NON_UNIQUE` in `IndexOptions` object and the name of the fields on which the index will be created as input parameters.
 
 ```java
 // create a non-unique index on a single field
-collection.createIndex(IndexOptions.indexOptions(IndexType.UNIQUE), "firstName");
+collection.createIndex(IndexOptions.indexOptions(IndexType.NON_UNIQUE), "firstName");
 
 // create a non-unique index on multiple fields
 collection.createIndex(IndexOptions.indexOptions(IndexType.NON_UNIQUE), "firstName", "lastName");
 ```
 
-### Creating a full-text index
+### Creating a Full-text Index
 
-You can create a non-unique index on a single field or multiple fields by passing the index type as `IndexType.FULL_TEXT` in `IndexOptions` object and the name of the fields on which the index will be created as input parameters.
+You can create a full-text index on a single field by passing the index type as `IndexType.FULL_TEXT` in `IndexOptions` object and the name of the field on which the index will be created as input parameters.
 
 ```java
 // create a full-text index on a single field
@@ -75,16 +82,18 @@ collection.createIndex(IndexOptions.indexOptions(IndexType.FULL_TEXT), "firstNam
 Full-text index is not supported on multiple fields.
 !!!
 
-### Creating index on array field
+### Creating Index on Array Field
 
 Nitrite supports creating index on array field. It will create index on each element of the array. For example, if you have a document like this:
 
-```java
-Document document = Document.createDocument("firstName", "John")
-    .put("lastName", "Doe")
-    .put("age", 30)
-    .put("address", "123 Street")
-    .put("phones", new String[]{"1234567890", "0987654321"});
+```json
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "age": 30,
+    "address": "123 Street",
+    "phones": ["1234567890", "0987654321"]
+}
 ```
 
 You can create index on `phones` field like this:
@@ -97,19 +106,23 @@ collection.createIndex("phones");
 collection.createIndex(IndexOptions.indexOptions(IndexType.NON_UNIQUE), "phones");
 ```
 
-### Creating index on nested field
+### Creating Index on Nested Field
 
 You can create index on nested field. For example, if you have a document like this:
 
-```java
-Document document = Document.createDocument("firstName", "John")
-    .put("lastName", "Doe")
-    .put("age", 30)
-    .put("phones", new String[]{"1234567890", "0987654321"})
-    .put("address", Document.createDocument("street", "123 Street")
-        .put("city", "New York")
-        .put("state", "NY")
-        .put("zip", "10021"));
+```json
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "age": 30,
+    "phones": ["1234567890", "0987654321"],
+    "address": {
+        "street": "123 Street",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10021"
+    }
+}
 ```
 
 You can create a unique index on `street` field like this:
@@ -119,11 +132,11 @@ You can create a unique index on `street` field like this:
 collection.createIndex("address.street");
 ```
 
-!!!warning
+!!!primary
 You cannot create index on nested field if the parent field is an array.
 !!!
 
-## Rebuilding an index
+## Rebuilding an Index
 
 You can rebuild an index on a collection using `rebuildIndex()` method. It takes the name of the fields on which the index will be rebuilt as input parameter.
 
@@ -135,7 +148,7 @@ collection.rebuildIndex("firstName");
 collection.rebuildIndex("firstName", "lastName");
 ```
 
-## Dropping an index
+## Dropping an Index
 
 You can drop an index on a collection using `dropIndex()` method. It takes the name of the fields on which the index will be dropped as input parameter.
 
@@ -147,7 +160,7 @@ collection.dropIndex("firstName");
 collection.dropIndex("firstName", "lastName");
 ```
 
-## Dropping all indexes
+## Dropping All Indexes
 
 You can drop all indexes on a collection using `dropAllIndices()` method.
 
@@ -155,7 +168,7 @@ You can drop all indexes on a collection using `dropAllIndices()` method.
 collection.dropAllIndices();
 ```
 
-## Getting all indexes
+## Getting All Indexes
 
 You can get all indexes on a collection using `listIndices()` method. It returns a `Collection` of `IndexDescriptor` object.
 
@@ -171,7 +184,7 @@ Collection<IndexDescriptor> indexes = collection.listIndices();
 - `indexType`: The type of the index.
 - `fields`: A `Fields` object containing the name of the fields on which the index is created.
 
-## Checking if an index exists
+## Checking If an Index Exists
 
 You can check if an index exists on a collection using `hasIndex()` method. It takes the name of the fields on which the index will be checked as input parameter.
 
@@ -183,7 +196,7 @@ boolean exists = collection.hasIndex("firstName");
 boolean exists = collection.hasIndex("firstName", "lastName");
 ```
 
-## Error scenarios
+## Error Scenarios
 
 The following error scenarios are possible while creating an index:
 

@@ -4,9 +4,9 @@ icon: versions
 order: 10
 ---
 
-A migration is a set of changes to the schema that can be applied to a database. Migrations are used to keep the database schema up to date with the codebase. It contains a queue if instructions that are executed in order to update the database schema from one version to the next. 
+A migration is a set of changes to the schema that can be applied to a database. Migrations are used to keep the database schema up to date with the codebase. It contains a queue of instructions that are executed in order to update the database schema from one version to the next. 
 
-!!!info Important
+!!!primary
 The migration is executed only once. If you want to execute the migration again, you need to change the schema version of the database.
 !!!
 
@@ -46,7 +46,7 @@ Nitrite db = Nitrite.builder()
 
 The migration instructions are executed in the order they are added to the migration. The order of the instructions is important. For example, if you want to rename a field, you need to add the `renameField` instruction before the `deleteField` instruction. Otherwise, the `deleteField` instruction will fail.
 
-!!!warning Important
+!!!warning :zap: Warning :zap:
 Once a migration is applied to a database, it cannot be reverted. If you want to revert a migration, you need to create a new migration that will revert the changes.
 !!!
 
@@ -59,16 +59,20 @@ Nitrite provides a set of instructions that can be used to update the database s
 
 ## Database Instruction
 
-Database instructions are used perform operations on the database. The following instructions are available:
+Database instructions are used to perform operations on the database. The following instructions are available:
 
-### Add Password
+### Add User
 
-Adds an instruction to set a user authentication to the database.The user will be used to open the database.
+Adds an instruction to set a user authentication to the database. The user will be used to open the database.
 
 ```java
 instruction.forDatabase()
     .addUser("test-user", "test-password");
 ```
+
+!!!danger :zap: Important :zap:
+Nitrite database supports only one user authentication per database. If you try to add a new user when there is already a user authentication present, the migration will fail throwing a `NitriteSecurityException`.
+!!!
 
 ### Change Password
 
@@ -78,6 +82,12 @@ Adds an instruction to change the password for the user authentication to the da
 instruction.forDatabase()
     .changePassword("test-user", "test-password", "new-password");
 ```
+
+!!!danger :zap: Important :zap:
+The user authentication must be present in the database. If you try to change the password for a user that does not exist, the migration will fail throwing a `NitriteSecurityException`.
+
+If you try to change the password for a user with a wrong password, the migration will also fail throwing a `NitriteSecurityException`.
+!!!
 
 ### Drop Collection
 
@@ -147,7 +157,7 @@ instruction.forDatabase()
 
 ## Collection Instruction
 
-Collection instructions are used perform operations on a `NitriteCollection`. The following instructions are available:
+Collection instructions are used to perform operations on a `NitriteCollection`. The following instructions are available:
 
 ### Rename Collection
 
@@ -254,7 +264,7 @@ The create index instruction can be used to create a single field index or a com
 
 ## Repository Instruction
 
-Repository instructions are used perform operations on a `ObjectRepository`. The following instructions are available:
+Repository instructions are used to perform operations on a `ObjectRepository`. The following instructions are available:
 
 ### Rename Repository
 

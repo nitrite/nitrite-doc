@@ -8,15 +8,15 @@ order: 17
 
 `ObjectRepository` is thread-safe and supports concurrent read and write operations.
 
-## Creating a repository
+## Creating a Repository
 
 A `ObjectRepository` can be created using `Nitrite` class. You need to call `getRepository()` method on `Nitrite` class to get an instance of a `ObjectRepository`. If the repository does not exist, then it will be created automatically. If a repository with the same name already exists, then it will return the existing repository.
 
 There are several overloaded methods available to create a repository. You can pass a class type or an `EntityDecorator` along with an optional string key to create a repository.
 
-### Creating a repository with class type
+### Creating a Repository with Class Type
 
-You can create a repository by passing a class type to `getRepository()` method.
+You can create a `ObjectRepository` by passing a class type to `getRepository()` method.
 
 ```java
 Nitrite db = Nitrite.builder()
@@ -25,9 +25,9 @@ Nitrite db = Nitrite.builder()
 ObjectRepository<Employee> repository = db.getRepository(Employee.class);
 ```
 
-### Creating a repository with class type and key
+### Creating a Repository with Class Type and Key
 
-You can create a keyed repository by passing a class type and a key to `getRepository()` method.
+You can create a keyed `ObjectRepository` by passing a class type and a key to `getRepository()` method.
 
 ```java
 Nitrite db = Nitrite.builder()
@@ -38,11 +38,11 @@ ObjectRepository<Employee> repository = db.getRepository(Employee.class, "myKey"
 
 One typical use case of this keyed repository is to create a repository for each user in a multi-user application. The key can be the user name or user id. This will ensure that each user will have a separate repository for storing objects.
 
-### Creating a repository with EntityDecorator
+### Creating a Repository with EntityDecorator
 
 A `ObjectRepository` can be created using `EntityDecorator`. This is useful when you cannot modify the object class to add annotations.
 
-More details about `EntityDecorator` can be found [here](entity.md).
+More details about `EntityDecorator` can be found [here](entity.md#entitydecorator).
 
 ```java
 Nitrite db = Nitrite.builder()
@@ -51,11 +51,11 @@ Nitrite db = Nitrite.builder()
 ObjectRepository<Employee> repository = db.getRepository(new EmployeeDecorator());
 ```
 
-### Creating a repository with EntityDecorator and key
+### Creating a Repository with EntityDecorator and Key
 
 A keyed `ObjectRepository` can be created using `EntityDecorator` and a key. This is useful when you cannot modify the object class to add annotations.
 
-More details about `EntityDecorator` can be found [here](entity.md).
+More details about `EntityDecorator` can be found [here](entity.md#entitydecorator).
 
 ```java
 Nitrite db = Nitrite.builder()

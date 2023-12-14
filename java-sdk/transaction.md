@@ -4,7 +4,7 @@ icon: git-pull-request
 order: 11
 ---
 
-A transaction is a unit of work that is performed against a database. Transactions are units or sequences of work accomplished in a logical order, whether in a manual fashion by a user or automatically by some sort of a database program. A transaction is a single logical unit of work which accesses and possibly modifies the contents of a database. Transactions access data using read and write operations.
+A transaction is a single logical unit of work which accesses and possibly modifies the contents of a database. Transactions access data using read and write operations.
 
 Nitrite supports transactional operations on its collections and repositories. A transaction can be committed or rolled back. Once a transaction is committed, all the changes are persisted to the disk. If a transaction is rolled back, all the changes are discarded.
 
@@ -39,14 +39,14 @@ try (Session session = db.createSession()) {
 }
 ```
 
-!!!primary Note
+!!!info
 Any find operations performed inside a transaction will return all the documents including the uncommitted ones.
 
 Any find operations performed outside a transaction will return only the committed documents.
 !!!
 
 
-### Auto-commit operations
+### Auto-commit Operations
 
 Certain operations are auto-committed in Nitrite. Those operations are not part of a transaction and cannot be rolled back. The following operations are auto-committed:
 
@@ -88,13 +88,13 @@ try (Session session = db.createSession()) {
 }
 ```
 
-!!!primary Note
+!!!info
 Any find operations performed inside a transaction will return all the entities including the uncommitted ones.
 
 Any find operations performed outside a transaction will return only the committed entities.
 !!!
 
-### Auto-commit operations
+### Auto-commit Operations
 
 Certain operations are auto-committed in Nitrite. Those operations are not part of a transaction and cannot be rolled back. The following operations are auto-committed:
 
@@ -109,11 +109,9 @@ Certain operations are auto-committed in Nitrite. Those operations are not part 
 
 ## Session
 
-A session represents a transactional context for a Nitrite database. A session is used to create a new transaction.
+A session represents a transactional context for a Nitrite database. Session is used to create a new transaction. A session should be closed after use to release any resources held by it. If a session is closed and the transaction is not committed, all opened transactions will be rolled back.
 
-A session should be closed after use to release any resources held by it. If a session is closed and the transaction is not committed, all opened transactions will be rolled back.
-
-### Create a session
+### Create a Session
 
 A session can be created using the `Nitrite.createSession()` method. Multiple sessions can be created for a Nitrite database.
 
@@ -122,7 +120,7 @@ A session can be created using the `Nitrite.createSession()` method. Multiple se
 Session session = db.createSession();
 ```
 
-### Close a session
+### Close a Session
 
 A session can be closed using the `Session.close()` method. If a session is closed and the transaction is not committed, all opened transactions will be rolled back.
 
@@ -131,7 +129,7 @@ A session can be closed using the `Session.close()` method. If a session is clos
 session.close();
 ```
 
-### Checking session state
+### Checking Session State
 
 The current state of a session can be checked using the `Session.checkState()` method. If the session is not active, it will throw an `TransactionException`.
 
@@ -140,7 +138,7 @@ The current state of a session can be checked using the `Session.checkState()` m
 session.checkState();
 ```
 
-## Managing transactions
+## Managing Transactions
 
 A transaction can be started using the `Session.beginTransaction()` method.
 
@@ -170,7 +168,7 @@ A transaction can be closed using the `Transaction.close()` method. If a transac
 transaction.close();
 ```
 
-### Querying transaction state
+### Querying Transaction State
 
 The current state of a transaction can be retrieved using the `Transaction.getState()` method. It returns an enum of type `TransactionState`.
 

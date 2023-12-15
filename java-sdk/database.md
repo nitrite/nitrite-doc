@@ -8,8 +8,7 @@ Nitrite database is a serverless, embedded, and self-contained Java NoSQL databa
 
 ## Creating a Database
 
-Nitrite database can be created in-memory or on-disk. By default, Nitrite database is created in-memory. To create a database on-disk, you need to add a storage module dependency to your project.
-More details about storage modules can be found [here](modules/store-modules/store-modules.md).
+Nitrite database can be created in-memory or on-disk. By default, Nitrite database is created in-memory. To create a database on-disk, you need to add a storage module dependency to your project. More details about storage modules can be found [here](modules/store-modules/store-modules.md).
 
 To create a database, you need to use `NitriteBuilder` class. To get an instance of `NitriteBuilder`, you need to call `builder()` method on `Nitrite` class.
 

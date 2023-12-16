@@ -7,7 +7,7 @@ order: 20
 
 # Getting Started in Kotlin
 
-Nitrite's Kotlin SDK is a wrapper around the Java SDK. It provides some Kotlin friendly extensions for some of the Java API to work with Nitrite database. The Kotlin SDK is available as a separate module named `potassium-nitrite`. In this guide, we will discuss the Kotlin specific API only. For rest of the API, please refer to the [Java SDK](../java-sdk/getting-started.md). So it is highly recommended to go through the Java SDK guide first.
+Nitrite's Kotlin SDK is a wrapper around the Java SDK. It provides some Kotlin friendly extensions for some of the Java API to work with Nitrite database. The Kotlin SDK is available as a separate module named `potassium-nitrite` (KNO<sub>2</sub>). In this guide, we will discuss the Kotlin specific API only. For rest of the API, please refer to the [Java SDK](../java-sdk/getting-started.md). So it is highly recommended to go through the Java SDK guide first.
 
 To get started with Nitrite database, you need to add the Nitrite BOM to your project. The BOM will help you to manage the dependencies. Details of the BOM can be found [here](../java-sdk/modules/module-system.md#nitrite-bill-of-materials).
 
@@ -96,7 +96,7 @@ Nitrite's Kotlin SDK is not as lean as the Java SDK. It has a lot of dependencie
 If you are upgrading from 3.x, please note that there are lots of breaking changes in the API. The whole library is re-written from scratch. It is recommended to go through this guide before upgrading. 
 
 !!!primary
-You need to use the [MVStore](modules/store-modules/mvstore.md) as your storage module to upgrade from 3.x. The RocksDB module is not backward compatible.
+You need to use the [MVStore](../java-sdk/modules/store-modules/mvstore.md) as your storage module to upgrade from 3.x. The RocksDB module is not backward compatible.
 !!!
 
 Nitrite will try to migrate your existing database to the latest version on the [!badge variant="warning" text="best effort basis without any guarantee"] provided you are using the MVStore module. If you are using the RocksDB module, you need to migrate your database manually. However, it is recommended to take a backup of your database before upgrading.

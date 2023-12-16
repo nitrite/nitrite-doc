@@ -40,7 +40,7 @@ Nitrite is not an RDBMS. It is also not a distributed NoSQL database like MongoD
 
 ## 🚀 Getting Started
 
-Please visit respective language page for getting started guide.
+Nitrite database is currently available in Java, Kotlin, and Flutter. Please visit respective language page for getting started guide.
 
 - [Java](/java-sdk/getting-started)
 - [Kotlin](/kotlin-sdk/getting-started)

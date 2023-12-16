@@ -198,7 +198,6 @@ collection.find(Filter.ALL);
 In this example, the `Filter.ALL` constant is used to create an all filter that matches all documents in the collection. The filter is then passed to the find method to retrieve the matching documents.
 
 
-
 ## Logical Filters
 
 Logical filters are used to combine multiple filters into a single filter. The following logical filters are supported:

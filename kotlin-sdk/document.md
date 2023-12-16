@@ -12,7 +12,7 @@ More details on document can be found [here](../java-sdk/document.md).
 
 ## Kotlin API for Document
 
-Potassium nitrite provides a set of extension functions to make document manipulation easier. 
+Potassium Nitrite provides a set of extension functions to make document manipulation easier. 
 
 ### Create a Document
 
@@ -60,7 +60,7 @@ To check if a document is empty, you can use the `isEmpty` function. It takes no
 val isEmpty = document.isEmpty()
 ```
 
-Conversly, to check if a document is not empty, you can use the `isNotEmpty` function. It takes no argument and returns a `Boolean`.
+Conversely, to check if a document is not empty, you can use the `isNotEmpty` function. It takes no argument and returns a `Boolean`.
 
 ```kotlin
 val isNotEmpty = document.isNotEmpty()

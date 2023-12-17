@@ -40,7 +40,7 @@ integrations:
   googleAnalytics:
     id: ""
 
-cname: nitrite.dizitart.com
+# cname: nitrite.dizitart.com
 
 serve:
   watch:

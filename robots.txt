@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nitrite.dizitart.com/sitemap.xml.gz

@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.756105021148">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.5.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Filters | Nitrite</title>
+    <meta name="title" content="Filters | Nitrite">
+    <meta name="description" content="Filters are used to specify the criteria used to select documents from a collection or repository.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://nitrite.dizitart.com/java-sdk/filter/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nitrite.dizitart.com/java-sdk/filter/">
+    <meta property="og:title" content="Filters | Nitrite">
+    <meta property="og:description" content="Filters are used to specify the criteria used to select documents from a collection or repository.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://nitrite.dizitart.com/java-sdk/filter/">
+    <meta property="twitter:title" content="Filters | Nitrite">
+    <meta property="twitter:description" content="Filters are used to specify the criteria used to select documents from a collection or repository.">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../assets/favicon.png" rel="icon">
+    <link href="../../resources/css/retype.css?v=3.5.0.756105021148" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.756105021148" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.756105021148" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.756105021148" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../assets/nitrite-logo.svg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../assets/nitrite-logo.svg">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Nitrite Database</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://nitrite.dizitart.com">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                        <g fill="currentColor">
+                                            <path d="M11.03 2.59a1.501 1.501 0 0 1 1.94 0l7.5 6.363a1.5 1.5 0 0 1 .53 1.144V19.5a1.5 1.5 0 0 1-1.5 1.5h-5.75a.75.75 0 0 1-.75-.75V14h-2v6.25a.75.75 0 0 1-.75.75H4.5A1.5 1.5 0 0 1 3 19.5v-9.403c0-.44.194-.859.53-1.144ZM12 3.734l-7.5 6.363V19.5h5v-6.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v6.25h5v-9.403Z"/>
+                                        </g>
+                                    </svg>
+                                    <span>Home</span>
+                                </a>
+                            </li>
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/nitrite" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                        <g fill="currentColor">
+                                            <symbol id="mark-github-icon-symbol" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></symbol><use xlink:href="#mark-github-icon-symbol" />
+                                        </g>
+                                    </svg>
+                                    <span>Github</span>
+                                </a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+                <div class="shrink-0 mt-auto bg-transparent dark:border-dark-650">
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                        <span class="text-xs whitespace-nowrap">Powered by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://nitrite.dizitart.com">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                <g fill="currentColor">
+                                                    <path d="M11.03 2.59a1.501 1.501 0 0 1 1.94 0l7.5 6.363a1.5 1.5 0 0 1 .53 1.144V19.5a1.5 1.5 0 0 1-1.5 1.5h-5.75a.75.75 0 0 1-.75-.75V14h-2v6.25a.75.75 0 0 1-.75.75H4.5A1.5 1.5 0 0 1 3 19.5v-9.403c0-.44.194-.859.53-1.144ZM12 3.734l-7.5 6.363V19.5h5v-6.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v6.25h5v-9.403Z"/>
+                                                </g>
+                                            </svg>
+                                            <span>Home</span>
+                                        </a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/nitrite" target="_blank">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                <g fill="currentColor">
+                                                    <symbol id="mark-github-icon-symbol" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></symbol><use xlink:href="#mark-github-icon-symbol" />
+                                                </g>
+                                            </svg>
+                                            <span>Github</span>
+                                        </a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+            
+                        <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                            <span class="text-xs whitespace-nowrap">Powered by</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                        </a>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <!-- Page content  -->
+<doc-anchor-target id="filters" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#filters">#</doc-anchor-trigger>
+        <span>Filters</span>
+    </h1>
+</doc-anchor-target>
+<p>Filters are used to specify the criteria used to select documents from a collection or repository. It provides a way to specify conditions that the documents must meet to be included in the result set. Filters are used in conjunction with the <code v-pre>find</code> method. The <code v-pre>find</code> method returns all documents in a collection that match the specified filtering criteria.</p>
+<p>Each filtering criteria is based on a field in the document. If the field is indexed, the find operation takes advantage of the index to speed up the operation. If the field is not indexed, the find operation scans the entire collection to find matching documents.</p>
+<doc-anchor-target id="fluent-api">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#fluent-api">#</doc-anchor-trigger>
+        <span>Fluent API</span>
+    </h2>
+</doc-anchor-target>
+<p>Nitrite provides a fluent API to create filters via <code v-pre>FluentFilter</code> class. It provides a static <code v-pre>where</code> method that creates a new <code v-pre>FluentFilter</code> instance with the specified field name. Here&#x27;s an example:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// create a filter for the field 'name'
+FluentFilter filter = FluentFilter.where(&quot;name&quot;).eq(&quot;John&quot;);
+DocumentCursor cursor = collection.find(filter);</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>FluentFilter.where</code> method is used to create a filter that matches documents where the <code v-pre>name</code> field equals &quot;John&quot;. The filter is then passed to the find method to retrieve the matching documents.</p>
+<p>For spatial filters, use the <code v-pre>SpatialFluentFilter</code> class for the fluent API. It provides a static <code v-pre>where</code> method that creates a new <code v-pre>SpatialFluentFilter</code> instance with the specified field name. Here&#x27;s an example:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// create a filter for the field 'location'
+SpatialFilter filter = SpatialFluentFilter.where(&quot;location&quot;).near(coordinate, 1000);
+DocumentCursor cursor = collection.find(filter);</code></pre>
+</doc-codeblock></div>
+<p>More on spatial module can be found <a href="../modules/spatial/">here</a>.</p>
+<doc-anchor-target id="usage">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#usage">#</doc-anchor-trigger>
+        <span>Usage</span>
+    </h2>
+</doc-anchor-target>
+<p>Filters are used with the <code v-pre>find</code> method of <code v-pre>NitriteCollection</code> or <code v-pre>ObjectRepository</code> to retrieve documents that match the filter. Here&#x27;s an example:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'name' equals 'John'
+DocumentCursor cursor = collection.find(where(&quot;name&quot;).eq(&quot;John&quot;));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where</code> and <code v-pre>eq</code> methods are used to create an equality filter that matches documents where the <code v-pre>name</code> field equals &quot;John&quot;. The filter is then passed to the find method to retrieve the matching documents.</p>
+<doc-anchor-target id="types-of-filters">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#types-of-filters">#</doc-anchor-trigger>
+        <span>Types of Filters</span>
+    </h2>
+</doc-anchor-target>
+<p>Nitrite filters can be grouped into the following categories:</p>
+<ul>
+<li>Comparison filters</li>
+<li>Logical filters</li>
+<li>Array filters</li>
+<li>Evaluation filters</li>
+<li>Spatial filters</li>
+</ul>
+<doc-anchor-target id="comparison-filters">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#comparison-filters">#</doc-anchor-trigger>
+        <span>Comparison Filters</span>
+    </h2>
+</doc-anchor-target>
+<p>Comparison filters are used to compare a field with a value. The following comparison filters are supported:</p>
+<ul>
+<li>Equality (eq): Matches all documents where the value of the field equals the specified value.</li>
+<li>Inequality (notEq): Matches all documents where the value of the field is not equal to the specified value.</li>
+<li>Greater than (gt): Matches all documents where the value of the field is greater than the specified value.</li>
+<li>Greater than or equal to (gte): Matches all documents where the value of the field is greater than or equal to the specified value.</li>
+<li>Less than (lt): Matches all documents where the value of the field is less than the specified value.</li>
+<li>Less than or equal to (lte): Matches all documents where the value of the field is less than or equal to the specified value.</li>
+<li>In (in): Matches all documents where the value of the field equals any value in the specified array.</li>
+<li>Not in (notIn): Matches all documents where the value of the field does not equal any value in the specified array.</li>
+<li>Between (between): Matches all documents where the value of the field is between the specified values.</li>
+<li>All (all): Matches all documents in the collection.</li>
+</ul>
+<doc-anchor-target id="equality-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#equality-filter">#</doc-anchor-trigger>
+        <span>Equality Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>The equality filter is used to match documents where the value of a field equals the specified value. The following example shows how to use the equality filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'name' equals 'John'
+collection.find(where(&quot;name&quot;).eq(&quot;John&quot;));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where()</code> and <code v-pre>eq()</code> methods are used to create an equality filter that matches documents where the <code v-pre>name</code> field equals &quot;John&quot;. The filter is then passed to the find method to retrieve the matching documents.</p>
+<doc-anchor-target id="inequality-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#inequality-filter">#</doc-anchor-trigger>
+        <span>Inequality Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>The inequality filter is used to match documents where the value of a field is not equal to the specified value. The following example shows how to use the inequality filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'name' does not equal 'John'
+collection.find(where(&quot;name&quot;).notEq(&quot;John&quot;));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where()</code> and <code v-pre>notEq()</code> methods are used to create an inequality filter that matches documents where the <code v-pre>name</code> field does not equal &quot;John&quot;. The filter is then passed to the find method to retrieve the matching documents.</p>
+<doc-anchor-target id="greater-than-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#greater-than-filter">#</doc-anchor-trigger>
+        <span>Greater Than Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>The greater than filter is used to match documents where the value of a field is greater than the specified value. The following example shows how to use the greater than filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'age' is greater than 18
+collection.find(where(&quot;age&quot;).gt(18));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where()</code> and <code v-pre>gt()</code> methods are used to create a greater than filter that matches documents where the <code v-pre>age</code> field is greater than 18. The filter is then passed to the find method to retrieve the matching documents.</p>
+<doc-anchor-target id="greater-than-or-equal-to-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#greater-than-or-equal-to-filter">#</doc-anchor-trigger>
+        <span>Greater Than or Equal To Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>The greater than or equal to filter is used to match documents where the value of a field is greater than or equal to the specified value. The following example shows how to use the greater than or equal to filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'age' is greater than or equal to 18
+collection.find(where(&quot;age&quot;).gte(18));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where()</code> and <code v-pre>gte()</code> methods are used to create a greater than or equal to filter that matches documents where the <code v-pre>age</code> field is greater than or equal to 18. The filter is then passed to the find method to retrieve the matching documents.</p>
+<doc-anchor-target id="less-than-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#less-than-filter">#</doc-anchor-trigger>
+        <span>Less Than Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>The less than filter is used to match documents where the value of a field is less than the specified value. The following example shows how to use the less than filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'age' is less than 18
+collection.find(where(&quot;age&quot;).lt(18));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where()</code> and <code v-pre>lt()</code> methods are used to create a less than filter that matches documents where the <code v-pre>age</code> field is less than 18. The filter is then passed to the find method to retrieve the matching documents.</p>
+<doc-anchor-target id="less-than-or-equal-to-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#less-than-or-equal-to-filter">#</doc-anchor-trigger>
+        <span>Less Than or Equal To Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>The less than or equal to filter is used to match documents where the value of a field is less than or equal to the specified value. The following example shows how to use the less than or equal to filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'age' is less than or equal to 18
+collection.find(where(&quot;age&quot;).lte(18));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where()</code> and <code v-pre>lte()</code> methods are used to create a less than or equal to filter that matches documents where the <code v-pre>age</code> field is less than or equal to 18. The filter is then passed to the find method to retrieve the matching documents.</p>
+<doc-anchor-target id="in-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#in-filter">#</doc-anchor-trigger>
+        <span>In Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>The in filter is used to match documents where the value of a field equals any value in the specified array. The following example shows how to use the in filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'name' equals 'John' or 'Jane'
+collection.find(where(&quot;name&quot;).in(&quot;John&quot;, &quot;Jane&quot;));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where()</code> and <code v-pre>in()</code> methods are used to create an in filter that matches documents where the <code v-pre>name</code> field equals &quot;John&quot; or &quot;Jane&quot;. The filter is then passed to the find method to retrieve the matching documents.</p>
+<doc-anchor-target id="not-in-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-in-filter">#</doc-anchor-trigger>
+        <span>Not In Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>The not in filter is used to match documents where the value of a field does not equal any value in the specified array. The following example shows how to use the not in filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'name' does not equal 'John' or 'Jane'
+collection.find(where(&quot;name&quot;).notIn(&quot;John&quot;, &quot;Jane&quot;));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where()</code> and <code v-pre>notIn()</code> methods are used to create a not in filter that matches documents where the <code v-pre>name</code> field does not equal &quot;John&quot; or &quot;Jane&quot;. The filter is then passed to the find method to retrieve the matching documents.</p>
+<doc-anchor-target id="between-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#between-filter">#</doc-anchor-trigger>
+        <span>Between Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>The between filter is used to match documents where the value of a field is between the specified values. The following example shows how to use the between filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'age' is between 18 and 30
+collection.find(where(&quot;age&quot;).between(18, 30));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where()</code> and <code v-pre>between()</code> methods are used to create a between filter that matches documents where the <code v-pre>age</code> field is between 18 and 30. The filter is then passed to the find method to retrieve the matching documents.</p>
+<p>There are three overloaded versions of the between filter. The first version takes two parameters, the lower and upper bounds of the range. The second version takes an additional boolean parameter that indicates whether both the lower and upper bounds are inclusive or exclusive. The third version takes two additional boolean parameters that indicate whether the lower and upper bounds are inclusive or exclusive. The following example shows how to use the second version of the between filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'age' is between 18 and 30
+// both the lower and upper bounds are inclusive
+collection.find(where(&quot;age&quot;).between(18, 30, true));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where()</code> and <code v-pre>between()</code> methods are used to create a between filter that matches documents where the <code v-pre>age</code> field is between 18 and 30. Both the lower and upper bounds are inclusive. The filter is then passed to the find method to retrieve the matching documents.</p>
+<p>The following example shows how to use the third version of the between filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'age' is between 18 and 30
+// the lower bound is inclusive and the upper bound is exclusive
+collection.find(where(&quot;age&quot;).between(18, 30, true, false));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where()</code> and <code v-pre>between()</code> methods are used to create a between filter that matches documents where the <code v-pre>age</code> field is between 18 and 30. The lower bound is inclusive and the upper bound is exclusive. The filter is then passed to the find method to retrieve the matching documents.</p>
+<doc-anchor-target id="all-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#all-filter">#</doc-anchor-trigger>
+        <span>All Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>The all filter is used to match all documents in the collection. The following example shows how to use the all filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents in the collection
+collection.find(Filter.ALL);</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>Filter.ALL</code> constant is used to create an all filter that matches all documents in the collection. The filter is then passed to the find method to retrieve the matching documents.</p>
+<doc-anchor-target id="logical-filters">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#logical-filters">#</doc-anchor-trigger>
+        <span>Logical Filters</span>
+    </h2>
+</doc-anchor-target>
+<p>Logical filters are used to combine multiple filters into a single filter. The following logical filters are supported:</p>
+<ul>
+<li>And (and): Matches all documents that satisfy all the specified filters.</li>
+<li>Or (or): Matches all documents that satisfy at least one of the specified filters.</li>
+<li>Not (not): Matches all documents that do not satisfy the specified filter.</li>
+</ul>
+<doc-anchor-target id="and-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#and-filter">#</doc-anchor-trigger>
+        <span>And Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>The and filter is used to match documents that satisfy all the specified filters. The following example shows how to use the and filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'name' equals 'John' and the field 'age' is greater than 18
+collection.find(where(&quot;name&quot;).eq(&quot;John&quot;).and(where(&quot;age&quot;).gt(18)));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where()</code> and <code v-pre>eq()</code> methods are used to create an equality filter that matches documents where the <code v-pre>name</code> field equals &quot;John&quot;. The <code v-pre>where()</code> and <code v-pre>gt()</code> methods are used to create a greater than filter that matches documents where the <code v-pre>age</code> field is greater than 18. The two filters are then combined using the <code v-pre>and()</code> method to create an and filter that matches documents where the <code v-pre>name</code> field equals &quot;John&quot; and the <code v-pre>age</code> field is greater than 18. The filter is then passed to the find method to retrieve the matching documents.</p>
+<p>The <code v-pre>and()</code> method can be used to combine any number of filters. The following example shows how to combine three filters:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'name' equals 'John' and the field 'age' is greater than 18 and less than 30
+collection.find(where(&quot;name&quot;).eq(&quot;John&quot;).and(where(&quot;age&quot;).gt(18)).and(where(&quot;age&quot;).lt(30)));</code></pre>
+</doc-codeblock></div>
+<p>The static <code v-pre>Filter.and()</code> method can also be used to combine multiple filters into a single filter. The following example shows how to combine two filters into a single filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'name' equals 'John' and the field 'age' is greater than 18
+// and the field 'age' is less than 30
+collection.find(and(where(&quot;name&quot;).eq(&quot;John&quot;), where(&quot;age&quot;).gt(18),where(&quot;age&quot;).lt(30)));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>and()</code> method is used to combine three filters into a single filter. The filter is then passed to the find method to retrieve the matching documents.</p>
+<doc-anchor-target id="or-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#or-filter">#</doc-anchor-trigger>
+        <span>Or Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>The or filter is used to match documents that satisfy at least one of the specified filters. The following example shows how to use the or filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'name' equals 'John' or the field 'age' is greater than 18
+collection.find(where(&quot;name&quot;).eq(&quot;John&quot;).or(where(&quot;age&quot;).gt(18)));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where()</code> and <code v-pre>eq()</code> methods are used to create an equality filter that matches documents where the <code v-pre>name</code> field equals &quot;John&quot;. The <code v-pre>where()</code> and <code v-pre>gt()</code> methods are used to create a greater than filter that matches documents where the <code v-pre>age</code> field is greater than 18. The two filters are then combined using the <code v-pre>or()</code> method to create an or filter that matches documents where the <code v-pre>name</code> field equals &quot;John&quot; or the <code v-pre>age</code> field is greater than 18. The filter is then passed to the find method to retrieve the matching documents.</p>
+<p>The <code v-pre>or()</code> method can be used to combine any number of filters. The following example shows how to combine three filters:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'name' equals 'John' or the field 'age' is greater than 18 or less than 30
+collection.find(where(&quot;name&quot;).eq(&quot;John&quot;).or(where(&quot;age&quot;).gt(18)).or(where(&quot;age&quot;).lt(30)));</code></pre>
+</doc-codeblock></div>
+<p>The static <code v-pre>Filter.or()</code> method can also be used to combine multiple filters into a single filter. The following example shows how to combine two filters into a single filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'name' equals 'John' or the field 'age' is greater than 18
+// or the field 'age' is less than 30
+collection.find(or(where(&quot;name&quot;).eq(&quot;John&quot;), where(&quot;age&quot;).gt(18), where(&quot;age&quot;).lt(30)));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>or()</code> method is used to combine three filters into a single filter. The filter is then passed to the find method to retrieve the matching documents.</p>
+<doc-anchor-target id="not-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-filter">#</doc-anchor-trigger>
+        <span>Not Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>The not filter is used to match documents that do not satisfy the specified filter. The following example shows how to use the not filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'name' does not equal 'John'
+collection.find(where(&quot;name&quot;).eq(&quot;John&quot;).not());</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where()</code> and <code v-pre>eq()</code> methods are used to create an equality filter that matches documents where the <code v-pre>name</code> field equals &quot;John&quot;. The <code v-pre>not()</code> method is then used to create a not filter that matches documents where the <code v-pre>name</code> field does not equal &quot;John&quot;. The filter is then passed to the find method to retrieve the matching documents.</p>
+<doc-anchor-target id="array-filters">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#array-filters">#</doc-anchor-trigger>
+        <span>Array Filters</span>
+    </h2>
+</doc-anchor-target>
+<p>Array filters are used to match documents based on the values in an array field. The following array filters are supported:</p>
+<ul>
+<li>Element match (elemMatch): Matches all documents where the array field contains at least one element that matches the specified filter.</li>
+</ul>
+<doc-anchor-target id="element-match-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#element-match-filter">#</doc-anchor-trigger>
+        <span>Element Match Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>The element match filter is used to match documents where the array field contains at least one element that matches the specified filter. The following example shows how to use the element match filter:</p>
+<p>Let&#x27;s say we have a collection that contains documents with the following structure:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;name&quot;: &quot;John&quot;,
+  &quot;addresses&quot;: [
+    {
+      &quot;city&quot;: &quot;New York&quot;,
+      &quot;state&quot;: &quot;NY&quot;
+    },
+    {
+      &quot;city&quot;: &quot;Los Angeles&quot;,
+      &quot;state&quot;: &quot;CA&quot;
+    }
+  ]
+}</code></pre>
+</doc-codeblock></div>
+<p>The following example shows how to use the element match filter to find all documents where the <code v-pre>addresses</code> field contains at least one element that matches the filter where the <code v-pre>city</code> field equals &quot;New York&quot;:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'addresses' contains at least one element that matches the filter
+// where the field 'city' equals 'New York'
+collection.find(where(&quot;addresses&quot;).elemMatch(where(&quot;city&quot;).eq(&quot;New York&quot;)));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where()</code> and <code v-pre>elemMatch()</code> methods are used to create an element match filter that matches documents where the <code v-pre>addresses</code> field contains at least one element that matches the filter where the <code v-pre>city</code> field equals &quot;New York&quot;. The filter is then passed to the find method to retrieve the matching documents.</p>
+<p>The <code v-pre>elemMatch</code> filter can be used to search an array of elements for a specific value. The following example shows how to use the <code v-pre>elemMatch</code> filter to find all documents where the <code v-pre>data</code> field contains at least one element that is greater than 2 or less than equal to 5:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'data' contains at least one element that is greater than 2 or less than equal to 5
+collection.find(where(&quot;data&quot;).elemMatch($.gt(2).or($.lte(5))));</code></pre>
+</doc-codeblock></div>
+<p>The static <code v-pre>FluentFilter.$</code> is used to refer to the current element in the array. The <code v-pre>$.gt(2).or($.lte(5))</code> filter is used to match documents where the <code v-pre>data</code> field contains at least one element that is greater than 2 or less than equal to 5. The filter is then passed to the find method to retrieve the matching documents.</p>
+<doc-anchor-target id="evaluation-filters">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#evaluation-filters">#</doc-anchor-trigger>
+        <span>Evaluation Filters</span>
+    </h2>
+</doc-anchor-target>
+<p>Evaluation filters are used to match documents based on evaluating the value of any field in a document. The following evaluation filters are supported:</p>
+<ul>
+<li>Text (text): Matches all documents which contain a specified full-text search expression.</li>
+<li>Regex (regex): Matches all documents where values contain a specified regular expression.</li>
+</ul>
+<doc-anchor-target id="text-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#text-filter">#</doc-anchor-trigger>
+        <span>Text Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>The text filter is used to match documents which contain a specified full-text search expression. The following example shows how to use the text filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'name' contains the word 'John'
+collection.find(where(&quot;name&quot;).text(&quot;John&quot;));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where()</code> and <code v-pre>text()</code> methods are used to create a text filter that matches documents where the <code v-pre>name</code> field contains the word &quot;John&quot;. The filter is then passed to the find method to retrieve the matching documents.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>The text filter can only be used with a field that has a full-text index.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="regex-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#regex-filter">#</doc-anchor-trigger>
+        <span>Regex Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>The regex filter is used to match documents where values contain a specified regular expression. The following example shows how to use the regex filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'name' matches the regular expression 'John.*'
+collection.find(where(&quot;name&quot;).regex(&quot;John.*&quot;));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where()</code> and <code v-pre>regex()</code> methods are used to create a regex filter that matches documents where the <code v-pre>name</code> field matches the regular expression &quot;John.*&quot;. The filter is then passed to the find method to retrieve the matching documents.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>This filter scans the entire collection to find matching documents. It cannot take advantage of an index.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="spatial-filters">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#spatial-filters">#</doc-anchor-trigger>
+        <span>Spatial Filters</span>
+    </h2>
+</doc-anchor-target>
+<p>Spatial filters are used to match documents based on the values in a spatial field. The following spatial filters are supported:</p>
+<ul>
+<li>Near (near): Matches all documents where the spatial field is within the specified distance from the specified point.</li>
+<li>Within (within): Matches all documents where the spatial field is within the specified shape.</li>
+<li>Intersects (intersects): Matches all documents where the spatial field intersects the specified shape.</li>
+</ul>
+<p>To use spatial filters, you need create a spatial index on the field, which needs the <code v-pre>nitrite-spatial</code> module to be loaded. More on this can be found <a href="../modules/spatial/">here</a>.</p>
+<doc-anchor-target id="near-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#near-filter">#</doc-anchor-trigger>
+        <span>Near Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>The near filter is used to match documents where the value of the spatial field is near the specified point. The following example shows how to use the near filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'location' is within 1000 meters of the point (40.730610, -73.935242)
+WKTReader reader = new WKTReader();
+Point search = (Point) reader.read(&quot;POINT (40.730610, -73.935242)&quot;);
+Coordinate coordinate = search.getCoordinate();
+
+collection.find(where(&quot;location&quot;).near(coordinate, 1000));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where()</code> and <code v-pre>near()</code> methods are used to create a near filter that matches documents where the <code v-pre>location</code> field is within 1000 meters of the point (40.730610, -73.935242). The filter is then passed to the find method to retrieve the matching documents.</p>
+<doc-anchor-target id="within-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#within-filter">#</doc-anchor-trigger>
+        <span>Within Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>The within filter is used to match documents where the value of the spatial field is within the specified shape. The following example shows how to use the within filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'location' is within the polygon ((0 0, 0 3, 3 3, 3 0, 0 0))
+WKTReader reader = new WKTReader();
+Geometry search = reader.read(&quot;POLYGON ((0 0, 0 3, 3 3, 3 0, 0 0))&quot;);
+
+collection.find(where(&quot;location&quot;).within(search));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where()</code> and <code v-pre>within()</code> methods are used to create a within filter that matches documents where the <code v-pre>location</code> field is within the polygon ((0 0, 0 3, 3 3, 3 0, 0 0)). The filter is then passed to the find method to retrieve the matching documents.</p>
+<doc-anchor-target id="intersects-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#intersects-filter">#</doc-anchor-trigger>
+        <span>Intersects Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>The intersects filter is used to match documents where the value of the spatial field intersects the specified shape. The following example shows how to use the intersects filter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// find all documents where the field 'location' intersects the polygon ((0 0, 0 3, 3 3, 3 0, 0 0))
+WKTReader reader = new WKTReader();
+Geometry search = reader.read(&quot;POLYGON ((0 0, 0 3, 3 3, 3 0, 0 0))&quot;);
+
+collection.find(where(&quot;location&quot;).intersects(search));</code></pre>
+</doc-codeblock></div>
+<p>In this example, the <code v-pre>where()</code> and <code v-pre>intersects()</code> methods are used to create an intersects filter that matches documents where the <code v-pre>location</code> field intersects the polygon ((0 0, 0 3, 3 3, 3 0, 0 0)). The filter is then passed to the find method to retrieve the matching documents.</p>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../java-sdk/repository/other/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Other Operations</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../java-sdk/transaction/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Transaction</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                        <li>
+                                            <a class="block mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="../../license/">License</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2023 Dizitart. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Filters", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

@@ -5,6 +5,8 @@ description: 'Nitrite is a serverless, embedded, and self-contained NoSQL databa
 order: 10
 ---
 
+![](assets/banner.svg)
+
 # Welcome to Nitrite Database
 
 **NO**sql **O**bject (**NO<sub>2</sub>** a.k.a Nitrite) is a serverless, embedded, and self-contained NoSQL database. It is an open-source project that provides a simple API for persistent data storage. Nitrite database is designed to be lightweight, fast, and easy to use. Currently, it is available in Java, Kotlin, and Flutter.

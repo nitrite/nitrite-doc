@@ -17,3 +17,5 @@ Add Nitrite dependency to your project:
 dependencies:
   nitrite: ^[latest version]
 ```
+
+The latest released version of Nitrite can be found [here](https://pub.dev/packages/nitrite).

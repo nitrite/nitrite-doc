@@ -3,7 +3,8 @@ output: .retype
 url: https://nitrite.github.io
 
 branding:
-  title: Nitrite Database
+  title: Nitrite
+  label: Docs
   logo: /assets/nitrite-logo.svg
 
 favicon: /assets/favicon.png

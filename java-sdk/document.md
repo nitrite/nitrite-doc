@@ -165,7 +165,7 @@ String phone = document.get("phone.0", String.class);
 String phone = (String) document.get("phone.0");
 ```
 
-## Removing a field from document
+## Removing a Field from Document
 
 To remove a field from document, you need to use `Document.remove()` method. This method takes one parameter, the field name. If the field exists in the document, then it will be removed. If the field does not exist, then it will do nothing.
 

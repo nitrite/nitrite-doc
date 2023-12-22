@@ -12,7 +12,7 @@ favicon: /assets/favicon.png
 links:
   - text: Home
     icon: home
-    link: https://nitrite.github.io
+    link: https://nitrite.github.io/nitrite-doc
 
   - text: Github
     link: https://github.com/nitrite

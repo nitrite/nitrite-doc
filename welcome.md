@@ -3,7 +3,6 @@ icon: home
 label: Welcome
 description: 'Nitrite is a serverless, embedded, and self-contained NoSQL database. It is an open-source project that provides a simple API for persistent data storage. Nitrite database is designed to be lightweight, fast, and easy to use.' 
 order: 10
-layout: blog
 ---
 
 ![](assets/banner.svg)
@@ -64,3 +63,7 @@ Contributions, issues and feature requests are welcome!<br />Feel free to open a
 ## 🎞️ Showcase
 
 If you are using Nitrite database in your project, please let us know. We will be happy to showcase your project [here](/showcase).
+
+
+<p><p>
+Image by <a href="https://www.freepik.com/free-vector/stock-exchange-data-concept_8850059.htm#fromView=search&term=database&track=sph&regularType=vector&page=1&position=23&uuid=8b3ed57e-0d09-4c37-ab68-0f1e0b08c2b8">Freepik</a>

@@ -7,6 +7,8 @@ order: 20
 
 # Getting Started in Flutter
 
+Nitrite is a pure Dart database. It does not depend on any native library. So it can be used in any platform where Dart is supported. It is a server-less embedded database ideal for desktop, mobile, or web applications. It is written in pure Dart and runs in Flutter, Dart VM, and the browser.
+
 To get started with Nitrite database, you need to add the dependency to your pubspec.yaml file.
 
 ## Add dependency
@@ -38,3 +40,7 @@ dependencies:
 ```
 
 More details about the hive adapter can be found [here](modules/store-modules/hive.md).
+
+!!!info
+Nitrite is null safe. So you can use it in your null safe project.
+!!!

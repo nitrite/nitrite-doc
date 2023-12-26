@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.756540637487">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.756892577955">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,13 +31,13 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../assets/favicon.png" rel="icon">
-    <link href="../../../resources/css/retype.css?v=3.5.0.756540637487" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.756892577955" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.756540637487" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.756892577955" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../resources/js/search.js?v=3.5.0.756540637487" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.756540637487" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.756540637487" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/search.js?v=3.5.0.756892577955" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.756892577955" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.756892577955" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -255,6 +255,14 @@
             .loadModule(new SpatialModule())
             .openOrCreate();</code></pre>
 </doc-codeblock></div>
+<p>If Nitrite is using the default <code v-pre>SimpleNitriteMapper</code>, then the <code v-pre>SpatialModule</code> will automatically register the <code v-pre>GeometryConverter</code> with the mapper. If you are using your own custom mapper, then you need to register the <code v-pre>GeometryConverter</code> with the mapper.</p>
+<doc-anchor-target id="geometryconverter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#geometryconverter">#</doc-anchor-trigger>
+        <span>GeometryConverter</span>
+    </h3>
+</doc-anchor-target>
+<p><code v-pre>GeometryConverter</code> is an <a href="../../repository/mapper/index.html#entityconverter"><code v-pre>EntityConverter</code></a> which is used to convert <code v-pre>Geometry</code> object of JTS to <code v-pre>Document</code> and vice-versa. It is used to store the <code v-pre>Geometry</code> object in the database.</p>
 <doc-anchor-target id="using-spatial-modules-with-jackson">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#using-spatial-modules-with-jackson">#</doc-anchor-trigger>
@@ -280,6 +288,23 @@
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-java"><code v-pre class="language-java">collection.createIndex(IndexOptions.indexOptions(SpatialIndexer.SPATIAL_INDEX), &quot;location&quot;);</code></pre>
 </doc-codeblock></div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>Spatial index is not supported on multiple fields.</p>
+        </div>
+    </div>
+</div>
 <doc-anchor-target id="spatial-filter">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#spatial-filter">#</doc-anchor-trigger>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.756540637487">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.756892577955">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,13 +31,13 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../assets/favicon.png" rel="icon">
-    <link href="../../../resources/css/retype.css?v=3.5.0.756540637487" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.756892577955" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.756540637487" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.756892577955" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../resources/js/search.js?v=3.5.0.756540637487" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.756540637487" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.756540637487" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/search.js?v=3.5.0.756892577955" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.756892577955" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.756892577955" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -318,6 +318,7 @@ Nitrite db = Nitrite.builder()
 <li><code v-pre>NitriteStore</code> - A plugin to provide storage functionality.</li>
 <li><code v-pre>NitriteMapper</code> - A plugin to provide object mapping functionality.</li>
 <li><code v-pre>NitriteIndexer</code> - A plugin to provide indexing functionality.</li>
+<li><code v-pre>EntityConverter</code> - A plugin to provide entity conversion functionality.</li>
 </ul>
 <p>You can implement any of the above plugins to extend the functionality of Nitrite.</p>
 <doc-anchor-target id="nitritestore">
@@ -516,6 +517,15 @@ Nitrite db = Nitrite.builder()
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-java"><code v-pre class="language-java">collection.createIndex(indexOptions(CustomIndexer.INDEX_TYPE), &quot;firstName&quot;);</code></pre>
 </doc-codeblock></div>
+<doc-anchor-target id="entityconverter">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#entityconverter">#</doc-anchor-trigger>
+        <span>EntityConverter</span>
+    </h2>
+</doc-anchor-target>
+<p>An <code v-pre>EntityConverter</code> is a plugin which is responsible for converting an object to a document and vice-versa. The <code v-pre>EntityConverter</code> interface extends the <code v-pre>NitritePlugin</code> interface.</p>
+<p>If Nitrite is using the default <code v-pre>SimpleNitriteMapper</code>, then all <code v-pre>EntityConverter</code>s from all the loaded modules are automatically registered with the mapper. If you are using a custom mapper, then you need to register the <code v-pre>EntityConverter</code> with the mapper manually.</p>
+<p>One of the available <code v-pre>EntityConverter</code> in Nitrite is <code v-pre>GeometryConverter</code> from the spatial module. It is responsible for converting a <code v-pre>Geometry</code> object of JTS to a document and vice-versa. Once you load the spatial module, the <code v-pre>GeometryConverter</code> is automatically registered with the mapper. You can find more information about <code v-pre>GeometryConverter</code> <a href="../spatial/index.html#geometryconverter">here</a>.</p>
 <doc-anchor-target id="nitrite-bill-of-materials">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#nitrite-bill-of-materials">#</doc-anchor-trigger>

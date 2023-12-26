@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.756540637487">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.756892577955">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,13 +31,13 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../assets/favicon.png" rel="icon">
-    <link href="../../../../resources/css/retype.css?v=3.5.0.756540637487" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.5.0.756892577955" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.5.0.756540637487" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.5.0.756892577955" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../../resources/js/search.js?v=3.5.0.756540637487" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.5.0.756540637487" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.5.0.756540637487" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/search.js?v=3.5.0.756892577955" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.5.0.756892577955" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.5.0.756892577955" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -342,6 +342,14 @@ Nitrite db = Nitrite.builder()
             .openOrCreate();</code></pre>
 </doc-codeblock></div>
 <p>Normally, you don&#x27;t need to implement your own <code v-pre>ObjectFormatter</code>. The default implementation is good enough for most of the use cases.</p>
+<doc-anchor-target id="limitations">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#limitations">#</doc-anchor-trigger>
+        <span>Limitations</span>
+    </h2>
+</doc-anchor-target>
+<p>RocksDB JNI does not support RTree, so RocksDB storage adapter does not provide any RTree backed <code v-pre>NitriteRTree</code> implementation. Though there is a workaround implementation of <code v-pre>NitriteRTree</code> using RocksDB, it is not recommended to use it in production. It is only for testing purpose. Hence, RocksDB storage adapter is not recommended for spatial data indexing.</p>
+<p>If you want to use spatial data indexing, you can use <a href="../../spatial/index.html">Spatial Module</a> with <a href="../mvstore/index.html">MVStore storage adapter</a>. MVStore storage adapter provides RTree backed <code v-pre>NitriteRTree</code> implementation.</p>
 
                                 
                                 <!-- Required only on API pages -->

@@ -370,6 +370,10 @@ Spatial filters are used to match documents based on the values in a spatial fie
 
 To use spatial filters, you need create a spatial index on the field, which needs the `nitrite-spatial` module to be loaded. More on this can be found [here](modules/spatial.md).
 
+!!!info
+Spatial filters can only be used with a field that has a spatial index.
+!!!
+
 ### Near Filter
 
 The near filter is used to match documents where the value of the spatial field is near the specified point. The following example shows how to use the near filter:

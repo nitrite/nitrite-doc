@@ -111,6 +111,8 @@ Nitrite db = Nitrite.builder()
 Normally, you don't need to implement your own `ObjectFormatter`. The default implementation is good enough for most of the use cases.
 
 
+## Limitations
 
+RocksDB JNI does not support RTree, so RocksDB storage adapter does not provide any RTree backed `NitriteRTree` implementation. Though there is a workaround implementation of `NitriteRTree` using RocksDB, it is not recommended to use it in production. It is only for testing purpose. Hence, RocksDB storage adapter is not recommended for spatial data indexing.
 
-
+If you want to use spatial data indexing, you can use [Spatial Module](../spatial.md) with [MVStore storage adapter](mvstore.md). MVStore storage adapter provides RTree backed `NitriteRTree` implementation.

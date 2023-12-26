@@ -102,6 +102,7 @@ Following are the available plugins in Nitrite which can be used to extend the f
 - `NitriteStore` - A plugin to provide storage functionality.
 - `NitriteMapper` - A plugin to provide object mapping functionality.
 - `NitriteIndexer` - A plugin to provide indexing functionality.
+- `EntityConverter` - A plugin to provide entity conversion functionality.
 
 You can implement any of the above plugins to extend the functionality of Nitrite.
 
@@ -298,6 +299,14 @@ While creating a new index, Nitrite uses the `getIndexType()` method of the `Nit
 ```java
 collection.createIndex(indexOptions(CustomIndexer.INDEX_TYPE), "firstName");
 ```
+
+## EntityConverter
+
+An `EntityConverter` is a plugin which is responsible for converting an object to a document and vice-versa. The `EntityConverter` interface extends the `NitritePlugin` interface. 
+
+If Nitrite is using the default `SimpleNitriteMapper`, then all `EntityConverter`s from all the loaded modules are automatically registered with the mapper. If you are using a custom mapper, then you need to register the `EntityConverter` with the mapper manually.
+
+One of the available `EntityConverter` in Nitrite is `GeometryConverter` from the spatial module. It is responsible for converting a `Geometry` object of JTS to a document and vice-versa. Once you load the spatial module, the `GeometryConverter` is automatically registered with the mapper. You can find more information about `GeometryConverter` [here](spatial.md#geometryconverter).
 
 ## Nitrite Bill of Materials
 

@@ -41,6 +41,13 @@ Nitrite db = Nitrite.builder()
             .openOrCreate();
 ```
 
+If Nitrite is using the default `SimpleNitriteMapper`, then the `SpatialModule` will automatically register the `GeometryConverter` with the mapper. If you are using your own custom mapper, then you need to register the `GeometryConverter` with the mapper.
+
+### GeometryConverter
+
+`GeometryConverter` is an [`EntityConverter`](../repository/mapper.md#entityconverter) which is used to convert `Geometry` object of JTS to `Document` and vice-versa. It is used to store the `Geometry` object in the database.
+
+
 ### Using Spatial Modules with Jackson
 
 If you are using Jackson module for serialization, you need to register the `GeometryModule` with Jackson as well.
@@ -63,6 +70,11 @@ To create a spatial index, you need to pass the index type as `SpatialIndexer.SP
 ```java
 collection.createIndex(IndexOptions.indexOptions(SpatialIndexer.SPATIAL_INDEX), "location");
 ```
+
+!!!info
+Spatial index is not supported on multiple fields.
+!!!
+
 
 ## Spatial Filter
 

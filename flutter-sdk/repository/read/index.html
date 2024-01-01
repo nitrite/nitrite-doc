@@ -3,37 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.756972985615">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.757405787852">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
-    <title>CRUD Operations | Nitrite</title>
-    <meta name="title" content="CRUD Operations | Nitrite">
+    <title>Read Operations | Nitrite</title>
+    <meta name="title" content="Read Operations | Nitrite">
+    <meta name="description" content="You can search entities in a repository using find() method. There are several ways of using find() method using a filter or find options or both.">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://nitrite.github.io/flutter-sdk/crud/index.html">
+    <link rel="canonical" href="https://nitrite.github.io/flutter-sdk/repository/read/index.html">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nitrite.github.io/flutter-sdk/crud/index.html">
-    <meta property="og:title" content="CRUD Operations | Nitrite">
+    <meta property="og:url" content="https://nitrite.github.io/flutter-sdk/repository/read/index.html">
+    <meta property="og:title" content="Read Operations | Nitrite">
+    <meta property="og:description" content="You can search entities in a repository using find() method. There are several ways of using find() method using a filter or find options or both.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://nitrite.github.io/flutter-sdk/crud/index.html">
-    <meta property="twitter:title" content="CRUD Operations | Nitrite">
+    <meta property="twitter:url" content="https://nitrite.github.io/flutter-sdk/repository/read/index.html">
+    <meta property="twitter:title" content="Read Operations | Nitrite">
+    <meta property="twitter:description" content="You can search entities in a repository using find() method. There are several ways of using find() method using a filter or find options or both.">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../assets/favicon.png" rel="icon">
-    <link href="../../resources/css/retype.css?v=3.5.0.756972985615" rel="stylesheet">
+    <link href="../../../assets/favicon.png" rel="icon">
+    <link href="../../../resources/css/retype.css?v=3.5.0.757405787852" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/search.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.757405787852" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -48,10 +52,10 @@
                 <!-- Logo -->
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
-                        <a id="docs-site-logo" href="../../index.html" class="flex items-center leading-snug text-2xl">
+                        <a id="docs-site-logo" href="../../../index.html" class="flex items-center leading-snug text-2xl">
                             <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
-                                <img class="max-h-10 dark:hidden md:inline-block" src="../../assets/nitrite-logo.svg">
-                                <img class="max-h-10 hidden dark:inline-block" src="../../assets/nitrite-logo.svg">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../assets/nitrite-logo.svg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../assets/nitrite-logo.svg">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Nitrite</span>
                         </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Docs</span>
@@ -200,12 +204,266 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="crud-operations" class="break-words">
+<doc-anchor-target id="read-operations" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#crud-operations">#</doc-anchor-trigger>
-        <span>CRUD Operations</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#read-operations">#</doc-anchor-trigger>
+        <span>Read Operations</span>
     </h1>
 </doc-anchor-target>
+<doc-anchor-target id="find-operations">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#find-operations">#</doc-anchor-trigger>
+        <span>Find Operations</span>
+    </h2>
+</doc-anchor-target>
+<p>You can search entities in a repository using <code v-pre>find()</code> method. There are several ways of using <code v-pre>find()</code> method using a filter or find options or both. You can also search an entity using it&#x27;s id.</p>
+<doc-anchor-target id="filters">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#filters">#</doc-anchor-trigger>
+        <span>Filters</span>
+    </h3>
+</doc-anchor-target>
+<p>Nitrite uses filters to find entities in a repository. A filter is a simple expression which evaluates to <code v-pre>true</code> or <code v-pre>false</code>. More information about filters can be found <a href="../../filter/index.html">here</a>.</p>
+<doc-anchor-target id="find-all-entities">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#find-all-entities">#</doc-anchor-trigger>
+        <span>Find All Entities</span>
+    </h3>
+</doc-anchor-target>
+<p>You can find all entities in a repository by calling <code v-pre>find()</code>. It returns a <code v-pre>Cursor</code> object.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">Cursor&lt;Product&gt; cursor = productRepository.find();</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="finding-an-entity-using-id">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#finding-an-entity-using-id">#</doc-anchor-trigger>
+        <span>Finding an Entity Using Id</span>
+    </h3>
+</doc-anchor-target>
+<p>You can find an entity using it&#x27;s id by calling <code v-pre>getById()</code>. It takes an id as input parameter. It returns an entity if the entity is found. Otherwise, it returns <code v-pre>null</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">var product = await productRepository.getById(ProductId(1));</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="finding-an-entity-using-a-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#finding-an-entity-using-a-filter">#</doc-anchor-trigger>
+        <span>Finding an Entity Using a Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>You can find an entity using a filter. It takes a <code v-pre>Filter</code> object as input parameter. It returns a <code v-pre>Cursor</code> object.</p>
+<p>If there is an index on the field specified in the filter, this operation will use the index to find the entity. Otherwise, it will scan the entire repository to find the entity.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">Cursor&lt;Product&gt; cursor = productRepository.find(filter: where('productName').eq('Apple iPhone 6'));</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="finding-an-entity-using-a-filter-and-options">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#finding-an-entity-using-a-filter-and-options">#</doc-anchor-trigger>
+        <span>Finding an Entity Using a Filter and Options</span>
+    </h3>
+</doc-anchor-target>
+<p>You can find an entity using a filter and options. It takes a <code v-pre>Filter</code> object as the first input parameter. It takes a <code v-pre>FindOptions</code> object as the second input parameter. It returns a <code v-pre>Cursor</code> object.</p>
+<doc-anchor-target id="findoptions">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#findoptions">#</doc-anchor-trigger>
+        <span>FindOptions</span>
+    </h4>
+</doc-anchor-target>
+<p>More information about <code v-pre>FindOptions</code> can be found <a href="../../collection/read/index.html#findoptions">here</a>.</p>
+<doc-anchor-target id="cursor">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cursor">#</doc-anchor-trigger>
+        <span>Cursor</span>
+    </h2>
+</doc-anchor-target>
+<p><code v-pre>Cursor</code> represents a result set of a find operation. It provides methods to iterate over the result of a find operation and retrieve the entities. It also provides methods like projection, join etc. to get the desired result.</p>
+<doc-anchor-target id="iterating-over-entities">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#iterating-over-entities">#</doc-anchor-trigger>
+        <span>Iterating over Entities</span>
+    </h3>
+</doc-anchor-target>
+<p>The <code v-pre>Cursor</code> extends <code v-pre>Stream</code> of entities. So, you can iterate over the entities using await for loop.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">Cursor&lt;Product&gt; cursor = productRepository.find();
+
+await for (var product in cursor) {
+  // do something with product
+}</code></pre>
+</doc-codeblock></div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>A <code v-pre>Cursor</code> is a stream of entities. It does not load all the entities in memory at once. It loads the entity in memory as needed. So, it is memory efficient.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="getting-the-entities">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#getting-the-entities">#</doc-anchor-trigger>
+        <span>Getting the Entities</span>
+    </h3>
+</doc-anchor-target>
+<p>You can get the entities from a <code v-pre>Cursor</code> using <code v-pre>toList()</code> method. It returns a <code v-pre>Future&lt;List&lt;T&gt;&gt;</code> object.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">Cursor&lt;Product&gt; cursor = productRepository.find();
+
+var products = await cursor.toList();</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="getting-the-first-entity">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#getting-the-first-entity">#</doc-anchor-trigger>
+        <span>Getting the First Entity</span>
+    </h3>
+</doc-anchor-target>
+<p>You can get the first entity from a <code v-pre>Cursor</code> using <code v-pre>first</code> getter. It returns a <code v-pre>Future&lt;T?&gt;</code> object.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">Cursor&lt;Product&gt; cursor = productRepository.find();
+
+var product = await cursor.first;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="getting-the-size-of-the-cursor">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#getting-the-size-of-the-cursor">#</doc-anchor-trigger>
+        <span>Getting the Size of the Cursor</span>
+    </h3>
+</doc-anchor-target>
+<p>You can get the size of the cursor using <code v-pre>length</code> getter. It returns a <code v-pre>Future&lt;int&gt;</code> object.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">Cursor&lt;Product&gt; cursor = productRepository.find();
+
+var size = await cursor.length;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="projection">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#projection">#</doc-anchor-trigger>
+        <span>Projection</span>
+    </h3>
+</doc-anchor-target>
+<p>You can project a field or a set of fields from a <code v-pre>Cursor</code> using <code v-pre>project()</code> method. It takes another entity type as input parameter. It returns a <code v-pre>Stream</code> of projected entities.</p>
+<p>The projected entity must contain only the fields that needs to be projected.</p>
+<p>Let&#x27;s say you have an entity like this:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">@Entity()
+@Convertable()
+class User {
+  String? firstName;
+  String? lastName;
+  Address? address;
+
+  User({this.firstName, this.lastName, this.address});
+}
+
+@Convertable()
+class Address {
+  String? city;
+  String? state;
+  String? country;
+
+  Address({this.city, this.state, this.country});
+}</code></pre>
+</doc-codeblock></div>
+<p>Then you can project the <code v-pre>lastName</code> and <code v-pre>address.street</code> fields. Then you define a new entity like this:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">@Entity()
+@Convertable()
+class UserProjection {
+  String? lastName;
+  StreetAddress? address;
+
+  UserProjection({this.lastName, this.address});
+}
+
+@Convertable()
+class StreetAddress {
+  String? street;
+
+  StreetAddress({this.street});
+}</code></pre>
+</doc-codeblock></div>
+<p>And then you can project the cursor like this:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">Cursor&lt;User&gt; cursor = userRepository.find(filter: where('firstName').eq('John'));
+
+var projectedStream = cursor.project&lt;UserProjection&gt;();</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="join">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#join">#</doc-anchor-trigger>
+        <span>Join</span>
+    </h3>
+</doc-anchor-target>
+<p>You can join two cursors using <code v-pre>leftJoin()</code> method. It takes another cursor as the first input parameter. It takes a <code v-pre>Lookup</code> as the second input parameter. The first type parameter is the type of the foreign entity. The second type parameter is the type of the joined entity. It returns a <code v-pre>Stream</code> of joined entities.</p>
+<p>The join operation is similar to SQL left outer join operation. It takes two cursors and a lookup object. The lookup object contains the join condition.</p>
+<p>Let&#x27;s say you have two entities like this:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">@Entity()
+@Convertable()
+class User {
+  String? userId;
+  String? firstName;
+  String? lastName;
+
+  User({this.userId, this.firstName, this.lastName});
+}
+
+@Entity()
+@Convertable()
+class Order {
+  String? orderId;
+  String? userId;
+  String? productName;
+
+  Order({this.orderId, this.userId, this.productName});
+}</code></pre>
+</doc-codeblock></div>
+<p>And you want to join these two entities using <code v-pre>userId</code> field. Then you can define a new entity like this:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">@Entity()
+@Convertable()
+class UserOrder {
+  String? userId;
+  String? firstName;
+  String? lastName;
+  List&lt;Order&gt;? orders;
+
+  UserOrder({this.userId, this.firstName, this.lastName, this.orders});
+}</code></pre>
+</doc-codeblock></div>
+<p>And then you can join the cursors like this:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">Cursor&lt;User&gt; userCursor = userRepository.find();
+Cursor&lt;Order&gt; orderCursor = orderRepository.find();
+
+var lookup = Lookup()
+  ..localField = 'userId'
+  ..foreignField = 'userId'
+  ..alias = 'orders';
+
+var joinedStream = userCursor.leftJoin&lt;Order, UserOrder&gt;(orderCursor, lookup);</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="findplan">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#findplan">#</doc-anchor-trigger>
+        <span>FindPlan</span>
+    </h3>
+</doc-anchor-target>
+<p>You can get the <code v-pre>FindPlan</code> of a cursor using <code v-pre>findPlan</code> getter. It returns a future of <code v-pre>FindPlan</code> object.</p>
+<p>More information about <code v-pre>FindPlan</code> can be found <a href="../../collection/read/index.html#findplan">here</a>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">Cursor&lt;Product&gt; cursor = productRepository.find(filter: where('productName').eq('Apple iPhone 6'));
+
+var findPlan = await cursor.findPlan;</code></pre>
+</doc-codeblock></div>
 
                                 
                                 <!-- Required only on API pages -->
@@ -215,17 +473,17 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../flutter-sdk/entity/index.html">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../flutter-sdk/repository/write/index.html">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">Entity</span>
+                                                <span class="block mt-1">Write Operations</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../flutter-sdk/indexing/index.html">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../flutter-sdk/repository/indexing/index.html">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
                                                 <span class="block mt-1">Indexing</span>
@@ -242,11 +500,11 @@
                                 <div>
                                     <ul class="flex flex-wrap items-center text-sm">
                                         <li>
-                                            <a class="block mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="../../license/index.html">License</a>
+                                            <a class="block mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="../../../license/index.html">License</a>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2023 Dizitart. All rights reserved.</p></div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024 Dizitart. All rights reserved.</p></div>
                             </footer>
                         </div>
                     </div>
@@ -275,6 +533,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "CRUD Operations", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Read Operations", level: 3, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

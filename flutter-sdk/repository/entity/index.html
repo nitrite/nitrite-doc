@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.756972985615">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.757405787852">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,13 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../assets/favicon.png" rel="icon">
-    <link href="../../../resources/css/retype.css?v=3.5.0.756972985615" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.757405787852" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../resources/js/search.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/search.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.757405787852" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -211,7 +212,651 @@
 </doc-anchor-target>
 <p>An entity is a Dart object that can be stored in a collection. An entity can be a simple class with a few fields or a complex class with nested objects. Every entity in an <code v-pre>ObjectRepository</code> is actually converted to a <code v-pre>Document</code> before storing in the underlying <code v-pre>NitriteCollection</code>. When an entity is converted to a <code v-pre>Document</code>, the fields of the entity are mapped to the fields of the <code v-pre>Document</code>. While retrieving an entity from the <code v-pre>ObjectRepository</code>, the <code v-pre>Document</code> is converted back to the entity.</p>
 <p>Nitrite uses a <code v-pre>NitriteMapper</code> implementation to convert an entity to a <code v-pre>Document</code> and vice versa. By default, Nitrite uses an <code v-pre>EntityConverter</code> based implementation of <code v-pre>NitriteMapper</code> to convert an entity to a <code v-pre>Document</code>. You can also provide your own implementation of <code v-pre>NitriteMapper</code> to convert an entity to a <code v-pre>Document</code>.</p>
-<p>More on <code v-pre>NitriteMapper</code> can be found <a href="mapper.md">here</a>.</p>
+<p>More on <code v-pre>NitriteMapper</code> can be found <a href="../mapper/index.html">here</a>.</p>
+<doc-anchor-target id="annotations">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#annotations">#</doc-anchor-trigger>
+        <span>Annotations</span>
+    </h2>
+</doc-anchor-target>
+<p>Nitrite uses annotations to define an entity. There are several annotations available to define an entity. These annotations are:</p>
+<ul>
+<li><code v-pre>@Entity</code></li>
+<li><code v-pre>@Id</code></li>
+<li><code v-pre>@Index</code></li>
+</ul>
+<p>Flutter does not support reflection. So, Nitrite uses code generators to process these annotations and generates the metadata for an entity. The entity generator generates a mixin for an entity class in a separate file that is named after the source file, but with <code v-pre>.no2.dart</code> extension.</p>
+<p>The name of the mixin is like - <code v-pre>_$</code> + <code v-pre>ClassName</code> + <code v-pre>EntityMixin</code>. For example, if the entity class name is <code v-pre>Person</code>, the mixin name will be _$PersonEntityMixin. The generated mixin also implements <code v-pre>NitriteEntity</code> interface which defines few getters to access the metadata of the entity. You need to add this mixin to your entity class to make it a Nitrite entity.</p>
+<p>The entity generator is a separate package and more on the entity generator can be found <a href="../codegen/index.html">here</a>.</p>
+<doc-anchor-target id="entity">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#entity">#</doc-anchor-trigger>
+        <span>@Entity</span>
+    </h3>
+</doc-anchor-target>
+<p>The <code v-pre>@Entity</code> annotation marks a class as an entity class. The annotation has the following properties:</p>
+<ul>
+<li><code v-pre>name</code> - The name of the collection to which the entity belongs. If not specified, the name of the class is used as the collection name.</li>
+<li><code v-pre>indices</code> - An array of <code v-pre>@Index</code> annotations. The indices are created on the fields specified in the <code v-pre>@Index</code> annotation.</li>
+</ul>
+<doc-tabs>
+<doc-tab v-cloak id="no-parameter">
+<template #title>No Parameter</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">import 'package:nitrite/nitrite.dart';
+
+@Entity()
+class Book {
+  @Id()
+  String? bookId;
+  String? publisher;
+  double? price;
+  List&lt;String&gt; tags = [];
+  String? description;
+
+  Book([
+    this.bookId,
+    this.publisher,
+    this.price,
+    this.tags = const [],
+    this.description,
+  ]);
+}</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="with-parameter">
+<template #title>With Parameter</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">import 'package:nitrite/nitrite.dart';
+
+@Entity(name: 'books', indices: [
+  Index(fields: ['tags'], type: IndexType.nonUnique),
+  Index(fields: ['description'], type: IndexType.fullText),
+  Index(fields: ['price', 'publisher']),
+])
+class Book {
+  @Id()
+  String? bookId;
+  String? publisher;
+  double? price;
+  List&lt;String&gt; tags = [];
+  String? description;
+
+   Book([
+    this.bookId,
+    this.publisher,
+    this.price,
+    this.tags = const [],
+    this.description,
+  ]);
+}</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+</doc-tabs>
+<p>The above code generates the following code in <code v-pre>book.no2.dart</code>:</p>
+<doc-tabs>
+<doc-tab v-cloak id="no-parameter">
+<template #title>No Parameter</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'book.dart';
+
+// **************************************************************************
+// NitriteEntityGenerator
+// **************************************************************************
+
+mixin _$BookEntityMixin implements NitriteEntity {
+  @override
+  String get entityName =&gt; &quot;Book&quot;;
+  @override
+  List&lt;EntityIndex&gt; get entityIndexes =&gt; const [];
+  @override
+  EntityId get entityId =&gt; EntityId(
+        &quot;bookId&quot;,
+        false,
+      );
+}</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="with-parameter">
+<template #title>With Parameter</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'book.dart';
+
+// **************************************************************************
+// NitriteEntityGenerator
+// **************************************************************************
+
+mixin _$BookEntityMixin implements NitriteEntity {
+  @override
+  String get entityName =&gt; &quot;books&quot;;
+  @override
+  List&lt;EntityIndex&gt; get entityIndexes =&gt; const [
+        EntityIndex([&quot;tags&quot;], IndexType.nonUnique),
+        EntityIndex([&quot;description&quot;], IndexType.fullText),
+        EntityIndex([&quot;price&quot;, &quot;publisher&quot;], IndexType.unique),
+      ];
+  @override
+  EntityId get entityId =&gt; EntityId(
+        &quot;bookId&quot;,
+        false,
+      );
+}</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+</doc-tabs>
+<p>Now you can use the generated mixin in your entity class:</p>
+<doc-tabs>
+<doc-tab v-cloak id="no-parameter">
+<template #title>No Parameter</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">import 'package:nitrite/nitrite.dart';
+
+part 'book.no2.dart';
+
+@Entity()
+class Book with _$BookEntityMixin {
+  @Id()
+  String? bookId;
+  String? publisher;
+  double? price;
+  List&lt;String&gt; tags = [];
+  String? description;
+
+  Book([
+    this.bookId,
+    this.publisher,
+    this.price,
+    this.tags = const [],
+    this.description,
+  ]);
+}</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="with-parameter">
+<template #title>With Parameter</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">import 'package:nitrite/nitrite.dart';
+
+part 'book.no2.dart';
+
+@Entity(name: 'books', indices: [
+  Index(fields: ['tags'], type: IndexType.nonUnique),
+  Index(fields: ['description'], type: IndexType.fullText),
+  Index(fields: ['price', 'publisher']),
+])
+class Book with _$BookEntityMixin {
+  @Id()
+  String? bookId;
+  String? publisher;
+  double? price;
+  List&lt;String&gt; tags = [];
+  String? description;
+
+  Book([
+    this.bookId,
+    this.publisher,
+    this.price,
+    this.tags = const [],
+    this.description,
+  ]);
+}</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+</doc-tabs>
+<doc-anchor-target id="id">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#id">#</doc-anchor-trigger>
+        <span>@Id</span>
+    </h3>
+</doc-anchor-target>
+<p>The <code v-pre>@Id</code> annotation marks a field as the unique identifier of the entity. It is a field level annotation and takes optional <code v-pre>fieldName</code> parameter. The <code v-pre>fieldName</code> parameter is used to specify the name of the field in the document. If the <code v-pre>fieldName</code> parameter is not specified, then the name of the field in the class will be used as the name of the field in the document.</p>
+<doc-tabs>
+<doc-tab v-cloak id="no-parameter">
+<template #title>No Parameter</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">import 'package:nitrite/nitrite.dart';
+
+@Entity()
+class Book with _$BookEntityMixin {
+  @Id()
+  String? bookId;
+  String? publisher;
+  double? price;
+  List&lt;String&gt; tags = [];
+  String? description;
+
+  Book([
+    this.bookId,
+    this.publisher,
+    this.price,
+    this.tags = const [],
+    this.description,
+  ]);
+}</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="with-parameter">
+<template #title>With Parameter</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">import 'package:nitrite/nitrite.dart';
+
+@Entity()
+class Book with _$BookEntityMixin {
+  @Id(fieldName: 'book_id')
+  String? bookId;
+  String? publisher;
+  double? price;
+  List&lt;String&gt; tags = [];
+  String? description;
+
+  Book([
+    this.bookId,
+    this.publisher,
+    this.price,
+    this.tags = const [],
+    this.description,
+  ]);
+}</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+</doc-tabs>
+<p>The above code generates the following code in <code v-pre>book.no2.dart</code>:</p>
+<doc-tabs>
+<doc-tab v-cloak id="no-parameter">
+<template #title>No Parameter</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'book.dart';
+
+// **************************************************************************
+// NitriteEntityGenerator
+// **************************************************************************
+
+mixin _$BookEntityMixin implements NitriteEntity {
+  @override
+  String get entityName =&gt; &quot;Book&quot;;
+  @override
+  List&lt;EntityIndex&gt; get entityIndexes =&gt; const [];
+  @override
+  EntityId get entityId =&gt; EntityId(
+        &quot;bookId&quot;,
+        false,
+      );
+}</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="with-parameter">
+<template #title>With Parameter</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'book.dart';
+
+// **************************************************************************
+// NitriteEntityGenerator
+// **************************************************************************
+
+mixin _$BookEntityMixin implements NitriteEntity {
+  @override
+  String get entityName =&gt; &quot;Book&quot;;
+  @override
+  List&lt;EntityIndex&gt; get entityIndexes =&gt; const [];
+  @override
+  EntityId get entityId =&gt; EntityId(
+        &quot;book_id&quot;,
+        false,
+      );
+}</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+</doc-tabs>
+<doc-anchor-target id="embedded-id">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#embedded-id">#</doc-anchor-trigger>
+        <span>Embedded Id</span>
+    </h4>
+</doc-anchor-target>
+<p>Nitrite also supports embedded id. The embedded id is used when the entity has a composite primary key.
+The <code v-pre>@Id</code> annotation can also be used to mark a field as an embedded id. In case of embedded id, the field should be marked with <code v-pre>@Id</code> annotation and the <code v-pre>fieldName</code> and <code v-pre>embeddedFields</code> parameters should be specified. The <code v-pre>fieldName</code> parameter is used to specify the name of the field in the document. The <code v-pre>embeddedFields</code> parameter is used to specify the name of the fields in the embedded object.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">import 'package:nitrite/nitrite.dart';
+
+@Entity()
+class Book with _$BookEntityMixin {
+  @Id(fieldName: 'book_id', embeddedFields: ['isbn', 'title'])
+  BookId? bookId;
+  String? publisher;
+  double? price;
+  List&lt;String&gt; tags = [];
+  String? description;
+
+  Book([
+    this.bookId,
+    this.publisher,
+    this.price,
+    this.tags = const [],
+    this.description,
+  ]);
+}
+
+class BookId {
+  String? isbn;
+  String? title;
+  String? author;
+}</code></pre>
+</doc-codeblock></div>
+<p>The above code generates the following code in <code v-pre>book.no2.dart</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'book.dart';
+
+// **************************************************************************
+// NitriteEntityGenerator
+// **************************************************************************
+
+mixin _$BookEntityMixin implements NitriteEntity {
+  @override
+  String get entityName =&gt; &quot;Book&quot;;
+  @override
+  List&lt;EntityIndex&gt; get entityIndexes =&gt; const [];
+  @override
+  EntityId get entityId =&gt; EntityId(
+        &quot;book_id&quot;,
+        false,
+        embeddedFields: [&quot;isbn&quot;, &quot;title&quot;],
+      );
+}</code></pre>
+</doc-codeblock></div>
+<p>The above <code v-pre>@Id</code> annotation will create a unique compound index on the fields - <code v-pre>book_id.isbn</code> and <code v-pre>book_id.title</code>.</p>
+<doc-anchor-target id="data-type">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#data-type">#</doc-anchor-trigger>
+        <span>Data Type</span>
+    </h4>
+</doc-anchor-target>
+<p>The data type of the field marked with <code v-pre>@Id</code> annotation should be one of the following:</p>
+<ul>
+<li><code v-pre>num</code></li>
+<li><code v-pre>int</code></li>
+<li><code v-pre>double</code></li>
+<li><code v-pre>String</code></li>
+<li><code v-pre>Runes</code></li>
+<li><code v-pre>bool</code></li>
+<li><code v-pre>DateTime</code></li>
+<li><code v-pre>Duration</code></li>
+<li><code v-pre>NitriteId</code></li>
+</ul>
+<p>In case of embedded id, the data type of the field marked with <code v-pre>@Id</code> annotation should be a class.</p>
+<doc-anchor-target id="index">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#index">#</doc-anchor-trigger>
+        <span>@Index</span>
+    </h3>
+</doc-anchor-target>
+<p><code v-pre>@Index</code> annotation is used to declare an index on an entity field. It is a class level annotation and takes mandatory <code v-pre>fields</code> parameter and optional <code v-pre>type</code> parameter. The <code v-pre>fields</code> parameter is used to specify the names of the fields in the document to be indexed. The <code v-pre>type</code> parameter is used to specify the type of the index. If the <code v-pre>type</code> parameter is not specified, then the type of the index will be <code v-pre>IndexType.unique</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">import 'package:nitrite/nitrite.dart';
+
+@Entity(indices: [
+  Index(fields: ['tags'], type: IndexType.nonUnique),
+  Index(fields: ['description'], type: IndexType.fullText),
+  Index(fields: ['price', 'publisher']),
+])
+class Book with _$BookEntityMixin {
+  String? bookId;
+  String? publisher;
+  double? price;
+  List&lt;String&gt; tags = [];
+  String? description;
+
+   Book([
+    this.bookId,
+    this.publisher,
+    this.price,
+    this.tags = const [],
+    this.description,
+  ]);
+}</code></pre>
+</doc-codeblock></div>
+<p>The above code generates the following code in <code v-pre>book.no2.dart</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'book.dart';
+
+// **************************************************************************
+// NitriteEntityGenerator
+// **************************************************************************
+
+mixin _$BookEntityMixin implements NitriteEntity {
+  @override
+  String get entityName =&gt; &quot;Book&quot;;
+  @override
+  List&lt;EntityIndex&gt; get entityIndexes =&gt; const [
+        EntityIndex([&quot;tags&quot;], IndexType.nonUnique),
+        EntityIndex([&quot;description&quot;], IndexType.fullText),
+        EntityIndex([&quot;price&quot;, &quot;publisher&quot;], IndexType.unique),
+      ];
+  @override
+  EntityId get entityId =&gt; EntityId(
+        &quot;bookId&quot;,
+        false,
+      );
+}</code></pre>
+</doc-codeblock></div>
+<p>The above <code v-pre>@Index</code> annotations will create the following indices:</p>
+<ul>
+<li><code v-pre>tags</code> - Non-unique simple index</li>
+<li><code v-pre>description</code> - Full-text index</li>
+<li><code v-pre>price</code> and <code v-pre>publisher</code> - Unique compound index</li>
+</ul>
+<p><code v-pre>@Index</code> annotation can be used on super class as well. When the entity class extends a super class, the <code v-pre>@Index</code> annotations of the super class are also processed by the entity generator.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">import 'package:nitrite/nitrite.dart';
+
+@Entity(indices: [
+  Index(fields: ['tags'], type: IndexType.nonUnique),
+  Index(fields: ['price', 'publisher']),
+])
+class Book extends BaseEntity with _$BookEntityMixin {
+  String? bookId;
+  String? publisher;
+  double? price;
+  List&lt;String&gt; tags = [];
+  
+  Book([
+    this.bookId,
+    this.publisher,
+    this.price,
+    this.tags = const [],
+    super.description,
+  ]);
+}
+
+@Index(fields: ['description'], type: IndexType.fullText)
+abstract class BaseEntity {
+  String? description;
+
+  BaseEntity([this.description]);
+}</code></pre>
+</doc-codeblock></div>
+<p>The above code generates the following code in <code v-pre>book.no2.dart</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'book.dart';
+
+// **************************************************************************
+// NitriteEntityGenerator
+// **************************************************************************
+
+mixin _$BookEntityMixin implements NitriteEntity {
+  @override
+  String get entityName =&gt; &quot;Book&quot;;
+  @override
+  List&lt;EntityIndex&gt; get entityIndexes =&gt; const [
+        EntityIndex([&quot;tags&quot;], IndexType.nonUnique),
+        EntityIndex([&quot;price&quot;, &quot;publisher&quot;], IndexType.unique),
+        EntityIndex([&quot;description&quot;], IndexType.fullText),
+      ];
+  @override
+  EntityId? get entityId =&gt; null;
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="entitydecorator">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#entitydecorator">#</doc-anchor-trigger>
+        <span>EntityDecorator</span>
+    </h2>
+</doc-anchor-target>
+<p><code v-pre>EntityDecorator</code> is used to add metadata to an entity. If you cannot modify the entity class to add annotations, then you can use <code v-pre>EntityDecorator</code> to add metadata to an entity. You can use <code v-pre>EntityDecorator</code> to add id, indices and collection name for an entity.</p>
+<p>While creating or opening a repository, you can pass an instance of <code v-pre>EntityDecorator</code> to the <code v-pre>getRepository()</code> method on <code v-pre>Nitrite</code> class. Nitrite will extract the metadata from the <code v-pre>EntityDecorator</code> instance and use it to create the repository.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">ObjectRepository&lt;Product&gt; repository = db.getRepository&lt;Product&gt;(entityDecorator: ProductDecorator());</code></pre>
+</doc-codeblock></div>
+<p>To write an <code v-pre>EntityDecorator</code> for an entity, you need to implement the <code v-pre>EntityDecorator</code> interface. Let&#x27;s take an example of a <code v-pre>Product</code> entity.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">class Product {
+    ProductId? productId;
+    Manufacturer? manufacturer;
+    String? productName;
+    double? price;
+
+    Product([
+        this.productId,
+        this.manufacturer,
+        this.productName,
+        this.price,
+    ]);
+}
+
+class ProductId {
+    String? uniqueId;
+    String? productCode;
+
+    ProductId([
+        this.uniqueId,
+        this.productCode,
+    ]);
+}
+
+class Manufacturer {
+    String? name;
+    String? uniqueId;
+
+    Manufacturer([
+        this.name,
+        this.uniqueId,
+    ]);
+}</code></pre>
+</doc-codeblock></div>
+<p>The <code v-pre>Product</code> entity has an embedded id <code v-pre>ProductId</code> and two indices on a nested object <code v-pre>Manufacturer</code>. To write an <code v-pre>EntityDecorator</code> for the <code v-pre>Product</code> entity with collection name &#x27;products&#x27;, you need to implement the <code v-pre>EntityDecorator</code> interface as follows.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">class ProductDecorator extends EntityDecorator&lt;Product&gt; {
+  @override
+  String get entityName =&gt; &quot;products&quot;;
+
+  @override
+  EntityId? get idField =&gt; EntityId(
+        &quot;productId&quot;,
+        false,
+        embeddedFields: [&quot;uniqueId&quot;, &quot;productCode&quot;],
+      );
+
+  @override
+  List&lt;EntityIndex&gt; get indexFields =&gt; const [
+        EntityIndex([&quot;manufacturer.name&quot;], IndexType.nonUnique),
+        EntityIndex([&quot;productName&quot;, &quot;manufacturer.uniqueId&quot;]),
+      ];
+}</code></pre>
+</doc-codeblock></div>
+<p>which is equivalent to the following entity class when code generator is used:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">@Entity(name: 'products', indices: [
+  Index(fields: ['manufacturer.name'], type: IndexType.nonUnique),
+  Index(fields: ['productName', 'manufacturer.uniqueId']),
+])
+class Product with _$ProductEntityMixin {
+  @Id(fieldName: 'productId', embeddedFields: ['uniqueId', 'productCode'])
+  ProductId? productId;
+  Manufacturer? manufacturer;
+  String? productName;
+  double? price;
+
+  Product([
+    this.productId,
+    this.manufacturer,
+    this.productName,
+    this.price,
+  ]);
+}
+
+class ProductId {
+  String? uniqueId;
+  String? productCode;
+
+  ProductId([
+    this.uniqueId,
+    this.productCode,
+  ]);
+}
+
+class Manufacturer {
+  String? name;
+  String? uniqueId;
+
+  Manufacturer([
+    this.name,
+    this.uniqueId,
+  ]);
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="entityid">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#entityid">#</doc-anchor-trigger>
+        <span>EntityId</span>
+    </h3>
+</doc-anchor-target>
+<p><code v-pre>EntityId</code> is used to specify the id field of an entity. It takes mandatory <code v-pre>fieldName</code> parameter and optional <code v-pre>embeddedFields</code> parameter in case of embedded id. The <code v-pre>fieldName</code> parameter is used to specify the name of the field in the document. The <code v-pre>embeddedFields</code> parameter is used to specify the name of the fields in the embedded object.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">@override
+EntityId? get idField =&gt;
+    EntityId('productId', false, ['uniqueId', 'productCode']);</code></pre>
+</doc-codeblock></div>
+<p>Here <code v-pre>productId</code> is the name of the field in the document and <code v-pre>uniqueId</code> and <code v-pre>productCode</code> are the names of the fields in the embedded object. This will create a unique compound index on the fields - <code v-pre>productId.uniqueId</code> and <code v-pre>productId.productCode</code>.</p>
+<doc-anchor-target id="entityindex">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#entityindex">#</doc-anchor-trigger>
+        <span>EntityIndex</span>
+    </h3>
+</doc-anchor-target>
+<p><code v-pre>EntityIndex</code> is used to specify the indices on an entity. It takes mandatory <code v-pre>type</code> parameter and <code v-pre>fields</code> parameter. The <code v-pre>type</code> parameter is used to specify the type of the index. The <code v-pre>fields</code> parameter is used to specify the name of the fields in the document to be indexed.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">@override
+List&lt;EntityIndex&gt; get indexFields =&gt; const [
+    EntityIndex(['manufacturer.name'], IndexType.nonUnique),
+    EntityIndex(['productName', 'manufacturer.uniqueId']),
+    ];</code></pre>
+</doc-codeblock></div>
+<p>Here <code v-pre>manufacturer.name</code> is the name of the field in the document and <code v-pre>productName</code> and <code v-pre>manufacturer.uniqueId</code> are the names of the fields in the document. This will create a non-unique index on the field <code v-pre>manufacturer.name</code> and a unique compound index on the fields - <code v-pre>productName</code> and <code v-pre>manufacturer.uniqueId</code>.</p>
+<doc-anchor-target id="entity-name">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#entity-name">#</doc-anchor-trigger>
+        <span>Entity Name</span>
+    </h3>
+</doc-anchor-target>
+<p>Entity name is used to specify the name of the collection in which the entity will be stored. It is a string value and can be specified using <code v-pre>entityName</code> getter.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">@override
+String get entityName =&gt; &quot;products&quot;;</code></pre>
+</doc-codeblock></div>
+<p>Here <code v-pre>products</code> is the name of the <code v-pre>NitriteCollection</code> in which the product document will be stored.</p>
 
                                 
                                 <!-- Required only on API pages -->
@@ -231,10 +876,10 @@
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../flutter-sdk/entity/index.html">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../flutter-sdk/repository/mapper/index.html">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Entity</span>
+                                                <span class="block mt-1">Nitrite​Mapper</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -252,7 +897,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2023 Dizitart. All rights reserved.</p></div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024 Dizitart. All rights reserved.</p></div>
                             </footer>
                         </div>
                     </div>
@@ -281,6 +926,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Entity", level: 3, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Entity", level: 3, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

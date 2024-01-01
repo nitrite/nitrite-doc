@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.756972985615">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.757405787852">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,13 +31,13 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../assets/favicon.png" rel="icon">
-    <link href="../../../resources/css/retype.css?v=3.5.0.756972985615" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.757405787852" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../resources/js/search.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.756972985615" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/search.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.757405787852" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -219,22 +219,22 @@
         <span>Annotations</span>
     </h2>
 </doc-anchor-target>
-<p>Nitrite uses annotations to map an entity to a <code v-pre>Document</code>. There are several annotations available to map an entity to a <code v-pre>Document</code>. These annotations are:</p>
+<p>Nitrite uses annotations to define an entity. There are several annotations available to define an entity. These annotations are:</p>
 <ul>
-<li><code v-pre>Entity</code></li>
-<li><code v-pre>Id</code></li>
-<li><code v-pre>Index</code></li>
-<li><code v-pre>Indices</code></li>
-<li><code v-pre>InheritIndices</code></li>
+<li><code v-pre>@Entity</code></li>
+<li><code v-pre>@Id</code></li>
+<li><code v-pre>@Index</code></li>
+<li><code v-pre>@Indices</code></li>
+<li><code v-pre>@InheritIndices</code></li>
 </ul>
 <p>In case you cannot modify the entity class to add annotations, you can use <code v-pre>EntityDecorator</code> to add metadata to an entity. More on <code v-pre>EntityDecorator</code> can be found <doc-anchor-trigger to="#entitydecorator">here</doc-anchor-trigger>.</p>
-<doc-anchor-target id="entity-annotation">
+<doc-anchor-target id="entity">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#entity-annotation">#</doc-anchor-trigger>
-        <span>Entity Annotation</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#entity">#</doc-anchor-trigger>
+        <span>@Entity</span>
     </h3>
 </doc-anchor-target>
-<p><code v-pre>Entity</code> annotation is used to mark a class as an entity. It is a class level annotation and takes optional <code v-pre>value</code> and <code v-pre>indices</code> parameters.</p>
+<p><code v-pre>@Entity</code> annotation is used to mark a class as an entity. It is a class level annotation and takes optional <code v-pre>value</code> and <code v-pre>indices</code> parameters.</p>
 <p>The <code v-pre>value</code> parameter is used to specify the name of the <code v-pre>NitriteCollection</code> in which the entity will be stored as a <code v-pre>Document</code>. If the <code v-pre>value</code> parameter is not specified, then the name of the collection will be the name of the class. The <code v-pre>indices</code> parameter is used to specify the indices on the repository.</p>
 <doc-tabs>
 <doc-tab v-cloak id="no-parameter">
@@ -274,13 +274,13 @@ public class Employee {
 </doc-codeblock></div>
 </doc-tab>
 </doc-tabs>
-<doc-anchor-target id="id-annotation">
+<doc-anchor-target id="id">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#id-annotation">#</doc-anchor-trigger>
-        <span>Id Annotation</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#id">#</doc-anchor-trigger>
+        <span>@Id</span>
     </h3>
 </doc-anchor-target>
-<p><code v-pre>Id</code> annotation is used to mark a field as the unique identifier of the entity. It is a field level annotation and takes optional <code v-pre>fieldName</code> parameter. The <code v-pre>fieldName</code> parameter is used to specify the name of the field in the document. If the <code v-pre>fieldName</code> parameter is not specified, then the name of the field in the class will be used as the name of the field in the document.</p>
+<p><code v-pre>@Id</code> annotation is used to mark a field as the unique identifier of the entity. It is a field level annotation and takes optional <code v-pre>fieldName</code> parameter. The <code v-pre>fieldName</code> parameter is used to specify the name of the field in the document. If the <code v-pre>fieldName</code> parameter is not specified, then the name of the field in the class will be used as the name of the field in the document.</p>
 <doc-tabs>
 <doc-tab v-cloak id="no-parameter">
 <template #title>No Parameter</template>
@@ -321,7 +321,7 @@ public class Employee {
         <span>Embedded Id</span>
     </h4>
 </doc-anchor-target>
-<p>Nitrite also supports embedded id. In case of embedded id, the field should be marked with <code v-pre>Id</code> annotation and the <code v-pre>fieldName</code> and <code v-pre>embeddedFields</code> parameters should be specified. The <code v-pre>fieldName</code> parameter is used to specify the name of the field in the document. The <code v-pre>embeddedFields</code> parameter is used to specify the name of the fields in the embedded object.</p>
+<p>Nitrite also supports embedded id. The embedded id is used when the entity has a composite primary key. The <code v-pre>@Id</code> annotation can also be used to mark a field as an embedded id. In case of embedded id, the field should be marked with <code v-pre>@Id</code> annotation and the <code v-pre>fieldName</code> and <code v-pre>embeddedFields</code> parameters should be specified. The <code v-pre>fieldName</code> parameter is used to specify the name of the field in the document. The <code v-pre>embeddedFields</code> parameter is used to specify the name of the fields in the embedded object.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-java"><code v-pre class="language-java">@Entity
 public class Employee {
@@ -341,21 +341,21 @@ public class EmployeeId {
     // getters and setters
 }</code></pre>
 </doc-codeblock></div>
-<p>The above <code v-pre>Id</code> annotation will create a unique compound index on the fields - <code v-pre>emp_Id.uniqueId</code> and <code v-pre>emp_Id.companyId</code>.</p>
+<p>The above <code v-pre>@Id</code> annotation will create a unique compound index on the fields - <code v-pre>emp_Id.uniqueId</code> and <code v-pre>emp_Id.companyId</code>.</p>
 <doc-anchor-target id="data-type">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#data-type">#</doc-anchor-trigger>
         <span>Data Type</span>
     </h4>
 </doc-anchor-target>
-<p>The data type of the field marked with <code v-pre>Id</code> annotation can be either <code v-pre>Comparable</code> or <code v-pre>NitriteId</code>. If the data type is <code v-pre>Comparable</code>, then the value of the field should be unique. If the data type is <code v-pre>NitriteId</code>, then the value of the field will be generated by Nitrite. But in the case of embedded id, the data type of the embedded fields can only be <code v-pre>Comparable</code>, it can&#x27;t be <code v-pre>NitriteId</code>.</p>
-<doc-anchor-target id="index-annotation">
+<p>The data type of the field marked with <code v-pre>@Id</code> annotation can be either <code v-pre>Comparable</code> or <code v-pre>NitriteId</code>. If the data type is <code v-pre>Comparable</code>, then the value of the field should be unique. If the data type is <code v-pre>NitriteId</code>, then the value of the field will be generated by Nitrite. But in the case of embedded id, the data type of the embedded fields can only be <code v-pre>Comparable</code>, it can&#x27;t be <code v-pre>NitriteId</code>.</p>
+<doc-anchor-target id="index">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#index-annotation">#</doc-anchor-trigger>
-        <span>Index Annotation</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#index">#</doc-anchor-trigger>
+        <span>@Index</span>
     </h3>
 </doc-anchor-target>
-<p><code v-pre>Index</code> annotation is used to declare an index on an entity field. It is a class level annotation and takes mandatory <code v-pre>fields</code> parameter and optional <code v-pre>type</code> parameter. The <code v-pre>fields</code> parameter is used to specify the name of the fields in the document to be indexed. The <code v-pre>type</code> parameter is used to specify the type of the index. If the <code v-pre>type</code> parameter is not specified, then the type of the index will be <code v-pre>IndexType.UNIQUE</code>.</p>
+<p><code v-pre>@Index</code> annotation is used to declare an index on an entity field. It is a class level annotation and takes mandatory <code v-pre>fields</code> parameter and optional <code v-pre>type</code> parameter. The <code v-pre>fields</code> parameter is used to specify the names of the fields in the document to be indexed. The <code v-pre>type</code> parameter is used to specify the type of the index. If the <code v-pre>type</code> parameter is not specified, then the type of the index will be <code v-pre>IndexType.UNIQUE</code>.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-java"><code v-pre class="language-java">@Entity(value = &quot;employees&quot;, indices = {
     @Index(fields = &quot;firstName&quot;, type = IndexType.NON_UNIQUE),
@@ -373,13 +373,13 @@ public class Employee {
     // getters and setters
 }</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="indices-annotation">
+<doc-anchor-target id="indices">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#indices-annotation">#</doc-anchor-trigger>
-        <span>Indices Annotation</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#indices">#</doc-anchor-trigger>
+        <span>@Indices</span>
     </h3>
 </doc-anchor-target>
-<p><code v-pre>Indices</code> annotation is used declare multiple indices on an entity. It is a class level annotation and takes mandatory <code v-pre>value</code> parameter. The <code v-pre>value</code> parameter is used to specify the list of <code v-pre>Index</code> annotations.</p>
+<p><code v-pre>@Indices</code> annotation is used declare multiple indices on an entity. It is a class level annotation and takes mandatory <code v-pre>value</code> parameter. The <code v-pre>value</code> parameter is used to specify the list of <code v-pre>@Index</code> annotations.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-java"><code v-pre class="language-java">@Indices({
     @Index(fields = &quot;firstName&quot;, type = IndexType.NON_UNIQUE),
@@ -396,13 +396,13 @@ public class Employee {
     // getters and setters
 }</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="inheritindices-annotation">
+<doc-anchor-target id="inheritindices">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#inheritindices-annotation">#</doc-anchor-trigger>
-        <span>InheritIndices Annotation</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#inheritindices">#</doc-anchor-trigger>
+        <span>@InheritIndices</span>
     </h3>
 </doc-anchor-target>
-<p><code v-pre>InheritIndices</code> annotation is used to inherit the indices from the parent class. It is a class level annotation and takes no parameter.</p>
+<p><code v-pre>@InheritIndices</code> annotation is used to inherit the indices from the parent class. It is a class level annotation and takes no parameter.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-java"><code v-pre class="language-java">@Entity
 @Indices({
@@ -428,7 +428,7 @@ public class Manager extends Employee {
     // getters and setters
 }</code></pre>
 </doc-codeblock></div>
-<p>If the <code v-pre>InheritIndices</code> annotation is not specified, then the indices will not be inherited from the parent class.</p>
+<p>If the <code v-pre>@InheritIndices</code> annotation is not specified, then the indices will not be inherited from the parent class.</p>
 <doc-anchor-target id="entitydecorator">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#entitydecorator">#</doc-anchor-trigger>
@@ -537,13 +537,13 @@ public List&lt;EntityIndex&gt; getIndexFields() {
 }</code></pre>
 </doc-codeblock></div>
 <p>Here <code v-pre>manufacturer.name</code> is the name of the field in the document and <code v-pre>productName</code> and <code v-pre>manufacturer.uniqueId</code> are the names of the fields in the document. This will create a non-unique index on the field <code v-pre>manufacturer.name</code> and a unique compound index on the fields - <code v-pre>productName</code> and <code v-pre>manufacturer.uniqueId</code>.</p>
-<doc-anchor-target id="entityname">
+<doc-anchor-target id="entity-name">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#entityname">#</doc-anchor-trigger>
-        <span>EntityName</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#entity-name">#</doc-anchor-trigger>
+        <span>Entity Name</span>
     </h3>
 </doc-anchor-target>
-<p><code v-pre>EntityName</code> is used to specify the name of the collection in which the entity will be stored. It takes no parameter.</p>
+<p>Entity name is used to specify the name of the collection in which the entity will be stored. It takes no parameter.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-java"><code v-pre class="language-java">@Override
 public String getEntityName() {
@@ -591,7 +591,7 @@ public String getEntityName() {
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2023 Dizitart. All rights reserved.</p></div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024 Dizitart. All rights reserved.</p></div>
                             </footer>
                         </div>
                     </div>

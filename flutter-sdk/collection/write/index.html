@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.756972985615">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.757405787852">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,13 +31,13 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../assets/favicon.png" rel="icon">
-    <link href="../../../resources/css/retype.css?v=3.5.0.756972985615" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.757405787852" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../resources/js/search.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.756972985615" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/search.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.757405787852" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -369,7 +369,7 @@ var result = await collection.updateOne(doc, insertIfAbsent: true);</code></pre>
         <span>Updating Using a Filter</span>
     </h3>
 </doc-anchor-target>
-<p>You can update a document using a filter. It takes a <code v-pre>Filter</code> object as the first input parameter. It takes a <code v-pre>Document</code> object as the second input parameter. It returns a <code v-pre>Future&lt;WriteResult&gt;</code> object.</p>
+<p>You can update multiple documents using a filter. It takes a <code v-pre>Filter</code> object as the first input parameter. It takes a <code v-pre>Document</code> object as the second input parameter. It returns a <code v-pre>Future&lt;WriteResult&gt;</code> object.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-dart"><code v-pre class="language-dart">var update = createDocument(&quot;_id&quot;, existingDoc.id)
     ..put(&quot;lastName&quot;, &quot;Doe&quot;)
@@ -384,7 +384,7 @@ var result = await collection.update(where(&quot;firstName&quot;).eq(&quot;John&
         <span>Updating Using a Filter and Options</span>
     </h3>
 </doc-anchor-target>
-<p>You can update a document using a filter and options. It takes a <code v-pre>Filter</code> object as the first input parameter. It takes a <code v-pre>Document</code> object as the second input parameter. It takes a <code v-pre>UpdateOptions</code> object as the optional third input parameter. It returns a <code v-pre>Future&lt;WriteResult&gt;</code> object.</p>
+<p>You can update multiple documents using a filter and options. It takes a <code v-pre>Filter</code> object as the first input parameter. It takes a <code v-pre>Document</code> object as the second input parameter. It takes a <code v-pre>UpdateOptions</code> object as the optional third input parameter. It returns a <code v-pre>Future&lt;WriteResult&gt;</code> object.</p>
 <doc-anchor-target id="updateoptions">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#updateoptions">#</doc-anchor-trigger>
@@ -471,7 +471,7 @@ var result = await collection.removeOne(doc);</code></pre>
         <span>Removing Using a Filter</span>
     </h3>
 </doc-anchor-target>
-<p>You can remove a document using a filter. It takes a <code v-pre>Filter</code> object as the input parameter. It returns a <code v-pre>Future&lt;WriteResult&gt;</code> object.</p>
+<p>You can remove multiple documents using a filter. It takes a <code v-pre>Filter</code> object as the input parameter. It returns a <code v-pre>Future&lt;WriteResult&gt;</code> object.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-dart"><code v-pre class="language-dart">var result = await collection.remove(where(&quot;firstName&quot;).eq(&quot;John&quot;));</code></pre>
 </doc-codeblock></div>
@@ -481,7 +481,7 @@ var result = await collection.removeOne(doc);</code></pre>
         <span>Removing Using a Filter and Options</span>
     </h3>
 </doc-anchor-target>
-<p>You can remove a document using a filter and options. It takes a <code v-pre>Filter</code> object as the first input parameter. It takes a named parameter <code v-pre>justOne</code> with value <code v-pre>true</code> or <code v-pre>false</code>. If the value is <code v-pre>true</code>, then it will remove only the first document matched by the filter. Otherwise, it will remove all the documents matched by the filter. The default value of <code v-pre>justOne</code> is <code v-pre>false</code>. It returns a <code v-pre>Future&lt;WriteResult&gt;</code> object.</p>
+<p>You can remove multiple documents using a filter and options. It takes a <code v-pre>Filter</code> object as the first input parameter. It takes a named parameter <code v-pre>justOne</code> with value <code v-pre>true</code> or <code v-pre>false</code>. If the value is <code v-pre>true</code>, then it will remove only the first document matched by the filter. Otherwise, it will remove all the documents matched by the filter. The default value of <code v-pre>justOne</code> is <code v-pre>false</code>. It returns a <code v-pre>Future&lt;WriteResult&gt;</code> object.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-dart"><code v-pre class="language-dart">var result = await collection.remove(where(&quot;firstName&quot;).eq(&quot;John&quot;), justOne: true);</code></pre>
 </doc-codeblock></div>
@@ -525,7 +525,7 @@ var result = await collection.removeOne(doc);</code></pre>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2023 Dizitart. All rights reserved.</p></div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024 Dizitart. All rights reserved.</p></div>
                             </footer>
                         </div>
                     </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.756972985615">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.757405787852">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -11,6 +11,7 @@
     <!-- Primary Meta Tags -->
     <title>Introduction | Nitrite</title>
     <meta name="title" content="Introduction | Nitrite">
+    <meta name="description" content="ObjectRepository provides a simple and type-safe API for storing and retrieving Dart objects in a Nitrite database. It is built on top of ">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://nitrite.github.io/flutter-sdk/repository/intro/index.html">
@@ -19,21 +20,24 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nitrite.github.io/flutter-sdk/repository/intro/index.html">
     <meta property="og:title" content="Introduction | Nitrite">
+    <meta property="og:description" content="ObjectRepository provides a simple and type-safe API for storing and retrieving Dart objects in a Nitrite database. It is built on top of ">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://nitrite.github.io/flutter-sdk/repository/intro/index.html">
     <meta property="twitter:title" content="Introduction | Nitrite">
+    <meta property="twitter:description" content="ObjectRepository provides a simple and type-safe API for storing and retrieving Dart objects in a Nitrite database. It is built on top of ">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../assets/favicon.png" rel="icon">
-    <link href="../../../resources/css/retype.css?v=3.5.0.756972985615" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.757405787852" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../resources/js/search.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/search.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.757405787852" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -206,6 +210,58 @@
         <span>Introduction</span>
     </h1>
 </doc-anchor-target>
+<p><code v-pre>ObjectRepository</code> provides a simple and type-safe API for storing and retrieving Dart objects in a Nitrite database. It is built on top of <code v-pre>NitriteCollection</code> and provides a similar API for CRUD operations. It also supports indexing and querying. It also supports event based notification on object changes.</p>
+<doc-anchor-target id="creating-a-repository">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-a-repository">#</doc-anchor-trigger>
+        <span>Creating a Repository</span>
+    </h2>
+</doc-anchor-target>
+<p>An <code v-pre>ObjectRepository</code> can be created using <code v-pre>Nitrite</code> class. You need to call <code v-pre>getRepository()</code> method on <code v-pre>Nitrite</code> class to get an instance of an <code v-pre>ObjectRepository</code>. If the repository does not exist, then it will be created automatically. If a repository with the same name already exists, then it will return the existing repository.</p>
+<p>There are several options available to create a repository. You can pass a class type or an <code v-pre>EntityDecorator</code> along with an optional string key to create a repository.</p>
+<doc-anchor-target id="creating-a-repository-with-class-type">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-a-repository-with-class-type">#</doc-anchor-trigger>
+        <span>Creating a Repository with Class Type</span>
+    </h3>
+</doc-anchor-target>
+<p>You can create a <code v-pre>ObjectRepository</code> by passing a class type to <code v-pre>getRepository()</code> method.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">ObjectRepository&lt;Employee&gt; repository = db.getRepository&lt;Employee&gt;();</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="creating-a-repository-with-class-type-and-key">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-a-repository-with-class-type-and-key">#</doc-anchor-trigger>
+        <span>Creating a Repository with Class Type and Key</span>
+    </h3>
+</doc-anchor-target>
+<p>You can create a keyed <code v-pre>ObjectRepository</code> by passing a class type and a key to <code v-pre>getRepository()</code> method.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">ObjectRepository&lt;Employee&gt; repository = db.getRepository&lt;Employee&gt;(key: &quot;myKey&quot;);</code></pre>
+</doc-codeblock></div>
+<p>One typical use case of this keyed repository is to create a repository for each user in a multi-user application. The key can be the user name or user id. This will ensure that each user will have a separate repository for storing objects.</p>
+<doc-anchor-target id="creating-a-repository-with-entitydecorator">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-a-repository-with-entitydecorator">#</doc-anchor-trigger>
+        <span>Creating a Repository with EntityDecorator</span>
+    </h3>
+</doc-anchor-target>
+<p>A <code v-pre>ObjectRepository</code> can be created using <code v-pre>EntityDecorator</code>. This is useful when you cannot modify the object class to add annotations.</p>
+<p>More details about <code v-pre>EntityDecorator</code> can be found <a href="../entity/index.html#entitydecorator">here</a>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">ObjectRepository&lt;Employee&gt; repository = db.getRepository&lt;Employee&gt;(entityDecorator: EmployeeDecorator());</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="creating-a-repository-with-entitydecorator-and-key">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-a-repository-with-entitydecorator-and-key">#</doc-anchor-trigger>
+        <span>Creating a Repository with EntityDecorator and Key</span>
+    </h3>
+</doc-anchor-target>
+<p>A keyed <code v-pre>ObjectRepository</code> can be created using <code v-pre>EntityDecorator</code> and a key. This is useful when you cannot modify the object class to add annotations.</p>
+<p>More details about <code v-pre>EntityDecorator</code> can be found <a href="../entity/index.html#entitydecorator">here</a>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">ObjectRepository&lt;Employee&gt; repository = db.getRepository&lt;Employee&gt;(entityDecorator: EmployeeDecorator(), key: &quot;myKey&quot;);</code></pre>
+</doc-codeblock></div>
 
                                 
                                 <!-- Required only on API pages -->
@@ -246,7 +302,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2023 Dizitart. All rights reserved.</p></div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024 Dizitart. All rights reserved.</p></div>
                             </footer>
                         </div>
                     </div>
@@ -275,6 +331,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Introduction", level: 3, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Introduction", level: 3, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.756972985615">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.757405787852">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -11,6 +11,7 @@
     <!-- Primary Meta Tags -->
     <title>Import/Export | Nitrite</title>
     <meta name="title" content="Import/Export | Nitrite">
+    <meta name="description" content="Nitrite provides import/export functionality via nitrite-support library. You can import/export your database to/from a file in JSON format.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://nitrite.github.io/flutter-sdk/support/exchange/index.html">
@@ -19,21 +20,24 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nitrite.github.io/flutter-sdk/support/exchange/index.html">
     <meta property="og:title" content="Import/Export | Nitrite">
+    <meta property="og:description" content="Nitrite provides import/export functionality via nitrite-support library. You can import/export your database to/from a file in JSON format.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://nitrite.github.io/flutter-sdk/support/exchange/index.html">
     <meta property="twitter:title" content="Import/Export | Nitrite">
+    <meta property="twitter:description" content="Nitrite provides import/export functionality via nitrite-support library. You can import/export your database to/from a file in JSON format.">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../assets/favicon.png" rel="icon">
-    <link href="../../../resources/css/retype.css?v=3.5.0.756972985615" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.757405787852" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../resources/js/search.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/search.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.757405787852" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -206,6 +210,174 @@
         <span>Import/Export</span>
     </h1>
 </doc-anchor-target>
+<p>Nitrite provides import/export functionality via <code v-pre>nitrite-support</code> library. You can import/export your database to/from a file in JSON format. You can choose to import/export the entire database or a specific collection.</p>
+<doc-anchor-target id="exporting-database">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#exporting-database">#</doc-anchor-trigger>
+        <span>Exporting Database</span>
+    </h2>
+</doc-anchor-target>
+<p>To export the entire database in JSON format, you can use the <code v-pre>Exporter</code> class of <code v-pre>nitrite-support</code> library. You can use the <code v-pre>Exporter.withOptions()</code> method to construct an instance of <code v-pre>Exporter</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// create an exporter with export options
+var exporter = Exporter.withOptions(
+    dbFactory: () async =&gt; createDb('nitrite_source.db'),
+    collections: ['first'],
+    repositories: ['Employee'],
+    keyedRepositories: {
+        'key': {'Employee'},
+    },
+);
+
+// export the database to a file
+await exporter.exportTo(dataFile);</code></pre>
+</doc-codeblock></div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>The database must be in closed state before exporting.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="export-options">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#export-options">#</doc-anchor-trigger>
+        <span>Export Options</span>
+    </h3>
+</doc-anchor-target>
+<p>The <code v-pre>Exporter.withOptions()</code> method provides various options to configure the export process. You can set the following options:</p>
+<ul>
+<li><code v-pre>dbFactory</code> - the <code v-pre>NitriteFactory</code> function to use for export. It is used to create the <code v-pre>Nitrite</code> instance for export. It&#x27;s a mandatory field.</li>
+<li><code v-pre>exportIndices</code> - whether to export indices or not. It&#x27;s an optional field, if not provided, it will be set to <code v-pre>true</code>.</li>
+<li><code v-pre>exportData</code> - whether to export data or not. It&#x27;s an optional field, if not provided, it will be set to <code v-pre>true</code>.</li>
+<li><code v-pre>collections</code> - the list of collections to export. The rules for specifying the collection names are as follows:
+<ul>
+<li>If null is specified, all collections will be exported.</li>
+<li>If an empty list is specified, no collection will be exported.</li>
+<li>If a non-empty list is specified, only the collections in the list will be exported.</li>
+</ul>
+</li>
+<li><code v-pre>repositories</code> - the list of repositories to export. The rules for specifying the repository names are as follows:
+<ul>
+<li>If null is specified, all repositories will be exported.</li>
+<li>If an empty list is specified, no repository will be exported.</li>
+<li>If a non-empty list is specified, only the repositories in the list will be exported.</li>
+</ul>
+</li>
+<li><code v-pre>keyedRepositories</code> - the map of keyed repositories to export. The rules for specifying the keyed repository names are as follows:
+<ul>
+<li>If null is specified, all keyed repositories will be exported.</li>
+<li>If an empty map is specified, no keyed repository will be exported.</li>
+<li>If a non-empty map is specified, only the keyed repositories in the map will be exported.</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="example">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#example">#</doc-anchor-trigger>
+        <span>Example</span>
+    </h3>
+</doc-anchor-target>
+<p>First create a method to create a <code v-pre>Nitrite</code> instance, which will be used as the <code v-pre>nitriteFactory</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">Future&lt;Nitrite&gt; createDb(String filePath) async {
+    // create a Hive based file store
+    var storeModule = Hive.withConfig()
+        .path(filePath)
+        .build();
+
+    // open the database
+    return Nitrite.builder()
+        .loadModule(storeModule)
+        .build();
+}</code></pre>
+</doc-codeblock></div>
+<p>Then create the <code v-pre>Exporter</code> instance and export the database.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// create an exporter with export options
+var exporter = Exporter.withOptions(
+    dbFactory: () async =&gt; createDb('nitrite_source.db'),
+    collections: ['first'],
+    repositories: ['Employee'],
+    keyedRepositories: {
+        'key': {'Employee'},
+    },
+);
+
+// export the database to a file
+await exporter.exportTo('source.json');</code></pre>
+</doc-codeblock></div>
+<p>The <code v-pre>source.json</code> file will contain the exported data in JSON format.</p>
+<doc-anchor-target id="importing-database">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#importing-database">#</doc-anchor-trigger>
+        <span>Importing Database</span>
+    </h2>
+</doc-anchor-target>
+<p>To import the entire database from an exported JSON data, you can use the <code v-pre>Importer</code> class of <code v-pre>nitrite-support</code> library. You can use the <code v-pre>Importer.withOptions()</code> method to construct an instance of <code v-pre>Importer</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// create an importer with import options
+var importer = Importer.withOptions(
+    dbFactory: () async =&gt; createDb(getTempPath('nitrite_dest.db')),
+);
+
+// import the database from a file
+await importer.importFrom('source.json');</code></pre>
+</doc-codeblock></div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>The database must be in closed state before importing.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="import-options">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#import-options">#</doc-anchor-trigger>
+        <span>Import Options</span>
+    </h3>
+</doc-anchor-target>
+<p>The <code v-pre>Importer.withOptions()</code> method provides various options to configure the import process. You can set the following options:</p>
+<ul>
+<li><code v-pre>dbFactory</code> - the <code v-pre>NitriteFactory</code> function to use for import. It is used to create the <code v-pre>Nitrite</code> instance for import. It&#x27;s a mandatory field.</li>
+</ul>
+<doc-anchor-target id="example-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#example-1">#</doc-anchor-trigger>
+        <span>Example</span>
+    </h3>
+</doc-anchor-target>
+<p>First create the <code v-pre>Importer</code> instance and configure it.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// create an importer with import options
+var importer = Importer.withOptions(
+    dbFactory: () async =&gt; createDb('nitrite_dest.db'),
+);
+
+// import the database from a file
+await importer.importFrom('source.json');</code></pre>
+</doc-codeblock></div>
+<p>The <code v-pre>nitrite_dest.db</code> file will contain the imported data. You can open the database and use it.</p>
 
                                 
                                 <!-- Required only on API pages -->
@@ -215,11 +387,11 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../flutter-sdk/modules/spatial/index.html">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../flutter-sdk/support/installation/index.html">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">Spatial Module</span>
+                                                <span class="block mt-1">Usage</span>
                                             </span>
                                         </a>
                                     </div>
@@ -246,7 +418,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2023 Dizitart. All rights reserved.</p></div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024 Dizitart. All rights reserved.</p></div>
                             </footer>
                         </div>
                     </div>
@@ -275,6 +447,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Import/Export", level: 3, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Import/Export", level: 3, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

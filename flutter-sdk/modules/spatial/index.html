@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.756972985615">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.757405787852">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -11,6 +11,7 @@
     <!-- Primary Meta Tags -->
     <title>Spatial Module | Nitrite</title>
     <meta name="title" content="Spatial Module | Nitrite">
+    <meta name="description" content="Nitrite Spatial module provides support for spatial queries. The module uses JTS port of the dart package ">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://nitrite.github.io/flutter-sdk/modules/spatial/index.html">
@@ -19,21 +20,24 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nitrite.github.io/flutter-sdk/modules/spatial/index.html">
     <meta property="og:title" content="Spatial Module | Nitrite">
+    <meta property="og:description" content="Nitrite Spatial module provides support for spatial queries. The module uses JTS port of the dart package ">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://nitrite.github.io/flutter-sdk/modules/spatial/index.html">
     <meta property="twitter:title" content="Spatial Module | Nitrite">
+    <meta property="twitter:description" content="Nitrite Spatial module provides support for spatial queries. The module uses JTS port of the dart package ">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../assets/favicon.png" rel="icon">
-    <link href="../../../resources/css/retype.css?v=3.5.0.756972985615" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.757405787852" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../resources/js/search.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/search.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.757405787852" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -206,6 +210,91 @@
         <span>Spatial Module</span>
     </h1>
 </doc-anchor-target>
+<p>Nitrite Spatial module provides support for spatial queries. The module uses <a href="https://locationtech.github.io/jts/">JTS</a> port of the dart package <a href="https://pub.dev/packages/dart_jts">dart_jts</a> for spatial operations.</p>
+<doc-anchor-target id="adding-spatial-module">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#adding-spatial-module">#</doc-anchor-trigger>
+        <span>Adding Spatial Module</span>
+    </h2>
+</doc-anchor-target>
+<p>To add Spatial module to your project, you need to add below dependency to your <code v-pre>pubspec.yaml</code> file:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-yaml"><code v-pre class="language-yaml">dependencies:
+  nitrite: ^[latest-version]
+  nitrite_spatial: ^[latest-version]</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="using-spatial-module">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#using-spatial-module">#</doc-anchor-trigger>
+        <span>Using Spatial Module</span>
+    </h2>
+</doc-anchor-target>
+<p>To use Spatial module, you need to load the <code v-pre>SpatialModule</code> while opening the database.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">import 'package:nitrite/nitrite.dart';
+import 'package:nitrite_spatial/nitrite_spatial.dart';
+
+var db = await Nitrite.builder()
+            .loadModule(SpatialModule())
+            .openOrCreate();</code></pre>
+</doc-codeblock></div>
+<p>If you are using <code v-pre>nitrite_hive_adapter</code> as your storage module, you need to register the <code v-pre>GeometryAdapter</code> with the Hive database.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">import 'package:nitrite_hive_adapter/nitrite_hive_adapter.dart';
+
+var storeModule = HiveModule.withConfig()
+            .path(filePath)
+            .addTypeAdapter(GeometryAdapter())
+            .build();
+
+var db = await Nitrite.builder()
+            .loadModule(storeModule)
+            .loadModule(SpatialModule())
+            .openOrCreate();</code></pre>
+</doc-codeblock></div>
+<p>If Nitrite is using the default <code v-pre>SimpleNitriteMapper</code>, then the <code v-pre>SpatialModule</code> will automatically register the <code v-pre>GeometryConverter</code> with the mapper. If you are using your own custom mapper, then you need to register the <code v-pre>GeometryConverter</code> with the mapper.</p>
+<doc-anchor-target id="geometryconverter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#geometryconverter">#</doc-anchor-trigger>
+        <span>GeometryConverter</span>
+    </h3>
+</doc-anchor-target>
+<p><code v-pre>GeometryConverter</code> is an <a href="../../repository/mapper/index.html#entityconverter"><code v-pre>EntityConverter</code></a> which is used to convert <code v-pre>Geometry</code> object of Dart JTS to <code v-pre>Document</code> and vice-versa. It is used to store the <code v-pre>Geometry</code> object in the database.</p>
+<doc-anchor-target id="spatial-index">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#spatial-index">#</doc-anchor-trigger>
+        <span>Spatial Index</span>
+    </h2>
+</doc-anchor-target>
+<p>Spatial module uses <a href="https://en.wikipedia.org/wiki/R-tree">R-Tree</a> index to store the spatial data.</p>
+<p>To create a spatial index, you need to pass the index type as <code v-pre>spatialIndex</code> while creating the index. <code v-pre>spatialIndex</code> is a global constant defined in <code v-pre>nitrite_spatial</code> package.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">await collection.createIndex([&quot;location&quot;], indexOptions(spatialIndex));</code></pre>
+</doc-codeblock></div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>Spatial index is not supported on multiple fields.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="spatial-filter">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#spatial-filter">#</doc-anchor-trigger>
+        <span>Spatial Filter</span>
+    </h2>
+</doc-anchor-target>
+<p>Spatial module supports several filters to query spatial data. To know more about filters, please refer to <a href="../../filter/index.html#spatial-filters">Spatial Filters</a>.</p>
 
                                 
                                 <!-- Required only on API pages -->
@@ -215,20 +304,20 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../flutter-sdk/modules/store-modules/hive/index.html">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../flutter-sdk/modules/store-modules/custom/index.html">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">Hive Modules</span>
+                                                <span class="block mt-1">Custom Storage Modules</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../flutter-sdk/support/exchange/index.html">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../flutter-sdk/support/installation/index.html">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Import/Export</span>
+                                                <span class="block mt-1">Usage</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -246,7 +335,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2023 Dizitart. All rights reserved.</p></div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024 Dizitart. All rights reserved.</p></div>
                             </footer>
                         </div>
                     </div>
@@ -275,6 +364,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Spatial Module", level: 3, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Spatial Module", level: 3, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

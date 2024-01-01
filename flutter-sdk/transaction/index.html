@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.756972985615">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.757405787852">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -11,6 +11,7 @@
     <!-- Primary Meta Tags -->
     <title>Transaction | Nitrite</title>
     <meta name="title" content="Transaction | Nitrite">
+    <meta name="description" content="A transaction is a single logical unit of work which accesses and possibly modifies the contents of a database.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://nitrite.github.io/flutter-sdk/transaction/index.html">
@@ -19,21 +20,24 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nitrite.github.io/flutter-sdk/transaction/index.html">
     <meta property="og:title" content="Transaction | Nitrite">
+    <meta property="og:description" content="A transaction is a single logical unit of work which accesses and possibly modifies the contents of a database.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://nitrite.github.io/flutter-sdk/transaction/index.html">
     <meta property="twitter:title" content="Transaction | Nitrite">
+    <meta property="twitter:description" content="A transaction is a single logical unit of work which accesses and possibly modifies the contents of a database.">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../assets/favicon.png" rel="icon">
-    <link href="../../resources/css/retype.css?v=3.5.0.756972985615" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.757405787852" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.757405787852" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -206,6 +210,232 @@
         <span>Transaction</span>
     </h1>
 </doc-anchor-target>
+<p>A transaction is a single logical unit of work which accesses and possibly modifies the contents of a database. Transactions access data using read and write operations.</p>
+<p>Nitrite supports transactional operations on its collections and repositories. A transaction can be committed or rolled back. Once a transaction is committed, all the changes are persisted to the disk. If a transaction is rolled back, all the changes are discarded.</p>
+<doc-anchor-target id="transaction-on-nitritecollection">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#transaction-on-nitritecollection">#</doc-anchor-trigger>
+        <span>Transaction on NitriteCollection</span>
+    </h2>
+</doc-anchor-target>
+<p>A transaction can be started from a session using the <code v-pre>Session.beginTransaction()</code> method. To start a transactional operation on a <code v-pre>NitriteCollection</code>, the <code v-pre>Transaction.getCollection()</code> method can be used. All the operations performed on the collection will be part of the transaction.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// start a transaction
+var transaction = await session.beginTransaction();
+
+// get a collection
+var collection = await transaction.getCollection(&quot;test&quot;);
+
+// perform operations on the collection
+await collection.insert(doc1);
+
+// commit the transaction
+await transaction.commit();</code></pre>
+</doc-codeblock></div>
+<p>Nitrite also provides a <code v-pre>Session.executeTransaction()</code> method to execute a transactional operation. The <code v-pre>Session.executeTransaction()</code> method takes a callback function as an argument. The callback function will be executed inside a transaction.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">await session.executeTransaction((transaction) async {
+  var collection = await transaction.getCollection(&quot;test&quot;);
+  await collection.insert(doc1);
+});</code></pre>
+</doc-codeblock></div>
+<p>If any exception occurs inside the transaction, the transaction will be rolled back. If you want to rollback a transaction only for certain exceptions, you can use the <code v-pre>Session.executeTransaction()</code> method with <code v-pre>rollbackFor</code> parameter. The <code v-pre>rollbackFor</code> parameter takes a list of exception types for which the transaction will be rolled back. For any other exceptions, the transaction will be committed.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">await session.executeTransaction((transaction) async {
+  var collection = await transaction.getCollection(&quot;test&quot;);
+  await collection.insert(doc1);
+}, rollbackFor: [NitriteException]);</code></pre>
+</doc-codeblock></div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>Any find operations performed inside a transaction will return all the documents including the uncommitted ones.</p>
+<p>Any find operations performed outside a transaction will return only the committed documents.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="auto-commit-operations">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#auto-commit-operations">#</doc-anchor-trigger>
+        <span>Auto-commit Operations</span>
+    </h3>
+</doc-anchor-target>
+<p>Certain operations are auto-committed in Nitrite. Those operations are not part of a transaction and cannot be rolled back. The following operations are auto-committed:</p>
+<ul>
+<li><code v-pre>NitriteCollection.createIndex()</code></li>
+<li><code v-pre>NitriteCollection.rebuildIndex()</code></li>
+<li><code v-pre>NitriteCollection.dropIndex()</code></li>
+<li><code v-pre>NitriteCollection.dropAllIndices()</code></li>
+<li><code v-pre>NitriteCollection.drop()</code></li>
+<li><code v-pre>NitriteCollection.clear()</code></li>
+<li><code v-pre>NitriteCollection.close()</code></li>
+</ul>
+<doc-anchor-target id="transaction-on-objectrepository">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#transaction-on-objectrepository">#</doc-anchor-trigger>
+        <span>Transaction on ObjectRepository</span>
+    </h2>
+</doc-anchor-target>
+<p>A transaction can be started from a session using the <code v-pre>Session.beginTransaction()</code> method. To start a transactional operation on a <code v-pre>ObjectRepository</code>, the <code v-pre>Transaction.getRepository()</code> method can be used. All the operations performed on the repository will be part of the transaction.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// start a transaction
+var transaction = await session.beginTransaction();
+
+// get a repository
+var repository = await transaction.getRepository&lt;Employee&gt;();
+
+// perform operations on the repository
+await repository.insert(employee);
+
+// commit the transaction
+await transaction.commit();</code></pre>
+</doc-codeblock></div>
+<p>Nitrite also provides a <code v-pre>Session.executeTransaction()</code> method to execute a transactional operation. The <code v-pre>Session.executeTransaction()</code> method takes a callback function as an argument. The callback function will be executed inside a transaction.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">await session.executeTransaction((transaction) async {
+  var repository = await transaction.getRepository&lt;Employee&gt;();
+  await repository.insert(employee);
+});</code></pre>
+</doc-codeblock></div>
+<p>If any exception occurs inside the transaction, the transaction will be rolled back. If you want to rollback a transaction only for certain exceptions, you can use the <code v-pre>Session.executeTransaction()</code> method with <code v-pre>rollbackFor</code> parameter. The <code v-pre>rollbackFor</code> parameter takes a list of exception types for which the transaction will be rolled back. For any other exceptions, the transaction will be committed.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">await session.executeTransaction((transaction) async {
+  var repository = await transaction.getRepository&lt;Employee&gt;();
+  await repository.insert(employee);
+}, rollbackFor: [NitriteException]);</code></pre>
+</doc-codeblock></div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>Any find operations performed inside a transaction will return all the entities including the uncommitted ones.</p>
+<p>Any find operations performed outside a transaction will return only the committed entities.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="auto-commit-operations-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#auto-commit-operations-1">#</doc-anchor-trigger>
+        <span>Auto-commit Operations</span>
+    </h3>
+</doc-anchor-target>
+<p>Certain operations are auto-committed in Nitrite. Those operations are not part of a transaction and cannot be rolled back. The following operations are auto-committed:</p>
+<ul>
+<li><code v-pre>ObjectRepository.createIndex()</code></li>
+<li><code v-pre>ObjectRepository.rebuildIndex()</code></li>
+<li><code v-pre>ObjectRepository.dropIndex()</code></li>
+<li><code v-pre>ObjectRepository.dropAllIndices()</code></li>
+<li><code v-pre>ObjectRepository.drop()</code></li>
+<li><code v-pre>ObjectRepository.clear()</code></li>
+<li><code v-pre>ObjectRepository.close()</code></li>
+</ul>
+<doc-anchor-target id="session">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#session">#</doc-anchor-trigger>
+        <span>Session</span>
+    </h2>
+</doc-anchor-target>
+<p>A session represents a transactional context for a Nitrite database. Session is used to create a new transaction. A session should be closed after use to release any resources held by it. If a session is closed and the transaction is not committed, all opened transactions will be rolled back.</p>
+<doc-anchor-target id="create-a-session">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#create-a-session">#</doc-anchor-trigger>
+        <span>Create a Session</span>
+    </h3>
+</doc-anchor-target>
+<p>A session can be created using the <code v-pre>Nitrite.createSession()</code> method. Multiple sessions can be created for a Nitrite database.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// create a session
+var session = db.createSession();</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="close-a-session">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#close-a-session">#</doc-anchor-trigger>
+        <span>Close a Session</span>
+    </h3>
+</doc-anchor-target>
+<p>A session can be closed using the <code v-pre>Session.close()</code> method. If a session is closed and the transaction is not committed, all opened transactions will be rolled back.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">// close a session
+await session.close();</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="checking-if-session-is-active">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#checking-if-session-is-active">#</doc-anchor-trigger>
+        <span>Checking If Session is Active</span>
+    </h3>
+</doc-anchor-target>
+<p>A session can be checked if it is active or not using the <code v-pre>Session.isActive</code> getter.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// check if session is active
+if (session.isActive) {
+  // do something
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="managing-transactions">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#managing-transactions">#</doc-anchor-trigger>
+        <span>Managing Transactions</span>
+    </h2>
+</doc-anchor-target>
+<p>A transaction can be started using the <code v-pre>Session.beginTransaction()</code> method.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// start a transaction
+var transaction = await session.beginTransaction();</code></pre>
+</doc-codeblock></div>
+<p>A transaction can be committed using the <code v-pre>Transaction.commit()</code> method. If a transaction is committed, all the changes are persisted to the disk.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// commit a transaction
+await transaction.commit();</code></pre>
+</doc-codeblock></div>
+<p>A transaction can be rolled back using the <code v-pre>Transaction.rollback()</code> method. If a transaction is rolled back, all the changes are discarded.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// rollback a transaction
+await transaction.rollback();</code></pre>
+</doc-codeblock></div>
+<p>A transaction can be closed using the <code v-pre>Transaction.close()</code> method. If a transaction is closed and the transaction is not committed, all opened transactions will be rolled back.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// close a transaction
+await transaction.close();</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="querying-transaction-state">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#querying-transaction-state">#</doc-anchor-trigger>
+        <span>Querying Transaction State</span>
+    </h3>
+</doc-anchor-target>
+<p>The current state of a transaction can be retrieved using the <code v-pre>Transaction.getState()</code> method. It returns an enum of type <code v-pre>TransactionState</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// get transaction state
+var state = transaction.getState();</code></pre>
+</doc-codeblock></div>
+<p>Possible values for <code v-pre>TransactionState</code> are:</p>
+<ul>
+<li><code v-pre>TransactionState.active</code> - The transaction is active.</li>
+<li><code v-pre>TransactionState.committed</code> - The transaction is committed.</li>
+<li><code v-pre>TransactionState.partiallyCommitted</code> - The transaction is partially committed.</li>
+<li><code v-pre>TransactionState.closed</code> - The transaction is closed.</li>
+<li><code v-pre>TransactionState.failed</code> - The transaction is failed.</li>
+<li><code v-pre>TransactionState.aborted</code> - The transaction is aborted.</li>
+</ul>
 
                                 
                                 <!-- Required only on API pages -->
@@ -215,11 +445,11 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../flutter-sdk/query/index.html">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../flutter-sdk/filter/index.html">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">Query</span>
+                                                <span class="block mt-1">Filters</span>
                                             </span>
                                         </a>
                                     </div>
@@ -228,7 +458,7 @@
                                         <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../flutter-sdk/migration/index.html">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Migration</span>
+                                                <span class="block mt-1">Schema Migration</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -246,7 +476,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2023 Dizitart. All rights reserved.</p></div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024 Dizitart. All rights reserved.</p></div>
                             </footer>
                         </div>
                     </div>
@@ -275,6 +505,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Transaction", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Transaction", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.756972985615">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.757405787852">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,13 +31,13 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../assets/favicon.png" rel="icon">
-    <link href="../../../resources/css/retype.css?v=3.5.0.756972985615" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.757405787852" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../resources/js/search.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.756972985615" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.756972985615" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/search.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.757405787852" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -244,7 +244,7 @@
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-java"><code v-pre class="language-java">Product product = new Product();
-product.setProductId(new ProductId());
+product.setProductId(new ProductId(1));
 product.setProductName(&quot;Apple iPhone 6&quot;);
 product.setPrice(600.0);
 
@@ -366,7 +366,7 @@ WriteResult result = productRepository.update(product, true);</code></pre>
         <span>Updating Using a Filter</span>
     </h3>
 </doc-anchor-target>
-<p>You can update an entity using a filter. It takes a <code v-pre>Filter</code> object as first input parameter. It takes a Java entity as second input parameter. It returns a <code v-pre>WriteResult</code> object. The entity must not be <code v-pre>null</code>.</p>
+<p>You can update multiple entities using a filter. It takes a <code v-pre>Filter</code> object as first input parameter. It takes a Java entity as second input parameter. It returns a <code v-pre>WriteResult</code> object. The entity must not be <code v-pre>null</code>.</p>
 <p>If the filter result matches multiple entities, then all the entities will be updated.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-java"><code v-pre class="language-java">Product product = new Product();
@@ -382,7 +382,7 @@ WriteResult result = productRepository.update(where(&quot;productName&quot;).eq(
         <span>Updating Using a Filter and Options</span>
     </h3>
 </doc-anchor-target>
-<p>You can update an entity using a filter and options. It takes a <code v-pre>Filter</code> object as first input parameter. It takes a Java entity as second input parameter. It takes a <code v-pre>UpdateOptions</code> object as third input parameter. It returns a <code v-pre>WriteResult</code> object. The entity must not be <code v-pre>null</code>.</p>
+<p>You can update multiple entities using a filter and options. It takes a <code v-pre>Filter</code> object as first input parameter. It takes a Java entity as second input parameter. It takes a <code v-pre>UpdateOptions</code> object as third input parameter. It returns a <code v-pre>WriteResult</code> object. The entity must not be <code v-pre>null</code>.</p>
 <doc-anchor-target id="updateoptions">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#updateoptions">#</doc-anchor-trigger>
@@ -507,7 +507,7 @@ result = productRepository.remove(product);</code></pre>
         <span>Removing Using a Filter</span>
     </h3>
 </doc-anchor-target>
-<p>You can remove an entity using a filter. It takes a <code v-pre>Filter</code> object as input parameter. It returns a <code v-pre>WriteResult</code> object.</p>
+<p>You can remove multiple entities using a filter. It takes a <code v-pre>Filter</code> object as input parameter. It returns a <code v-pre>WriteResult</code> object.</p>
 <p>If the filter result matches multiple entities, then all the entities will be removed.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-java"><code v-pre class="language-java">WriteResult result = productRepository.remove(where(&quot;productName&quot;).eq(&quot;Apple iPhone 6&quot;));</code></pre>
@@ -518,7 +518,7 @@ result = productRepository.remove(product);</code></pre>
         <span>Removing Using a Filter and Options</span>
     </h3>
 </doc-anchor-target>
-<p>You can remove an entity using a filter and options. It takes a <code v-pre>Filter</code> object as first input parameter. It takes a <code v-pre>boolean</code> value as second input parameter. If the second input parameter is <code v-pre>true</code>, then it will remove only the first entity matched by the filter. Otherwise, it will remove all the entities matched by the filter. It returns a <code v-pre>WriteResult</code> object.</p>
+<p>You can remove multiple entities using a filter and options. It takes a <code v-pre>Filter</code> object as first input parameter. It takes a <code v-pre>boolean</code> value as second input parameter. If the second input parameter is <code v-pre>true</code>, then it will remove only the first entity matched by the filter. Otherwise, it will remove all the entities matched by the filter. It returns a <code v-pre>WriteResult</code> object.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-java"><code v-pre class="language-java">WriteResult result = productRepository.remove(where(&quot;productName&quot;).eq(&quot;Apple iPhone 6&quot;), false);</code></pre>
 </doc-codeblock></div>
@@ -562,7 +562,7 @@ result = productRepository.remove(product);</code></pre>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2023 Dizitart. All rights reserved.</p></div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024 Dizitart. All rights reserved.</p></div>
                             </footer>
                         </div>
                     </div>

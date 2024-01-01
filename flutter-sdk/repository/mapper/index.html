@@ -11,22 +11,22 @@
     <!-- Primary Meta Tags -->
     <title>NitriteMapper | Nitrite</title>
     <meta name="title" content="NitriteMapper | Nitrite">
-    <meta name="description" content="NitriteMapper is a simple and lightweight object mapper which can be used to map Java objects to Nitrite documents and vice-versa. Nitrite uses a ">
+    <meta name="description" content="NitriteMapper is a simple and lightweight object mapper which can be used to map Dart objects to Nitrite documents and vice-versa. Nitrite uses a ">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://nitrite.github.io/java-sdk/repository/mapper/index.html">
+    <link rel="canonical" href="https://nitrite.github.io/flutter-sdk/repository/mapper/index.html">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nitrite.github.io/java-sdk/repository/mapper/index.html">
+    <meta property="og:url" content="https://nitrite.github.io/flutter-sdk/repository/mapper/index.html">
     <meta property="og:title" content="NitriteMapper | Nitrite">
-    <meta property="og:description" content="NitriteMapper is a simple and lightweight object mapper which can be used to map Java objects to Nitrite documents and vice-versa. Nitrite uses a ">
+    <meta property="og:description" content="NitriteMapper is a simple and lightweight object mapper which can be used to map Dart objects to Nitrite documents and vice-versa. Nitrite uses a ">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://nitrite.github.io/java-sdk/repository/mapper/index.html">
+    <meta property="twitter:url" content="https://nitrite.github.io/flutter-sdk/repository/mapper/index.html">
     <meta property="twitter:title" content="NitriteMapper | Nitrite">
-    <meta property="twitter:description" content="NitriteMapper is a simple and lightweight object mapper which can be used to map Java objects to Nitrite documents and vice-versa. Nitrite uses a ">
+    <meta property="twitter:description" content="NitriteMapper is a simple and lightweight object mapper which can be used to map Dart objects to Nitrite documents and vice-versa. Nitrite uses a ">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
@@ -210,140 +210,131 @@
         <span>NitriteMapper</span>
     </h1>
 </doc-anchor-target>
-<p><code v-pre>NitriteMapper</code> is a simple and lightweight object mapper which can be used to map Java objects to Nitrite documents and vice-versa. Nitrite uses a <code v-pre>NitriteMapper</code> implementation to map Java entities to Nitrite documents and vice-versa while storing and retrieving objects from an <code v-pre>ObjectRepository</code>.</p>
+<p><code v-pre>NitriteMapper</code> is a simple and lightweight object mapper which can be used to map Dart objects to Nitrite documents and vice-versa. Nitrite uses a <code v-pre>NitriteMapper</code> implementation to map Dart entities to Nitrite documents and vice-versa while storing and retrieving objects from an <code v-pre>ObjectRepository</code>.</p>
 <doc-anchor-target id="simplenitritemapper">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#simplenitritemapper">#</doc-anchor-trigger>
         <span>SimpleNitriteMapper</span>
     </h2>
 </doc-anchor-target>
-<p>Nitrite provides a default <code v-pre>NitriteMapper</code> implementation called <code v-pre>SimpleNitriteMapper</code>. This is a simple and lightweight mapper which uses <code v-pre>EntityConverter</code> to map a Java object to Nitrite documents and vice-versa. This mapper is suitable for most of the use cases.</p>
+<p>Nitrite provides a default <code v-pre>NitriteMapper</code> implementation called <code v-pre>SimpleNitriteMapper</code>. This is a simple and lightweight mapper which uses <code v-pre>EntityConverter</code> to map a Dart object to Nitrite documents and vice-versa. This mapper is suitable for most of the use cases.</p>
 <doc-anchor-target id="entityconverter">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#entityconverter">#</doc-anchor-trigger>
         <span>EntityConverter</span>
     </h3>
 </doc-anchor-target>
-<p><code v-pre>EntityConverter</code> is a simple interface which provides methods to convert a Java object to Nitrite document and vice-versa. For each class, you need to provide an implementation of <code v-pre>EntityConverter</code> and register it with <code v-pre>SimpleNitriteMapper</code>. <code v-pre>SimpleNitriteMapper</code> will use this converter to map the object to Nitrite document and vice-versa.</p>
+<p><code v-pre>EntityConverter</code> is a simple interface which provides methods to convert a Dart object to Nitrite document and vice-versa. For each Dart class, you need to provide an implementation of <code v-pre>EntityConverter</code> and register it with <code v-pre>SimpleNitriteMapper</code>. <code v-pre>SimpleNitriteMapper</code> will use this converter to map the Dart object to Nitrite document and vice-versa.</p>
+<p>You can write your own implementation of <code v-pre>EntityConverter</code> or you can use the code generator to generate the implementation for you. More on this is discussed <doc-anchor-trigger to="#code-generation">here</doc-anchor-trigger>.</p>
 <p>Let&#x27;s take an example of <code v-pre>Product</code> class.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-java"><code v-pre class="language-java">public class Product {
-    private ProductId productId;
-    private Manufacturer manufacturer;
-    private String productName;
-    private Double price;
-    // getter and setter
+<pre class="language-dart"><code v-pre class="language-dart">class Product {
+    ProductId? productId;
+    Manufacturer? manufacturer;
+    String? productName;
+    double? price;
+    
+    Product({this.productId, this.manufacturer, this.productName, this.price});
 }
 
-public class ProductId {
-    private String uniqueId;
-    private String productCode;
-    // getter and setter
+class ProductId {
+    String? uniqueId;
+    String? productCode;
+    
+    ProductId({this.uniqueId, this.productCode});
 }
 
-public class Manufacturer {
-    private String name;
-    private String address;
-    private Integer uniqueId;
-    // getter and setter
+class Manufacturer {
+    String? name;
+    String? address;
+    int? uniqueId;
+    
+    Manufacturer({this.name, this.address, this.uniqueId});
 }</code></pre>
 </doc-codeblock></div>
-<p>To map this to Nitrite document, we need to provide an implementation of <code v-pre>EntityConverter</code> for each class. Let&#x27;s take a look at the converter for <code v-pre>Product</code> class.</p>
+<p>To map to Nitrite document, we need to provide an implementation of <code v-pre>EntityConverter</code> for each class. Let&#x27;s take a look at the converter for <code v-pre>Product</code> class.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-java"><code v-pre class="language-java">public class ProductConverter implements EntityConverter&lt;Product&gt; {
-    @Override
-    public Class&lt;Product&gt; getEntityType() {
-        return Product.class;
-    }
+<pre class="language-dart"><code v-pre class="language-dart">class ProductConverter extends EntityConverter&lt;Product&gt; {
+    @override
+    Document toDocument(Product entity, NitriteMapper nitriteMapper) {
+        Document productId = nitriteMapper.tryConvert&lt;Document, ProductId&gt;(entity.productId);
+        Document manufacturer = nitriteMapper.tryConvert&lt;Document, Manufacturer&gt;(entity.manufacturer);
 
-    @Override
-    public Document toDocument(Product entity, NitriteMapper nitriteMapper) {
-        Document productId = (Document) nitriteMapper.tryConvert(entity.getProductId(), Document.class);
-        Document manufacturer = (Document) nitriteMapper.tryConvert(entity.getManufacturer(), Document.class);
-
-        return Document.createDocument()
+        return emptyDocument()
             .put(&quot;productId&quot;, productId)
             .put(&quot;manufacturer&quot;, manufacturer)
-            .put(&quot;productName&quot;, entity.getProductName())
-            .put(&quot;price&quot;, entity.getPrice());
+            .put(&quot;productName&quot;, entity.productName)
+            .put(&quot;price&quot;, entity.price);
     }
 
-    @Override
-    public Product fromDocument(Document document, NitriteMapper nitriteMapper) {
-        Product entity = new Product();
-        ProductId productId = (ProductId) nitriteMapper.tryConvert(document.get(&quot;productId&quot;, Document.class), ProductId.class);
-        Manufacturer manufacturer = (Manufacturer) nitriteMapper.tryConvert(document.get(&quot;manufacturer&quot;, Document.class),
-            Manufacturer.class);
-        entity.setProductId(productId);
-        entity.setManufacturer(manufacturer);
-        entity.setProductName(document.get(&quot;productName&quot;, String.class));
-        entity.setPrice(document.get(&quot;price&quot;, Double.class));
-        return entity;
+    @override
+    Product fromDocument(Document document, NitriteMapper nitriteMapper) {
+        var product = Product();
+        product.productId = nitriteMapper.tryConvert&lt;ProductId, Document&gt;(document[&quot;productId&quot;]);
+        product.manufacturer = nitriteMapper.tryConvert&lt;Manufacturer, Document&gt;(document[&quot;manufacturer&quot;]);
+        product.productName = document[&quot;productName&quot;];
+        product.price = document[&quot;price&quot;];
+
+        return product;
     }
 }</code></pre>
 </doc-codeblock></div>
-<p>Similarly, we need to provide converter for <code v-pre>ProductId</code> and <code v-pre>Manufacturer</code> class.</p>
+<p>Similarly, we need to provide converters for <code v-pre>ProductId</code> and <code v-pre>Manufacturer</code> classes.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-java"><code v-pre class="language-java">public class ProductIdConverter implements EntityConverter&lt;ProductId&gt; {
-    @Override
-    public Class&lt;ProductId&gt; getEntityType() {
-        return ProductId.class;
+<pre class="language-dart"><code v-pre class="language-dart">class ProductIdConverter extends EntityConverter&lt;ProductId&gt; {
+    @override
+    Document toDocument(ProductId entity, NitriteMapper nitriteMapper) {
+        return emptyDocument()
+            .put(&quot;uniqueId&quot;, entity.uniqueId)
+            .put(&quot;productCode&quot;, entity.productCode);
     }
 
-    @Override
-    public Document toDocument(ProductId entity, NitriteMapper nitriteMapper) {
-        return Document.createDocument(&quot;uniqueId&quot;, entity.getUniqueId())
-            .put(&quot;productCode&quot;, entity.getProductCode());
-    }
+    @override
+    ProductId fromDocument(Document document, NitriteMapper nitriteMapper) {
+        var productId = ProductId();
+        productId.uniqueId = document[&quot;uniqueId&quot;];
+        productId.productCode = document[&quot;productCode&quot;];
 
-    @Override
-    public ProductId fromDocument(Document document, NitriteMapper nitriteMapper) {
-        ProductId entity = new ProductId();
-        entity.setUniqueId(document.get(&quot;uniqueId&quot;, String.class));
-        entity.setProductCode(document.get(&quot;productCode&quot;, String.class));
-        return entity;
+        return productId;
     }
 }
 
-public class ManufacturerConverter implements EntityConverter&lt;Manufacturer&gt; {
-    @Override
-    public Class&lt;Manufacturer&gt; getEntityType() {
-        return Manufacturer.class;
+class ManufacturerConverter extends EntityConverter&lt;Manufacturer&gt; {
+    @override
+    Document toDocument(Manufacturer entity, NitriteMapper nitriteMapper) {
+        return emptyDocument()
+            .put(&quot;name&quot;, entity.name)
+            .put(&quot;address&quot;, entity.address)
+            .put(&quot;uniqueId&quot;, entity.uniqueId);
     }
 
-    @Override
-    public Document toDocument(Manufacturer entity, NitriteMapper nitriteMapper) {
-        return Document.createDocument(&quot;name&quot;, entity.getName())
-            .put(&quot;address&quot;, entity.getAddress())
-            .put(&quot;uniqueId&quot;, entity.getUniqueId());
-    }
+    @override
+    Manufacturer fromDocument(Document document, NitriteMapper nitriteMapper) {
+        var manufacturer = Manufacturer();
+        manufacturer.name = document[&quot;name&quot;];
+        manufacturer.address = document[&quot;address&quot;];
+        manufacturer.uniqueId = document[&quot;uniqueId&quot;];
 
-    @Override
-    public Manufacturer fromDocument(Document document, NitriteMapper nitriteMapper) {
-        Manufacturer manufacturer = new Manufacturer();
-        manufacturer.setName(document.get(&quot;name&quot;, String.class));
-        manufacturer.setAddress(document.get(&quot;address&quot;, String.class));
-        manufacturer.setUniqueId(document.get(&quot;uniqueId&quot;, Integer.class));
         return manufacturer;
     }
 }</code></pre>
 </doc-codeblock></div>
 <p>Once the converters are ready, we need to register them with <code v-pre>registerEntityConverter()</code> method on <code v-pre>NitriteBuilder</code> instance.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-java"><code v-pre class="language-java">Nitrite db = Nitrite.builder()
-    .registerEntityConverter(new ProductConverter())
-    .registerEntityConverter(new ProductIdConverter())
-    .registerEntityConverter(new ManufacturerConverter())
+<pre class="language-dart"><code v-pre class="language-dart">var db = await Nitrite.builder()
+    .registerEntityConverter(ProductConverter())
+    .registerEntityConverter(ProductIdConverter())
+    .registerEntityConverter(ManufacturerConverter())
     .openOrCreate();</code></pre>
 </doc-codeblock></div>
 <p>we can also register the converters with <code v-pre>SimpleNitriteMapper</code> instance and then pass the instance to <code v-pre>loadModule()</code> method.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-java"><code v-pre class="language-java">NitriteMapper nitriteMapper = new SimpleNitriteMapper();
-nitriteMapper.registerEntityConverter(new ProductConverter());
-nitriteMapper.registerEntityConverter(new ProductIdConverter());
-nitriteMapper.registerEntityConverter(new ManufacturerConverter());
+<pre class="language-dart"><code v-pre class="language-dart">var nitriteMapper = SimpleNitriteMapper();
+nitriteMapper.registerEntityConverter(ProductConverter());
+nitriteMapper.registerEntityConverter(ProductIdConverter());
+nitriteMapper.registerEntityConverter(ManufacturerConverter());
 
-Nitrite db = Nitrite.builder()
+var db = await Nitrite.builder()
     .loadModule(module(nitriteMapper))
     .openOrCreate();</code></pre>
 </doc-codeblock></div>
@@ -381,21 +372,523 @@ Nitrite db = Nitrite.builder()
         </div>
     </div>
 </div>
-<doc-anchor-target id="jacksonmapper">
+<doc-anchor-target id="mapping-collections">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#mapping-collections">#</doc-anchor-trigger>
+        <span>Mapping Collections</span>
+    </h3>
+</doc-anchor-target>
+<p>The <code v-pre>EntityConverter</code> interface provides some static methods to convert a collection of Dart objects to a collection of Nitrite documents and vice-versa.</p>
+<p>These methods are:</p>
+<ul>
+<li><code v-pre>fromList()</code> - Converts a <code v-pre>List</code> of Dart objects to a <code v-pre>List</code> of Nitrite documents. If the type of the elements is a registered value type, it will return the same list without any conversion.</li>
+<li><code v-pre>fromIterable()</code> - Converts an <code v-pre>Iterable</code> of Dart objects to a <code v-pre>List</code> of Nitrite documents. If the type of the elements is a registered value type, it will return the same list without any conversion.</li>
+<li><code v-pre>fromSet()</code> - Converts a <code v-pre>Set</code> of Dart objects to a <code v-pre>Set</code> of Nitrite documents. If the type of the elements is a registered value type, it will return the same set without any conversion.</li>
+<li><code v-pre>fromMap()</code> - Converts a <code v-pre>Map</code> of key-value pair to a <code v-pre>Map</code> of Nitrite documents. If the type of the <code v-pre>key</code> or the <code v-pre>value</code> is a registered value type, it will not convert those objects to Nitrite document and return as is.</li>
+<li><code v-pre>toList()</code> - Converts a <code v-pre>List</code> of Nitrite documents to a <code v-pre>List</code> of Dart objects.</li>
+<li><code v-pre>toIterable()</code> - Converts an <code v-pre>Iterable</code> of Nitrite documents to an <code v-pre>List</code> of Dart objects.</li>
+<li><code v-pre>toSet()</code> - Converts a <code v-pre>Set</code> of Nitrite documents to a <code v-pre>Set</code> of Dart objects.</li>
+<li><code v-pre>toMap()</code> - Converts a <code v-pre>Map</code> of Nitrite documents to a <code v-pre>Map</code> of key value pair.</li>
+</ul>
+<p>These methods are useful when you have a collection of objects as a property of a Dart class.</p>
+<doc-anchor-target id="example">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#example">#</doc-anchor-trigger>
+        <span>Example</span>
+    </h4>
+</doc-anchor-target>
+<p>Let&#x27;s take an example of <code v-pre>Company</code> class which has a map of <code v-pre>Employee</code> as a property.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">class Company {
+  final int companyId;
+  final String companyName;
+  final DateTime? dateCreated;
+  final List&lt;String&gt; departments;
+  final Map&lt;String, List&lt;Employee&gt;&gt; employeeRecord;
+
+  Company({
+    this.companyId = 0,
+    this.companyName = '',
+    this.dateCreated,
+    this.departments = const [],
+    this.employeeRecord = const {},
+  });
+}
+
+class Employee {
+  int? empId;
+  DateTime? joinDate;
+  String address;
+  String emailAddress;
+  List&lt;int&gt; blob;
+  Company? company;
+  Note? employeeNote;
+
+  Employee({
+    this.empId,
+    this.joinDate,
+    this.address = '',
+    this.emailAddress = '',
+    this.blob = const [],
+    this.company,
+    this.employeeNote,
+  });
+}
+
+class Note {
+  final int noteId;
+  final String text;
+
+  Note({
+    this.noteId = 0,
+    this.text = '',
+  });
+}
+</code></pre>
+</doc-codeblock></div>
+<p>To map this to Nitrite document, we need to provide an implementation of <code v-pre>EntityConverter</code> for <code v-pre>Company</code> class.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">class CompanyConverter extends EntityConverter&lt;Company&gt; {
+  @override
+  Company fromDocument(
+    Document document,
+    NitriteMapper nitriteMapper,
+  ) {
+    var map = &lt;String, List&lt;Employee&gt;&gt;{};
+    var employeeRecords = document['employeeRecord'] == null
+        ? {}
+        : document['employeeRecord'] as Map;
+
+    for (var entry in employeeRecords.entries) {
+      var key = nitriteMapper.tryConvert&lt;String, dynamic&gt;(entry.key);
+      var value = EntityConverter.toList&lt;Employee&gt;(entry.value, nitriteMapper);
+      map[key] = value;
+    }
+
+    var entity = Company(
+      companyId: document['company_id'] ?? 0,
+      companyName: document['companyName'] ?? &quot;&quot;,
+      dateCreated: document['dateCreated'],
+      departments:
+          EntityConverter.toList(document['departments'], nitriteMapper),
+      employeeRecord: map,
+    );
+
+    return entity;
+  }
+
+  @override
+  Document toDocument(
+    Company entity,
+    NitriteMapper nitriteMapper,
+  ) {
+    var document = emptyDocument();
+    document.put('company_id', entity.companyId);
+    document.put('companyName', entity.companyName);
+    document.put('dateCreated', entity.dateCreated);
+    document.put('departments',
+        EntityConverter.fromList(entity.departments, nitriteMapper));
+    document.put('employeeRecord',
+        EntityConverter.fromMap(entity.employeeRecord, nitriteMapper));
+    return document;
+  }
+}
+
+class EmployeeConverter extends EntityConverter&lt;Employee&gt; {
+  @override
+  Employee fromDocument(
+    Document document,
+    NitriteMapper nitriteMapper,
+  ) {
+    var entity = Employee(
+      empId: document['empId'],
+      joinDate: document['joinDate'],
+      address: document['address'] ?? &quot;&quot;,
+      emailAddress: document['emailAddress'] ?? &quot;&quot;,
+      blob: EntityConverter.toList(document['blob'], nitriteMapper),
+      company: nitriteMapper.tryConvert&lt;Company, Document&gt;(document['company']),
+      employeeNote:
+          nitriteMapper.tryConvert&lt;Note, Document&gt;(document['employeeNote']),
+    );
+    return entity;
+  }
+
+  @override
+  Document toDocument(
+    Employee entity,
+    NitriteMapper nitriteMapper,
+  ) {
+    var document = emptyDocument();
+    document.put('empId', entity.empId);
+    document.put('joinDate', entity.joinDate);
+    document.put('address', entity.address);
+    document.put('emailAddress', entity.emailAddress);
+    document.put('blob', EntityConverter.fromList(entity.blob, nitriteMapper));
+    document.put('employeeNote',
+        nitriteMapper.tryConvert&lt;Document, Note&gt;(entity.employeeNote));
+    return document;
+  }
+}
+
+class NoteConverter extends EntityConverter&lt;Note&gt; {
+  @override
+  Note fromDocument(
+    Document document,
+    NitriteMapper nitriteMapper,
+  ) {
+    var entity = Note(
+      noteId: document['noteId'] ?? 0,
+      text: document['text'] ?? &quot;&quot;,
+    );
+    return entity;
+  }
+
+  @override
+  Document toDocument(
+    Note entity,
+    NitriteMapper nitriteMapper,
+  ) {
+    var document = emptyDocument();
+    document.put('noteId', entity.noteId);
+    document.put('text', entity.text);
+    return document;
+  }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="code-generation">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#jacksonmapper">#</doc-anchor-trigger>
-        <span>JacksonMapper</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#code-generation">#</doc-anchor-trigger>
+        <span>Code Generation</span>
     </h2>
 </doc-anchor-target>
-<p>Nitrite also provides a Jackson based mapper called <code v-pre>JacksonMapper</code>. This mapper uses Jackson&#x27;s <code v-pre>ObjectMapper</code> to map Java entities to Nitrite documents and vice-versa. Here you don&#x27;t need to provide any <code v-pre>EntityConverter</code>. Jackson will use its own <code v-pre>ObjectMapper</code> to map the entities.</p>
-<p>More on this mapper can be found <a href="../../modules/jackson/index.html">here</a>.</p>
+<p>Nitrite provides a code generator to generate the <code v-pre>EntityConverter</code> implementation for you. You have to annotate the class with some specific annotations and then run the code generator. The generated code will be saved in a separate file. You still need to register the generated converter with Nitrite.</p>
+<p>The code generator is a separate package and more on the entity generator can be found <a href="../codegen/index.html">here</a>.</p>
+<p>Nitrite uses below annotations to generate the <code v-pre>EntityConverter</code> implementation.</p>
+<ul>
+<li><code v-pre>@Convertable</code></li>
+<li><code v-pre>@DocumentKey</code></li>
+<li><code v-pre>@IgnoredKey</code></li>
+</ul>
+<doc-anchor-target id="convertable">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#convertable">#</doc-anchor-trigger>
+        <span>@Convertable</span>
+    </h3>
+</doc-anchor-target>
+<p><code v-pre>@Convertable</code> annotation is used to mark a class as convertable. This annotation is mandatory for the code generator to work. This annotation specifies the code generator to generate the <code v-pre>EntityConverter</code> implementation for the class. It takes an optional parameter <code v-pre>className</code> which is used to specify the name of the converter class. If this parameter is not specified, then the code generator will use the class name with <code v-pre>Converter</code> suffix as the converter class name.</p>
+<doc-tabs>
+<doc-tab v-cloak id="no-parameter">
+<template #title>No Parameter</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">@Convertable()
+class Book {
+  BookId? bookId;
+  String? publisher;
+  double? price;
+  List&lt;String&gt;? tags;
+  String? description;
+
+  Book({this.bookId, this.publisher, this.price, this.tags, this.description});
+}
+
+@Convertable()
+class BookId {
+  String? isbn;
+  String? name;
+  String? author;
+}
+</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="with-parameter">
+<template #title>With Parameter</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">@Convertable(className: 'MyBookConverter')
+class Book {
+  BookId? bookId;
+  String? publisher;
+  double? price;
+  List&lt;String&gt;? tags;
+  String? description;
+
+  Book({this.bookId, this.publisher, this.price, this.tags, this.description});
+}
+
+@Convertable()
+class BookId {
+  String? isbn;
+  String? name;
+  String? author;
+}
+</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+</doc-tabs>
+<p>This will generate the following code:</p>
+<doc-tabs>
+<doc-tab v-cloak id="no-parameter">
+<template #title>No Parameter</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'book.dart';
+
+// **************************************************************************
+// ConverterGenerator
+// **************************************************************************
+
+class BookConverter extends EntityConverter&lt;Book&gt; {
+  @override
+  Book fromDocument(Document document, NitriteMapper nitriteMapper) {
+    var book = Book();
+    book.bookId = nitriteMapper.tryConvert&lt;BookId, Document&gt;(document[&quot;bookId&quot;]);
+    book.publisher = document[&quot;publisher&quot;];
+    book.price = document[&quot;price&quot;];
+    book.tags = EntityConverter.toList&lt;String&gt;(document[&quot;tags&quot;], nitriteMapper);
+    book.description = document[&quot;description&quot;];
+    return book;
+  }
+
+  @override
+  Document toDocument(Book entity, NitriteMapper nitriteMapper) {
+    return emptyDocument()
+        .put(&quot;bookId&quot;, nitriteMapper.tryConvert&lt;Document, BookId&gt;(entity.bookId))
+        .put(&quot;publisher&quot;, entity.publisher)
+        .put(&quot;price&quot;, entity.price)
+        .put(&quot;tags&quot;, EntityConverter.fromList&lt;String&gt;(entity.tags, nitriteMapper))
+        .put(&quot;description&quot;, entity.description);
+  }
+}
+
+class BookIdConverter extends EntityConverter&lt;BookId&gt; {
+  @override
+  BookId fromDocument(Document document, NitriteMapper nitriteMapper) {
+    var bookId = BookId();
+    bookId.isbn = document[&quot;isbn&quot;];
+    bookId.name = document[&quot;name&quot;];
+    bookId.author = document[&quot;author&quot;];
+    return bookId;
+  }
+
+  @override
+  Document toDocument(BookId entity, NitriteMapper nitriteMapper) {
+    return emptyDocument()
+        .put(&quot;isbn&quot;, entity.isbn)
+        .put(&quot;name&quot;, entity.name)
+        .put(&quot;author&quot;, entity.author);
+  }
+}</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="with-parameter">
+<template #title>With Parameter</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'book.dart';
+
+// **************************************************************************
+// ConverterGenerator
+// **************************************************************************
+
+class MyBookConverter extends EntityConverter&lt;Book&gt; {
+  @override
+  Book fromDocument(Document document, NitriteMapper nitriteMapper) {
+    var book = Book();
+    book.bookId = nitriteMapper.tryConvert&lt;BookId, Document&gt;(document[&quot;bookId&quot;]);
+    book.publisher = document[&quot;publisher&quot;];
+    book.price = document[&quot;price&quot;];
+    book.tags = EntityConverter.toList&lt;String&gt;(document[&quot;tags&quot;], nitriteMapper);
+    book.description = document[&quot;description&quot;];
+    return book;
+  }
+
+  @override
+  Document toDocument(Book entity, NitriteMapper nitriteMapper) {
+    return emptyDocument()
+        .put(&quot;bookId&quot;, nitriteMapper.tryConvert&lt;Document, BookId&gt;(entity.bookId))
+        .put(&quot;publisher&quot;, entity.publisher)
+        .put(&quot;price&quot;, entity.price)
+        .put(&quot;tags&quot;, EntityConverter.fromList&lt;String&gt;(entity.tags, nitriteMapper))
+        .put(&quot;description&quot;, entity.description);
+  }
+}
+
+class BookIdConverter extends EntityConverter&lt;BookId&gt; {
+  @override
+  BookId fromDocument(Document document, NitriteMapper nitriteMapper) {
+    var bookId = BookId();
+    bookId.isbn = document[&quot;isbn&quot;];
+    bookId.name = document[&quot;name&quot;];
+    bookId.author = document[&quot;author&quot;];
+    return bookId;
+  }
+
+  @override
+  Document toDocument(BookId entity, NitriteMapper nitriteMapper) {
+    return emptyDocument()
+        .put(&quot;isbn&quot;, entity.isbn)
+        .put(&quot;name&quot;, entity.name)
+        .put(&quot;author&quot;, entity.author);
+  }
+}</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+</doc-tabs>
+<p>You need to register the generated converters with Nitrite by calling <code v-pre>registerEntityConverter()</code> method on <code v-pre>NitriteBuilder</code> instance.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">var db = await Nitrite.builder()
+    .registerEntityConverter(BookConverter())
+    .registerEntityConverter(BookIdConverter())
+    .openOrCreate();</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="documentkey">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#documentkey">#</doc-anchor-trigger>
+        <span>@DocumentKey</span>
+    </h3>
+</doc-anchor-target>
+<p><code v-pre>@DocumentKey</code> annotation is used to mark a field as a document key. This annotation provides an alias to the field. Normally the field name is used as the key in the Nitrite document. If you want to use a different name, then you can specify the alias using this annotation. This annotation can be used on a field or a getter/setter method.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">@Convertable()
+class Book {
+  @DocumentKey(alias: 'book_id')
+  BookId? bookId;
+  String? publisher;
+  double? price;
+  List&lt;String&gt;? tags;
+  String? description;
+
+  Book({this.bookId, this.publisher, this.price, this.tags, this.description});
+}
+
+@Convertable()
+class BookId {
+  String? isbn;
+  @DocumentKey(alias: &quot;book_name&quot;)
+  String? name;
+  String? author;
+}</code></pre>
+</doc-codeblock></div>
+<p>This will generate the following code:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'book.dart';
+
+// **************************************************************************
+// ConverterGenerator
+// **************************************************************************
+
+class BookConverter extends EntityConverter&lt;Book&gt; {
+  @override
+  Book fromDocument(Document document, NitriteMapper nitriteMapper) {
+    var book = Book();
+    book.bookId = nitriteMapper.tryConvert&lt;BookId, Document&gt;(document[&quot;book_id&quot;]);
+    book.publisher = document[&quot;publisher&quot;];
+    book.price = document[&quot;price&quot;];
+    book.tags = EntityConverter.toList&lt;String&gt;(document[&quot;tags&quot;], nitriteMapper);
+    book.description = document[&quot;description&quot;];
+    return book;
+  }
+
+  @override
+  Document toDocument(Book entity, NitriteMapper nitriteMapper) {
+    return emptyDocument()
+        .put(&quot;book_id&quot;, nitriteMapper.tryConvert&lt;Document, BookId&gt;(entity.bookId))
+        .put(&quot;publisher&quot;, entity.publisher)
+        .put(&quot;price&quot;, entity.price)
+        .put(&quot;tags&quot;, EntityConverter.fromList&lt;String&gt;(entity.tags, nitriteMapper))
+        .put(&quot;description&quot;, entity.description);
+  }
+}
+
+class BookIdConverter extends EntityConverter&lt;BookId&gt; {
+  @override
+  BookId fromDocument(Document document, NitriteMapper nitriteMapper) {
+    var bookId = BookId();
+    bookId.isbn = document[&quot;isbn&quot;];
+    bookId.name = document[&quot;book_name&quot;];
+    bookId.author = document[&quot;author&quot;];
+    return bookId;
+  }
+
+  @override
+  Document toDocument(BookId entity, NitriteMapper nitriteMapper) {
+    return emptyDocument()
+        .put(&quot;isbn&quot;, entity.isbn)
+        .put(&quot;book_name&quot;, entity.name)
+        .put(&quot;author&quot;, entity.author);
+  }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="ignoredkey">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ignoredkey">#</doc-anchor-trigger>
+        <span>@IgnoredKey</span>
+    </h3>
+</doc-anchor-target>
+<p><code v-pre>@IgnoredKey</code> annotation is used to mark a field as ignored. This annotation is useful when you want to ignore a field while mapping to Nitrite document. This annotation can be used on a field or a getter/setter method.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">@Convertable()
+class BookId {
+  String? isbn;
+  @DocumentKey(alias: &quot;book_name&quot;)
+  String? name;
+  @IgnoredKey()
+  String? author;
+}</code></pre>
+</doc-codeblock></div>
+<p>This will generate the following code:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'book.dart';
+
+// **************************************************************************
+// ConverterGenerator
+// **************************************************************************
+
+class BookIdConverter extends EntityConverter&lt;BookId&gt; {
+  @override
+  BookId fromDocument(Document document, NitriteMapper nitriteMapper) {
+    var bookId = BookId();
+    bookId.isbn = document[&quot;isbn&quot;];
+    bookId.name = document[&quot;book_name&quot;];
+    return bookId;
+  }
+
+  @override
+  Document toDocument(BookId entity, NitriteMapper nitriteMapper) {
+    return emptyDocument()
+        .put(&quot;isbn&quot;, entity.isbn)
+        .put(&quot;book_name&quot;, entity.name);
+  }
+}</code></pre>
+</doc-codeblock></div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>The code generator imposes some limitations on the Dart classes. These limitations are discussed <a href="../codegen/index.html#converter-generator">here</a>.</p>
+        </div>
+    </div>
+</div>
 <doc-anchor-target id="custom-nitritemapper">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#custom-nitritemapper">#</doc-anchor-trigger>
         <span>Custom NitriteMapper</span>
     </h2>
 </doc-anchor-target>
-<p>Apart from <code v-pre>SimpleNitriteMapper</code> and <code v-pre>JacksonMapper</code>, you can also provide your own implementation of <code v-pre>NitriteMapper</code>. You need to implement <code v-pre>NitriteMapper</code> interface and provide your own implementation. Once the implementation is ready, you need to load it using <code v-pre>loadModule()</code> method on <code v-pre>NitriteBuilder</code> while building the database.</p>
+<p>Apart from <code v-pre>SimpleNitriteMapper</code>, you can also provide your own implementation of <code v-pre>NitriteMapper</code>. You need to implement <code v-pre>NitriteMapper</code> interface and provide your own implementation. Once the implementation is ready, you need to load it using <code v-pre>loadModule()</code> method on <code v-pre>NitriteBuilder</code> while building the database.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-java"><code v-pre class="language-java">Nitrite db = Nitrite.builder()
     .loadModule(module(new CustomNitriteMapper()))
@@ -410,7 +903,7 @@ Nitrite db = Nitrite.builder()
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../java-sdk/repository/entity/index.html">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../flutter-sdk/repository/entity/index.html">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
@@ -420,7 +913,7 @@ Nitrite db = Nitrite.builder()
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../java-sdk/repository/write/index.html">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../flutter-sdk/repository/write/index.html">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
                                                 <span class="block mt-1">Write Operations</span>

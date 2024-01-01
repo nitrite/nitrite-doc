@@ -9,35 +9,35 @@
     <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
-    <title>Nitrite Database | Nitrite</title>
-    <meta name="title" content="Nitrite Database | Nitrite">
-    <meta name="description" content="Nitrite database is a serverless, embedded, and self-contained Java NoSQL database.">
+    <title>Write Operations | Nitrite</title>
+    <meta name="title" content="Write Operations | Nitrite">
+    <meta name="description" content="Entities can be inserted into a repository using insert() or insertMay() method.">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://nitrite.github.io/kotlin-sdk/database/index.html">
+    <link rel="canonical" href="https://nitrite.github.io/flutter-sdk/repository/write/index.html">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nitrite.github.io/kotlin-sdk/database/index.html">
-    <meta property="og:title" content="Nitrite Database | Nitrite">
-    <meta property="og:description" content="Nitrite database is a serverless, embedded, and self-contained Java NoSQL database.">
+    <meta property="og:url" content="https://nitrite.github.io/flutter-sdk/repository/write/index.html">
+    <meta property="og:title" content="Write Operations | Nitrite">
+    <meta property="og:description" content="Entities can be inserted into a repository using insert() or insertMay() method.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://nitrite.github.io/kotlin-sdk/database/index.html">
-    <meta property="twitter:title" content="Nitrite Database | Nitrite">
-    <meta property="twitter:description" content="Nitrite database is a serverless, embedded, and self-contained Java NoSQL database.">
+    <meta property="twitter:url" content="https://nitrite.github.io/flutter-sdk/repository/write/index.html">
+    <meta property="twitter:title" content="Write Operations | Nitrite">
+    <meta property="twitter:description" content="Entities can be inserted into a repository using insert() or insertMay() method.">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../assets/favicon.png" rel="icon">
-    <link href="../../resources/css/retype.css?v=3.5.0.757405787852" rel="stylesheet">
+    <link href="../../../assets/favicon.png" rel="icon">
+    <link href="../../../resources/css/retype.css?v=3.5.0.757405787852" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.757405787852" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/search.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.757405787852" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -52,10 +52,10 @@
                 <!-- Logo -->
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
-                        <a id="docs-site-logo" href="../../index.html" class="flex items-center leading-snug text-2xl">
+                        <a id="docs-site-logo" href="../../../index.html" class="flex items-center leading-snug text-2xl">
                             <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
-                                <img class="max-h-10 dark:hidden md:inline-block" src="../../assets/nitrite-logo.svg">
-                                <img class="max-h-10 hidden dark:inline-block" src="../../assets/nitrite-logo.svg">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../assets/nitrite-logo.svg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../assets/nitrite-logo.svg">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Nitrite</span>
                         </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Docs</span>
@@ -204,86 +204,137 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="nitrite-database" class="break-words">
+<doc-anchor-target id="write-operations" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#nitrite-database">#</doc-anchor-trigger>
-        <span>Nitrite Database</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#write-operations">#</doc-anchor-trigger>
+        <span>Write Operations</span>
     </h1>
 </doc-anchor-target>
-<p>Nitrite database is a serverless, embedded, and self-contained Java NoSQL database. It is an open-source project that provides a simple API for persistent data storage. Nitrite database is designed to be lightweight, fast, and easy to use.</p>
-<doc-anchor-target id="creating-a-database">
+<doc-anchor-target id="inserting-entities">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-a-database">#</doc-anchor-trigger>
-        <span>Creating a Database</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#inserting-entities">#</doc-anchor-trigger>
+        <span>Inserting Entities</span>
     </h2>
 </doc-anchor-target>
-<p>Nitrite database can be created in-memory or on-disk. By default, Nitrite database is created in-memory. To create a database on-disk, you need to add a storage module dependency to your project. More details about storage modules can be found <a href="../../java-sdk/modules/store-modules/index.html">here</a>.</p>
-<p>To create a database, you need to use <code v-pre>nitrite()</code> function. It is a builder function that returns an instance of <code v-pre>Nitrite</code>.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-kotlin"><code v-pre class="language-kotlin">var db = nitrite {
-    // database configuration
-}</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="in-memory-database">
+<p>Entities can be inserted into a repository using <code v-pre>insert()</code> or <code v-pre>insertMay()</code> method. It takes one or multiple Dart entities as input parameter respectively. It returns a future of <code v-pre>WriteResult</code> object.</p>
+<p>If the entity has a <code v-pre>NitriteId</code> field, then the field value would be populated with a new <code v-pre>NitriteId</code> before inserting into the repository.</p>
+<p>If any of the field is already indexed in the repository, then the index will be updated accordingly.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>This operation will notify all the registered <code v-pre>CollectionEventListener</code> with <code v-pre>EventType.insert</code> event.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="inserting-a-single-entity">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#in-memory-database">#</doc-anchor-trigger>
-        <span>In-memory Database</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#inserting-a-single-entity">#</doc-anchor-trigger>
+        <span>Inserting a Single Entity</span>
     </h3>
 </doc-anchor-target>
-<p>If you don&#x27;t load any on-disk storage module, then Nitrite will create an in-memory database. The below code snippet shows how to create a database in-memory.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-kotlin"><code v-pre class="language-kotlin">var db = nitrite()</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="on-disk-database">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#on-disk-database">#</doc-anchor-trigger>
-        <span>On-disk Database</span>
-    </h3>
-</doc-anchor-target>
-<p>The below code snippet shows how to create a database on-disk.</p>
-<doc-anchor-target id="mvstore-backed-database">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#mvstore-backed-database">#</doc-anchor-trigger>
-        <span>MVStore Backed Database</span>
-    </h4>
-</doc-anchor-target>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-kotlin"><code v-pre class="language-kotlin">val storeModule = MVStoreModule.withConfig()
-    .filePath(&quot;/path/to/my.db&quot;)
-    .build()
+<pre class="language-dart"><code v-pre class="language-dart">var product = Product()
+  ..productId = ProductId(1)
+  ..productName = 'Apple iPhone 6'
+  ..price = 600.0;
 
-var db = nitrite {
-    loadModule(storeModule)
-}</code></pre>
+var result = await productRepository.insert(product);</code></pre>
 </doc-codeblock></div>
-<p>More details about MVStore configuration can be found <a href="../../java-sdk/modules/store-modules/mvstore/index.html">here</a>.</p>
-<doc-anchor-target id="rocksdb-backed-database">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#rocksdb-backed-database">#</doc-anchor-trigger>
-        <span>RocksDB Backed Database</span>
-    </h4>
-</doc-anchor-target>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-kotlin"><code v-pre class="language-kotlin">val storeModule = RocksDBModule.withConfig()
-    .filePath(&quot;/path/to/my.db&quot;)
-    .build()
-
-var db = nitrite {
-    loadModule(storeModule)
-}</code></pre>
-</doc-codeblock></div>
-<p>More details about RocksDB configuration can be found <a href="../../java-sdk/modules/store-modules/rocksdb/index.html">here</a>.</p>
-<doc-anchor-target id="securing-a-database">
+<doc-anchor-target id="inserting-multiple-entities">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#securing-a-database">#</doc-anchor-trigger>
-        <span>Securing a Database</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#inserting-multiple-entities">#</doc-anchor-trigger>
+        <span>Inserting Multiple Entities</span>
     </h3>
 </doc-anchor-target>
-<p>To secure a database, you need to pass a username and password to the <code v-pre>nitrite()</code> function. The below code snippet shows how to secure a database.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-kotlin"><code v-pre class="language-kotlin">var db = nitrite(&quot;user&quot;, &quot;password&quot;) {
-    // database configuration
-}</code></pre>
+<pre class="language-dart"><code v-pre class="language-dart">var product1 = Product()
+  ..productId = ProductId(1)
+  ..productName = 'Apple iPhone 6'
+  ..price = 600.0;
+
+var product2 = Product()
+    ..productId = ProductId(2)
+    ..productName = 'Apple iPhone 6 Plus'
+    ..price = 700.0;
+
+var result = await productRepository.insertMany([product1, product2]);</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="error-scenarios">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#error-scenarios">#</doc-anchor-trigger>
+        <span>Error Scenarios</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>If a field of the entity is unique indexed and it&#x27;s value violates the index constraint, then it will throw a <code v-pre>UniqueConstraintException</code>.</li>
+</ul>
+<doc-anchor-target id="writeresult">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#writeresult">#</doc-anchor-trigger>
+        <span>WriteResult</span>
+    </h3>
+</doc-anchor-target>
+<p>More information about <code v-pre>WriteResult</code> can be found <a href="../../collection/write/index.html#writeresult">here</a>.</p>
+<doc-anchor-target id="updating-entities">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#updating-entities">#</doc-anchor-trigger>
+        <span>Updating Entities</span>
+    </h2>
+</doc-anchor-target>
+<p>Entities can be updated using any of the following methods:</p>
+<ul>
+<li><code v-pre>updateOne()</code> - updates a single entity</li>
+<li><code v-pre>update()</code> - updates multiple entities using a filter and update entity</li>
+<li><code v-pre>updateDocument()</code> - updates multiple entities using a filter and update document</li>
+</ul>
+<p>All update methods returns a <code v-pre>Future&lt;WriteResult&gt;</code> object.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>This operation will notify all the registered <code v-pre>CollectionEventListener</code> with <code v-pre>EventType.update</code> event.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="updating-a-single-entity">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#updating-a-single-entity">#</doc-anchor-trigger>
+        <span>Updating a Single Entity</span>
+    </h3>
+</doc-anchor-target>
+<p>You can update a single entity using <code v-pre>updateOne()</code> method. It takes a Dart entity as input parameter. It returns a <code v-pre>Future&lt;WriteResult&gt;</code> object. The entity must have a valid id field.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-dart"><code v-pre class="language-dart">
+```dart
+var product = Product()
+  ..productId = ProductId(1)
+  ..productName = 'Apple iPhone 6'
+  ..price = 600.0;
+
+var result = await productRepository.insert(product);
+
+product.price = 700.0;
+
+result = await productRepository.updateOne(product);</code></pre>
 </doc-codeblock></div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
@@ -297,83 +348,137 @@ var db = nitrite {
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>If you are using a file-based database, then you need to use the same username and password to open the database again. Otherwise, you will get a <code v-pre>NitriteSecurityException</code>.</p>
-<p>Both username and password must be provided or both must be null.</p>
+            <h5>Warning</h5>
+<p>The entity must have a valid id field marked with <code v-pre>@Id</code> annotation. In case an <code v-pre>EntityDecorator</code> is used, the <code v-pre>idField</code> getter must return a valid non-null <code v-pre>EntityId</code> object. Otherwise, it will throw a <code v-pre>NotIdentifiableException</code>.</p>
         </div>
     </div>
 </div>
-<doc-anchor-target id="registering-an-entityconverter">
+<doc-anchor-target id="upserting-a-single-entity">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#registering-an-entityconverter">#</doc-anchor-trigger>
-        <span>Registering an EntityConverter</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#upserting-a-single-entity">#</doc-anchor-trigger>
+        <span>Upserting a Single Entity</span>
     </h3>
 </doc-anchor-target>
-<p>Nitrite database uses a mapper to map Kotlin/Java entities to Nitrite documents and vice-versa. By default, Nitrite uses <code v-pre>SimpleNitriteMapper</code> as its mapper. This mapper uses <code v-pre>EntityConverter</code>s to map entities to Nitrite documents and vice-versa. To register an <code v-pre>EntityConverter</code>, you need to call <code v-pre>registerEntityConverter()</code> method on <code v-pre>Builder</code> instance.</p>
+<p>You can also upsert a single entity using <code v-pre>updateOne()</code> method. Along with the <code v-pre>entity</code> parameter, you need to pass a named parameter <code v-pre>insertIfAbsent</code> with value <code v-pre>true</code>. If the entity does not exist in the repository, then it will be inserted. Otherwise, it will be updated. The default value of <code v-pre>insertIfAbsent</code> is <code v-pre>false</code>.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-kotlin"><code v-pre class="language-kotlin">var db = nitrite {
-    registerEntityConverter(MyEntityConverter())
-}</code></pre>
+<pre class="language-dart"><code v-pre class="language-dart">var product = Product()
+  ..productId = ProductId(1)
+  ..productName = 'Apple iPhone 6'
+  ..price = 600.0;
+
+var result = await productRepository.updateOne(product, insertIfAbsent: true);</code></pre>
 </doc-codeblock></div>
-<p>More details about <code v-pre>EntityConverter</code> can be found <a href="../../java-sdk/repository/mapper/index.html#entityconverter">here</a>.</p>
-<doc-anchor-target id="loading-a-nitrite-module">
+<doc-anchor-target id="updating-using-a-filter">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#loading-a-nitrite-module">#</doc-anchor-trigger>
-        <span>Loading a Nitrite Module</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#updating-using-a-filter">#</doc-anchor-trigger>
+        <span>Updating Using a Filter</span>
     </h3>
 </doc-anchor-target>
-<p>Nitrite database is modular in nature. It provides a set of modules to extend its functionality. To load a module, you need to call <code v-pre>loadModule()</code> method on <code v-pre>Builder</code> instance.</p>
+<p>You can update multiple entities using a filter. It takes a <code v-pre>Filter</code> object as first input parameter. It takes a Dart entity as second input parameter. It returns a <code v-pre>Future&lt;WriteResult&gt;</code> object.</p>
+<p>If the filter result matches multiple entities, then all the entities will be updated.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-kotlin"><code v-pre class="language-kotlin">var db = nitrite {
-    loadModule(MyModule())
-}</code></pre>
+<pre class="language-dart"><code v-pre class="language-dart">var product = Product()
+  ..productId = ProductId(1)
+  ..productName = 'Apple iPhone 6'
+  ..price = 650.0;
+
+var result = await productRepository.update(where('productName').eq('Apple iPhone 6'), product);</code></pre>
 </doc-codeblock></div>
-<p>More details about Nitrite modules can be found <a href="../../java-sdk/modules/module-system/index.html">here</a>.</p>
-<doc-anchor-target id="loading-a-storage-module">
+<doc-anchor-target id="updating-using-a-filter-and-options">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#updating-using-a-filter-and-options">#</doc-anchor-trigger>
+        <span>Updating Using a Filter and Options</span>
+    </h3>
+</doc-anchor-target>
+<p>You can update multiple entities using a filter and options. It takes a <code v-pre>Filter</code> object as first input parameter. It takes a Dart entity as second input parameter. It takes a <code v-pre>UpdateOptions</code> object as third input parameter. It returns a <code v-pre>Future&lt;WriteResult&gt;</code> object.</p>
+<doc-anchor-target id="updateoptions">
     <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#loading-a-storage-module">#</doc-anchor-trigger>
-        <span>Loading a Storage Module</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#updateoptions">#</doc-anchor-trigger>
+        <span>UpdateOptions</span>
     </h4>
 </doc-anchor-target>
+<p>More information about <code v-pre>UpdateOptions</code> can be found <a href="../../collection/write/index.html#updateoptions">here</a>.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-kotlin"><code v-pre class="language-kotlin">var db = nitrite {
-    loadModule(MVStoreModule.withConfig()
-        .filePath(&quot;/path/to/my.db&quot;)
-        .build())
-}</code></pre>
+<pre class="language-dart"><code v-pre class="language-dart">var product = Product()
+  ..productId = ProductId(1)
+  ..productName = 'Apple iPhone 6'
+  ..price = 650.0;
+
+var updateOptions = UpdateOptions();
+updateOptions.insertIfAbsent = true;
+
+var result = await productRepository.update(where('productName').eq('Apple iPhone 6'), product, updateOptions);</code></pre>
 </doc-codeblock></div>
-<p>More details about storage modules can be found <a href="../../java-sdk/modules/store-modules/index.html">here</a>.</p>
-<doc-anchor-target id="adding-migration-steps">
+<doc-anchor-target id="updating-using-a-filter-and-document">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#adding-migration-steps">#</doc-anchor-trigger>
-        <span>Adding Migration Steps</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#updating-using-a-filter-and-document">#</doc-anchor-trigger>
+        <span>Updating Using a Filter and Document</span>
     </h3>
 </doc-anchor-target>
-<p>Nitrite database supports migration from one version to another. To add a migration step, you need to call <code v-pre>addMigration()</code> method on <code v-pre>Builder</code> instance.</p>
+<p>You can update multiple entities using a filter. It takes a <code v-pre>Filter</code> object as first input parameter. It takes a <code v-pre>Document</code> object as second input parameter. It returns a <code v-pre>Future&lt;WriteResult&gt;</code> object.</p>
+<p>If the filter result matches multiple entities, then all the entities will be updated. The document must contain only the fields that needs to be updated.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-kotlin"><code v-pre class="language-kotlin">var db = nitrite {
-    addMigration(object : Migration(Constants.INITIAL_SCHEMA_VERSION, 2) {
-        override fun migrate(instruction: InstructionSet) {
-            instruction.forDatabase()
-                .dropCollection(&quot;test&quot;)
-        }
-    })
-    loadModule(MVStoreModule(fileName))
-    schemaVersion = 2
-}</code></pre>
+<pre class="language-dart"><code v-pre class="language-dart">var update = createDocument('price', 700);
+
+var result = await productRepository.updateDocument(where('productName').eq('Apple iPhone 6'), update);</code></pre>
 </doc-codeblock></div>
-<p>More details about schema migration can be found <a href="../../java-sdk/migration/index.html">here</a>.</p>
-<doc-anchor-target id="current-schema-version">
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>The document should not contain <code v-pre>_id</code> field.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="updating-using-a-filter-document-and-options">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#current-schema-version">#</doc-anchor-trigger>
-        <span>Current Schema Version</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#updating-using-a-filter-document-and-options">#</doc-anchor-trigger>
+        <span>Updating Using a Filter, Document and Options</span>
     </h3>
 </doc-anchor-target>
-<p>To configure the current schema version, you need to set the <code v-pre>schemaVersion</code> property on <code v-pre>Builder</code> instance.</p>
+<p>You can update multiple entities using a filter, document and options. It takes a <code v-pre>Filter</code> object as first input parameter. It takes a <code v-pre>Document</code> object as second input parameter. It takes a boolean value as third input parameter. If the third input parameter is <code v-pre>true</code>, then it will only update the first entity matched by the filter. Otherwise, it will update all the entities matched by the filter. It returns a <code v-pre>Future&lt;WriteResult&gt;</code> object.</p>
+<p>The document must contain only the fields that needs to be updated.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-kotlin"><code v-pre class="language-kotlin">var db = nitrite {
-    schemaVersion = 2
-}</code></pre>
+<pre class="language-dart"><code v-pre class="language-dart">var update = createDocument('price', 700);
+
+var result = await productRepository.updateDocument(where('productName').eq('Apple iPhone 6'), update, justOnce: true);</code></pre>
 </doc-codeblock></div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>The document should not contain <code v-pre>_id</code> field.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="removing-entities">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#removing-entities">#</doc-anchor-trigger>
+        <span>Removing Entities</span>
+    </h2>
+</doc-anchor-target>
+<p>Entities can be removed using any of the following methods:</p>
+<ul>
+<li><code v-pre>removeOne()</code> - removes a single entity</li>
+<li><code v-pre>remove()</code> - removes multiple entities using a filter</li>
+</ul>
+<p>All remove methods returns a <code v-pre>Future&lt;WriteResult&gt;</code> object.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -387,60 +492,49 @@ var db = nitrite {
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>By default, the initial schema version is set to <code v-pre>1</code>.</p>
+<p>This operation will notify all the registered <code v-pre>CollectionEventListener</code> with <code v-pre>EventType.remove</code> event.</p>
         </div>
     </div>
 </div>
-<doc-anchor-target id="field-separator-character">
+<doc-anchor-target id="removing-a-single-entity">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#field-separator-character">#</doc-anchor-trigger>
-        <span>Field Separator Character</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#removing-a-single-entity">#</doc-anchor-trigger>
+        <span>Removing a Single Entity</span>
     </h3>
 </doc-anchor-target>
-<p>Nitrite database uses <code v-pre>.</code> as the field separator character. It is used to separate nested fields in a document. For example, if you have a document like below:</p>
+<p>You can remove a single entity using <code v-pre>removeOne()</code> method. It takes a Dart entity as input parameter. It returns a <code v-pre>Future&lt;WriteResult&gt;</code> object.</p>
+<p>The entity must have a valid id field marked with <code v-pre>@Id</code> annotation. In case an <code v-pre>EntityDecorator</code> is used, the <code v-pre>idField</code> getter must return a valid non-null <code v-pre>EntityId</code> object. Otherwise, it will throw a <code v-pre>NotIdentifiableException</code>.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-json"><code v-pre class="language-json">{
-    &quot;firstName&quot;: &quot;John&quot;,
-    &quot;lastName&quot;: &quot;Doe&quot;,
-    &quot;address&quot;: {
-        &quot;street&quot;: &quot;123 Main Street&quot;,
-        &quot;city&quot;: &quot;New York&quot;,
-        &quot;state&quot;: &quot;NY&quot;,
-        &quot;zip&quot;: &quot;10001&quot;
-    }
-}</code></pre>
+<pre class="language-dart"><code v-pre class="language-dart">var product = Product()
+  ..productId = ProductId(1)
+  ..productName = 'Apple iPhone 6'
+  ..price = 600.0;
+
+var result = await productRepository.insert(product);
+
+result = await productRepository.removeOne(product);</code></pre>
 </doc-codeblock></div>
-<p>Then you can access the <code v-pre>firstName</code> field like below:</p>
+<doc-anchor-target id="removing-using-a-filter">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#removing-using-a-filter">#</doc-anchor-trigger>
+        <span>Removing Using a Filter</span>
+    </h3>
+</doc-anchor-target>
+<p>You can remove multiple entities using a filter. It takes a <code v-pre>Filter</code> object as input parameter. It returns a <code v-pre>Future&lt;WriteResult&gt;</code> object.</p>
+<p>If the filter result matches multiple entities, then all the entities will be removed.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-kotlin"><code v-pre class="language-kotlin">val firstName = document[&quot;firstName&quot;]</code></pre>
+<pre class="language-dart"><code v-pre class="language-dart">var result = await productRepository.remove(where('productName').eq('Apple iPhone 6'));</code></pre>
 </doc-codeblock></div>
-<p>And you can access the <code v-pre>street</code> field like below:</p>
+<doc-anchor-target id="removing-using-a-filter-and-options">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#removing-using-a-filter-and-options">#</doc-anchor-trigger>
+        <span>Removing Using a Filter and Options</span>
+    </h3>
+</doc-anchor-target>
+<p>You can remove multiple entities using a filter and options. It takes a <code v-pre>Filter</code> object as first input parameter. It takes a <code v-pre>boolean</code> value as second input parameter. If the second input parameter is <code v-pre>true</code>, then it will remove only the first entity matched by the filter. Otherwise, it will remove all the entities matched by the filter. It returns a <code v-pre>Future&lt;WriteResult&gt;</code> object.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-kotlin"><code v-pre class="language-kotlin">val street = document[&quot;address.street&quot;]</code></pre>
+<pre class="language-dart"><code v-pre class="language-dart">var result = await productRepository.remove(where('productName').eq('Apple iPhone 6'), justOne: true);</code></pre>
 </doc-codeblock></div>
-<p>To configure the field separator character, you need to set the <code v-pre>fieldSeparator</code> property on <code v-pre>Builder</code> instance.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-kotlin"><code v-pre class="language-kotlin">var db = nitrite {
-    fieldSeparator = '.'
-}</code></pre>
-</doc-codeblock></div>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-<p>By default, the field separator character is set to <code v-pre>.</code>.</p>
-        </div>
-    </div>
-</div>
 
                                 
                                 <!-- Required only on API pages -->
@@ -450,20 +544,20 @@ var db = nitrite {
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../kotlin-sdk/getting-started/index.html">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../flutter-sdk/repository/mapper/index.html">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">Getting Started</span>
+                                                <span class="block mt-1">Nitrite​Mapper</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../kotlin-sdk/document/index.html">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../flutter-sdk/repository/read/index.html">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Document</span>
+                                                <span class="block mt-1">Read Operations</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -477,7 +571,7 @@ var db = nitrite {
                                 <div>
                                     <ul class="flex flex-wrap items-center text-sm">
                                         <li>
-                                            <a class="block mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="../../license/index.html">License</a>
+                                            <a class="block mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="../../../license/index.html">License</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -510,6 +604,6 @@ var db = nitrite {
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Nitrite Database", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Write Operations", level: 3, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

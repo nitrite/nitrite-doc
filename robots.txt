@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nitrite.github.io/sitemap.xml.gz
+Sitemap: https://nitrite.dizitart.com/sitemap.xml.gz

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.757405787852">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.757441753842">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -14,29 +14,30 @@
     <meta name="description" content="Here we discuss about an Android todo application using Nitrite database. It uses nitrite as a file based storage engine.">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://nitrite.github.io/examples/java/index.html">
+    <link rel="canonical" href="https://nitrite.dizitart.com/examples/java/index.html">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nitrite.github.io/examples/java/index.html">
+    <meta property="og:url" content="https://nitrite.dizitart.com/examples/java/index.html">
     <meta property="og:title" content="Java Examples | Nitrite">
     <meta property="og:description" content="Here we discuss about an Android todo application using Nitrite database. It uses nitrite as a file based storage engine.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://nitrite.github.io/examples/java/index.html">
+    <meta property="twitter:url" content="https://nitrite.dizitart.com/examples/java/index.html">
     <meta property="twitter:title" content="Java Examples | Nitrite">
     <meta property="twitter:description" content="Here we discuss about an Android todo application using Nitrite database. It uses nitrite as a file based storage engine.">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../assets/favicon.png" rel="icon">
-    <link href="../../resources/css/retype.css?v=3.5.0.757405787852" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.757441753842" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.757441753842" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.757405787852" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.757441753842" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.757441753842" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.757441753842" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -68,7 +69,7 @@
                     <nav class="hidden md:flex">
                         <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
                             <li class="mr-6">
-                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://nitrite.github.io/nitrite-doc">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://nitrite.dizitart.com">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
                                         <g fill="currentColor">
                                             <path d="M11.03 2.59a1.501 1.501 0 0 1 1.94 0l7.5 6.363a1.5 1.5 0 0 1 .53 1.144V19.5a1.5 1.5 0 0 1-1.5 1.5h-5.75a.75.75 0 0 1-.75-.75V14h-2v6.25a.75.75 0 0 1-.75.75H4.5A1.5 1.5 0 0 1 3 19.5v-9.403c0-.44.194-.859.53-1.144ZM12 3.734l-7.5 6.363V19.5h5v-6.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v6.25h5v-9.403Z"/>
@@ -85,6 +86,16 @@
                                         </g>
                                     </svg>
                                     <span>Github</span>
+                                </a>
+                            </li>
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/sponsors/anidotnet" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                        <g fill="currentColor">
+                                            <path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408Z"/>
+                                        </g>
+                                    </svg>
+                                    <span>Donate</span>
                                 </a>
                             </li>
         
@@ -162,7 +173,7 @@
                             <nav>
                                 <ul class="flex flex-wrap justify-center items-center">
                                     <li class="mr-6">
-                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://nitrite.github.io/nitrite-doc">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://nitrite.dizitart.com">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
                                                 <g fill="currentColor">
                                                     <path d="M11.03 2.59a1.501 1.501 0 0 1 1.94 0l7.5 6.363a1.5 1.5 0 0 1 .53 1.144V19.5a1.5 1.5 0 0 1-1.5 1.5h-5.75a.75.75 0 0 1-.75-.75V14h-2v6.25a.75.75 0 0 1-.75.75H4.5A1.5 1.5 0 0 1 3 19.5v-9.403c0-.44.194-.859.53-1.144ZM12 3.734l-7.5 6.363V19.5h5v-6.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v6.25h5v-9.403Z"/>
@@ -179,6 +190,16 @@
                                                 </g>
                                             </svg>
                                             <span>Github</span>
+                                        </a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/sponsors/anidotnet" target="_blank">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                <g fill="currentColor">
+                                                    <path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408Z"/>
+                                                </g>
+                                            </svg>
+                                            <span>Donate</span>
                                         </a>
                                     </li>
             
@@ -210,6 +231,505 @@
     </h1>
 </doc-anchor-target>
 <p>Here we discuss about an Android todo application using Nitrite database. It uses nitrite as a file based storage engine. It demonstrates the use of Nitrite database in an Android application. The full source code is available <a href="https://github.com/nitrite/nitrite-android-demo">here</a>. This tutorial assumes that you have basic knowledge of Android development.</p>
+<doc-anchor-target id="setup">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
+        <span>Setup</span>
+    </h2>
+</doc-anchor-target>
+<p>To use Nitrite in your Android application, you need to add the following dependency in your app&#x27;s <code v-pre>build.gradle</code> file.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-groovy"><code v-pre class="language-groovy">dependencies {
+    implementation platform('org.dizitart:nitrite-bom:[latest-version]')
+    implementation 'org.dizitart:nitrite'
+    implementation 'org.dizitart:nitrite-mvstore-adapter'
+}</code></pre>
+</doc-codeblock></div>
+<p>Also add these pro-guard rules in your <code v-pre>proguard-rules.pro</code> file.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">proguard</div>
+<pre class="language-none"><code v-pre class="language-none">-keep class org.dizitart.no2.** { *; }
+-keep class org.slf4j.** { *; }
+-keep class org.h2.** { *; }
+-keep class org.objenesis.** { *; }
+-keep class com.fasterxml.jackson.** { *; }
+
+-keepnames class * implements java.io.Serializable
+
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    !static !transient &lt;fields&gt;;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="entity-classes">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#entity-classes">#</doc-anchor-trigger>
+        <span>Entity Classes</span>
+    </h2>
+</doc-anchor-target>
+<p>Define a simple <code v-pre>Todo</code> entity class to hold your todo data:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">import org.dizitart.no2.collection.Document;
+import org.dizitart.no2.common.mapper.EntityConverter;
+import org.dizitart.no2.common.mapper.NitriteMapper;
+import org.dizitart.no2.repository.annotations.Entity;
+
+@Entity
+public class TodoItem {
+    @Id
+    private Integer id;
+    private String taskName;
+    private Boolean status;
+    private String color;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public static class Converter implements EntityConverter&lt;TodoItem&gt; {
+
+        @Override
+        public Class&lt;TodoItem&gt; getEntityType() {
+            return TodoItem.class;
+        }
+
+        @Override
+        public Document toDocument(TodoItem entity, NitriteMapper nitriteMapper) {
+            return Document.createDocument()
+                    .put(&quot;id&quot;, entity.getId())
+                    .put(&quot;taskName&quot;, entity.getTaskName())
+                    .put(&quot;status&quot;, entity.getStatus())
+                    .put(&quot;color&quot;, entity.getColor());
+        }
+
+        @Override
+        public TodoItem fromDocument(Document document, NitriteMapper nitriteMapper) {
+            TodoItem item = new TodoItem();
+            item.id = document.get(&quot;id&quot;, Integer.class);
+            item.taskName = document.get(&quot;taskName&quot;, String.class);
+            item.status = document.get(&quot;status&quot;, Boolean.class);
+            item.color = document.get(&quot;color&quot;, String.class);
+            return item;
+        }
+    }
+}</code></pre>
+</doc-codeblock></div>
+<p>And, a list of <code v-pre>TodoItem</code> can be represented as:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">public class TodoList {
+    private String name;
+    private String color;
+
+    public TodoList(String name, String color) {
+        this.name = name;
+        this.color = color;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="database-initialization">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#database-initialization">#</doc-anchor-trigger>
+        <span>Database Initialization</span>
+    </h2>
+</doc-anchor-target>
+<p>To initialize the database and to maintain a singleton instance of the database, you need to create a singleton class <code v-pre>NitriteManager</code> as follows:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">public class NitriteManager {
+    private static NitriteManager _instance = new NitriteManager();
+    private static final String dbName = &quot;task.db&quot;;
+    private static Nitrite db;
+
+    private NitriteManager() {}
+
+    public static NitriteManager getInstance() {
+        return _instance;
+    }
+
+    private void openDb(Context context) {
+        if (db != null) {
+            db.close();
+        }
+
+        MVStoreModule storeModule = MVStoreModule.withConfig()
+                .filePath(context.getDatabasePath(dbName))
+                .build();
+        SimpleDocumentMapper documentMapper = new SimpleDocumentMapper();
+        documentMapper.registerEntityConverter(new TodoItem.Converter());
+
+        db = Nitrite.builder()
+                .loadModule(storeModule)
+                .loadModule(() -&gt; setOf(documentMapper))
+                .openOrCreate();
+    }
+
+    public ObjectRepository&lt;TodoItem&gt; getTodoRepository(Context context, String label) {
+        if (db == null) {
+            openDb(context);
+        }
+
+        return db.getRepository(TodoItem.class, label);
+    }
+}</code></pre>
+</doc-codeblock></div>
+<p>Next create a data access layer <code v-pre>DataBaseManager</code> for CRUD operations:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">public class DataBaseManager {
+
+    private final NitriteManager nitriteManager;
+    private final String label;
+
+    public DataBaseManager(String label) {
+        this.nitriteManager = NitriteManager.getInstance();
+        this.label = label;
+    }
+
+    public void addTask(Context context, int id, boolean status, String taskName, String taskColor) {
+        TodoItem todoItem = new TodoItem();
+        todoItem.setId(id);
+        todoItem.setColor(taskColor);
+        todoItem.setStatus(status);
+        todoItem.setTaskName(taskName);
+        nitriteManager.getTodoRepository(context, label).insert(todoItem);
+    }
+
+    public void removeTask(Context context, int id) {
+        nitriteManager.getTodoRepository(context, label).remove(where(&quot;id&quot;).eq(id));
+    }
+
+    public void updateTask(Context context, Boolean taskStatus, int id, String taskName) {
+        Document updateDocument = Document.createDocument()
+                .put(&quot;status&quot;, taskStatus)
+                .put(&quot;taskName&quot;, taskName);
+        nitriteManager.getTodoRepository(context, label).update(where(&quot;id&quot;).eq(id), updateDocument);
+    }
+
+    public List&lt;TodoItem&gt; readFromDB(Context context) {
+        return nitriteManager.getTodoRepository(context, label).find().toList();
+    }
+
+    public int getCurrentBiggestId(Context context) {
+        TodoItem item = nitriteManager.getTodoRepository(context, label).find(
+                FindOptions.orderBy(&quot;id&quot;, SortOrder.Descending)).firstOrNull();
+        if (item == null) return 0;
+        return item.getId();
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="activity">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#activity">#</doc-anchor-trigger>
+        <span>Activity</span>
+    </h2>
+</doc-anchor-target>
+<p>Now you need to create two activities, one for the todo list and another for the menu.</p>
+<doc-anchor-target id="todo-list-activity">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#todo-list-activity">#</doc-anchor-trigger>
+        <span>Todo List Activity</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">public class ToDoListActivity extends AppCompatActivity {
+
+    DataBaseManager manager;
+    ListView listView;
+    CustomAdapter customAdapter;
+    TextView activityTitle;
+    EditText addTask;
+    int currentBiggerId = 0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_todo_list);
+        //naming the activity
+        activityTitle = (TextView) findViewById(R.id.activityTitle);
+        activityTitle.setText(getIntent().getStringExtra(&quot;listName&quot;));
+        //getting list color
+        String color = getIntent().getStringExtra(&quot;listColor&quot;);
+
+        addTask = (EditText) findViewById(R.id.editTextAddTask);
+
+        listView = (ListView) findViewById(R.id.listTodo);
+        manager = new DataBaseManager(activityTitle.getText().toString());
+        listView.setOnItemLongClickListener((parent, view, position, id) -&gt; {
+            Log.e(&quot;Item Long Click&quot;, &quot;Removing the item&quot;);
+            manager.removeTask(getApplicationContext(), (customAdapter.todoList.get(position)).getId());
+            try {
+                printDB(true);
+            } catch (ExecutionException | InterruptedException e) {
+                e.printStackTrace();
+            }
+            return false;
+        });
+        try {
+            printDB(true);
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addTask(View v) {
+        Runnable runnable = () -&gt; {
+            currentBiggerId = manager.getCurrentBiggestId(getApplicationContext());
+            int randomInt = new Random().nextInt(3);
+            String color = &quot;&quot;;
+            switch (randomInt) {
+                case 0:
+                    color = &quot;blue&quot;;
+                    break;
+                case 1:
+                    color = &quot;green&quot;;
+                    break;
+                case 2:
+                    color = &quot;violet&quot;;
+                    break;
+            }
+            manager.addTask(getApplicationContext(), new Random().nextInt(), false, addTask.getText().toString(), color);
+            try {
+                printDB(true);
+            } catch (ExecutionException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        };
+        runnable.run();
+    }
+
+    public void printDB(boolean updateFromDb) throws ExecutionException, InterruptedException {
+        if (updateFromDb) {
+            customAdapter = new CustomAdapter(manager.readFromDB(getApplicationContext()));
+            listView.setAdapter(customAdapter);
+        }
+        customAdapter.notifyDataSetChanged();
+        currentBiggerId = manager.getCurrentBiggestId(getApplicationContext());
+        addTask.setText(&quot;&quot;);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.about) {
+            Toast.makeText(this, &quot;Nitrite Database Demo&quot;, Toast.LENGTH_LONG).show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        try {
+            printDB(true);
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(customAdapter.todoList.size());
+    }
+
+    public class CustomAdapter extends BaseAdapter {
+        List&lt;TodoItem&gt; todoList;
+
+        CustomAdapter(List&lt;TodoItem&gt; todoList) {
+            this.todoList = todoList;
+        }
+
+        @Override
+        public int getCount() {
+            return todoList.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override
+        public View getView(final int i, View view, ViewGroup viewGroup) {
+            view = getLayoutInflater().inflate(R.layout.task_todo_item, null);
+
+            final TextView title = view.findViewById(R.id.todoName);
+            title.setText(todoList.get(i).getTaskName());
+            CheckBox button = view.findViewById(R.id.checkButton);
+            button.setChecked(todoList.get(i).getStatus());
+
+            //region setting color states
+            int[][] states = new int[][]{
+                    new int[]{-android.R.attr.state_checked}, //disabled
+                    new int[]{android.R.attr.state_checked} //enabled
+            };
+            @SuppressLint(&quot;ResourceType&quot;) int[] colorBlue = new int[]{Color.parseColor(getString(R.color.colorBlue)),
+                    Color.parseColor(getString(R.color.colorBlue))};
+            @SuppressLint(&quot;ResourceType&quot;) int[] colorGreen = new int[]{Color.parseColor(getString(R.color.colorGreen)),
+                    Color.parseColor(getString(R.color.colorGreen))};
+            @SuppressLint(&quot;ResourceType&quot;) int[] colorViolet = new int[]{Color.parseColor(getString(R.color.colorViolet)),
+                    Color.parseColor(getString(R.color.colorViolet))};
+            //endregion
+
+            //region setting UI colors
+            RelativeLayout layout = view.findViewById(R.id.itemBackground);
+            String color = todoList.get(i).getColor();
+            final int taskId = todoList.get(i).getId();
+            final String taskName = todoList.get(i).getTaskName();
+            if (color.matches(&quot;blue&quot;)) {
+                layout.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.list_item_background_blue));
+                button.setButtonTintList(new ColorStateList(states, colorBlue));
+            } else if (color.matches(&quot;green&quot;)) {
+                layout.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.list_item_background_green));
+                button.setButtonTintList(new ColorStateList(states, colorGreen));
+            } else {
+                layout.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.list_item_background_violet));
+                button.setButtonTintList(new ColorStateList(states, colorViolet));
+            }
+            //endregion
+            button.setOnCheckedChangeListener((compoundButton, b) -&gt; itemChecked(b, taskId, taskName));
+
+            return view;
+        }
+
+        void itemChecked(final boolean taskStatus, final int taskId, final String taskName) {
+            Runnable runnable = () -&gt; manager.updateTask(getApplicationContext(), taskStatus, taskId, taskName);
+            runnable.run();
+        }
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="menu-activity">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#menu-activity">#</doc-anchor-trigger>
+        <span>Menu Activity</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-java"><code v-pre class="language-java">public class ListMenuActivity extends AppCompatActivity {
+    ListView listView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_list_menu);
+        listView = (ListView) findViewById(R.id.listMenu);
+        ArrayList&lt;TodoList&gt; lists = new ArrayList&lt;&gt;();
+        lists.add(new TodoList(&quot;Home&quot;, &quot;blue&quot;));
+        lists.add(new TodoList(&quot;Work&quot;, &quot;green&quot;));
+        lists.add(new TodoList(&quot;School&quot;, &quot;violet&quot;));
+        CustomAdapter customAdapter = new CustomAdapter(lists);
+        listView.setAdapter(customAdapter);
+    }
+
+    public class CustomAdapter extends BaseAdapter {
+        ArrayList&lt;TodoList&gt; lists;
+
+        public CustomAdapter(ArrayList&lt;TodoList&gt; lists) {
+            this.lists = lists;
+        }
+
+        @Override
+        public int getCount() {
+            return lists.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            view = getLayoutInflater().inflate(R.layout.task_menu_item, null);
+
+            //region setting background color
+            RelativeLayout layout = view.findViewById(R.id.itemBackground);
+            final String color = lists.get(i).getColor();
+            if (color.matches(&quot;blue&quot;))
+                layout.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.list_item_background_blue));
+            else if (color.matches(&quot;green&quot;))
+                layout.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.list_item_background_green));
+            else
+                layout.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.list_item_background_violet));
+            //endregion
+
+            final TextView title = view.findViewById(R.id.listName);
+            title.setText(lists.get(i).getName());
+            ImageButton button = view.findViewById(R.id.selectList);
+            button.setOnClickListener(view1 -&gt; listSelected(title.getText().toString(), color));
+
+            return view;
+        }
+
+        void listSelected(String listName, String listColor) {
+            Intent intent = new Intent(getApplicationContext(), ToDoListActivity.class);
+            intent.putExtra(&quot;listName&quot;, listName);
+            intent.putExtra(&quot;listColor&quot;, listColor);
+            startActivity(intent);
+        }
+    }
+}</code></pre>
+</doc-codeblock></div>
+<p>The other resources are available in the <a href="https://github.com/nitrite/nitrite-android-demo">source code</a>.</p>
 
                                 
                                 <!-- Required only on API pages -->
@@ -279,6 +799,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Java Examples", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Java Examples", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

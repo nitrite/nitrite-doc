@@ -146,7 +146,7 @@ instruction.forDatabase()
 
 ### Custom Instruction
 
-Adds a custom instruction to perform a user defined operation on the database.
+Adds a custom instruction to perform a user defined operation on the database. The custom instruction is a callback that takes a `Nitrite` instance as an argument. The callback can be used to perform any operation on the database.
 
 ```java
 instruction.forDatabase()
@@ -204,7 +204,7 @@ The new field will be added to all the documents of the collection. The value of
 
 #### Generator
 
-A `Generator` is a functional interface that takes a `Document` as input and returns a value. The value returned by the `Generator` function will be used as the value of the new field.
+A `Generator` is a functional interface that takes a `Document` as input and returns a value. The value returned by the `Generator` will be used as the value of the new field.
 
 ```java
 Generator<String> generator = document -> {
@@ -340,7 +340,7 @@ instruction.forRepository(OldClass.class, "demo1")
 
 #### Type Converter
 
-A `TypeConverter` is a functional interface that takes a value of one type as input and returns a value of another type. The value returned by the `TypeConverter` function will be used as the value of the new field.
+A `TypeConverter` is a functional interface that takes a value of one type as input and returns a value of another type. The value returned by the `TypeConverter` will be used as the value of the new field.
 
 ```java
 // convert String to Long
@@ -389,12 +389,4 @@ instruction.forRepository(OldClass.class, "demo1")
 ```
 
 The create index instruction can be used to create a single field index or a compound index.
-
-
-
-
-
-
-
-
 

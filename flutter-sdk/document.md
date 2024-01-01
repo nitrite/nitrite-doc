@@ -42,7 +42,7 @@ Below fields are reserved and cannot be used as key in a document.
 
 ## Document Value
 
-Document value can be any valid dart object. It can be `null` or any of the below types.
+Document value can be any valid Dart object. It can be `null` or any of the below types.
 
 - `String`
 - `int`

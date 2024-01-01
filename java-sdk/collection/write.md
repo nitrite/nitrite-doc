@@ -95,7 +95,7 @@ WriteResult result = collection.update(doc, true);
 
 ### Updating Using a Filter
 
-You can update a document using a filter. It takes a `Filter` object as the first input parameter. It takes a `Document` object as the second input parameter. It returns a `WriteResult` object. The document must not be `null` or empty.
+You can update multiple documents using a filter. It takes a `Filter` object as the first input parameter. It takes a `Document` object as the second input parameter. It returns a `WriteResult` object. The document must not be `null` or empty.
 
 If the filter result matches multiple documents, then all the documents will be updated.
 
@@ -108,7 +108,7 @@ WriteResult result = collection.update(where("firstName").eq("John"), update);
 
 ### Updating Using a Filter and Options
 
-You can update a document using a filter and options. It takes a `Filter` object as the first input parameter. It takes a `Document` object as the second input parameter. It takes a `UpdateOptions` object as the third input parameter. It returns a `WriteResult` object. The document must not be `null` or empty.
+You can update multiple documents using a filter and options. It takes a `Filter` object as the first input parameter. It takes a `Document` object as the second input parameter. It takes a `UpdateOptions` object as the third input parameter. It returns a `WriteResult` object. The document must not be `null` or empty.
 
 #### UpdateOptions
 
@@ -152,7 +152,7 @@ If the document does not contain a valid `NitriteId` in it's `_id` field, then i
 
 ### Removing Using a Filter
 
-You can remove a document using a filter. It takes a `Filter` object as the input parameter. It returns a `WriteResult` object.
+You can remove multiple documents using a filter. It takes a `Filter` object as the input parameter. It returns a `WriteResult` object.
 
 If the filter result matches multiple documents, then all the documents will be removed.
 
@@ -162,7 +162,7 @@ WriteResult result = collection.remove(where("firstName").eq("John"));
 
 ### Removing Using a Filter and Options
 
-You can remove a document using a filter and options. It takes a `Filter` object as the first input parameter. It takes a `boolean` value as the second input parameter. If the second input parameter is `true`, then it will remove only the first document matched by the filter. Otherwise, it will remove all the documents matched by the filter. It returns a `WriteResult` object.
+You can remove multiple documents using a filter and options. It takes a `Filter` object as the first input parameter. It takes a `boolean` value as the second input parameter. If the second input parameter is `true`, then it will remove only the first document matched by the filter. Otherwise, it will remove all the documents matched by the filter. It returns a `WriteResult` object.
 
 ```java
 WriteResult result = collection.remove(where("firstName").eq("John"), true);

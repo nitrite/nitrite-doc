@@ -6,7 +6,7 @@ order: 15
 
 ## Find Operations
 
-You can search documents in a collection using `find()` method. There are several overloaded version of `find()` method using a filter or find options or both. You can also search a document using it's `NitriteId`.
+You can search documents in a collection using `find()` method. There are several ways of using `find()` method using a filter or find options or both. You can also search a document using it's `NitriteId`.
 
 ### Filters
 

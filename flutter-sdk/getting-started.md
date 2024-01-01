@@ -22,15 +22,15 @@ dependencies:
 
 The latest released version of Nitrite can be found [here](https://pub.dev/packages/nitrite).
 
-To add the nitrite entity generator to your project, add the following to your `pubspec.yaml` file:
+To add the nitrite code generator to your project, add the following to your `pubspec.yaml` file:
 
 ```yaml
 dev_dependencies:
   build_runner: ^2.4.6
-  nitrite_entity_generator: ^[latest version]
+  nitrite_generator: ^[latest version]
 ```
 
-More details about the entity generator can be found [here](repository/entity.md#code-generator).
+More details about the code generator can be found [here](repository/codegen.md).
 
 To add the hive adapter to your project, add the following to your `pubspec.yaml` file:
 

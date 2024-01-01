@@ -177,4 +177,13 @@ The current state of a transaction can be retrieved using the `Transaction.getSt
 TransactionState state = transaction.getState();
 ```
 
+The following states are available:
+
+- `TransactionState.Active` - The transaction is active.
+- `TransactionState.Committed` - The transaction is committed.
+- `TransactionState.PartiallyCommitted` - The transaction is partially committed.
+- `TransactionState.Closed` - The transaction is closed.
+- `TransactionState.Failed` - The transaction is failed.
+- `TransactionState.Aborted` - The transaction is aborted.
+
 

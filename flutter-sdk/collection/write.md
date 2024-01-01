@@ -98,7 +98,7 @@ var result = await collection.updateOne(doc, insertIfAbsent: true);
 
 ### Updating Using a Filter
 
-You can update a document using a filter. It takes a `Filter` object as the first input parameter. It takes a `Document` object as the second input parameter. It returns a `Future<WriteResult>` object.
+You can update multiple documents using a filter. It takes a `Filter` object as the first input parameter. It takes a `Document` object as the second input parameter. It returns a `Future<WriteResult>` object.
 
 ```dart
 var update = createDocument("_id", existingDoc.id)
@@ -111,7 +111,7 @@ var result = await collection.update(where("firstName").eq("John"), update);
 
 ### Updating Using a Filter and Options
 
-You can update a document using a filter and options. It takes a `Filter` object as the first input parameter. It takes a `Document` object as the second input parameter. It takes a `UpdateOptions` object as the optional third input parameter. It returns a `Future<WriteResult>` object.
+You can update multiple documents using a filter and options. It takes a `Filter` object as the first input parameter. It takes a `Document` object as the second input parameter. It takes a `UpdateOptions` object as the optional third input parameter. It returns a `Future<WriteResult>` object.
 
 #### UpdateOptions
 
@@ -162,7 +162,7 @@ If the document does not contain a valid `NitriteId` in it's `_id` field, then i
 
 ### Removing Using a Filter
 
-You can remove a document using a filter. It takes a `Filter` object as the input parameter. It returns a `Future<WriteResult>` object.
+You can remove multiple documents using a filter. It takes a `Filter` object as the input parameter. It returns a `Future<WriteResult>` object.
 
 ```dart
 var result = await collection.remove(where("firstName").eq("John"));
@@ -170,7 +170,7 @@ var result = await collection.remove(where("firstName").eq("John"));
 
 ### Removing Using a Filter and Options
 
-You can remove a document using a filter and options. It takes a `Filter` object as the first input parameter. It takes a named parameter `justOne` with value `true` or `false`. If the value is `true`, then it will remove only the first document matched by the filter. Otherwise, it will remove all the documents matched by the filter. The default value of `justOne` is `false`. It returns a `Future<WriteResult>` object.
+You can remove multiple documents using a filter and options. It takes a `Filter` object as the first input parameter. It takes a named parameter `justOne` with value `true` or `false`. If the value is `true`, then it will remove only the first document matched by the filter. Otherwise, it will remove all the documents matched by the filter. The default value of `justOne` is `false`. It returns a `Future<WriteResult>` object.
 
 ```dart
 var result = await collection.remove(where("firstName").eq("John"), justOne: true);

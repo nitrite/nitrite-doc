@@ -20,7 +20,7 @@ This operation will notify all the registered `CollectionEventListener` with `Ev
 
 ```java
 Product product = new Product();
-product.setProductId(new ProductId());
+product.setProductId(new ProductId(1));
 product.setProductName("Apple iPhone 6");
 product.setPrice(600.0);
 
@@ -95,7 +95,7 @@ WriteResult result = productRepository.update(product, true);
 
 ### Updating Using a Filter
 
-You can update an entity using a filter. It takes a `Filter` object as first input parameter. It takes a Java entity as second input parameter. It returns a `WriteResult` object. The entity must not be `null`.
+You can update multiple entities using a filter. It takes a `Filter` object as first input parameter. It takes a Java entity as second input parameter. It returns a `WriteResult` object. The entity must not be `null`.
 
 If the filter result matches multiple entities, then all the entities will be updated.
 
@@ -110,7 +110,7 @@ WriteResult result = productRepository.update(where("productName").eq("Apple iPh
 
 ### Updating Using a Filter and Options
 
-You can update an entity using a filter and options. It takes a `Filter` object as first input parameter. It takes a Java entity as second input parameter. It takes a `UpdateOptions` object as third input parameter. It returns a `WriteResult` object. The entity must not be `null`.
+You can update multiple entities using a filter and options. It takes a `Filter` object as first input parameter. It takes a Java entity as second input parameter. It takes a `UpdateOptions` object as third input parameter. It returns a `WriteResult` object. The entity must not be `null`.
 
 #### UpdateOptions
 
@@ -187,7 +187,7 @@ result = productRepository.remove(product);
 
 ### Removing Using a Filter
 
-You can remove an entity using a filter. It takes a `Filter` object as input parameter. It returns a `WriteResult` object.
+You can remove multiple entities using a filter. It takes a `Filter` object as input parameter. It returns a `WriteResult` object.
 
 If the filter result matches multiple entities, then all the entities will be removed.
 
@@ -197,7 +197,7 @@ WriteResult result = productRepository.remove(where("productName").eq("Apple iPh
 
 ### Removing Using a Filter and Options
 
-You can remove an entity using a filter and options. It takes a `Filter` object as first input parameter. It takes a `boolean` value as second input parameter. If the second input parameter is `true`, then it will remove only the first entity matched by the filter. Otherwise, it will remove all the entities matched by the filter. It returns a `WriteResult` object.
+You can remove multiple entities using a filter and options. It takes a `Filter` object as first input parameter. It takes a `boolean` value as second input parameter. If the second input parameter is `true`, then it will remove only the first entity matched by the filter. Otherwise, it will remove all the entities matched by the filter. It returns a `WriteResult` object.
 
 ```java
 WriteResult result = productRepository.remove(where("productName").eq("Apple iPhone 6"), false);

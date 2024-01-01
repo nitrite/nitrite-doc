@@ -100,7 +100,7 @@ long size = cursor.size();
 
 ### Projection
 
-You can project the cursor using `project()` method. It takes another entity as input parameter. It returns a `Cursor` object of the projected entity.
+You can project the cursor using `project()` method. It takes another entity type as input parameter. It returns a `Cursor` object of the projected entity.
 
 The projected entity must contain only the fields that needs to be projected.
 

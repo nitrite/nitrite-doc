@@ -25,7 +25,7 @@ Nitrite db = Nitrite.builder()
     .openOrCreate("user", "password");
 ```
 
-To create a module, you need to implement the `NitriteModule` interface. The `NitriteModule` interface has a single method `plugins` which returns a set of plugins. 
+To create a module, you need to implement the `NitriteModule` interface. The `NitriteModule` interface has a single method `plugins()` which returns a set of plugins. 
 
 ```java
 public class MyModule implements NitriteModule {
@@ -38,7 +38,7 @@ public class MyModule implements NitriteModule {
 
 ### Dynamic Module
 
-A dynamic module can be created using the static `module` method of the `NitriteModule` interface. A dynamic module is a module which is not loaded from a jar file. It is created at runtime. 
+A dynamic module can be created using the static `module()` method of the `NitriteModule` interface. A dynamic module is a module which is not loaded from a jar file. It is created at runtime. 
 
 ```java
 NitriteModule module = NitriteModule.module(new MyPlugin1(), new MyPlugin2());
@@ -55,7 +55,7 @@ The following modules are available from Nitrite.
 
 - [Storage Module](store-modules/store-modules.md)
 - [Jackson Module](jackson.md)
-- [Geo-spatial Module](spatial.md)
+- [Spatial Module](spatial.md)
 
 ## NitritePlugin
 
@@ -71,12 +71,12 @@ Nitrite db = Nitrite.builder()
 
 ### Initializing Plugin
 
-A plugin can be initialized by implementing the `initialize` method of the `NitritePlugin` interface. The `initialize` method is called by the module when the plugin is loaded. 
+A plugin can be initialized by implementing the `initialize()` method of the `NitritePlugin` interface. The `initialize()` method is called by the module when the plugin is loaded. 
 
 ```java
 public class MyPlugin implements NitritePlugin {
     @Override
-    public void initialize() {
+    public void initialize(NitriteConfig nitriteConfig) {
         // initialize the plugin
     }
 }
@@ -112,115 +112,7 @@ The `NitriteStore` interface is the base interface for all the storage plugins. 
 
 ```java
 public class MyStore implements NitriteStore {
-    @Override
-    public void initialize(NitriteConfig nitriteConfig) {
-        // initialize the store
-    }
-
-    @Override
-    public void openOrCreate() {
-        // open or create the store
-    }
-
-    @Override
-    public boolean isClosed() {
-        // check if the store is closed
-    }
-
-    @Override
-    public Set<String> getCollectionNames() {
-        // get all the collection names
-    }
-
-    @Override
-    public Set<String> getRepositoryRegistry() {
-        // get all the repositories
-    }
-
-    @Override
-    public Map<String, Set<String>> getKeyedRepositoryRegistry() {
-        // get all the keyed repositories
-    }
-
-    @Override
-    public boolean hasUnsavedChanges() {
-        // check if there are any unsaved changes
-    }
-
-    @Override
-    public boolean isReadOnly() {
-        // check if the store is read-only
-    }
-
-    @Override
-    public void commit() {
-        // commit the changes to the store
-    }
-
-    @Override
-    public void beforeClose() {
-        // do something before closing the store
-    }
-
-    @Override
-    public boolean hasMap(String mapName) {
-        // check if a NitriteMap exists
-    }
-
-    @Override
-    public void closeMap(String mapName) {
-        // close a NitriteMap
-    }
-
-    @Override
-    public void removeMap(String mapName) {
-        // remove a NitriteMap
-    }
-
-    @Override
-    public void closeRTree(String rTreeName) {
-        // close a NitriteRTree
-    }
-
-    @Override
-    public void removeRTree(String rTreeName) {
-        // remove a NitriteRTree
-    }
-
-    @Override
-    public void subscribe(StoreEventListener listener) {
-        // subscribe to store events
-    }
-
-    @Override
-    public void unsubscribe(StoreEventListener listener) {
-        // unsubscribe from store events
-    }
-
-    @Override
-    public String getStoreVersion() {
-        // get the store version
-    }
-
-    @Override
-    public StoreConfig getStoreConfig() {
-        // get the store configuration
-    }
-
-    @Override
-    public StoreCatalog getCatalog() {
-        // get the store catalog
-    }
-
-    @Override
-    public NitriteRTree openRTree(String rTreeName, Class keyType, Class valueType) {
-        // open a NitriteRTree
-    }
-
-    @Override
-    public NitriteMap openMap(String mapName, Class keyType, Class valueType) {
-        // open a NitriteMap
-    }
+    // implement the methods
 }
 ```
 
@@ -232,16 +124,7 @@ The `NitriteMapper` interface is the base interface for all the object mapping p
 
 ```java
 public class CustomNitriteMapper implements NitriteMapper {
-
-    @Override
-    public <Source, Target> Target tryConvert(Source source, Class<Target> type) {
-        // try to convert a source object to a target object
-    }
-
-    @Override
-    public void initialize(NitriteConfig nitriteConfig) {
-        // initialize the mapper
-    }
+    // implement the methods
 }
 ```
 
@@ -261,36 +144,7 @@ public class CustomIndexer implements NitriteIndexer {
         return INDEX_TYPE;
     }
 
-    @Override
-    public void validateIndex(Fields fields) {
-        // validate the index
-    }
-
-    @Override
-    public void dropIndex(IndexDescriptor indexDescriptor, NitriteConfig nitriteConfig) {
-        // drop the index
-    }
-
-    @Override
-    public void writeIndexEntry(FieldValues fieldValues, IndexDescriptor indexDescriptor, NitriteConfig nitriteConfig) {
-        // write an index entry
-    }
-
-    @Override
-    public void removeIndexEntry(FieldValues fieldValues, IndexDescriptor indexDescriptor, NitriteConfig nitriteConfig) {
-        // remove an index entry
-    }
-
-    @Override
-    public LinkedHashSet<NitriteId> findByFilter(FindPlan findPlan, NitriteConfig nitriteConfig) {
-        // find documents by filter
-    }
-
-
-    @Override
-    public void initialize(NitriteConfig nitriteConfig) {
-        // initialize the indexer
-    }
+    // implement the methods
 }
 ```
 
@@ -307,6 +161,16 @@ An `EntityConverter` is a plugin which is responsible for converting an object t
 If Nitrite is using the default `SimpleNitriteMapper`, then all `EntityConverter`s from all the loaded modules are automatically registered with the mapper. If you are using a custom mapper, then you need to register the `EntityConverter` with the mapper manually.
 
 One of the available `EntityConverter` in Nitrite is `GeometryConverter` from the spatial module. It is responsible for converting a `Geometry` object of JTS to a document and vice-versa. Once you load the spatial module, the `GeometryConverter` is automatically registered with the mapper. You can find more information about `GeometryConverter` [here](spatial.md#geometryconverter).
+
+If you want to load multiple `EntityConverter`s, while opening the database, you can also create a dynamic module and load it instead of using the `NitriteBuilder.registerEntityConverter()` method multiple times.
+
+```java
+NitriteModule module = NitriteModule.module(new MyOtherConverter(), new MyConverter());
+
+Nitrite db = Nitrite.builder()
+    .loadModule(module)
+    .openOrCreate("user", "password");
+```
 
 ## Nitrite Bill of Materials
 

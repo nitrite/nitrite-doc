@@ -10,7 +10,7 @@ order: 17
 
 ## Creating a Repository
 
-A `ObjectRepository` can be created using `Nitrite` class. You need to call `getRepository()` method on `Nitrite` class to get an instance of a `ObjectRepository`. If the repository does not exist, then it will be created automatically. If a repository with the same name already exists, then it will return the existing repository.
+An `ObjectRepository` can be created using `Nitrite` class. You need to call `getRepository()` method on `Nitrite` class to get an instance of an `ObjectRepository`. If the repository does not exist, then it will be created automatically. If a repository with the same name already exists, then it will return the existing repository.
 
 There are several overloaded methods available to create a repository. You can pass a class type or an `EntityDecorator` along with an optional string key to create a repository.
 

@@ -63,7 +63,7 @@ public class MyEncryptor implements Encryptor {
 
 ## Field Level Encryption
 
-Nitrite provides field level encryption support. You can encrypt a field of a document using a password. Nitrite provides an `StringFieldEncryptionProcessor` utility class to encrypt and decrypt a field of a document. It uses the `Encryptor` interface to encrypt and decrypt data.
+Nitrite provides field level encryption support. You can encrypt a field of a document using a password. Nitrite provides a `StringFieldEncryptionProcessor` utility class to encrypt and decrypt a field of a document. It is a `Processor` implementation. It uses the `Encryptor` interface to encrypt and decrypt data.
 
 ### Using Field Encryption
 

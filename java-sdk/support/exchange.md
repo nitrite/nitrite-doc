@@ -56,16 +56,12 @@ public Nitrite createDb(String filePath) {
         .filePath(filePath)
         .build();
 
-    // register all entity converters used in ObjectRepository
-    SimpleNitriteMapper documentMapper = new SimpleNitriteMapper();
-    documentMapper.registerEntityConverter(new Employee.EmployeeConverter());
-    documentMapper.registerEntityConverter(new Company.CompanyConverter());
-    documentMapper.registerEntityConverter(new Note.NoteConverter());
-
     // create an instance of nitrite database
     return Nitrite.builder()
         .loadModule(storeModule)
-        .loadModule(module(documentMapper))
+        .registerEntityConverter(new Employee.EmployeeConverter())
+        .registerEntityConverter(new Company.CompanyConverter())
+        .registerEntityConverter(new Note.NoteConverter())
         .openOrCreate();
 }
 ```

@@ -78,7 +78,7 @@ Both username and password must be provided or both must be null.
 
 ### Registering an EntityConverter
 
-Nitrite database uses a mapper to map a dart object to a document and vice versa. By default, Nitrite uses `SimpleNitriteMapper` as its mapper. This mapper uses `EntityConverter`s to map a dart object to a document and vice versa. To register an `EntityConverter`, you need to call `registerEntityConverter()` method on `NitriteBuilder` instance. This method returns the same `NitriteBuilder` instance.
+Nitrite database uses a mapper to map a Dart object to a document and vice versa. By default, Nitrite uses `SimpleNitriteMapper` as its mapper. This mapper uses `EntityConverter`s to map a Dart object to a document and vice versa. To register an `EntityConverter`, you need to call `registerEntityConverter()` method on `NitriteBuilder` instance. This method returns the same `NitriteBuilder` instance.
 
 ```dart
 var db = await Nitrite.builder()
@@ -87,7 +87,7 @@ var db = await Nitrite.builder()
     .openOrCreate();
 ```
 
-More details about `EntityConverter` can be found [here](repository/entity.md#entityconverter).
+More details about `EntityConverter` can be found [here](repository/mapper.md#entityconverter).
 
 ### Loading a Module
 
@@ -101,7 +101,7 @@ var db = Nitrite.builder()
     .openOrCreate();
 ```
 
-More on the Nitrite's module system can be found [here](modules/modules.md).
+More on the Nitrite's module system can be found [here](modules/module-system.md).
 
 ### Adding Migration Steps
 

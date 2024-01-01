@@ -266,7 +266,7 @@ Collection<IndexDescriptor> indexes = productRepository.listIndices();
 
 ## Checking If an Index Exists
 
-You can check if an index exists on a repository using `hasIndex()` method. It takes the name of the fields on which the index will be dropped as input parameter.
+You can check if an index exists on a repository using `hasIndex()` method. It takes the name of the fields on which the index will be checked as input parameter.
 
 ```java
 // check if an index exists on a single field

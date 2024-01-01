@@ -8,11 +8,11 @@ order: 15
 
 ## SimpleNitriteMapper
 
-Nitrite provides a default `NitriteMapper` implementation called `SimpleNitriteMapper`. This is a simple and lightweight mapper which uses `EntityConverter` to map a Java entity to Nitrite documents and vice-versa. This mapper is suitable for most of the use cases.
+Nitrite provides a default `NitriteMapper` implementation called `SimpleNitriteMapper`. This is a simple and lightweight mapper which uses `EntityConverter` to map a Java object to Nitrite documents and vice-versa. This mapper is suitable for most of the use cases.
 
 ### EntityConverter
 
-`EntityConverter` is a simple interface which provides methods to convert a Java entity to Nitrite document and vice-versa. For each entity, you need to provide an implementation of `EntityConverter` and register it with `SimpleNitriteMapper`. `SimpleNitriteMapper` will use this converter to map the entity to Nitrite document and vice-versa.
+`EntityConverter` is a simple interface which provides methods to convert a Java object to Nitrite document and vice-versa. For each class, you need to provide an implementation of `EntityConverter` and register it with `SimpleNitriteMapper`. `SimpleNitriteMapper` will use this converter to map the object to Nitrite document and vice-versa.
 
 Let's take an example of `Product` class.
 
@@ -39,7 +39,7 @@ public class Manufacturer {
 }
 ```
 
-To map this entity to Nitrite document, we need to provide an implementation of `EntityConverter` for each entity. Let's take a look at the converter for `Product` class.
+To map this to Nitrite document, we need to provide an implementation of `EntityConverter` for each class. Let's take a look at the converter for `Product` class.
 
 ```java
 public class ProductConverter implements EntityConverter<Product> {

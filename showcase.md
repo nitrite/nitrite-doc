@@ -5,9 +5,9 @@ visibility: public
 order: 5
 ---
 
-## Applications using Nitrite Database
+<!-- ## Applications using Nitrite Database
 
-Submit your application below to showcase it here.
+Submit your application below to showcase it here. -->
 
 
 ## Showcase Your Application

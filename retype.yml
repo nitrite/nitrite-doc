@@ -1,6 +1,6 @@
 input: .
 output: .retype
-url: https://nitrite.github.io
+url: https://nitrite.dizitart.com
 
 branding:
   title: Nitrite
@@ -12,11 +12,16 @@ favicon: /assets/favicon.png
 links:
   - text: Home
     icon: home
-    link: https://nitrite.github.io/nitrite-doc
+    link: https://nitrite.dizitart.com
 
   - text: Github
     link: https://github.com/nitrite
     icon: mark-github
+    target: blank
+
+  - text: Donate
+    link: https://github.com/sponsors/anidotnet
+    icon: heart-fill
     target: blank
 
 footer:
@@ -42,7 +47,7 @@ integrations:
   googleAnalytics:
     id: ""
 
-# cname: nitrite.dizitart.com
+cname: nitrite.dizitart.com
 
 serve:
   watch:

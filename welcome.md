@@ -58,7 +58,7 @@ Give a ⭐️ if this project helped you! Please consider [donating](https://git
 
 ## 💚 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to open a discussion thread [here](https://github.com/orgs/nitrite/discussions).
+Contributions, issues and feature requests are welcome!. Feel free to open a discussion thread [here](https://github.com/orgs/nitrite/discussions).
 
 ## 🎞️ Showcase
 

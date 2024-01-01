@@ -28,7 +28,7 @@ Nitrite is a good choice for desktop, mobile or small web applications. It's a g
 
 ## What is the performance of Nitrite?
 
-Nitrite is highly performant, though it heavily depends on the underlying storage backend implementation. A JMH benchmark of Nitrite for Java is available [here](https://github.com/nitrite/nitrite-jmh) where you can find its performance amongst various storage backends against Sqlite.
+Nitrite is highly performant, though it heavily depends on the underlying storage backend implementation. A JMH benchmark of Nitrite for Java is available [here](https://github.com/nitrite/nitrite-jmh) where you can find its performance amongst various storage backends against SQLite.
 
 ## Does Nitrite support replication over network?
 
@@ -37,6 +37,14 @@ No, Nitrite doesn't support replication over network. It's a server-less embedde
 ## What happened to Nitrite DataGate Server?
 
 Nitrite DataGate Server is now deprecated. It's no longer maintained due to lack of interest from the community. If you are looking for it to be revived, please vote [here](https://github.com/orgs/nitrite/discussions/1). If enough people are interested, it will be revived.
+
+## What if I find any issues in the documentation?
+
+If you find any issues in the documentation, please raise an issue [here](https://github.com/nitrite/nitrite-doc/issues).
+
+## What if I had any suggestions/questions?
+
+If you have any suggestions or questions about Nitrite, please start a discussion [here](https://github.com/orgs/nitrite/discussions).
 
 ## What is the license of Nitrite?
 

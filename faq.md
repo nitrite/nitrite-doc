@@ -38,6 +38,10 @@ No, Nitrite doesn't support replication over network. It's a server-less embedde
 
 Nitrite DataGate Server is now deprecated. It's no longer maintained due to lack of interest from the community. If you are looking for it to be revived, please vote [here](https://github.com/orgs/nitrite/discussions/1). If enough people are interested, it will be revived.
 
+## What happened to Nitrite Explorer?
+
+Nitrite Explorer is now deprecated. It's no longer maintained due to lack of interest from the community. If you are looking for it to be revived, please vote [here](https://github.com/orgs/nitrite/discussions/2). If enough people are interested, it will be revived.
+
 ## What if I find any issues in the documentation?
 
 If you find any issues in the documentation, please raise an issue [here](https://github.com/nitrite/nitrite-doc/issues).

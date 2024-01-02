@@ -86,6 +86,10 @@ repositories {
 }
 ```
 
+!!!primary
+You need Java 11 or above to use Nitrite database.
+!!!
+
 ## Upgrade from 3.x
 
 If you are upgrading from 3.x, please note that there are lots of breaking changes in the API. The whole library is re-written from scratch. It is recommended to go through this guide before upgrading. 

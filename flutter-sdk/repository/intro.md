@@ -18,7 +18,7 @@ There are several options available to create a repository. You can pass a class
 You can create a `ObjectRepository` by passing a class type to `getRepository()` method.
 
 ```dart
-ObjectRepository<Employee> repository = db.getRepository<Employee>();
+ObjectRepository<Employee> repository = await db.getRepository<Employee>();
 ```
 
 ### Creating a Repository with Class Type and Key
@@ -26,7 +26,7 @@ ObjectRepository<Employee> repository = db.getRepository<Employee>();
 You can create a keyed `ObjectRepository` by passing a class type and a key to `getRepository()` method.
 
 ```dart
-ObjectRepository<Employee> repository = db.getRepository<Employee>(key: "myKey");
+ObjectRepository<Employee> repository = await db.getRepository<Employee>(key: "myKey");
 ```
 
 One typical use case of this keyed repository is to create a repository for each user in a multi-user application. The key can be the user name or user id. This will ensure that each user will have a separate repository for storing objects.
@@ -38,7 +38,7 @@ A `ObjectRepository` can be created using `EntityDecorator`. This is useful when
 More details about `EntityDecorator` can be found [here](entity.md#entitydecorator).
 
 ```dart
-ObjectRepository<Employee> repository = db.getRepository<Employee>(entityDecorator: EmployeeDecorator());
+ObjectRepository<Employee> repository = await db.getRepository<Employee>(entityDecorator: EmployeeDecorator());
 ```
 
 ### Creating a Repository with EntityDecorator and Key
@@ -48,6 +48,6 @@ A keyed `ObjectRepository` can be created using `EntityDecorator` and a key. Thi
 More details about `EntityDecorator` can be found [here](entity.md#entitydecorator).
 
 ```dart
-ObjectRepository<Employee> repository = db.getRepository<Employee>(entityDecorator: EmployeeDecorator(), key: "myKey");
+ObjectRepository<Employee> repository = await db.getRepository<Employee>(entityDecorator: EmployeeDecorator(), key: "myKey");
 ```
 

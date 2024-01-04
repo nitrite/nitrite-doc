@@ -491,7 +491,7 @@ mixin _$BookEntityMixin implements NitriteEntity {
 While creating or opening a repository, you can pass an instance of `EntityDecorator` to the `getRepository()` method on `Nitrite` class. Nitrite will extract the metadata from the `EntityDecorator` instance and use it to create the repository.
 
 ```dart
-ObjectRepository<Product> repository = db.getRepository<Product>(entityDecorator: ProductDecorator());
+ObjectRepository<Product> repository = await db.getRepository<Product>(entityDecorator: ProductDecorator());
 ```
 
 To write an `EntityDecorator` for an entity, you need to implement the `EntityDecorator` interface. Let's take an example of a `Product` entity.

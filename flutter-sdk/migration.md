@@ -7,7 +7,7 @@ order: 10
 A migration is a set of changes to the schema that can be applied to a database. Migrations are used to keep the database schema up to date with the codebase. It contains a queue of instructions that are executed in order to update the database schema from one version to the next. 
 
 !!!primary
-The migration is executed only once. If you want to execute the migration again, you need to change the schema version of the database.
+The migration is executed only once for a specific schema version. If you want to execute the migration again, you need to change the schema version of the database.
 !!!
 
 For example, if you have a database with the schema version 1 and you want to update it to version 2, you need to apply the migration steps from version 1 and version 2.

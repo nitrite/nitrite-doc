@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.758015411225">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.758260768886">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,13 +31,13 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../assets/favicon.png" rel="icon">
-    <link href="../../resources/css/retype.css?v=3.5.0.758015411225" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.758260768886" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.758015411225" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.758260768886" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.758015411225" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.758015411225" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.758015411225" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.758260768886" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.758260768886" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.758260768886" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -231,30 +231,25 @@
     </h1>
 </doc-anchor-target>
 <p>Nitrite is a pure Dart database. It does not depend on any native library. So it can be used in any platform where Dart is supported. It is a server-less embedded database ideal for desktop, mobile, or web applications. It is written in pure Dart and runs in Flutter, Dart VM, and the browser.</p>
-<p>To get started with Nitrite database, you need to add the dependency to your pubspec.yaml file.</p>
 <doc-anchor-target id="add-dependency">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#add-dependency">#</doc-anchor-trigger>
         <span>Add dependency</span>
     </h2>
 </doc-anchor-target>
-<p>Add Nitrite dependency to your project:</p>
+<p>To use Nitrite in you project, add the following package to your package:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-yaml"><code v-pre class="language-yaml">dependencies:
-  nitrite: ^[latest version]</code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">dart pub add nitrite</code></pre>
 </doc-codeblock></div>
-<p>The latest released version of Nitrite can be found <a href="https://pub.dev/packages/nitrite">here</a>.</p>
-<p>To add the nitrite code generator to your project, add the following to your <code v-pre>pubspec.yaml</code> file:</p>
+<p>To add the nitrite code generator to your project:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-yaml"><code v-pre class="language-yaml">dev_dependencies:
-  build_runner: ^2.4.6
-  nitrite_generator: ^[latest version]</code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">dart pub add --dev build_runner
+dart pub add --dev nitrite_generator</code></pre>
 </doc-codeblock></div>
 <p>More details about the code generator can be found <a href="../repository/codegen/index.html">here</a>.</p>
-<p>To add the hive adapter to your project, add the following to your <code v-pre>pubspec.yaml</code> file:</p>
+<p>To use the hive storage adapter to your project add the below package:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-yaml"><code v-pre class="language-yaml">dependencies:
-  nitrite_hive_adapter: ^[latest version]</code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">dart pub add nitrite_hive_adapter</code></pre>
 </doc-codeblock></div>
 <p>More details about the hive adapter can be found <a href="../modules/store-modules/hive/index.html">here</a>.</p>
 <div class="flex mb-6">

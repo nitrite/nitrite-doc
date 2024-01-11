@@ -8,10 +8,9 @@ Nitrite provides some additional functionalities via `nitrite-support` library. 
 
 ## Adding nitrite-support
 
-To add `nitrite-support` to your project, add the following dependency to your `pubspec.yaml` file:
+To use `nitrite-support` to your project, add the following dependency to your project:
 
-```yaml
-dependencies:
-  nitrite: ^[latest-version]
-  nitrite_support: ^[latest-version]
+```bash
+dart pub add nitrite
+dart pub add nitrite_support
 ```

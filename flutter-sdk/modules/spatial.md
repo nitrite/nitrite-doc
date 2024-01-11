@@ -8,12 +8,11 @@ Nitrite Spatial module provides support for spatial queries. The module uses [JT
 
 ## Adding Spatial Module
 
-To add Spatial module to your project, you need to add below dependency to your `pubspec.yaml` file:
+To use Spatial module to your project, you need to add below dependency to your project:
 
-```yaml
-dependencies:
-  nitrite: ^[latest-version]
-  nitrite_spatial: ^[latest-version]
+```bash
+dart pub add nitrite
+dart pub add nitrite_spatial
 ```
 
 ## Using Spatial Module

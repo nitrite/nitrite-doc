@@ -17,12 +17,11 @@ Both of these generators are available in the `nitrite_generator` package.
 
 ## Setup
 
-Add the following to your `pubspec.yaml`:
+Add the following package as your dev dependency:
 
-```yaml
-dev_dependencies:
-  nitrite_generator: ^[latest version]
-  build_runner: ^2.4.7
+```bash
+dart pub add --dev build_runner
+dart pub add --dev nitrite_generator
 ```
 
 Once you have added the annotations to your code, you can run the generator using the `build_runner` command-line tool:

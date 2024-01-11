@@ -9,34 +9,27 @@ order: 20
 
 Nitrite is a pure Dart database. It does not depend on any native library. So it can be used in any platform where Dart is supported. It is a server-less embedded database ideal for desktop, mobile, or web applications. It is written in pure Dart and runs in Flutter, Dart VM, and the browser.
 
-To get started with Nitrite database, you need to add the dependency to your pubspec.yaml file.
-
 ## Add dependency
 
-Add Nitrite dependency to your project:
+To use Nitrite in you project, add the following package to your package:
 
-```yaml
-dependencies:
-  nitrite: ^[latest version]
+```bash
+dart pub add nitrite
 ```
 
-The latest released version of Nitrite can be found [here](https://pub.dev/packages/nitrite).
+To add the nitrite code generator to your project:
 
-To add the nitrite code generator to your project, add the following to your `pubspec.yaml` file:
-
-```yaml
-dev_dependencies:
-  build_runner: ^2.4.6
-  nitrite_generator: ^[latest version]
+```bash
+dart pub add --dev build_runner
+dart pub add --dev nitrite_generator
 ```
 
 More details about the code generator can be found [here](repository/codegen.md).
 
-To add the hive adapter to your project, add the following to your `pubspec.yaml` file:
+To use the hive storage adapter to your project add the below package:
 
-```yaml
-dependencies:
-  nitrite_hive_adapter: ^[latest version]
+```bash
+dart pub add nitrite_hive_adapter
 ```
 
 More details about the hive adapter can be found [here](modules/store-modules/hive.md).

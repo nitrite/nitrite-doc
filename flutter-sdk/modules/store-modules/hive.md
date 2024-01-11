@@ -8,12 +8,11 @@ Nitrite provides a persistent storage module based on [Hive](https://github.com/
 
 ## Adding Hive Module
 
-To use Hive module, you need add below dependency to your `pubspec.yaml` file:
+To use Hive module, you need add below dependency to your project:
 
-```yaml
-dependencies:
-  nitrite: ^[latest-version]
-  nitrite_hive_adapter: ^[latest-version]
+```bash
+dart pub add nitrite
+dart pub add nitrite_hive_adapter
 ```
 
 ## Using Hive Module

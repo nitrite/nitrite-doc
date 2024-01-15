@@ -65,9 +65,8 @@ Contributions, issues and feature requests are welcome. Feel free to open a disc
 If you are using Nitrite database in your project, please let us know. We will be happy to showcase your project [here](/showcase).
 
 
-Made with ♥️ in India 🇮🇳
-
-
+<p><p>
+<p><p>
 <p><p>
 <sub>
 Image by <a href="https://www.freepik.com/free-vector/stock-exchange-data-concept_8850059.htm#fromView=search&term=database&track=sph&regularType=vector&page=1&position=23&uuid=8b3ed57e-0d09-4c37-ab68-0f1e0b08c2b8">Freepik</a>

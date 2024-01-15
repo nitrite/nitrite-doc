@@ -30,7 +30,7 @@ Nitrite database is designed to be simple and easy to use, making it a good choi
 - Schemaless document collection and object repository
 - Extensible storage engines
 - Indexing and full-text search
-- Simple query api
+- Simple query API
 - In-memory and file-based store
 - Transaction support
 - Schema migration support
@@ -63,6 +63,9 @@ Contributions, issues and feature requests are welcome. Feel free to open a disc
 ## 🎞️ Showcase
 
 If you are using Nitrite database in your project, please let us know. We will be happy to showcase your project [here](/showcase).
+
+
+Made with ♥️ in India 🇮🇳
 
 
 <p><p>

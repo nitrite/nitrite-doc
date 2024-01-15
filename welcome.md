@@ -69,4 +69,6 @@ Made with ♥️ in India 🇮🇳
 
 
 <p><p>
+<sub>
 Image by <a href="https://www.freepik.com/free-vector/stock-exchange-data-concept_8850059.htm#fromView=search&term=database&track=sph&regularType=vector&page=1&position=23&uuid=8b3ed57e-0d09-4c37-ab68-0f1e0b08c2b8">Freepik</a>
+</sub>

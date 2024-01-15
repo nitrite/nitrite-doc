@@ -42,11 +42,15 @@ Nitrite is not an RDBMS. It is also not a distributed NoSQL database like MongoD
 
 ## 🚀 Getting Started
 
-Nitrite database is currently available in Java, Kotlin, and Flutter. Please visit respective language page for getting started guide.
+Nitrite database is currently available in Java, Kotlin, and Flutter. Please visit respective language page for getting started guide and repository link.
 
-- [Java](/java-sdk/getting-started)
-- [Kotlin](/kotlin-sdk/getting-started)
-- [Flutter](/flutter-sdk/getting-started)
+ |  | 
+---|---|---
+[!badge icon="assets/java.svg" text="Java" size="l"]() | [!badge icon="rocket" text="Getting Started" size="l"](/java-sdk/getting-started) | [!badge icon="mark-github" text="Repository" target="blank" size="l"](https://github.com/nitrite/nitrite-java)
+[!badge icon="assets/kotlin.svg" text="Kotlin" size="l"]() | [!badge icon="rocket" text="Getting Started" size="l"](/kotlin-sdk/getting-started) | [!badge icon="mark-github" text="Repository" target="blank" size="l"](https://github.com/nitrite/nitrite-java/tree/main/potassium-nitrite)
+[!badge icon="assets/flutter.svg" text="Flutter" size="l"]() | [!badge icon="rocket" text="Getting Started" size="l"](/flutter-sdk/getting-started) | [!badge icon="mark-github" text="Repository" target="blank" size="l"](https://github.com/nitrite/nitrite-flutter)
+
+
 
 ## 📝 License
 

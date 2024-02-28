@@ -43,6 +43,13 @@ One of such custom index implementation can be found in spatial module. It provi
 
 You can create an index on a collection using `createIndex()` method. There are several overloaded version of `createIndex()` method. You can create an index on a single field or multiple fields.
 
+!!!warning
+You cannot create a new index on a field or a set of fields which is already indexed with a different type of index.
+
+For example, if you have a unique index on `firstName` field, then you cannot create a non-unique index on `firstName` field. But you can create a unique index on `firstName` and `lastName` fields.
+Similarly, if you have a unique index on `firstName` and `lastName` fields, then you cannot create a non-unique index on `firstName` and `lastName` fields. But you can create two indexes on `firstName` and `lastName` fields separately.
+!!!
+
 ### Creating a Unique Index
 
 You can create a unique index on a single field or multiple fields. It takes the name of the fields on which the index will be created as input parameter.

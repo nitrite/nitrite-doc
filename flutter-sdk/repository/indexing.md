@@ -42,6 +42,13 @@ You can also create your own custom index. More information about custom index c
 
 You can define indexes for an entity using annotations. You can also create indexes using `ObjectRepository` interface.
 
+!!!warning
+You cannot create a new index on a field or a set of fields which is already indexed with a different type of index.
+
+For example, if you have a unique index on `firstName` field, then you cannot create a non-unique index on `firstName` field. But you can create a unique index on `firstName` and `lastName` fields.
+Similarly, if you have a unique index on `firstName` and `lastName` fields, then you cannot create a non-unique index on `firstName` and `lastName` fields. But you can create two indexes on `firstName` and `lastName` fields separately.
+!!!
+
 ### Creating a Unique Index
 
 You can create a unique index on a single field or multiple fields. It takes the name of the fields on which the index will be created as input parameter.

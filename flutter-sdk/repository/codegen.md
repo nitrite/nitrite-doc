@@ -216,7 +216,7 @@ There are certain limitations of each of the generators as described below:
 ### Converter Generator
 
 - `@Convertable` annotation can only be used on a class and not on an abstract class or mixin.
-- `@Convertable` can only be used on a class which has at least one public constructor which is either a default constructor or one with all the parameters named or optional. Examples are given below.
+- `@Convertable` can only be used on a class which has at least one public constructor which is either a default constructor or one with all the parameters named or optional.
 - A class with a constructor having all positional optional parameters should not have any final field.
 - A class with a constructor having all named parameters (optional/required) should have all the fields' names same as the parameter names.
 - There are certain limitations on the fields and its data types:
@@ -226,6 +226,7 @@ There are certain limitations of each of the generators as described below:
   - `Symbol` type is not supported.
   - `Never` type is not supported.
   - `Void` type is not supported.
+  - Any field with user-defined class type should be nullable.
 - `@DocumentKey`, `@IgnoredKey` annotation can only be used on a field or property.
 - `@DocumentKey` annotation can not be used on a private/static/synthetic field.
 - `@IgnoredKey` annotation can not be used on a field with the same name as a non-null required named parameter in the constructor.

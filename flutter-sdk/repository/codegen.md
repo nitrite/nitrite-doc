@@ -215,7 +215,7 @@ There are certain limitations of each of the generators as described below:
 
 ### Converter Generator
 
-- `@Convertable` annotation can only be used on a class and not on an abstract class or mixin.
+- `@Convertable` annotation can only be used on a class and enum and not on an abstract class or mixin.
 - `@Convertable` can only be used on a class which has at least one public constructor which is either a default constructor or one with all the parameters named or optional.
 - A class with a constructor having all positional optional parameters should not have any final field.
 - A class with a constructor having all named parameters (optional/required) should have all the fields' names same as the parameter names.

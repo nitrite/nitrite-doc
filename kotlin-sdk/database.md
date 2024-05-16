@@ -183,3 +183,15 @@ var db = nitrite {
 !!!info
 By default, the field separator character is set to `.`.
 !!!
+
+### Disable Repository Type Validation
+
+Nitrite database has a feature called repository type validation. It ensures the type of the objects stored in the repository can be converted to and from the document. By default, the repository type validation is enabled. If you disable it, and if you try to store an object that cannot be converted to a document, Nitrite will throw an exception during the operation.
+
+To disable repository type validation, you need to set the `enableRepositoryValidation` property to `false` on `Builder` instance.
+
+```kotlin
+var db = nitrite {
+    enableRepositoryValidation = false
+}
+```

@@ -190,3 +190,17 @@ Nitrite db = Nitrite.builder()
 !!!info
 The default field separator character is set to `.`.
 !!!
+
+### Disable Repository Type Validation
+
+To disable repository type validation, you need to call `disableRepositoryTypeValidation()` method on `NitriteBuilder` instance. This method returns the same `NitriteBuilder` instance.
+
+Repository type validation is a feature in Nitrite that ensures the type of the objects stored in the repository can be converted to and from the document. By default, the repository type validation is enabled. If you disable it,
+and if you try to store an object that cannot be converted to a document, Nitrite will throw an exception during the operation.
+
+```java
+Nitrite db = Nitrite.builder()
+    .loadModule(storeModule)
+    .disableRepositoryTypeValidation()
+    .openOrCreate();
+```

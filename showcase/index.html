@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.833363232446">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.833365119266">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -15,7 +15,7 @@
     <!-- Primary Meta Tags -->
     <title>Showcase | Nitrite</title>
     <meta name="title" content="Showcase | Nitrite">
-    <meta name="description" content="If you are using Nitrite Database in your application, please fill up the form below. We will showcase your application in this page.">
+    <meta name="description" content="If you are using Nitrite Database in your application, use the submission form below. It opens a pre-filled GitHub issue draft in the nitrite-doc repository, which works reliably with this static documentation site and keeps showcase requests easy to review.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://nitrite.dizitart.com/showcase/index.html">
@@ -25,7 +25,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nitrite.dizitart.com/showcase/index.html">
     <meta property="og:title" content="Showcase | Nitrite">
-    <meta property="og:description" content="If you are using Nitrite Database in your application, please fill up the form below. We will showcase your application in this page.">
+    <meta property="og:description" content="If you are using Nitrite Database in your application, use the submission form below. It opens a pre-filled GitHub issue draft in the nitrite-doc repository, which works reliably with this static documentation site and keeps showcase requests easy to review.">
     <meta property="og:site_name" content="Nitrite">
     <meta property="og:locale" content="en_US">
 
@@ -33,7 +33,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://nitrite.dizitart.com/showcase/index.html">
     <meta name="twitter:title" content="Showcase | Nitrite">
-    <meta name="twitter:description" content="If you are using Nitrite Database in your application, please fill up the form below. We will showcase your application in this page.">
+    <meta name="twitter:description" content="If you are using Nitrite Database in your application, use the submission form below. It opens a pre-filled GitHub issue draft in the nitrite-doc repository, which works reliably with this static documentation site and keeps showcase requests easy to review.">
 
     <!-- Alternate Markdown -->
     <link rel="alternate" type="text/markdown" href="https://nitrite.dizitart.com/showcase.md">
@@ -41,12 +41,12 @@
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
     <link id="retype-favicon" rel="icon" href="../assets/favicon.png" />
-    <link href="../resources/css/retype.css?v=4.6.0.833363232446" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=4.6.0.833365119266" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=4.6.0.833363232446" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=4.6.0.833365119266" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../resources/js/search.js?v=4.6.0.833363232446" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.6.0.833363232446" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/search.js?v=4.6.0.833365119266" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.6.0.833365119266" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -202,14 +202,21 @@
 
 Submit your application below to showcase it here. -->
 <h2 id="showcase-your-application">Showcase Your Application</h2>
-<p>If you are using Nitrite Database in your application, please fill up the form below. We will showcase your application in this page.</p>
-<p>
-<figure>
-    <div class="relative w-full mb-6 overflow-hidden" style="height: 1300px; max-width: 640px;">
-        <iframe class="w-full h-full border-0" src="https://forms.gle/rc3KVEnkxNmxSjBf8" allowfullscreen></iframe>
-    </div>
-</figure>
-</p>
+<p>If you are using Nitrite Database in your application, use the submission form below. It opens a pre-filled GitHub issue draft in the <code translate="no" v-pre>nitrite-doc</code> repository, which works reliably with this static documentation site and keeps showcase requests easy to review.</p>
+<form action="https://github.com/nitrite/nitrite-doc/issues/new" method="get" target="_blank">
+	<p>
+		<label for="showcase-title"><strong>Submission title</strong></label><br>
+		<input id="showcase-title" name="title" type="text" required placeholder="Showcase: Your application name" style="width: 100%; max-width: 42rem; padding: 0.65rem; border: 1px solid #cbd5e1; border-radius: 0.5rem;" />
+	</p>
+	<p>
+		<label for="showcase-body"><strong>Application details</strong></label><br>
+		<textarea id="showcase-body" name="body" rows="16" required style="width: 100%; max-width: 42rem; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.5rem;">## Application name&#10;&#10;## Short description&#10;&#10;## SDK used&#10;- Rust / Java / Kotlin / Flutter&#10;&#10;## Repository or website&#10;- &#10;&#10;## How Nitrite is used&#10;- &#10;&#10;## Screenshots or demo links&#10;- &#10;&#10;## Contact details&#10;- </textarea>
+	</p>
+	<p>
+		<button type="submit" style="padding: 0.75rem 1rem; border: 0; border-radius: 0.5rem; background: #111827; color: #ffffff; cursor: pointer;">Open GitHub Submission Draft</button>
+	</p>
+</form>
+<p>If the form does not open correctly in your browser, use the direct fallback link: <a href="https://github.com/nitrite/nitrite-doc/issues/new">Create a showcase issue</a>.</p>
 
                 
                 <!-- Required only on API pages -->

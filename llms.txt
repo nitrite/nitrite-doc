@@ -149,7 +149,8 @@
 
 ## Examples
 
+- [Rust Examples](https://nitrite.dizitart.com/examples/rust.md): Here we discuss a Rust project tracker example that exercises most of Nitrite Rust's current feature set. It uses a Fjall-backed database for persistence,
 - [Java Examples](https://nitrite.dizitart.com/examples/java.md): Here we discuss about an Android todo application using Nitrite database. It uses nitrite as a file based storage engine. It demonstrates the use of Nitrite database in an Android application.
 - [Flutter Examples](https://nitrite.dizitart.com/examples/flutter.md): Here we discuss about a flutter todo application using Nitrite database. It uses nitrite as a file based storage engine. It also uses Riverpod for state management.
-- [Showcase](https://nitrite.dizitart.com/showcase.md): If you are using Nitrite Database in your application, please fill up the form below. We will showcase your application in this page.
+- [Showcase](https://nitrite.dizitart.com/showcase.md): If you are using Nitrite Database in your application, use the submission form below. It opens a pre-filled GitHub issue draft in the nitrite-doc repository, which works reliably with this static documentation site and keeps showcase requests easy to review.
 - [Frequently Asked Questions](https://nitrite.dizitart.com/faq.md): Nitrite is a server-less embedded database ideal for desktop, mobile or small web applications. It's an open source, self-contained database. It supports both in-memory and file based persistent store.

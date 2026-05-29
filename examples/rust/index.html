@@ -13,40 +13,41 @@
     <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
-    <title>Frequently Asked Questions | Nitrite</title>
-    <meta name="title" content="Frequently Asked Questions | Nitrite">
-    <meta name="description" content="Nitrite is a server-less embedded database ideal for desktop, mobile or small web applications. It's an open source, self-contained database. It supports both in-memory and file based persistent store.">
+    <title>Rust Examples | Nitrite</title>
+    <meta name="title" content="Rust Examples | Nitrite">
+    <meta name="description" content="Here we discuss a Rust project tracker example that exercises most of Nitrite Rust's current feature set. It uses a Fjall-backed database for persistence,">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://nitrite.dizitart.com/faq/index.html">
+    <link rel="canonical" href="https://nitrite.dizitart.com/examples/rust/index.html">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://nitrite.dizitart.com/sitemap.xml">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nitrite.dizitart.com/faq/index.html">
-    <meta property="og:title" content="Frequently Asked Questions | Nitrite">
-    <meta property="og:description" content="Nitrite is a server-less embedded database ideal for desktop, mobile or small web applications. It's an open source, self-contained database. It supports both in-memory and file based persistent store.">
+    <meta property="og:url" content="https://nitrite.dizitart.com/examples/rust/index.html">
+    <meta property="og:title" content="Rust Examples | Nitrite">
+    <meta property="og:description" content="Here we discuss a Rust project tracker example that exercises most of Nitrite Rust's current feature set. It uses a Fjall-backed database for persistence,">
     <meta property="og:site_name" content="Nitrite">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://nitrite.dizitart.com/faq/index.html">
-    <meta name="twitter:title" content="Frequently Asked Questions | Nitrite">
-    <meta name="twitter:description" content="Nitrite is a server-less embedded database ideal for desktop, mobile or small web applications. It's an open source, self-contained database. It supports both in-memory and file based persistent store.">
+    <meta name="twitter:url" content="https://nitrite.dizitart.com/examples/rust/index.html">
+    <meta name="twitter:title" content="Rust Examples | Nitrite">
+    <meta name="twitter:description" content="Here we discuss a Rust project tracker example that exercises most of Nitrite Rust's current feature set. It uses a Fjall-backed database for persistence,">
 
     <!-- Alternate Markdown -->
-    <link rel="alternate" type="text/markdown" href="https://nitrite.dizitart.com/faq.md">
+    <link rel="alternate" type="text/markdown" href="https://nitrite.dizitart.com/examples/rust.md">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link id="retype-favicon" rel="icon" href="../assets/favicon.png" />
-    <link href="../resources/css/retype.css?v=4.6.0.833365119266" rel="stylesheet">
+    <link id="retype-favicon" rel="icon" href="../../assets/favicon.png" />
+    <link href="../../resources/css/retype.css?v=4.6.0.833365119266" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=4.6.0.833365119266" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../resources/js/search.js?v=4.6.0.833365119266" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.6.0.833365119266" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.833365119266" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=4.6.0.833365119266" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.833365119266" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.833365119266" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -63,7 +64,7 @@
                 <div class="flex items-center px-2 md:px-6">
                     <a id="retype-branding-logo" href="https://nitrite.dizitart.com/index.html" class="flex items-center leading-snug text-2xl">
                         <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
-                            <img class="max-h-10 md:inline-block" src="../assets/nitrite-logo.svg" alt="" width="40" height="40">
+                            <img class="max-h-10 md:inline-block" src="../../assets/nitrite-logo.svg" alt="" width="40" height="40">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Nitrite</span>
                     </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">Docs</span>
@@ -197,33 +198,149 @@
                 <doc-page-actions></doc-page-actions>
 
                 <!-- Page content  -->
-<h1 id="frequently-asked-questions">Frequently Asked Questions</h1>
-<h2 id="what-is-nitrite">What is Nitrite?</h2>
-<p>Nitrite is a server-less embedded database ideal for desktop, mobile or small web applications. It&#x27;s an open source, self-contained database. It supports both in-memory and file based persistent store.</p>
-<h2 id="is-nitrite-an-rdbms">Is Nitrite an RDBMS?</h2>
-<p>No, Nitrite is not an RDBMS. It&#x27;s a NoSQL database. It&#x27;s a document store with support for indexing, full-text search, event listeners, embedded and in-memory modes, encryption, and many other features.</p>
-<h2 id="what-is-the-difference-between-nitrite-and-sqlite">What is the difference between Nitrite and SQLite?</h2>
-<p>Nitrite is a NoSQL document store, whereas SQLite is an RDBMS. Nitrite is a document store, whereas SQLite is a relational store. Nitrite has pure Java, Dart implementations, whereas SQLite has C/C++ implementation and native bindings are needed for other languages.</p>
-<h2 id="which-platforms-are-supported-by-nitrite">Which platforms are supported by Nitrite?</h2>
-<p>Nitrite Java is supported on all platforms where Java is supported. Nitrite Flutter is supported on all platforms where Dart is supported.</p>
-<h2 id="when-should-i-use-nitrite">When should I use Nitrite?</h2>
-<p>Nitrite is a good choice for desktop, mobile or small web applications. It&#x27;s a good choice for applications where you don&#x27;t want to install a separate database server. It&#x27;s a good choice for applications where you want to store data in-memory.</p>
-<h2 id="what-is-the-performance-of-nitrite">What is the performance of Nitrite?</h2>
-<p>Nitrite is highly performant, though it heavily depends on the underlying storage backend implementation. A JMH benchmark of Nitrite for Java is available <a href="https://github.com/nitrite/nitrite-jmh">here</a> where you can find its performance amongst various storage backends against SQLite.</p>
-<h2 id="does-nitrite-support-replication-over-network">Does Nitrite support replication over network?</h2>
-<p>No, Nitrite doesn&#x27;t support replication over network. It&#x27;s a server-less embedded database. If you are looking for replication, you can subscribe to collection events using <code translate="no" v-pre>CollectionEventListener</code> and replicate the data over network.</p>
-<h2 id="what-happened-to-nitrite-datagate-server">What happened to Nitrite DataGate Server?</h2>
-<p>Nitrite DataGate Server is now deprecated. It&#x27;s no longer maintained due to lack of interest from the community. If you are looking for it to be revived, please vote <a href="https://github.com/orgs/nitrite/discussions/1">here</a>. If enough people are interested, it will be revived.</p>
-<h2 id="what-happened-to-nitrite-explorer">What happened to Nitrite Explorer?</h2>
-<p>Nitrite Explorer is now deprecated. It&#x27;s no longer maintained due to lack of interest from the community. If you are looking for it to be revived, please vote <a href="https://github.com/orgs/nitrite/discussions/2">here</a>. If enough people are interested, it will be revived.</p>
-<h2 id="what-if-i-find-any-issues-in-the-documentation">What if I find any issues in the documentation?</h2>
-<p>If you find any issues in the documentation, please raise an issue <a href="https://github.com/nitrite/nitrite-doc/issues">here</a>.</p>
-<h2 id="what-if-i-had-any-suggestionsquestions">What if I had any suggestions/questions?</h2>
-<p>If you have any suggestions or questions about Nitrite, please start a discussion <a href="https://github.com/orgs/nitrite/discussions">here</a>.</p>
-<h2 id="what-is-the-license-of-nitrite">What is the license of Nitrite?</h2>
-<p>Nitrite is licensed under Apache License 2.0. It&#x27;s free to use in both commercial and non-commercial applications. If you are using Nitrite in your commercial application, please consider donating to the project.</p>
-<h2 id="how-can-i-donate-to-nitrite">How can I donate to Nitrite?</h2>
-<p>If you like Nitrite and want to support the project, please consider donating to the project. You can donate via <a href="https://github.com/sponsors/anidotnet">GitHub Sponsors</a>.</p>
+<h1 id="rust-examples">Rust Examples</h1>
+<p>Here we discuss a Rust project tracker example that exercises most of Nitrite Rust&#x27;s current feature set. It uses a Fjall-backed database for persistence, a typed repository for structured task data, a document collection for flexible activity records, Tantivy full-text search for text discovery, the spatial module for location-based lookups, transactions for batched writes, projection for lightweight reads, and sorted queries for reporting. The full runnable source code is available <a href="https://github.com/nitrite/nitrite-rust/blob/main/nitrite-int-test/examples/rust_feature_showcase.rs">here</a>.</p>
+<h2 id="setup">Setup</h2>
+<p>Add the following dependencies to your <code translate="no" v-pre>Cargo.toml</code> file:</p>
+<div id="setup-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-toml"><code v-pre class="language-toml">[dependencies]
+nitrite = &quot;0.2&quot;
+nitrite_derive = &quot;0.2&quot;
+nitrite_fjall_adapter = &quot;0.2&quot;
+nitrite_spatial = &quot;0.2&quot;
+nitrite_tantivy_fts = &quot;0.2&quot;
+uuid = { version = &quot;1&quot;, features = [&quot;v4&quot;] }</code></pre>
+</doc-codeblock></div>
+<h2 id="domain-model">Domain Model</h2>
+<p>The example keeps structured project data in a typed repository and uses entity-derived indexes for the common access paths:</p>
+<div id="domain-model-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-rust"><code v-pre class="language-rust">use nitrite_derive::{Convertible, NitriteEntity};
+
+#[derive(Debug, Clone, Convertible, NitriteEntity, Default)]
+#[entity(
+    name = &quot;tasks&quot;,
+    id(field = &quot;id&quot;),
+    index(type = &quot;unique&quot;, fields = &quot;slug&quot;),
+    index(type = &quot;non-unique&quot;, fields = &quot;status&quot;),
+    index(type = &quot;non-unique&quot;, fields = &quot;owner&quot;)
+)]
+struct Task {
+    pub id: i64,
+    pub slug: String,
+    pub title: String,
+    pub owner: String,
+    pub status: String,
+    pub priority: i64,
+    pub estimate_hours: i64,
+    pub tags: Vec&lt;String&gt;,
+}
+
+#[derive(Debug, Clone, Convertible, NitriteEntity, Default)]
+struct TaskSummary {
+    pub title: Option&lt;String&gt;,
+    pub status: Option&lt;String&gt;,
+    pub priority: Option&lt;i64&gt;,
+    pub owner: Option&lt;String&gt;,
+}</code></pre>
+</doc-codeblock></div>
+<h2 id="database-initialization">Database Initialization</h2>
+<p>The database is opened with the Fjall storage adapter and both optional search modules loaded:</p>
+<div id="database-initialization-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-rust"><code v-pre class="language-rust">use nitrite::nitrite::Nitrite;
+use nitrite_fjall_adapter::FjallModule;
+use nitrite_spatial::SpatialModule;
+use nitrite_tantivy_fts::TantivyFtsModule;
+
+let fjall_module = FjallModule::with_config()
+    .db_path(db_path)
+    .build();
+
+let db = Nitrite::builder()
+    .load_module(fjall_module)
+    .load_module(TantivyFtsModule::default())
+    .load_module(SpatialModule)
+    .open_or_create(None, None)?;</code></pre>
+</doc-codeblock></div>
+<p>The example also creates a flexible document collection with dedicated FTS and spatial indexes:</p>
+<div id="database-initialization-code-2" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-rust"><code v-pre class="language-rust">use nitrite_tantivy_fts::fts_index;
+use nitrite_spatial::spatial_index;
+
+let activity = db.collection(&quot;task_activity&quot;)?;
+activity.create_index(vec![&quot;summary&quot;], &amp;fts_index())?;
+activity.create_index(vec![&quot;location&quot;], &amp;spatial_index())?;</code></pre>
+</doc-codeblock></div>
+<h2 id="transactional-writes">Transactional Writes</h2>
+<p>Initial task data is written inside a session transaction so the structured repository changes commit together before the indexed activity documents are added:</p>
+<div id="transactional-writes-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-rust"><code v-pre class="language-rust">use nitrite::doc;
+use nitrite::repository::ObjectRepository;
+
+db.with_session(|session| {
+    let tx = session.begin_transaction()?;
+    let tx_tasks: ObjectRepository&lt;Task&gt; = tx.repository()?;
+
+    tx_tasks.insert(Task::new(
+        1,
+        &quot;release-dashboard&quot;,
+        &quot;Prepare the release dashboard&quot;,
+        &quot;alice&quot;,
+        &quot;open&quot;,
+        3,
+        8,
+        &amp;[&quot;release&quot;, &quot;dashboard&quot;],
+    ))?;
+
+    tx.commit()
+})?;</code></pre>
+</doc-codeblock></div>
+<p>The indexed activity collection is then populated through the normal collection API:</p>
+<div id="transactional-writes-code-2" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-rust"><code v-pre class="language-rust">use nitrite::doc;
+
+let activity = db.collection(&quot;task_activity&quot;)?;
+activity.insert(doc! {
+    &quot;task_slug&quot;: &quot;release-dashboard&quot;,
+    &quot;summary&quot;: &quot;Release dashboard shipped with offline sync metrics&quot;,
+    &quot;location&quot;: {
+        &quot;x&quot;: (-122.335167f64),
+        &quot;y&quot;: 47.608013f64
+    }
+})?;</code></pre>
+</doc-codeblock></div>
+<h2 id="queries-projection-and-reporting">Queries, Projection, and Reporting</h2>
+<p>After the seed write, the example demonstrates repository filtering, projection, sorted reads, updates, full-text search, and spatial queries:</p>
+<div id="queries-projection-and-reporting-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-rust"><code v-pre class="language-rust">use nitrite::collection::order_by;
+use nitrite::common::SortOrder;
+use nitrite::filter::{all, and, field};
+use nitrite_tantivy_fts::fts_field;
+use nitrite_spatial::{spatial_field, Geometry};
+
+let tasks: ObjectRepository&lt;Task&gt; = db.repository()?;
+let high_priority_open = tasks.find(and(vec![
+    field(&quot;status&quot;).eq(&quot;open&quot;),
+    field(&quot;priority&quot;).gte(2i64),
+]))?;
+
+let mut owner_cursor = tasks.find(field(&quot;owner&quot;).eq(&quot;alice&quot;))?;
+let summaries = owner_cursor.project::&lt;TaskSummary&gt;()?;
+
+let ordered = tasks.find_with_options(all(), &amp;order_by(&quot;priority&quot;, SortOrder::Descending))?;
+
+let activity = db.collection(&quot;task_activity&quot;)?;
+let text_matches = activity.find(fts_field(&quot;summary&quot;).matches(&quot;offline sync&quot;))?;
+
+let seattle = Geometry::envelope(-122.5, 47.5, -122.2, 47.7);
+let nearby = activity.find(spatial_field(&quot;location&quot;).within(seattle))?;</code></pre>
+</doc-codeblock></div>
+<h2 id="run-the-example">Run the Example</h2>
+<p>The source lives in the integration-test crate because it already depends on the optional Nitrite Rust modules used by the showcase example.</p>
+<div id="run-the-example-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">cd nitrite-rust
+cargo run -p nitrite_int_test --example rust_feature_showcase</code></pre>
+</doc-codeblock></div>
+<p>When the command finishes, it prints counts and summaries for the repository, full-text, and spatial queries, then closes and removes the temporary Fjall database directory.</p>
 
                 
                 <!-- Required only on API pages -->
@@ -233,16 +350,23 @@
             
                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                     <div class="w-1/2">
-                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../showcase/index.html">
+                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../flutter-sdk/support/encryption/index.html">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                             <span>
                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                <span class="block mt-1">Showcase</span>
+                                <span class="block mt-1">Encryption</span>
                             </span>
                         </a>
                     </div>
             
                     <div class="w-1/2">
+                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../examples/java/index.html">
+                            <span>
+                                <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
+                                <span class="block mt-1">Java Examples</span>
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                        </a>
                     </div>
                 </nav>
             </footer>
@@ -253,7 +377,7 @@
                 <div id="retype-footer-links" class="print:hidden">
                     <ul class="flex flex-wrap items-center text-sm">
                         <li>
-                            <a class="block mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-footer-link hover:text-footer-link-hover md:mb-0" href="../license/index.html">License</a>
+                            <a class="block mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-footer-link hover:text-footer-link-hover md:mb-0" href="../../license/index.html">License</a>
                         </li>
                     </ul>
                 </div>
@@ -286,6 +410,6 @@
 
     <div id="retype-overlay-target"></div>
 
-        <script data-cfasync="false">window.__DOCS__ = { "title": "FAQ", level: 1, icon: "file", hasPrism: false, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/faq.md" }</script>
+        <script data-cfasync="false">window.__DOCS__ = { "title": "Rust Examples", level: 2, icon: "file", hasPrism: true, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/examples/rust.md" }</script>
 </body>
 </html>

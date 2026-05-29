@@ -1,0 +1,155 @@
+﻿#  | Nitrite
+
+- [Welcome to Nitrite Database](https://nitrite.dizitart.com/welcome.md): Nitrite is a serverless, embedded, and self-contained NoSQL database. It is an open-source project that provides a simple API for persistent data storage. Nitrite database is designed to be lightweight, fast, and easy to use.
+
+## Java Guides
+
+- [Getting Started in Java](https://nitrite.dizitart.com/java-sdk/getting-started.md): This guide will help you get started with Nitrite database. It will show you how to create a database, create a collection, insert documents, and query documents in Java.
+- [Nitrite Database](https://nitrite.dizitart.com/java-sdk/database.md): Nitrite database is a serverless, embedded, and self-contained Java NoSQL database. It is an open-source project that provides a simple API for persistent data storage.
+- [Document](https://nitrite.dizitart.com/java-sdk/document.md): Document is the basic unit of data in Nitrite database. It is a JSON like field-value pairs. The field is always a String and value can be anything including null.
+
+### Nitrite Collection
+
+- [Introduction](https://nitrite.dizitart.com/java-sdk/collection/intro.md): NitriteCollection represents a named document collection stored in a Nitrite database. It persists documents in a Nitrite database. It is similar to a table in relational database or a collection in MongoDB.
+- [Write Operations](https://nitrite.dizitart.com/java-sdk/collection/write.md): Documents can be inserted into a collection using insert() method. It takes one or multiple Document objects as input parameter. It returns a WriteResult object.
+- [Read Operations](https://nitrite.dizitart.com/java-sdk/collection/read.md): You can search documents in a collection using find() method. There are several overloaded version of find() method using a filter or find options or both. You can also search a document using it's NitriteId.
+- [Indexing](https://nitrite.dizitart.com/java-sdk/collection/indexing.md): Indexing is a way to optimize the performance of a database by minimizing the number of disk accesses required when a query is processed. It is a data structure technique which is used to quickly locate and access the data in a database.
+- [Other Operations](https://nitrite.dizitart.com/java-sdk/collection/other.md): You can get the size of a collection using size() method. It returns the number of documents in the collection.
+
+### Object Repository
+
+- [Introduction](https://nitrite.dizitart.com/java-sdk/repository/intro.md): ObjectRepository provides a simple and type-safe API for storing and retrieving Java objects in a Nitrite database. It is built on top of NitriteCollection and provides a similar API for CRUD operations.
+- [Entity](https://nitrite.dizitart.com/java-sdk/repository/entity.md): An entity is a Java object that can be stored in a Nitrite database. An entity can be a simple POJO or a complex object with nested objects. Every entity in an ObjectRepository is actually converted to a Document before storing in the underlying NitriteCollection.
+- [NitriteMapper](https://nitrite.dizitart.com/java-sdk/repository/mapper.md): NitriteMapper is a simple and lightweight object mapper which can be used to map Java objects to Nitrite documents and vice-versa. Nitrite uses a NitriteMapper implementation to map Java entities to Nitrite documents and vice-versa while storing and retrieving objects from an ObjectRepository.
+- [Write Operations](https://nitrite.dizitart.com/java-sdk/repository/write.md): Entities can be inserted into a repository using insert() method. It takes one or multiple Java entities as input parameter. It returns a WriteResult object.
+- [Read Operations](https://nitrite.dizitart.com/java-sdk/repository/read.md): You can search entities in a repository using find() method. There are several overloaded version of find() method using a filter or find options or both. You can also search an entity using it's id.
+- [Indexing](https://nitrite.dizitart.com/java-sdk/repository/indexing.md): Indexing is a way to optimize the performance of a database by minimizing the number of disk accesses required when a query is processed. It is a data structure technique which is used to quickly locate and access the data in a database.
+- [Other Operations](https://nitrite.dizitart.com/java-sdk/repository/other.md): You can get the size of a repository using size() method. It returns the number of entities in the repository.
+- [Filters](https://nitrite.dizitart.com/java-sdk/filter.md): Filters are used to specify the criteria used to select documents from a collection or repository. It provides a way to specify conditions that the documents must meet to be included in the result set.
+- [Transaction](https://nitrite.dizitart.com/java-sdk/transaction.md): A transaction is a single logical unit of work which accesses and possibly modifies the contents of a database. Transactions access data using read and write operations.
+- [Schema Migration](https://nitrite.dizitart.com/java-sdk/migration.md): A migration is a set of changes to the schema that can be applied to a database. Migrations are used to keep the database schema up to date with the codebase.
+
+### Nitrite Modules
+
+- [Module System](https://nitrite.dizitart.com/java-sdk/modules/module-system.md): Nitrite is a modular database engine. The core functionality of Nitrite is provided by the nitrite module. The nitrite module is the only mandatory module for Nitrite.
+
+#### Storage Modules
+
+- [Storage Module](https://nitrite.dizitart.com/java-sdk/modules/store-modules/store-modules.md): Nitrite provides a default storage module which is in-memory. It means all the data is stored in memory and is volatile. Once the application is closed, all the data is lost.
+- [MVStore Modules](https://nitrite.dizitart.com/java-sdk/modules/store-modules/mvstore.md): Nitrite provides a persistent storage module based on MVStore. MVStore is a pure Java key-value store database. It is a single file based database. It is very fast and lightweight.
+- [RocksDB Module](https://nitrite.dizitart.com/java-sdk/modules/store-modules/rocksdb.md): Nitrite provides a persistent storage module based on RocksDB. RocksDB is a persistent key-value store for fast storage. It is based on a log-structured merge-tree (LSM tree) data structure.
+- [Custom Storage Modules](https://nitrite.dizitart.com/java-sdk/modules/store-modules/custom.md): The beauty of Nitrite is that it is highly extensible. You can write your own storage module and use it with Nitrite. Nitrite provides a simple interface StoreModule to write your own storage module.
+- [Spatial Module](https://nitrite.dizitart.com/java-sdk/modules/spatial.md): Nitrite Spatial module provides support for spatial queries. The module uses JTS library for spatial operations.
+- [Jackson Mapper Module](https://nitrite.dizitart.com/java-sdk/modules/jackson.md): Nitrite provides a Jackson mapper module to convert Java objects to Document and vice-versa. The module is useful when you don't want to use the EntityConverter interface to map Java objects to Document and vice-versa.
+
+### Support
+
+- [Usage](https://nitrite.dizitart.com/java-sdk/support/installation.md): Nitrite provides some additional functionalities via nitrite-support library. You can use the library to enable encryption, import/export database, and database recovery.
+- [Import/Export](https://nitrite.dizitart.com/java-sdk/support/exchange.md): Nitrite provides import/export functionality via nitrite-support library. You can import/export your database to/from a file in JSON format. You can choose to import/export the entire database or a specific collection.
+- [Encryption](https://nitrite.dizitart.com/java-sdk/support/encryption.md): Nitrite provides encryption support via nitrite-support module. You can encrypt your data using a password. Nitrite provides an Encryptor interface to encrypt and decrypt data.
+
+## Kotlin Guides
+
+- [Getting Started in Kotlin](https://nitrite.dizitart.com/kotlin-sdk/getting-started.md): This guide will help you get started with Nitrite database. It will show you how to create a database, create a collection, insert documents, and query documents in Kotlin.
+- [Nitrite Database](https://nitrite.dizitart.com/kotlin-sdk/database.md): Nitrite database is a serverless, embedded, and self-contained Java NoSQL database. It is an open-source project that provides a simple API for persistent data storage.
+- [Document](https://nitrite.dizitart.com/kotlin-sdk/document.md): Document is the basic unit of data in Nitrite database. It is a JSON like field-value pairs. The field is always a String and value can be anything including null.
+- [Nitrite Collection](https://nitrite.dizitart.com/kotlin-sdk/collection.md): NitriteCollection represents a named document collection stored in a Nitrite database. It persists documents in a Nitrite database. It is similar to a table in relational database or a collection in MongoDB.
+- [Object Repository](https://nitrite.dizitart.com/kotlin-sdk/repository.md): ObjectRepository provides a simple and type-safe API for storing and retrieving Kotlin/Java objects in a Nitrite database. It is built on top of NitriteCollection and provides a similar API for CRUD operations.
+- [Filters](https://nitrite.dizitart.com/kotlin-sdk/filter.md): Filters are used to specify the criteria used to select documents from a collection or repository. It provides a way to specify conditions that the documents must meet to be included in the result set.
+- [Transaction](https://nitrite.dizitart.com/kotlin-sdk/transaction.md): Nitrite supports transactional operations on its collections and repositories. A transaction can be committed or rolled back. Once a transaction is committed, all the changes are persisted to the disk.
+- [Potassium Nitrite Module](https://nitrite.dizitart.com/kotlin-sdk/kno2.md): Nitrite is a modular database engine, so is Potassium Nitrite. All Nitrite modules are compatible with Potassium Nitrite as well. More details about Nitrite modules can be found here.
+
+## Rust Guides
+
+- [Getting Started in Rust](https://nitrite.dizitart.com/rust-sdk/getting-started.md): This guide walks through the Rust Nitrite crates, opening a database, working with collections, and creating typed repositories.
+- [Nitrite Database](https://nitrite.dizitart.com/rust-sdk/database.md): Nitrite is an embedded, serverless database. In the Rust SDK, the database handle is the Nitrite type and the entry point for configuration is Nitrite::builder().
+- [Document](https://nitrite.dizitart.com/rust-sdk/document.md): Document is Nitrite's schemaless record type. It stores string keys and Value entries, supports nested documents and arrays, and uses a lock-free persistent map internally so cloning is cheap.
+
+### Nitrite Collection
+
+- [Introduction](https://nitrite.dizitart.com/rust-sdk/collection/intro.md): A NitriteCollection stores schemaless Document values under a logical name. Collections are the most direct way to use Nitrite: you work with documents, filters, indexes, processors, and events without adding an entity layer.
+- [Write Operations](https://nitrite.dizitart.com/rust-sdk/collection/write.md): Collections support inserts, batch inserts, document updates, and removals. All write operations return a WriteResult containing the affected NitriteId values.
+- [Read Operations](https://nitrite.dizitart.com/rust-sdk/collection/read.md): Collections return DocumentCursor values for query results. A cursor is replayable: it caches results as it iterates, and you can reset it to read from the beginning again.
+- [Indexing](https://nitrite.dizitart.com/rust-sdk/collection/indexing.md): Indexes accelerate collection queries at the cost of additional write-time maintenance. The core Rust SDK supports unique, non-unique, and core full-text indexes through IndexOptions helpers.
+- [Other Operations](https://nitrite.dizitart.com/rust-sdk/collection/other.md): Collections also expose metadata, lifecycle, event, and processing hooks through the shared PersistentCollection interface.
+
+### Object Repository
+
+- [Introduction](https://nitrite.dizitart.com/rust-sdk/repository/intro.md): An ObjectRepositoryT is Nitrite's typed persistence API. It stores Rust values as documents internally, but exposes typed CRUD and query operations at the call site.
+- [Entity](https://nitrite.dizitart.com/rust-sdk/repository/entity.md): NitriteEntity supplies repository metadata: the entity name, the repository ID definition, and any declared indexes. In day-to-day Rust code this is usually derived, not implemented by hand.
+- [Object Mapping](https://nitrite.dizitart.com/rust-sdk/repository/mapper.md): Rust Nitrite does not use the Java or Flutter NitriteMapper model. Instead, object mapping is part of the type contract: repositories require entities to implement Convertible, and repository metadata comes from NitriteEntity.
+- [Write Operations](https://nitrite.dizitart.com/rust-sdk/repository/write.md): Repository writes follow the same lifecycle as collection writes, but accept typed entities instead of raw Document values.
+- [Read Operations](https://nitrite.dizitart.com/rust-sdk/repository/read.md): Repository reads are the typed equivalent of collection reads. The result cursor converts each matching document back into your entity type lazily.
+- [Indexing](https://nitrite.dizitart.com/rust-sdk/repository/indexing.md): Repositories can be indexed in two ways:
+- [Other Operations](https://nitrite.dizitart.com/rust-sdk/repository/other.md): Repositories inherit the same persistent-collection services as collections and also expose repository-specific helpers such as document_collection().
+- [Filters](https://nitrite.dizitart.com/rust-sdk/filter.md): The Rust SDK exposes a fluent filter DSL through field(...). Filters can be combined, negated, and reused across collections and repositories.
+- [Transaction](https://nitrite.dizitart.com/rust-sdk/transaction.md): Nitrite transactions are session-based. A Session owns one or more NitriteTransaction instances, and each transaction provides isolated collection and repository views until you commit or roll back.
+- [Schema Migration](https://nitrite.dizitart.com/rust-sdk/migration.md): Nitrite for Rust supports versioned schema evolution through Migration and InstructionSet. Migrations are registered on the builder and run when the stored schema version differs from the version you request with schema_version().
+
+### Nitrite Modules
+
+- [Module System](https://nitrite.dizitart.com/rust-sdk/modules/module-system.md): Nitrite for Rust is modular by design. Modules are how storage engines and specialized indexers are added to the core engine.
+
+#### Storage Modules
+
+- [Storage Module](https://nitrite.dizitart.com/rust-sdk/modules/store-modules/store-modules.md): Nitrite for Rust always has a store backend. If you do not register one explicitly, the plugin manager loads the built-in in-memory store. If you need persistence, add a store module.
+- [Fjall Module](https://nitrite.dizitart.com/rust-sdk/modules/store-modules/fjall.md): nitrite-fjall-adapter is the persistent store module in the current Rust Nitrite ecosystem. It uses Fjall as an embedded LSM-tree backend.
+- [Custom Storage Modules](https://nitrite.dizitart.com/rust-sdk/modules/store-modules/custom.md): Nitrite's storage layer is public and extensible. If Fjall is not the right persistence strategy for your application, you can build a custom store module.
+- [Spatial Module](https://nitrite.dizitart.com/rust-sdk/modules/spatial.md): The nitrite-spatial crate adds spatial indexes and spatial filter builders for geometry-aware queries.
+- [Full-Text Search](https://nitrite.dizitart.com/rust-sdk/modules/full-text-search.md): The nitrite-tantivy-fts crate adds Tantivy-backed full-text indexing and a dedicated full-text query DSL.
+
+### Support
+
+- [Usage](https://nitrite.dizitart.com/rust-sdk/support/installation.md): Unlike the Java and Flutter SDKs, the Rust SDK does not have a separate nitrite-support package. Instead, functionality is split into focused crates.
+
+## Flutter Guides
+
+- [Getting Started in Flutter](https://nitrite.dizitart.com/flutter-sdk/getting-started.md): This guide will help you get started with Nitrite database. It will show you how to create a database, create a collection, insert documents, and query documents in Flutter.
+- [Database](https://nitrite.dizitart.com/flutter-sdk/database.md): Nitrite database is a serverless, embedded, and self-contained database for Flutter. It is an open-source project that provides a simple API for persistent data storage.
+- [Document](https://nitrite.dizitart.com/flutter-sdk/document.md): Document is the basic unit of data in Nitrite database. It is a JSON like field-value pairs. The field is always a String and value can be anything including null.
+
+### Nitrite Collection
+
+- [Introduction](https://nitrite.dizitart.com/flutter-sdk/collection/intro.md): NitriteCollection represents a named document collection stored in a Nitrite database. It persists documents in a Nitrite database. It is similar to a table in relational database or a collection in MongoDB.
+- [Write Operations](https://nitrite.dizitart.com/flutter-sdk/collection/write.md): Documents can be inserted into a collection using insert() or insertMany() methods. It takes one or multiple Document objects as input parameter respectively.
+- [Read Operations](https://nitrite.dizitart.com/flutter-sdk/collection/read.md): You can search documents in a collection using find() method. There are several ways of using find() method using a filter or find options or both. You can also search a document using it's NitriteId.
+- [Indexing](https://nitrite.dizitart.com/flutter-sdk/collection/indexing.md): Indexing is a way to optimize the performance of a database by minimizing the number of disk accesses required when a query is processed. It is a data structure technique which is used to quickly locate and access the data in a database.
+- [Other Operations](https://nitrite.dizitart.com/flutter-sdk/collection/other.md): You can get the size of a collection using size getter. It returns a future of the number of documents in the collection.
+
+### Object Repository
+
+- [Introduction](https://nitrite.dizitart.com/flutter-sdk/repository/intro.md): ObjectRepository provides a simple and type-safe API for storing and retrieving Dart objects in a Nitrite database. It is built on top of NitriteCollection and provides a similar API for CRUD operations.
+- [Code Generator](https://nitrite.dizitart.com/flutter-sdk/repository/codegen.md): Nitrite provides Dart build system builders to extract metadata and generate code for entity classes which is used by ObjectRepository. The builders generate code when they find a class annotated with some Nitrite specific annotations.
+- [Entity](https://nitrite.dizitart.com/flutter-sdk/repository/entity.md): An entity is a Dart object that can be stored in a collection. An entity can be a simple class with a few fields or a complex class with nested objects. Every entity in an ObjectRepository is actually converted to a Document before storing in the underlying NitriteCollection.
+- [NitriteMapper](https://nitrite.dizitart.com/flutter-sdk/repository/mapper.md): NitriteMapper is a simple and lightweight object mapper which can be used to map Dart objects to Nitrite documents and vice-versa. Nitrite uses a NitriteMapper implementation to map Dart entities to Nitrite documents and vice-versa while storing and retrieving objects from an ObjectRepository.
+- [Write Operations](https://nitrite.dizitart.com/flutter-sdk/repository/write.md): Entities can be inserted into a repository using insert() or insertMay() method. It takes one or multiple Dart entities as input parameter respectively. It returns a future of WriteResult object.
+- [Read Operations](https://nitrite.dizitart.com/flutter-sdk/repository/read.md): You can search entities in a repository using find() method. There are several ways of using find() method using a filter or find options or both. You can also search an entity using it's id.
+- [Indexing](https://nitrite.dizitart.com/flutter-sdk/repository/indexing.md): Indexing is a way to optimize the performance of a database by minimizing the number of disk accesses required when a query is processed. It is a data structure technique which is used to quickly locate and access the data in a database.
+- [Other Operations](https://nitrite.dizitart.com/flutter-sdk/repository/other.md): You can get the size of a repository using size getter. It returns a future of the number of entities in the repository.
+- [Filters](https://nitrite.dizitart.com/flutter-sdk/filter.md): Filters are used to specify the criteria used to select documents from a collection or repository. It provides a way to specify conditions that the documents must meet to be included in the result set.
+- [Transaction](https://nitrite.dizitart.com/flutter-sdk/transaction.md): A transaction is a single logical unit of work which accesses and possibly modifies the contents of a database. Transactions access data using read and write operations.
+- [Schema Migration](https://nitrite.dizitart.com/flutter-sdk/migration.md): A migration is a set of changes to the schema that can be applied to a database. Migrations are used to keep the database schema up to date with the codebase.
+
+### Nitrite Modules
+
+- [Module System](https://nitrite.dizitart.com/flutter-sdk/modules/module-system.md): Nitrite is a modular database engine. The core functionality of Nitrite is provided by the nitrite module. The nitrite module is the only mandatory module for Nitrite.
+
+#### Storage Modules
+
+- [Storage Module](https://nitrite.dizitart.com/flutter-sdk/modules/store-modules/store-modules.md): Nitrite provides a default storage module which is in-memory. It means all the data is stored in memory and is volatile. Once the application is closed, all the data is lost.
+- [Hive Modules](https://nitrite.dizitart.com/flutter-sdk/modules/store-modules/hive.md): Nitrite provides a persistent storage module based on Hive. Hive is a lightweight and blazing fast, file based key-value store written in pure Dart.
+- [Custom Storage Modules](https://nitrite.dizitart.com/flutter-sdk/modules/store-modules/custom.md): The beauty of Nitrite is that it is highly extensible. You can write your own storage module and use it with Nitrite. Nitrite provides a simple interface StoreModule to write your own storage module.
+- [Spatial Module](https://nitrite.dizitart.com/flutter-sdk/modules/spatial.md): Nitrite Spatial module provides support for spatial queries. The module uses JTS port of the dart package dart_jts for spatial operations.
+
+### Support
+
+- [Usage](https://nitrite.dizitart.com/flutter-sdk/support/installation.md): Nitrite provides some additional functionalities via nitrite-support library. You can use the library to enable encryption, import/export database etc.
+- [Import/Export](https://nitrite.dizitart.com/flutter-sdk/support/exchange.md): Nitrite provides import/export functionality via nitrite-support library. You can import/export your database to/from a file in JSON format. You can choose to import/export the entire database or a specific collection.
+- [Encryption](https://nitrite.dizitart.com/flutter-sdk/support/encryption.md): Nitrite provides field level encryption support via nitrite-support module. You can encrypt your data using with or without a password.
+
+## Examples
+
+- [Java Examples](https://nitrite.dizitart.com/examples/java.md): Here we discuss about an Android todo application using Nitrite database. It uses nitrite as a file based storage engine. It demonstrates the use of Nitrite database in an Android application.
+- [Flutter Examples](https://nitrite.dizitart.com/examples/flutter.md): Here we discuss about a flutter todo application using Nitrite database. It uses nitrite as a file based storage engine. It also uses Riverpod for state management.
+- [Showcase](https://nitrite.dizitart.com/showcase.md): If you are using Nitrite Database in your application, please fill up the form below. We will showcase your application in this page.
+- [Frequently Asked Questions](https://nitrite.dizitart.com/faq.md): Nitrite is a server-less embedded database ideal for desktop, mobile or small web applications. It's an open source, self-contained database. It supports both in-memory and file based persistent store.

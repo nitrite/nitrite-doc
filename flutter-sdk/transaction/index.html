@@ -6,244 +6,205 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.769153167333">
+    <meta name="color-scheme" content="light dark">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.833363232446">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.5.0">
+    <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
     <title>Transaction | Nitrite</title>
     <meta name="title" content="Transaction | Nitrite">
-    <meta name="description" content="A transaction is a single logical unit of work which accesses and possibly modifies the contents of a database.">
+    <meta name="description" content="A transaction is a single logical unit of work which accesses and possibly modifies the contents of a database. Transactions access data using read and write operations.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://nitrite.dizitart.com/flutter-sdk/transaction/index.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://nitrite.dizitart.com/sitemap.xml">
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nitrite.dizitart.com/flutter-sdk/transaction/index.html">
     <meta property="og:title" content="Transaction | Nitrite">
-    <meta property="og:description" content="A transaction is a single logical unit of work which accesses and possibly modifies the contents of a database.">
+    <meta property="og:description" content="A transaction is a single logical unit of work which accesses and possibly modifies the contents of a database. Transactions access data using read and write operations.">
+    <meta property="og:site_name" content="Nitrite">
+    <meta property="og:locale" content="en_US">
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://nitrite.dizitart.com/flutter-sdk/transaction/index.html">
-    <meta property="twitter:title" content="Transaction | Nitrite">
-    <meta property="twitter:description" content="A transaction is a single logical unit of work which accesses and possibly modifies the contents of a database.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://nitrite.dizitart.com/flutter-sdk/transaction/index.html">
+    <meta name="twitter:title" content="Transaction | Nitrite">
+    <meta name="twitter:description" content="A transaction is a single logical unit of work which accesses and possibly modifies the contents of a database. Transactions access data using read and write operations.">
 
-    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+    <!-- Alternate Markdown -->
+    <link rel="alternate" type="text/markdown" href="https://nitrite.dizitart.com/flutter-sdk/transaction.md">
 
-    <link href="../../assets/favicon.png" rel="icon">
-    <link href="../../resources/css/retype.css?v=3.5.0.769153167333" rel="stylesheet">
+    <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.769153167333" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.769153167333" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.769153167333" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.769153167333" defer></script>
+    <link id="retype-favicon" rel="icon" href="../../assets/favicon.png" />
+    <link href="../../resources/css/retype.css?v=4.6.0.833363232446" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.833363232446" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=4.6.0.833363232446" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.833363232446" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.833363232446" defer></script>
 </head>
 <body>
-    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
-        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
+    <div class="absolute bottom-0 left-0" style="top: 5rem; right: 50%"></div>
+
+    <header id="retype-header" class="sticky top-0 z-30 flex w-full h-16 bg-header-bg border-b border-header-border md:h-20">
+        <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+            <!-- Mobile menu button skeleton -->
+            <button v-cloak class="skeleton retype-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-hidden rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+            <div v-cloak id="retype-sidebar-left-toggle-button"></div>
     
-        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
-            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
-                <!-- Mobile menu button skeleton -->
-                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
-                <div v-cloak id="docs-sidebar-toggle"></div>
-        
-                <!-- Logo -->
-                <div class="flex items-center justify-between h-full py-2 md:w-75">
-                    <div class="flex items-center px-2 md:px-6">
-                        <a id="docs-site-logo" href="../../index.html" class="flex items-center leading-snug text-2xl">
-                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
-                                <img class="max-h-10 dark:hidden md:inline-block" src="../../assets/nitrite-logo.svg">
-                                <img class="max-h-10 hidden dark:inline-block" src="../../assets/nitrite-logo.svg">
-                            </span>
-                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Nitrite</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Docs</span>
-                    </div>
-        
-                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+            <!-- Logo -->
+            <div class="flex items-center justify-between h-full py-2 md:w-75">
+                <div class="flex items-center px-2 md:px-6">
+                    <a id="retype-branding-logo" href="https://nitrite.dizitart.com/index.html" class="flex items-center leading-snug text-2xl">
+                        <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                            <img class="max-h-10 md:inline-block" src="../../assets/nitrite-logo.svg" alt="" width="40" height="40">
+                        </span>
+                        <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Nitrite</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">Docs</span>
                 </div>
-        
-                <div class="flex justify-between md:grow">
-                    <!-- Top Nav -->
-                    <nav class="hidden md:flex">
-                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
-                            <li class="mr-6">
-                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://nitrite.dizitart.com">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
-                                        <g fill="currentColor">
-                                            <path d="M11.03 2.59a1.501 1.501 0 0 1 1.94 0l7.5 6.363a1.5 1.5 0 0 1 .53 1.144V19.5a1.5 1.5 0 0 1-1.5 1.5h-5.75a.75.75 0 0 1-.75-.75V14h-2v6.25a.75.75 0 0 1-.75.75H4.5A1.5 1.5 0 0 1 3 19.5v-9.403c0-.44.194-.859.53-1.144ZM12 3.734l-7.5 6.363V19.5h5v-6.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v6.25h5v-9.403Z"/>
-                                        </g>
-                                    </svg>
-                                    <span>Home</span>
-                                </a>
-                            </li>
-                            <li class="mr-6">
-                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/nitrite" target="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
-                                        <g fill="currentColor">
-                                            <symbol id="mark-github-icon-symbol" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></symbol><use xlink:href="#mark-github-icon-symbol" />
-                                        </g>
-                                    </svg>
-                                    <span>Github</span>
-                                </a>
-                            </li>
-                            <li class="mr-6">
-                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/sponsors/anidotnet" target="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
-                                        <g fill="currentColor">
-                                            <path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408Z"/>
-                                        </g>
-                                    </svg>
-                                    <span>Donate</span>
-                                </a>
-                            </li>
-        
-                        </ul>
-                    </nav>
-        
-                    <!-- Header Right Skeleton -->
-                    <div v-cloak class="flex justify-end grow skeleton">
-        
-                        <!-- Search input mock -->
-                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
-                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
-                            </div>
-                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
-                        </div>
-        
-                        <!-- Mobile search button -->
-                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
-                        </div>
-        
-                        <!-- Dark mode switch placeholder -->
-                        <div class="w-10 h-10 lg:ml-2"></div>
-        
-                        <!-- History button -->
-                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
-                        </div>
-                    </div>
-        
-                    <div v-cloak class="flex justify-end grow">
-                        <div id="docs-mobile-search-button"></div>
-                        <doc-search-desktop></doc-search-desktop>
-        
-                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
-                        <doc-history></doc-history>
-                    </div>
+    
+                <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
+            </div>
+    
+            <div class="flex justify-between md:grow">
+                <!-- Top Nav -->
+                <nav id="retype-header-nav" class="hidden md:flex">
+                    <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                        <li class="mr-6">
+                            <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text hover:text-header-text-hover" href="https://nitrite.dizitart.com">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="block shrink-0 mr-1.5" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                                    <path d="M11.03 2.59a1.501 1.501 0 0 1 1.94 0l7.5 6.363a1.5 1.5 0 0 1 .53 1.144V19.5a1.5 1.5 0 0 1-1.5 1.5h-5.75a.75.75 0 0 1-.75-.75V14h-2v6.25a.75.75 0 0 1-.75.75H4.5A1.5 1.5 0 0 1 3 19.5v-9.403c0-.44.194-.859.53-1.144ZM12 3.734l-7.5 6.363V19.5h5v-6.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v6.25h5v-9.403Z"/>
+                                </svg>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li class="mr-6">
+                            <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text hover:text-header-text-hover" href="https://github.com/nitrite" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="block shrink-0 mr-1.5" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                                    <path d="M10.226 17.284c-2.965-.36-5.054-2.493-5.054-5.256 0-1.123.404-2.336 1.078-3.144-.292-.741-.247-2.314.09-2.965.898-.112 2.111.36 2.83 1.01.853-.269 1.752-.404 2.853-.404 1.1 0 1.999.135 2.807.382.696-.629 1.932-1.1 2.83-.988.315.606.36 2.179.067 2.942.72.854 1.101 2 1.101 3.167 0 2.763-2.089 4.852-5.098 5.234.763.494 1.28 1.572 1.28 2.807v2.336c0 .674.561 1.056 1.235.786 4.066-1.55 7.255-5.615 7.255-10.646C23.5 6.188 18.334 1 11.978 1 5.62 1 .5 6.188.5 12.545c0 4.986 3.167 9.12 7.435 10.669.606.225 1.19-.18 1.19-.786V20.63a2.9 2.9 0 0 1-1.078.224c-1.483 0-2.359-.808-2.987-2.313-.247-.607-.517-.966-1.034-1.033-.27-.023-.359-.135-.359-.27 0-.27.45-.471.898-.471.652 0 1.213.404 1.797 1.235.45.651.921.943 1.483.943.561 0 .92-.202 1.437-.719.382-.381.674-.718.944-.943"/>
+                                </svg>
+                                <span>Github</span>
+                            </a>
+                        </li>
+                        <li class="mr-6">
+                            <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text hover:text-header-text-hover" href="https://github.com/sponsors/anidotnet" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="block shrink-0 mr-1.5" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                                    <path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408Z"/>
+                                </svg>
+                                <span>Donate</span>
+                            </a>
+                        </li>
+    
+                    </ul>
+                </nav>
+    
+                <div v-cloak class="flex justify-end grow">
+                    <div id="retype-mobile-search-button"></div>
+                    <doc-search-desktop></doc-search-desktop>
+    
+                    <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                    <doc-history></doc-history>
                 </div>
             </div>
-        </header>
-    
-        <div class="container relative flex bg-white">
-            <!-- Sidebar Skeleton -->
-            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
-            
-                <!-- Render this div, if config.showSidebarFilter is `true` -->
-                <div class="flex items-center h-16 px-6">
-                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
-                </div>
-            
-                <div class="pl-6 mt-1 mb-4">
-                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                </div>
-            
-                <div class="shrink-0 mt-auto bg-transparent dark:border-dark-650">
-                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+        </div>
+    </header>
+
+
+    <div id="retype-container" class="container relative flex bg-white">
+        <!-- Sidebar Skeleton -->
+        <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-sidebar-left-bg border-sidebar-left-border sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton">
+        
+            <div class="flex items-center h-16 px-6">
+                <input id="retype-filter-input-mock" class="w-full h-10 pl-8 px-3 py-2 transition-colors duration-200 ease-linear bg-filter-bg border border-filter-border rounded-lg shadow-none md:text-sm hover:border-filter-border-hover focus:outline-hidden focus:border-filter-border-focus placeholder-filter-placeholder" type="text">
+            </div>
+        
+            <div class="pl-6 mt-1 mb-4">
+                <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+            </div>
+        
+            <div class="shrink-0 mt-auto bg-transparent dark:border-base-border">
+                <a class="flex items-center justify-center flex-nowrap h-16 text-gray-350 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                    <span class="text-xs whitespace-nowrap">Powered by</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Sidebar component -->
+        <doc-sidebar v-cloak>
+            <template #sidebar-footer>
+                <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-base-border">
+        
+                    <div class="py-3 px-6 md:hidden border-b dark:border-base-border">
+                        <nav>
+                            <ul class="flex flex-wrap justify-center items-center">
+                                <li class="mr-6">
+                                    <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text hover:text-header-text-hover" href="https://nitrite.dizitart.com">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="block shrink-0 mr-1.5" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                                            <path d="M11.03 2.59a1.501 1.501 0 0 1 1.94 0l7.5 6.363a1.5 1.5 0 0 1 .53 1.144V19.5a1.5 1.5 0 0 1-1.5 1.5h-5.75a.75.75 0 0 1-.75-.75V14h-2v6.25a.75.75 0 0 1-.75.75H4.5A1.5 1.5 0 0 1 3 19.5v-9.403c0-.44.194-.859.53-1.144ZM12 3.734l-7.5 6.363V19.5h5v-6.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v6.25h5v-9.403Z"/>
+                                        </svg>
+                                        <span>Home</span>
+                                    </a>
+                                </li>
+                                <li class="mr-6">
+                                    <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text hover:text-header-text-hover" href="https://github.com/nitrite" target="_blank">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="block shrink-0 mr-1.5" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                                            <path d="M10.226 17.284c-2.965-.36-5.054-2.493-5.054-5.256 0-1.123.404-2.336 1.078-3.144-.292-.741-.247-2.314.09-2.965.898-.112 2.111.36 2.83 1.01.853-.269 1.752-.404 2.853-.404 1.1 0 1.999.135 2.807.382.696-.629 1.932-1.1 2.83-.988.315.606.36 2.179.067 2.942.72.854 1.101 2 1.101 3.167 0 2.763-2.089 4.852-5.098 5.234.763.494 1.28 1.572 1.28 2.807v2.336c0 .674.561 1.056 1.235.786 4.066-1.55 7.255-5.615 7.255-10.646C23.5 6.188 18.334 1 11.978 1 5.62 1 .5 6.188.5 12.545c0 4.986 3.167 9.12 7.435 10.669.606.225 1.19-.18 1.19-.786V20.63a2.9 2.9 0 0 1-1.078.224c-1.483 0-2.359-.808-2.987-2.313-.247-.607-.517-.966-1.034-1.033-.27-.023-.359-.135-.359-.27 0-.27.45-.471.898-.471.652 0 1.213.404 1.797 1.235.45.651.921.943 1.483.943.561 0 .92-.202 1.437-.719.382-.381.674-.718.944-.943"/>
+                                        </svg>
+                                        <span>Github</span>
+                                    </a>
+                                </li>
+                                <li class="mr-6">
+                                    <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text hover:text-header-text-hover" href="https://github.com/sponsors/anidotnet" target="_blank">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="block shrink-0 mr-1.5" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                                            <path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408Z"/>
+                                        </svg>
+                                        <span>Donate</span>
+                                    </a>
+                                </li>
+        
+                            </ul>
+                        </nav>
+                    </div>
+        
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-350 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
                         <span class="text-xs whitespace-nowrap">Powered by</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
                     </a>
                 </div>
-            </div>
-            
-            <!-- Sidebar component -->
-            <doc-sidebar v-cloak>
-                <template #sidebar-footer>
-                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
-            
-                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
-                            <nav>
-                                <ul class="flex flex-wrap justify-center items-center">
-                                    <li class="mr-6">
-                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://nitrite.dizitart.com">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
-                                                <g fill="currentColor">
-                                                    <path d="M11.03 2.59a1.501 1.501 0 0 1 1.94 0l7.5 6.363a1.5 1.5 0 0 1 .53 1.144V19.5a1.5 1.5 0 0 1-1.5 1.5h-5.75a.75.75 0 0 1-.75-.75V14h-2v6.25a.75.75 0 0 1-.75.75H4.5A1.5 1.5 0 0 1 3 19.5v-9.403c0-.44.194-.859.53-1.144ZM12 3.734l-7.5 6.363V19.5h5v-6.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v6.25h5v-9.403Z"/>
-                                                </g>
-                                            </svg>
-                                            <span>Home</span>
-                                        </a>
-                                    </li>
-                                    <li class="mr-6">
-                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/nitrite" target="_blank">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
-                                                <g fill="currentColor">
-                                                    <symbol id="mark-github-icon-symbol" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></symbol><use xlink:href="#mark-github-icon-symbol" />
-                                                </g>
-                                            </svg>
-                                            <span>Github</span>
-                                        </a>
-                                    </li>
-                                    <li class="mr-6">
-                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/sponsors/anidotnet" target="_blank">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
-                                                <g fill="currentColor">
-                                                    <path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408Z"/>
-                                                </g>
-                                            </svg>
-                                            <span>Donate</span>
-                                        </a>
-                                    </li>
-            
-                                </ul>
-                            </nav>
-                        </div>
-            
-                        <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
-                            <span class="text-xs whitespace-nowrap">Powered by</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
-                        </a>
-                    </div>
-                </template>
-            </doc-sidebar>
-    
-            <div class="grow min-w-0 dark:bg-dark-850">
-                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
-                <div class="flex">
-                    <div class="min-w-0 p-4 grow md:px-16">
-                        <main class="relative pb-12 lg:pt-2">
-                            <div class="docs-markdown" id="docs-content">
-                                <!-- Rendered if sidebar right is enabled -->
-                                <div id="docs-sidebar-right-toggle"></div>
-                                <!-- Page content  -->
-<doc-anchor-target id="transaction" class="break-words">
-    <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#transaction">#</doc-anchor-trigger>
-        <span>Transaction</span>
-    </h1>
-</doc-anchor-target>
+            </template>
+        </doc-sidebar>
+
+        <div class="grow min-w-0 bg-body-bg">
+            <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+<div class="flex">
+    <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
+        <main class="relative pb-12 lg:pt-2">
+            <div class="relative retype-markdown" id="retype-content">
+                <!-- Rendered if sidebar right is enabled -->
+                <div id="retype-sidebar-right-toggle"></div>
+                <doc-page-actions></doc-page-actions>
+
+                <!-- Page content  -->
+<h1 id="transaction">Transaction</h1>
 <p>A transaction is a single logical unit of work which accesses and possibly modifies the contents of a database. Transactions access data using read and write operations.</p>
 <p>Nitrite supports transactional operations on its collections and repositories. A transaction can be committed or rolled back. Once a transaction is committed, all the changes are persisted to the disk. If a transaction is rolled back, all the changes are discarded.</p>
-<doc-anchor-target id="transaction-on-nitritecollection">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#transaction-on-nitritecollection">#</doc-anchor-trigger>
-        <span>Transaction on NitriteCollection</span>
-    </h2>
-</doc-anchor-target>
-<p>A transaction can be started from a session using the <code v-pre>Session.beginTransaction()</code> method. To start a transactional operation on a <code v-pre>NitriteCollection</code>, the <code v-pre>Transaction.getCollection()</code> method can be used. All the operations performed on the collection will be part of the transaction.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-dart"><code v-pre class="language-dart">// start a transaction
+<h2 id="transaction-on-nitritecollection">Transaction on NitriteCollection</h2>
+<p>A transaction can be started from a session using the <code translate="no" v-pre>Session.beginTransaction()</code> method. To start a transactional operation on a <code translate="no" v-pre>NitriteCollection</code>, the <code translate="no" v-pre>Transaction.getCollection()</code> method can be used. All the operations performed on the collection will be part of the transaction.</p>
+<div id="transaction-on-nitritecollection-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-dart"><code v-pre class="language-dart">// start a transaction
 var transaction = await session.beginTransaction();
 
 // get a collection
@@ -255,25 +216,25 @@ await collection.insert(doc1);
 // commit the transaction
 await transaction.commit();</code></pre>
 </doc-codeblock></div>
-<p>Nitrite also provides a <code v-pre>Session.executeTransaction()</code> method to execute a transactional operation. The <code v-pre>Session.executeTransaction()</code> method takes a callback function as an argument. The callback function will be executed inside a transaction.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-dart"><code v-pre class="language-dart">await session.executeTransaction((transaction) async {
+<p>Nitrite also provides a <code translate="no" v-pre>Session.executeTransaction()</code> method to execute a transactional operation. The <code translate="no" v-pre>Session.executeTransaction()</code> method takes a callback function as an argument. The callback function will be executed inside a transaction.</p>
+<div id="transaction-on-nitritecollection-code-2" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-dart"><code v-pre class="language-dart">await session.executeTransaction((transaction) async {
   var collection = await transaction.getCollection(&quot;test&quot;);
   await collection.insert(doc1);
 });</code></pre>
 </doc-codeblock></div>
-<p>If any exception occurs inside the transaction, the transaction will be rolled back. If you want to rollback a transaction only for certain exceptions, you can use the <code v-pre>Session.executeTransaction()</code> method with <code v-pre>rollbackFor</code> parameter. The <code v-pre>rollbackFor</code> parameter takes a list of exception types for which the transaction will be rolled back. For any other exceptions, the transaction will be committed.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-dart"><code v-pre class="language-dart">await session.executeTransaction((transaction) async {
+<p>If any exception occurs inside the transaction, the transaction will be rolled back. If you want to rollback a transaction only for certain exceptions, you can use the <code translate="no" v-pre>Session.executeTransaction()</code> method with <code translate="no" v-pre>rollbackFor</code> parameter. The <code translate="no" v-pre>rollbackFor</code> parameter takes a list of exception types for which the transaction will be rolled back. For any other exceptions, the transaction will be committed.</p>
+<div id="transaction-on-nitritecollection-code-3" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-dart"><code v-pre class="language-dart">await session.executeTransaction((transaction) async {
   var collection = await transaction.getCollection(&quot;test&quot;);
   await collection.insert(doc1);
 }, rollbackFor: [NitriteException]);</code></pre>
 </doc-codeblock></div>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-info"></div>
+    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
         <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+            <svg xmlns="http://www.w3.org/2000/svg" class="block text-callout-info" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
                     <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
                     <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
@@ -287,31 +248,21 @@ await transaction.commit();</code></pre>
         </div>
     </div>
 </div>
-<doc-anchor-target id="auto-commit-operations">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#auto-commit-operations">#</doc-anchor-trigger>
-        <span>Auto-commit Operations</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="auto-commit-operations">Auto-commit Operations</h3>
 <p>Certain operations are auto-committed in Nitrite. Those operations are not part of a transaction and cannot be rolled back. The following operations are auto-committed:</p>
 <ul>
-<li><code v-pre>NitriteCollection.createIndex()</code></li>
-<li><code v-pre>NitriteCollection.rebuildIndex()</code></li>
-<li><code v-pre>NitriteCollection.dropIndex()</code></li>
-<li><code v-pre>NitriteCollection.dropAllIndices()</code></li>
-<li><code v-pre>NitriteCollection.drop()</code></li>
-<li><code v-pre>NitriteCollection.clear()</code></li>
-<li><code v-pre>NitriteCollection.close()</code></li>
+<li><code translate="no" v-pre>NitriteCollection.createIndex()</code></li>
+<li><code translate="no" v-pre>NitriteCollection.rebuildIndex()</code></li>
+<li><code translate="no" v-pre>NitriteCollection.dropIndex()</code></li>
+<li><code translate="no" v-pre>NitriteCollection.dropAllIndices()</code></li>
+<li><code translate="no" v-pre>NitriteCollection.drop()</code></li>
+<li><code translate="no" v-pre>NitriteCollection.clear()</code></li>
+<li><code translate="no" v-pre>NitriteCollection.close()</code></li>
 </ul>
-<doc-anchor-target id="transaction-on-objectrepository">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#transaction-on-objectrepository">#</doc-anchor-trigger>
-        <span>Transaction on ObjectRepository</span>
-    </h2>
-</doc-anchor-target>
-<p>A transaction can be started from a session using the <code v-pre>Session.beginTransaction()</code> method. To start a transactional operation on a <code v-pre>ObjectRepository</code>, the <code v-pre>Transaction.getRepository()</code> method can be used. All the operations performed on the repository will be part of the transaction.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-dart"><code v-pre class="language-dart">// start a transaction
+<h2 id="transaction-on-objectrepository">Transaction on ObjectRepository</h2>
+<p>A transaction can be started from a session using the <code translate="no" v-pre>Session.beginTransaction()</code> method. To start a transactional operation on a <code translate="no" v-pre>ObjectRepository</code>, the <code translate="no" v-pre>Transaction.getRepository()</code> method can be used. All the operations performed on the repository will be part of the transaction.</p>
+<div id="transaction-on-objectrepository-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-dart"><code v-pre class="language-dart">// start a transaction
 var transaction = await session.beginTransaction();
 
 // get a repository
@@ -323,25 +274,25 @@ await repository.insert(employee);
 // commit the transaction
 await transaction.commit();</code></pre>
 </doc-codeblock></div>
-<p>Nitrite also provides a <code v-pre>Session.executeTransaction()</code> method to execute a transactional operation. The <code v-pre>Session.executeTransaction()</code> method takes a callback function as an argument. The callback function will be executed inside a transaction.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-dart"><code v-pre class="language-dart">await session.executeTransaction((transaction) async {
+<p>Nitrite also provides a <code translate="no" v-pre>Session.executeTransaction()</code> method to execute a transactional operation. The <code translate="no" v-pre>Session.executeTransaction()</code> method takes a callback function as an argument. The callback function will be executed inside a transaction.</p>
+<div id="transaction-on-objectrepository-code-2" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-dart"><code v-pre class="language-dart">await session.executeTransaction((transaction) async {
   var repository = await transaction.getRepository&lt;Employee&gt;();
   await repository.insert(employee);
 });</code></pre>
 </doc-codeblock></div>
-<p>If any exception occurs inside the transaction, the transaction will be rolled back. If you want to rollback a transaction only for certain exceptions, you can use the <code v-pre>Session.executeTransaction()</code> method with <code v-pre>rollbackFor</code> parameter. The <code v-pre>rollbackFor</code> parameter takes a list of exception types for which the transaction will be rolled back. For any other exceptions, the transaction will be committed.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-dart"><code v-pre class="language-dart">await session.executeTransaction((transaction) async {
+<p>If any exception occurs inside the transaction, the transaction will be rolled back. If you want to rollback a transaction only for certain exceptions, you can use the <code translate="no" v-pre>Session.executeTransaction()</code> method with <code translate="no" v-pre>rollbackFor</code> parameter. The <code translate="no" v-pre>rollbackFor</code> parameter takes a list of exception types for which the transaction will be rolled back. For any other exceptions, the transaction will be committed.</p>
+<div id="transaction-on-objectrepository-code-3" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-dart"><code v-pre class="language-dart">await session.executeTransaction((transaction) async {
   var repository = await transaction.getRepository&lt;Employee&gt;();
   await repository.insert(employee);
 }, rollbackFor: [NitriteException]);</code></pre>
 </doc-codeblock></div>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-info"></div>
+    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
         <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+            <svg xmlns="http://www.w3.org/2000/svg" class="block text-callout-info" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
                     <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
                     <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
@@ -355,179 +306,144 @@ await transaction.commit();</code></pre>
         </div>
     </div>
 </div>
-<doc-anchor-target id="auto-commit-operations-1">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#auto-commit-operations-1">#</doc-anchor-trigger>
-        <span>Auto-commit Operations</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="auto-commit-operations-1">Auto-commit Operations</h3>
 <p>Certain operations are auto-committed in Nitrite. Those operations are not part of a transaction and cannot be rolled back. The following operations are auto-committed:</p>
 <ul>
-<li><code v-pre>ObjectRepository.createIndex()</code></li>
-<li><code v-pre>ObjectRepository.rebuildIndex()</code></li>
-<li><code v-pre>ObjectRepository.dropIndex()</code></li>
-<li><code v-pre>ObjectRepository.dropAllIndices()</code></li>
-<li><code v-pre>ObjectRepository.drop()</code></li>
-<li><code v-pre>ObjectRepository.clear()</code></li>
-<li><code v-pre>ObjectRepository.close()</code></li>
+<li><code translate="no" v-pre>ObjectRepository.createIndex()</code></li>
+<li><code translate="no" v-pre>ObjectRepository.rebuildIndex()</code></li>
+<li><code translate="no" v-pre>ObjectRepository.dropIndex()</code></li>
+<li><code translate="no" v-pre>ObjectRepository.dropAllIndices()</code></li>
+<li><code translate="no" v-pre>ObjectRepository.drop()</code></li>
+<li><code translate="no" v-pre>ObjectRepository.clear()</code></li>
+<li><code translate="no" v-pre>ObjectRepository.close()</code></li>
 </ul>
-<doc-anchor-target id="session">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#session">#</doc-anchor-trigger>
-        <span>Session</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="session">Session</h2>
 <p>A session represents a transactional context for a Nitrite database. Session is used to create a new transaction. A session should be closed after use to release any resources held by it. If a session is closed and the transaction is not committed, all opened transactions will be rolled back.</p>
-<doc-anchor-target id="create-a-session">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#create-a-session">#</doc-anchor-trigger>
-        <span>Create a Session</span>
-    </h3>
-</doc-anchor-target>
-<p>A session can be created using the <code v-pre>Nitrite.createSession()</code> method. Multiple sessions can be created for a Nitrite database.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-dart"><code v-pre class="language-dart">// create a session
+<h3 id="create-a-session">Create a Session</h3>
+<p>A session can be created using the <code translate="no" v-pre>Nitrite.createSession()</code> method. Multiple sessions can be created for a Nitrite database.</p>
+<div id="create-a-session-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-dart"><code v-pre class="language-dart">// create a session
 var session = db.createSession();</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="close-a-session">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#close-a-session">#</doc-anchor-trigger>
-        <span>Close a Session</span>
-    </h3>
-</doc-anchor-target>
-<p>A session can be closed using the <code v-pre>Session.close()</code> method. If a session is closed and the transaction is not committed, all opened transactions will be rolled back.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-java"><code v-pre class="language-java">// close a session
+<h3 id="close-a-session">Close a Session</h3>
+<p>A session can be closed using the <code translate="no" v-pre>Session.close()</code> method. If a session is closed and the transaction is not committed, all opened transactions will be rolled back.</p>
+<div id="close-a-session-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">// close a session
 await session.close();</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="checking-if-session-is-active">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#checking-if-session-is-active">#</doc-anchor-trigger>
-        <span>Checking If Session is Active</span>
-    </h3>
-</doc-anchor-target>
-<p>A session can be checked if it is active or not using the <code v-pre>Session.isActive</code> getter.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-dart"><code v-pre class="language-dart">// check if session is active
+<h3 id="checking-if-session-is-active">Checking If Session is Active</h3>
+<p>A session can be checked if it is active or not using the <code translate="no" v-pre>Session.isActive</code> getter.</p>
+<div id="checking-if-session-is-active-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-dart"><code v-pre class="language-dart">// check if session is active
 if (session.isActive) {
   // do something
 }</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="managing-transactions">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#managing-transactions">#</doc-anchor-trigger>
-        <span>Managing Transactions</span>
-    </h2>
-</doc-anchor-target>
-<p>A transaction can be started using the <code v-pre>Session.beginTransaction()</code> method.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-dart"><code v-pre class="language-dart">// start a transaction
+<h2 id="managing-transactions">Managing Transactions</h2>
+<p>A transaction can be started using the <code translate="no" v-pre>Session.beginTransaction()</code> method.</p>
+<div id="managing-transactions-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-dart"><code v-pre class="language-dart">// start a transaction
 var transaction = await session.beginTransaction();</code></pre>
 </doc-codeblock></div>
-<p>A transaction can be committed using the <code v-pre>Transaction.commit()</code> method. If a transaction is committed, all the changes are persisted to the disk.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-dart"><code v-pre class="language-dart">// commit a transaction
+<p>A transaction can be committed using the <code translate="no" v-pre>Transaction.commit()</code> method. If a transaction is committed, all the changes are persisted to the disk.</p>
+<div id="managing-transactions-code-2" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-dart"><code v-pre class="language-dart">// commit a transaction
 await transaction.commit();</code></pre>
 </doc-codeblock></div>
-<p>A transaction can be rolled back using the <code v-pre>Transaction.rollback()</code> method. If a transaction is rolled back, all the changes are discarded.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-dart"><code v-pre class="language-dart">// rollback a transaction
+<p>A transaction can be rolled back using the <code translate="no" v-pre>Transaction.rollback()</code> method. If a transaction is rolled back, all the changes are discarded.</p>
+<div id="managing-transactions-code-3" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-dart"><code v-pre class="language-dart">// rollback a transaction
 await transaction.rollback();</code></pre>
 </doc-codeblock></div>
-<p>A transaction can be closed using the <code v-pre>Transaction.close()</code> method. If a transaction is closed and the transaction is not committed, all opened transactions will be rolled back.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-dart"><code v-pre class="language-dart">// close a transaction
+<p>A transaction can be closed using the <code translate="no" v-pre>Transaction.close()</code> method. If a transaction is closed and the transaction is not committed, all opened transactions will be rolled back.</p>
+<div id="managing-transactions-code-4" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-dart"><code v-pre class="language-dart">// close a transaction
 await transaction.close();</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="querying-transaction-state">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#querying-transaction-state">#</doc-anchor-trigger>
-        <span>Querying Transaction State</span>
-    </h3>
-</doc-anchor-target>
-<p>The current state of a transaction can be retrieved using the <code v-pre>Transaction.getState()</code> method. It returns an enum of type <code v-pre>TransactionState</code>.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-dart"><code v-pre class="language-dart">// get transaction state
+<h3 id="querying-transaction-state">Querying Transaction State</h3>
+<p>The current state of a transaction can be retrieved using the <code translate="no" v-pre>Transaction.getState()</code> method. It returns an enum of type <code translate="no" v-pre>TransactionState</code>.</p>
+<div id="querying-transaction-state-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-dart"><code v-pre class="language-dart">// get transaction state
 var state = transaction.getState();</code></pre>
 </doc-codeblock></div>
-<p>Possible values for <code v-pre>TransactionState</code> are:</p>
+<p>Possible values for <code translate="no" v-pre>TransactionState</code> are:</p>
 <ul>
-<li><code v-pre>TransactionState.active</code> - The transaction is active.</li>
-<li><code v-pre>TransactionState.committed</code> - The transaction is committed.</li>
-<li><code v-pre>TransactionState.partiallyCommitted</code> - The transaction is partially committed.</li>
-<li><code v-pre>TransactionState.closed</code> - The transaction is closed.</li>
-<li><code v-pre>TransactionState.failed</code> - The transaction is failed.</li>
-<li><code v-pre>TransactionState.aborted</code> - The transaction is aborted.</li>
+<li><code translate="no" v-pre>TransactionState.active</code> - The transaction is active.</li>
+<li><code translate="no" v-pre>TransactionState.committed</code> - The transaction is committed.</li>
+<li><code translate="no" v-pre>TransactionState.partiallyCommitted</code> - The transaction is partially committed.</li>
+<li><code translate="no" v-pre>TransactionState.closed</code> - The transaction is closed.</li>
+<li><code translate="no" v-pre>TransactionState.failed</code> - The transaction is failed.</li>
+<li><code translate="no" v-pre>TransactionState.aborted</code> - The transaction is aborted.</li>
 </ul>
 
-                                
-                                <!-- Required only on API pages -->
-                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
-                            </div>
-                            <footer class="clear-both">
-                            
-                                <nav class="flex mt-14">
-                                    <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../flutter-sdk/filter/index.html">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
-                                            <span>
-                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">Filters</span>
-                                            </span>
-                                        </a>
-                                    </div>
-                            
-                                    <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../flutter-sdk/migration/index.html">
-                                            <span>
-                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Schema Migration</span>
-                                            </span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
-                                        </a>
-                                    </div>
-                                </nav>
-                            </footer>
-                        </main>
                 
-                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
-                            <footer class="flex flex-wrap items-center justify-between">
-                                <div>
-                                    <ul class="flex flex-wrap items-center text-sm">
-                                        <li>
-                                            <a class="block mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="../../license/index.html">License</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>Made with <span class="docs-emoji">&#x2764;&#xFE0F;</span> in India. Copyright © 2024 Dizitart. All rights reserved.</p></div>
-                            </footer>
-                        </div>
-                    </div>
-                
-                    <!-- Rendered if sidebar right is enabled -->
-                    <!-- Sidebar right skeleton-->
-                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
-                        <div class="pl-5">
-                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
-                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
-                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
-                        </div>
-                    </div>
-                
-                    <!-- User should be able to hide sidebar right -->
-                    <doc-sidebar-right v-cloak></doc-sidebar-right>
-                </div>
-
+                <!-- Required only on API pages -->
+                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
             </div>
+            <footer id="retype-content-footer" class="clear-both">
+            
+                <nav id="retype-nextprev" class="print:hidden flex mt-14">
+                    <div class="w-1/2">
+                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../flutter-sdk/filter/index.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                            <span>
+                                <span class="block text-xs font-normal text-base-text-muted">Previous</span>
+                                <span class="block mt-1">Filters</span>
+                            </span>
+                        </a>
+                    </div>
+            
+                    <div class="w-1/2">
+                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../flutter-sdk/migration/index.html">
+                            <span>
+                                <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
+                                <span class="block mt-1">Schema Migration</span>
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                        </a>
+                    </div>
+                </nav>
+            </footer>
+        </main>
+
+        <div id="retype-page-footer" class="print:border-none border-t border-base-border pt-6 mb-8">
+            <footer class="flex flex-wrap items-center justify-between print:justify-center">
+                <div id="retype-footer-links" class="print:hidden">
+                    <ul class="flex flex-wrap items-center text-sm">
+                        <li>
+                            <a class="block mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-footer-link hover:text-footer-link-hover md:mb-0" href="../../license/index.html">License</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="retype-copyright" class="print:justify-center py-2 text-footer-text font-footer-link text-sm leading-relaxed"><p>Made with <span class="docs-emoji">&#x2764;&#xFE0F;</span> in India. Copyright © 2026 Dizitart. All rights reserved.</p></div>
+            </footer>
         </div>
-    
-        <doc-search-mobile></doc-search-mobile>
-        <doc-back-to-top></doc-back-to-top>
     </div>
 
+    <!-- Rendered if sidebar right is enabled -->
+    <!-- Sidebar right skeleton-->
+    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-sidebar-right-bg border-sidebar-right-border lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:translate-x-0 sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton">
+        <div class="pl-5">
+            <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+            <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+            <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+        </div>
+    </div>
 
-    <div id="docs-overlay-target"></div>
+    <!-- User should be able to hide sidebar right -->
+    <doc-sidebar-right v-cloak></doc-sidebar-right>
+</div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Transaction", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+        </div>
+    </div>
+
+    <doc-search-mobile></doc-search-mobile>
+    <doc-back-to-top></doc-back-to-top>
+</div>
+
+
+    <div id="retype-overlay-target"></div>
+
+        <script data-cfasync="false">window.__DOCS__ = { "title": "Transaction", level: 2, icon: "file", hasPrism: true, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/flutter-sdk/transaction.md" }</script>
 </body>
 </html>

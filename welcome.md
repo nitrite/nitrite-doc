@@ -9,7 +9,7 @@ order: 10
 
 # Welcome to Nitrite Database
 
-**NO**sql **O**bject (**NO<sub>2</sub>** a.k.a Nitrite) is a serverless, embedded, and self-contained NoSQL database. It is an open-source project that provides a simple API for persistent data storage. Nitrite database is designed to be lightweight, fast, and easy to use. Currently, it is available in Java, Kotlin, and Flutter.
+**NO**sql **O**bject (**NO<sub>2</sub>** a.k.a Nitrite) is a serverless, embedded, and self-contained NoSQL database. It is an open-source project that provides a simple API for persistent data storage. Nitrite database is designed to be lightweight, fast, and easy to use. Currently, it is available in Java, Kotlin, Flutter, and Rust.
 
 Nitrite database can be used in various scenarios where a lightweight, embedded, and serverless NoSQL database is required. Some of the use cases for Nitrite database are:
 
@@ -42,13 +42,14 @@ Nitrite is not an RDBMS. It is also not a distributed NoSQL database like MongoD
 
 ## 🚀 Getting Started
 
-Nitrite database is currently available in Java, Kotlin, and Flutter. Please visit respective language page for getting started guide and repository link.
+Nitrite database is currently available in Java, Kotlin, Flutter, and Rust. Please visit the respective language page for getting started guidance and repository links. Feature availability can differ slightly by SDK, so each language guide documents its supported modules and capabilities.
 
  |  | 
 ---|---|---
 [!badge icon="assets/java.svg" text="Java" size="l"]() | [!badge icon="rocket" text="Getting Started" size="l"](/java-sdk/getting-started) | [!badge icon="mark-github" text="Repository" target="blank" size="l"](https://github.com/nitrite/nitrite-java)
 [!badge icon="assets/kotlin.svg" text="Kotlin" size="l"]() | [!badge icon="rocket" text="Getting Started" size="l"](/kotlin-sdk/getting-started) | [!badge icon="mark-github" text="Repository" target="blank" size="l"](https://github.com/nitrite/nitrite-java/tree/main/potassium-nitrite)
 [!badge icon="assets/flutter.svg" text="Flutter" size="l"]() | [!badge icon="rocket" text="Getting Started" size="l"](/flutter-sdk/getting-started) | [!badge icon="mark-github" text="Repository" target="blank" size="l"](https://github.com/nitrite/nitrite-flutter)
+[!badge icon="assets/rust-welcome.svg" text="Rust" size="l"]() | [!badge icon="rocket" text="Getting Started" size="l"](/rust-sdk/getting-started) | [!badge icon="mark-github" text="Repository" target="blank" size="l"](https://github.com/nitrite/nitrite-rust)
 
 
 

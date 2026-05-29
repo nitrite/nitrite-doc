@@ -1,19 +1,5 @@
 ## Showcase Your Application
 
-If you are using Nitrite Database in your application, use the submission form below. It opens a pre-filled GitHub issue draft in the `nitrite-doc` repository, which works reliably with this static documentation site and keeps showcase requests easy to review.
+If you are using Nitrite Database in your application, submit your showcase through the hosted Google Form below. This keeps the documentation site static, does not require a GitHub account, and does not expose a maintainer email address on the page.
 
-<form action="https://github.com/nitrite/nitrite-doc/issues/new" method="get" target="_blank">
-	<p>
-		<label for="showcase-title"><strong>Submission title</strong></label><br>
-		<input id="showcase-title" name="title" type="text" required placeholder="Showcase: Your application name" style="width: 100%; max-width: 42rem; padding: 0.65rem; border: 1px solid #cbd5e1; border-radius: 0.5rem;" />
-	</p>
-	<p>
-		<label for="showcase-body"><strong>Application details</strong></label><br>
-		<textarea id="showcase-body" name="body" rows="16" required style="width: 100%; max-width: 42rem; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.5rem;">## Application name&#10;&#10;## Short description&#10;&#10;## SDK used&#10;- Rust / Java / Kotlin / Flutter&#10;&#10;## Repository or website&#10;- &#10;&#10;## How Nitrite is used&#10;- &#10;&#10;## Screenshots or demo links&#10;- &#10;&#10;## Contact details&#10;- </textarea>
-	</p>
-	<p>
-		<button type="submit" style="padding: 0.75rem 1rem; border: 0; border-radius: 0.5rem; background: #111827; color: #ffffff; cursor: pointer;">Open GitHub Submission Draft</button>
-	</p>
-</form>
-
-If the form does not open correctly in your browser, use the direct fallback link: [Create a showcase issue](https://github.com/nitrite/nitrite-doc/issues/new).
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScyVNlacwxsXPInSdPDpdCPj6Z6T1Cv7K1BnfunWEpoPJxuSg/viewform?embedded=true" width="100%" height="1500" frameborder="0" marginheight="0" marginwidth="0" style="border: 0; max-width: 100%;">Loading...</iframe>

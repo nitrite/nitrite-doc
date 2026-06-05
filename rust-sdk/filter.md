@@ -33,6 +33,8 @@ let same_rule = field("age").between_inclusive(18, 65, true);
 let custom = field("price").between(10, 20, true, false);
 ```
 
+On indexed fields in the current 0.3 line, bounded ranges such as `between(...)` and paired `gte(...)`/`lte(...)` filters use bounded index scans instead of a broad one-sided scan plus a post-filter.
+
 ## Text, regex, and array filters
 
 Core filters cover substring matching, regex matching, membership, and array element matching.

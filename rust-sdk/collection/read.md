@@ -4,7 +4,7 @@ icon: search
 order: 15
 ---
 
-Collections return `DocumentCursor` values for query results. A cursor is replayable: it caches results as it iterates, and you can reset it to read from the beginning again.
+Collections return `DocumentCursor` values for query results. In the current 0.3 line, the common `find()` cursor is streaming: it yields documents lazily and `reset()` rebuilds the query instead of replaying a cached snapshot. For a stable collection the observable results are the same; if the underlying data changes before `reset()`, the cursor reflects the current state.
 
 ## Query with filters
 
@@ -46,6 +46,8 @@ let mut cursor = collection
 println!("page size: {}", cursor.size());
 ```
 
+When a query is fully covered by an index, `size()` can answer from the index metadata without materializing every matching document. Indexed bounded range filters also use bounded scans in the current 0.3 line, so narrow range queries stay narrow instead of scanning from one side and post-filtering.
+
 There are also convenience constructors:
 
 - `order_by(field, sort_order)`
@@ -68,8 +70,8 @@ This is an $O(1)$ lookup against the document's internal identifier.
 `DocumentCursor` exposes a few helpers that are useful in tooling and update flows:
 
 - `first()` to fetch the first matching document
-- `size()` to count the result set
-- `reset()` to iterate the cached result set again
+- `size()` to count the result set, with a fast path for fully index-covered queries
+- `reset()` to restart iteration; streaming cursors rerun the query, while rewindable cursors replay cached rows
 - `iter_with_id()` to stream `(NitriteId, Document)` pairs
 
 ```rust

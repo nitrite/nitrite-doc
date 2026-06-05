@@ -15,19 +15,19 @@ The core setup is the `nitrite` crate plus `nitrite-derive` if you want typed re
 
 ```toml
 [dependencies]
-nitrite = "0.2"
-nitrite-derive = "0.2"
+nitrite = "0.3"
+nitrite-derive = "0.3"
 ```
 
 Nitrite's published crates currently use Rust edition 2021. Optional capabilities are split into separate crates:
 
 ```toml
 [dependencies]
-nitrite = "0.2"
-nitrite-derive = "0.2"
-nitrite-fjall-adapter = "0.2"
-nitrite-spatial = "0.2"
-nitrite-tantivy-fts = "0.2"
+nitrite = "0.3"
+nitrite-derive = "0.3"
+nitrite-fjall-adapter = "0.3"
+nitrite-spatial = "0.3"
+nitrite-tantivy-fts = "0.3"
 ```
 
 Use only the crates you need:

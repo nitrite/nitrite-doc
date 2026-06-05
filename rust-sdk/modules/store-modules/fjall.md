@@ -4,8 +4,8 @@
 
 ```toml
 [dependencies]
-nitrite = "0.2"
-nitrite-fjall-adapter = "0.2"
+nitrite = "0.3"
+nitrite-fjall-adapter = "0.3"
 ```
 
 ## Basic configuration
@@ -25,6 +25,27 @@ let db = Nitrite::builder()
 ```
 
 `db_path()` is the essential setting because it tells Fjall where to store the database files.
+
+## Durability modes
+
+In the current 0.3 line, Fjall defaults to `Durability::Periodic`. Commits are buffered to the OS and fsynced by a background timer within the configured `fsync_frequency()` window, which is `1000` ms by default. That keeps acknowledged writes safe across a process crash while trading a bounded power-loss window for much better throughput than fsyncing every commit.
+
+If you want every commit fsynced before it returns, opt into `Durability::OnCommit` explicitly:
+
+```rust
+use nitrite::nitrite::Nitrite;
+use nitrite_fjall_adapter::{Durability, FjallModule};
+
+let module = FjallModule::with_config()
+    .db_path("./data/nitrite")
+    .durability(Durability::OnCommit)
+    .build();
+
+let db = Nitrite::builder()
+    .load_module(module)
+    .open_or_create(None, None)
+    .expect("failed to open database");
+```
 
 ## Presets
 
@@ -63,6 +84,7 @@ The builder exposes a broad set of Fjall tuning parameters. The most relevant op
 - `compaction_workers(...)`
 - `manual_journal_persist(...)`
 - `fsync_frequency(...)`
+- `durability(...)`
 - `compression_type(...)`
 - `kv_separated(...)`
 
@@ -81,4 +103,4 @@ let module = FjallModule::with_config()
     .build();
 ```
 
-For most applications, start with `production_preset()` and tune only after measuring your workload.
+For most applications, start with `production_preset()` and tune only after measuring your workload. If you stay on `Durability::Periodic`, `fsync_frequency(...)` controls the background fsync interval.

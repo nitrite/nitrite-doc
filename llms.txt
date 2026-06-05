@@ -69,7 +69,7 @@
 
 - [Introduction](https://nitrite.dizitart.com/rust-sdk/collection/intro.md): A NitriteCollection stores schemaless Document values under a logical name. Collections are the most direct way to use Nitrite: you work with documents, filters, indexes, processors, and events without adding an entity layer.
 - [Write Operations](https://nitrite.dizitart.com/rust-sdk/collection/write.md): Collections support inserts, batch inserts, document updates, and removals. All write operations return a WriteResult containing the affected NitriteId values.
-- [Read Operations](https://nitrite.dizitart.com/rust-sdk/collection/read.md): Collections return DocumentCursor values for query results. A cursor is replayable: it caches results as it iterates, and you can reset it to read from the beginning again.
+- [Read Operations](https://nitrite.dizitart.com/rust-sdk/collection/read.md): Collections return DocumentCursor values for query results. In the current 0.3 line, the common find() cursor is streaming: it yields documents lazily and reset() rebuilds the query instead of replaying a cached snapshot.
 - [Indexing](https://nitrite.dizitart.com/rust-sdk/collection/indexing.md): Indexes accelerate collection queries at the cost of additional write-time maintenance. The core Rust SDK supports unique, non-unique, and core full-text indexes through IndexOptions helpers.
 - [Other Operations](https://nitrite.dizitart.com/rust-sdk/collection/other.md): Collections also expose metadata, lifecycle, event, and processing hooks through the shared PersistentCollection interface.
 
@@ -79,7 +79,7 @@
 - [Entity](https://nitrite.dizitart.com/rust-sdk/repository/entity.md): NitriteEntity supplies repository metadata: the entity name, the repository ID definition, and any declared indexes. In day-to-day Rust code this is usually derived, not implemented by hand.
 - [Object Mapping](https://nitrite.dizitart.com/rust-sdk/repository/mapper.md): Rust Nitrite does not use the Java or Flutter NitriteMapper model. Instead, object mapping is part of the type contract: repositories require entities to implement Convertible, and repository metadata comes from NitriteEntity.
 - [Write Operations](https://nitrite.dizitart.com/rust-sdk/repository/write.md): Repository writes follow the same lifecycle as collection writes, but accept typed entities instead of raw Document values.
-- [Read Operations](https://nitrite.dizitart.com/rust-sdk/repository/read.md): Repository reads are the typed equivalent of collection reads. The result cursor converts each matching document back into your entity type lazily.
+- [Read Operations](https://nitrite.dizitart.com/rust-sdk/repository/read.md): Repository reads are the typed equivalent of collection reads. The result cursor converts each matching document back into your entity type lazily. In the current 0.3 line, the underlying find() cursor is streaming, so reset() reruns the query instead of replaying a cached snapshot.
 - [Indexing](https://nitrite.dizitart.com/rust-sdk/repository/indexing.md): Repositories can be indexed in two ways:
 - [Other Operations](https://nitrite.dizitart.com/rust-sdk/repository/other.md): Repositories inherit the same persistent-collection services as collections and also expose repository-specific helpers such as document_collection().
 - [Filters](https://nitrite.dizitart.com/rust-sdk/filter.md): The Rust SDK exposes a fluent filter DSL through field(...). Filters can be combined, negated, and reused across collections and repositories.

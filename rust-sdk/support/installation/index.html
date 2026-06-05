@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.833696475889">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.833978088544">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -41,13 +41,13 @@
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
     <link id="retype-favicon" rel="icon" href="../../../assets/favicon.png" />
-    <link href="../../../resources/css/retype.css?v=4.6.0.833696475889" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=4.6.0.833978088544" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.833696475889" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../resources/js/search.js?v=4.6.0.833696475889" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.833696475889" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.833696475889" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/search.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.833978088544" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -209,8 +209,8 @@ cargo add nitrite-derive</code></pre>
 <p>Equivalent <code translate="no" v-pre>Cargo.toml</code> entries look like this:</p>
 <div id="core-installation-code-2" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-toml"><code v-pre class="language-toml">[dependencies]
-nitrite = &quot;0.2&quot;
-nitrite-derive = &quot;0.2&quot;</code></pre>
+nitrite = &quot;0.3&quot;
+nitrite-derive = &quot;0.3&quot;</code></pre>
 </doc-codeblock></div>
 <h2 id="optional-crates">Optional crates</h2>
 <p>Add only the modules you need.</p>
@@ -221,11 +221,11 @@ cargo add nitrite-tantivy-fts</code></pre>
 </doc-codeblock></div>
 <div id="optional-crates-code-2" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-toml"><code v-pre class="language-toml">[dependencies]
-nitrite = &quot;0.2&quot;
-nitrite-derive = &quot;0.2&quot;
-nitrite-fjall-adapter = &quot;0.2&quot;
-nitrite-spatial = &quot;0.2&quot;
-nitrite-tantivy-fts = &quot;0.2&quot;</code></pre>
+nitrite = &quot;0.3&quot;
+nitrite-derive = &quot;0.3&quot;
+nitrite-fjall-adapter = &quot;0.3&quot;
+nitrite-spatial = &quot;0.3&quot;
+nitrite-tantivy-fts = &quot;0.3&quot;</code></pre>
 </doc-codeblock></div>
 <h2 id="one-naming-detail-to-remember">One naming detail to remember</h2>
 <p>Cargo dependency names use hyphens, while Rust import paths use underscores.</p>
@@ -236,7 +236,7 @@ nitrite-tantivy-fts = &quot;0.2&quot;</code></pre>
 </ul>
 <p>The same pattern applies to <code translate="no" v-pre>nitrite-spatial</code> -&gt; <code translate="no" v-pre>nitrite_spatial</code> and <code translate="no" v-pre>nitrite-tantivy-fts</code> -&gt; <code translate="no" v-pre>nitrite_tantivy_fts</code>.</p>
 <h2 id="versioning-guidance">Versioning guidance</h2>
-<p>Keep the Nitrite crates on the same release line unless you have a specific compatibility reason not to. The current source tree uses <code translate="no" v-pre>0.2.x</code> across the core, derive, Fjall, spatial, and Tantivy FTS crates.</p>
+<p>Keep the Nitrite crates on the same release line unless you have a specific compatibility reason not to. The current source tree uses <code translate="no" v-pre>0.3.x</code> across the core, derive, Fjall, spatial, and Tantivy FTS crates.</p>
 
                 
                 <!-- Required only on API pages -->

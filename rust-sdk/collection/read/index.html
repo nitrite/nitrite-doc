@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.833696475889">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.833978088544">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -15,7 +15,7 @@
     <!-- Primary Meta Tags -->
     <title>Read Operations | Nitrite</title>
     <meta name="title" content="Read Operations | Nitrite">
-    <meta name="description" content="Collections return DocumentCursor values for query results. A cursor is replayable: it caches results as it iterates, and you can reset it to read from the beginning again.">
+    <meta name="description" content="Collections return DocumentCursor values for query results. In the current 0.3 line, the common find() cursor is streaming: it yields documents lazily and reset() rebuilds the query instead of replaying a cached snapshot.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://nitrite.dizitart.com/rust-sdk/collection/read/index.html">
@@ -25,7 +25,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nitrite.dizitart.com/rust-sdk/collection/read/index.html">
     <meta property="og:title" content="Read Operations | Nitrite">
-    <meta property="og:description" content="Collections return DocumentCursor values for query results. A cursor is replayable: it caches results as it iterates, and you can reset it to read from the beginning again.">
+    <meta property="og:description" content="Collections return DocumentCursor values for query results. In the current 0.3 line, the common find() cursor is streaming: it yields documents lazily and reset() rebuilds the query instead of replaying a cached snapshot.">
     <meta property="og:site_name" content="Nitrite">
     <meta property="og:locale" content="en_US">
 
@@ -33,7 +33,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://nitrite.dizitart.com/rust-sdk/collection/read/index.html">
     <meta name="twitter:title" content="Read Operations | Nitrite">
-    <meta name="twitter:description" content="Collections return DocumentCursor values for query results. A cursor is replayable: it caches results as it iterates, and you can reset it to read from the beginning again.">
+    <meta name="twitter:description" content="Collections return DocumentCursor values for query results. In the current 0.3 line, the common find() cursor is streaming: it yields documents lazily and reset() rebuilds the query instead of replaying a cached snapshot.">
 
     <!-- Alternate Markdown -->
     <link rel="alternate" type="text/markdown" href="https://nitrite.dizitart.com/rust-sdk/collection/read.md">
@@ -41,13 +41,13 @@
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
     <link id="retype-favicon" rel="icon" href="../../../assets/favicon.png" />
-    <link href="../../../resources/css/retype.css?v=4.6.0.833696475889" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=4.6.0.833978088544" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.833696475889" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../resources/js/search.js?v=4.6.0.833696475889" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.833696475889" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.833696475889" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/search.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.833978088544" defer></script>
     <link href="../../../resources/css/katex.css?v=4.6.0" rel="stylesheet">
     <script id="katex-js" data-cfasync="false" src="../../../resources/js/katex.js?v=4.6.0" defer></script>
 </head>
@@ -201,7 +201,7 @@
 
                 <!-- Page content  -->
 <h1 id="read-operations">Read Operations</h1>
-<p>Collections return <code translate="no" v-pre>DocumentCursor</code> values for query results. A cursor is replayable: it caches results as it iterates, and you can reset it to read from the beginning again.</p>
+<p>Collections return <code translate="no" v-pre>DocumentCursor</code> values for query results. In the current 0.3 line, the common <code translate="no" v-pre>find()</code> cursor is streaming: it yields documents lazily and <code translate="no" v-pre>reset()</code> rebuilds the query instead of replaying a cached snapshot. For a stable collection the observable results are the same; if the underlying data changes before <code translate="no" v-pre>reset()</code>, the cursor reflects the current state.</p>
 <h2 id="query-with-filters">Query with filters</h2>
 <p>Use <code translate="no" v-pre>find(filter)</code> for the common case.</p>
 <div id="query-with-filters-code-1" class="codeblock-wrapper"><doc-codeblock>
@@ -235,6 +235,7 @@ let mut cursor = collection
 
 println!(&quot;page size: {}&quot;, cursor.size());</code></pre>
 </doc-codeblock></div>
+<p>When a query is fully covered by an index, <code translate="no" v-pre>size()</code> can answer from the index metadata without materializing every matching document. Indexed bounded range filters also use bounded scans in the current 0.3 line, so narrow range queries stay narrow instead of scanning from one side and post-filtering.</p>
 <p>There are also convenience constructors:</p>
 <ul>
 <li><code translate="no" v-pre>order_by(field, sort_order)</code></li>
@@ -252,8 +253,8 @@ println!(&quot;page size: {}&quot;, cursor.size());</code></pre>
 <p><code translate="no" v-pre>DocumentCursor</code> exposes a few helpers that are useful in tooling and update flows:</p>
 <ul>
 <li><code translate="no" v-pre>first()</code> to fetch the first matching document</li>
-<li><code translate="no" v-pre>size()</code> to count the result set</li>
-<li><code translate="no" v-pre>reset()</code> to iterate the cached result set again</li>
+<li><code translate="no" v-pre>size()</code> to count the result set, with a fast path for fully index-covered queries</li>
+<li><code translate="no" v-pre>reset()</code> to restart iteration; streaming cursors rerun the query, while rewindable cursors replay cached rows</li>
 <li><code translate="no" v-pre>iter_with_id()</code> to stream <code translate="no" v-pre>(NitriteId, Document)</code> pairs</li>
 </ul>
 <div id="cursor-helpers-code-1" class="codeblock-wrapper"><doc-codeblock>

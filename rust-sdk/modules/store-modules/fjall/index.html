@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.833696475889">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.833978088544">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -41,13 +41,13 @@
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
     <link id="retype-favicon" rel="icon" href="../../../../assets/favicon.png" />
-    <link href="../../../../resources/css/retype.css?v=4.6.0.833696475889" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=4.6.0.833978088544" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=4.6.0.833696475889" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../../resources/js/search.js?v=4.6.0.833696475889" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=4.6.0.833696475889" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=4.6.0.833696475889" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/search.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=4.6.0.833978088544" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -203,8 +203,8 @@
 <h2 id="add-the-dependency">Add the dependency</h2>
 <div id="add-the-dependency-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-toml"><code v-pre class="language-toml">[dependencies]
-nitrite = &quot;0.2&quot;
-nitrite-fjall-adapter = &quot;0.2&quot;</code></pre>
+nitrite = &quot;0.3&quot;
+nitrite-fjall-adapter = &quot;0.3&quot;</code></pre>
 </doc-codeblock></div>
 <h2 id="basic-configuration">Basic configuration</h2>
 <div id="basic-configuration-code-1" class="codeblock-wrapper"><doc-codeblock>
@@ -221,6 +221,23 @@ let db = Nitrite::builder()
     .expect(&quot;failed to open database&quot;);</code></pre>
 </doc-codeblock></div>
 <p><code translate="no" v-pre>db_path()</code> is the essential setting because it tells Fjall where to store the database files.</p>
+<h2 id="durability-modes">Durability modes</h2>
+<p>In the current 0.3 line, Fjall defaults to <code translate="no" v-pre>Durability::Periodic</code>. Commits are buffered to the OS and fsynced by a background timer within the configured <code translate="no" v-pre>fsync_frequency()</code> window, which is <code translate="no" v-pre>1000</code> ms by default. That keeps acknowledged writes safe across a process crash while trading a bounded power-loss window for much better throughput than fsyncing every commit.</p>
+<p>If you want every commit fsynced before it returns, opt into <code translate="no" v-pre>Durability::OnCommit</code> explicitly:</p>
+<div id="durability-modes-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-rust"><code v-pre class="language-rust">use nitrite::nitrite::Nitrite;
+use nitrite_fjall_adapter::{Durability, FjallModule};
+
+let module = FjallModule::with_config()
+    .db_path(&quot;./data/nitrite&quot;)
+    .durability(Durability::OnCommit)
+    .build();
+
+let db = Nitrite::builder()
+    .load_module(module)
+    .open_or_create(None, None)
+    .expect(&quot;failed to open database&quot;);</code></pre>
+</doc-codeblock></div>
 <h2 id="presets">Presets</h2>
 <p>The builder ships with three presets for common operating modes.</p>
 <div id="presets-code-1" class="codeblock-wrapper"><doc-codeblock>
@@ -253,6 +270,7 @@ let low_memory = FjallModule::with_config()
 <li><code translate="no" v-pre>compaction_workers(...)</code></li>
 <li><code translate="no" v-pre>manual_journal_persist(...)</code></li>
 <li><code translate="no" v-pre>fsync_frequency(...)</code></li>
+<li><code translate="no" v-pre>durability(...)</code></li>
 <li><code translate="no" v-pre>compression_type(...)</code></li>
 <li><code translate="no" v-pre>kv_separated(...)</code></li>
 </ul>
@@ -269,7 +287,7 @@ let module = FjallModule::with_config()
     .compaction_workers(2)
     .build();</code></pre>
 </doc-codeblock></div>
-<p>For most applications, start with <code translate="no" v-pre>production_preset()</code> and tune only after measuring your workload.</p>
+<p>For most applications, start with <code translate="no" v-pre>production_preset()</code> and tune only after measuring your workload. If you stay on <code translate="no" v-pre>Durability::Periodic</code>, <code translate="no" v-pre>fsync_frequency(...)</code> controls the background fsync interval.</p>
 
                 
                 <!-- Required only on API pages -->

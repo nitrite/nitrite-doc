@@ -123,6 +123,15 @@ db.with_session(|session| {
 }).expect("transaction failed");
 ```
 
+## Crash-atomic writes on Fjall
+
+On a Fjall-backed database in the current 0.3 line, a logical write now lands in one atomic store transaction. That includes:
+
+- a transaction `commit()` across all touched collections and repositories
+- a single `insert`, `update`, or `remove` together with its index updates
+
+After an unclean stop, Nitrite recovers to either the state before that logical write or the state after it. You do not get a persisted data row without its index entries, or the reverse.
+
 ## When to use transactions
 
 Use a transaction when a sequence of writes must succeed or fail as a unit, especially when:

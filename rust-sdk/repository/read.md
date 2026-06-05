@@ -1,4 +1,4 @@
-Repository reads are the typed equivalent of collection reads. The result cursor converts each matching document back into your entity type lazily.
+Repository reads are the typed equivalent of collection reads. The result cursor converts each matching document back into your entity type lazily. In the current 0.3 line, the underlying `find()` cursor is streaming, so `reset()` reruns the query instead of replaying a cached snapshot.
 
 ## Read by ID
 
@@ -46,13 +46,15 @@ let mut page = repo.find_with_options(all(), &options)
 println!("page size: {}", page.size());
 ```
 
+As with collection cursors, fully index-covered repository queries can answer `size()` without materializing every entity.
+
 ## Cursor helpers
 
 `ObjectCursor<T>` adds a few repository-specific conveniences:
 
 - `first()` to fetch the first entity
-- `size()` to count the result set
-- `reset()` to iterate the cached result set again
+- `size()` to count the result set, with a fast path for fully index-covered queries
+- `reset()` to restart iteration; streaming cursors rerun the query, while rewindable cursors replay cached rows
 - `iter_with_id()` to stream `(NitriteId, T)` pairs
 - `project::<P>()` to map each result to a projection type
 

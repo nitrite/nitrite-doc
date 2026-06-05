@@ -145,6 +145,8 @@ Useful database-level operations include:
 - `has_collection(name)`, `has_repository::<T>()`, and `has_keyed_repository::<T>(key)` for discovery
 - `destroy_collection(name)`, `destroy_repository::<T>()`, and `destroy_keyed_repository::<T>(key)` for cleanup
 - `commit()` to flush pending changes to the underlying store
-- `close()` to shut the database down cleanly
+- `close()` to shut the database down cleanly and flush module-managed buffered work such as Tantivy FTS batches
+
+On the current 0.3 line, a clean `close()` is also what drains a Fjall-backed database to a consistent reopen point, so prefer closing explicitly instead of relying on process teardown.
 
 In the repository examples above, `User` is any type that implements `Default`, `Convertible`, and `NitriteEntity`.

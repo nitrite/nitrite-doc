@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.833696475889">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.833978088544">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -41,13 +41,13 @@
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
     <link id="retype-favicon" rel="icon" href="../../assets/favicon.png" />
-    <link href="../../resources/css/retype.css?v=4.6.0.833696475889" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.833978088544" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.833696475889" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=4.6.0.833696475889" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.833696475889" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.833696475889" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.833978088544" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -204,11 +204,11 @@
 <p>Add the following dependencies to your <code translate="no" v-pre>Cargo.toml</code> file:</p>
 <div id="setup-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-toml"><code v-pre class="language-toml">[dependencies]
-nitrite = &quot;0.2&quot;
-nitrite_derive = &quot;0.2&quot;
-nitrite_fjall_adapter = &quot;0.2&quot;
-nitrite_spatial = &quot;0.2&quot;
-nitrite_tantivy_fts = &quot;0.2&quot;
+nitrite = &quot;0.3&quot;
+nitrite_derive = &quot;0.3&quot;
+nitrite_fjall_adapter = &quot;0.3&quot;
+nitrite_spatial = &quot;0.3&quot;
+nitrite_tantivy_fts = &quot;0.3&quot;
 uuid = { version = &quot;1&quot;, features = [&quot;v4&quot;] }</code></pre>
 </doc-codeblock></div>
 <h2 id="domain-model">Domain Model</h2>
@@ -294,6 +294,7 @@ db.with_session(|session| {
     tx.commit()
 })?;</code></pre>
 </doc-codeblock></div>
+<p>On the current 0.3 line, that Fjall-backed transaction commit and its repository index updates are crash-atomic: after a reopen you see either the whole logical write or none of it.</p>
 <p>The indexed activity collection is then populated through the normal collection API:</p>
 <div id="transactional-writes-code-2" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-rust"><code v-pre class="language-rust">use nitrite::doc;
@@ -308,6 +309,7 @@ activity.insert(doc! {
     }
 })?;</code></pre>
 </doc-codeblock></div>
+<p>Those Tantivy-backed activity writes are buffered and committed on the next full-text search or on <code translate="no" v-pre>db.close()</code>, which keeps bulk inserts fast while still making the later search in this example observe its own writes.</p>
 <h2 id="queries-projection-and-reporting">Queries, Projection, and Reporting</h2>
 <p>After the seed write, the example demonstrates repository filtering, projection, sorted reads, updates, full-text search, and spatial queries:</p>
 <div id="queries-projection-and-reporting-code-1" class="codeblock-wrapper"><doc-codeblock>

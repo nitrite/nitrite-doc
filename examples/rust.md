@@ -6,11 +6,11 @@ Add the following dependencies to your `Cargo.toml` file:
 
 ```toml
 [dependencies]
-nitrite = "0.2"
-nitrite_derive = "0.2"
-nitrite_fjall_adapter = "0.2"
-nitrite_spatial = "0.2"
-nitrite_tantivy_fts = "0.2"
+nitrite = "0.3"
+nitrite_derive = "0.3"
+nitrite_fjall_adapter = "0.3"
+nitrite_spatial = "0.3"
+nitrite_tantivy_fts = "0.3"
 uuid = { version = "1", features = ["v4"] }
 ```
 
@@ -108,6 +108,8 @@ db.with_session(|session| {
 })?;
 ```
 
+On the current 0.3 line, that Fjall-backed transaction commit and its repository index updates are crash-atomic: after a reopen you see either the whole logical write or none of it.
+
 The indexed activity collection is then populated through the normal collection API:
 
 ```rust
@@ -123,6 +125,8 @@ activity.insert(doc! {
     }
 })?;
 ```
+
+Those Tantivy-backed activity writes are buffered and committed on the next full-text search or on `db.close()`, which keeps bulk inserts fast while still making the later search in this example observe its own writes.
 
 ## Queries, Projection, and Reporting
 

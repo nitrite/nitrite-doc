@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.833978088544">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.834083451288">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -41,13 +41,13 @@
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
     <link id="retype-favicon" rel="icon" href="../../../assets/favicon.png" />
-    <link href="../../../resources/css/retype.css?v=4.6.0.833978088544" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=4.6.0.834083451288" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.834083451288" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../resources/js/search.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.833978088544" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/search.js?v=4.6.0.834083451288" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.834083451288" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.834083451288" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -203,8 +203,8 @@
 <h2 id="add-the-dependency">Add the dependency</h2>
 <div id="add-the-dependency-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-toml"><code v-pre class="language-toml">[dependencies]
-nitrite = &quot;0.3&quot;
-nitrite-tantivy-fts = &quot;0.3&quot;</code></pre>
+nitrite = &quot;0.4&quot;
+nitrite-tantivy-fts = &quot;0.4&quot;</code></pre>
 </doc-codeblock></div>
 <h2 id="load-the-module">Load the module</h2>
 <p>The simplest configuration uses <code translate="no" v-pre>TantivyFtsModule::default()</code>.</p>
@@ -251,7 +251,7 @@ let _ = exact_phrase.next();</code></pre>
 </doc-codeblock></div>
 <p><code translate="no" v-pre>matches()</code> uses Tantivy&#x27;s query parser, so it supports multi-term searches, required terms with <code translate="no" v-pre>+</code>, excluded terms with <code translate="no" v-pre>-</code>, and boolean operators. <code translate="no" v-pre>contains()</code> and <code translate="no" v-pre>text()</code> are aliases for <code translate="no" v-pre>matches()</code>.</p>
 <h2 id="batch-commit-behavior">Batch commit behavior</h2>
-<p>In the current 0.3 line, full-text writes and deletes are buffered and committed on the next search or on <code translate="no" v-pre>db.close()</code> instead of once per document. Searches still observe their own writes because Nitrite commits the dirty batch and reloads the Tantivy reader before executing the query.</p>
+<p>In the current 0.4 line, full-text writes and deletes are buffered and committed on the next search or on <code translate="no" v-pre>db.close()</code> instead of once per document. Searches still observe their own writes because Nitrite commits the dirty batch and reloads the Tantivy reader before executing the query.</p>
 <p>For bulk indexing this is much faster than committing every document individually. A clean close flushes any remaining FTS batch; an unclean crash can lose only the uncommitted derived index batch, which Nitrite can rebuild.</p>
 <h2 id="when-to-use-this-module">When to use this module</h2>
 <p>The core crate already supports <code translate="no" v-pre>field(&quot;...&quot;).text(...)</code> filters and the core <code translate="no" v-pre>full_text_index()</code> helper. Use the Tantivy module when you want a dedicated search index and query parser rather than the core text-matching path.</p>

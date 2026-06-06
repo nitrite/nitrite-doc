@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.833978088544">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.834083451288">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -41,13 +41,13 @@
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
     <link id="retype-favicon" rel="icon" href="../../assets/favicon.png" />
-    <link href="../../resources/css/retype.css?v=4.6.0.833978088544" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.834083451288" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.834083451288" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.833978088544" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=4.6.0.834083451288" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.834083451288" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.834083451288" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -319,7 +319,7 @@ db.close().expect(&quot;close failed&quot;);</code></pre>
 <li><code translate="no" v-pre>commit()</code> to flush pending changes to the underlying store</li>
 <li><code translate="no" v-pre>close()</code> to shut the database down cleanly and flush module-managed buffered work such as Tantivy FTS batches</li>
 </ul>
-<p>On the current 0.3 line, a clean <code translate="no" v-pre>close()</code> is also what drains a Fjall-backed database to a consistent reopen point, so prefer closing explicitly instead of relying on process teardown.</p>
+<p>On the current 0.4 line, a clean <code translate="no" v-pre>close()</code> is also what drains a Fjall-backed database to a consistent reopen point, so prefer closing explicitly instead of relying on process teardown.</p>
 <p>In the repository examples above, <code translate="no" v-pre>User</code> is any type that implements <code translate="no" v-pre>Default</code>, <code translate="no" v-pre>Convertible</code>, and <code translate="no" v-pre>NitriteEntity</code>.</p>
 
                 

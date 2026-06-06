@@ -13,8 +13,8 @@ Equivalent `Cargo.toml` entries look like this:
 
 ```toml
 [dependencies]
-nitrite = "0.3"
-nitrite-derive = "0.3"
+nitrite = "0.4"
+nitrite-derive = "0.4"
 ```
 
 ## Optional crates
@@ -29,11 +29,11 @@ cargo add nitrite-tantivy-fts
 
 ```toml
 [dependencies]
-nitrite = "0.3"
-nitrite-derive = "0.3"
-nitrite-fjall-adapter = "0.3"
-nitrite-spatial = "0.3"
-nitrite-tantivy-fts = "0.3"
+nitrite = "0.4"
+nitrite-derive = "0.4"
+nitrite-fjall-adapter = "0.4"
+nitrite-spatial = "0.4"
+nitrite-tantivy-fts = "0.4"
 ```
 
 ## One naming detail to remember
@@ -49,4 +49,8 @@ The same pattern applies to `nitrite-spatial` -> `nitrite_spatial` and `nitrite-
 
 ## Versioning guidance
 
-Keep the Nitrite crates on the same release line unless you have a specific compatibility reason not to. The current source tree uses `0.3.x` across the core, derive, Fjall, spatial, and Tantivy FTS crates.
+Keep the Nitrite crates on the same release line unless you have a specific compatibility reason not to. The current source tree uses `0.4.x` across the core, derive, Fjall, spatial, and Tantivy FTS crates.
+
+!!!warning Upgrading from `0.3.x`
+`0.4.0` changes the on-disk index and key format (see [Schema Migration](../migration.md#upgrading-from-03x-to-04x)). Rebuild a `0.3.x` database before reading it with `0.4.x`.
+!!!

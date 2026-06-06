@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.833978088544">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.834083451288">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -41,13 +41,13 @@
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
     <link id="retype-favicon" rel="icon" href="../../../assets/favicon.png" />
-    <link href="../../../resources/css/retype.css?v=4.6.0.833978088544" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=4.6.0.834083451288" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.834083451288" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../resources/js/search.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.833978088544" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/search.js?v=4.6.0.834083451288" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.834083451288" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.834083451288" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -209,8 +209,8 @@ cargo add nitrite-derive</code></pre>
 <p>Equivalent <code translate="no" v-pre>Cargo.toml</code> entries look like this:</p>
 <div id="core-installation-code-2" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-toml"><code v-pre class="language-toml">[dependencies]
-nitrite = &quot;0.3&quot;
-nitrite-derive = &quot;0.3&quot;</code></pre>
+nitrite = &quot;0.4&quot;
+nitrite-derive = &quot;0.4&quot;</code></pre>
 </doc-codeblock></div>
 <h2 id="optional-crates">Optional crates</h2>
 <p>Add only the modules you need.</p>
@@ -221,11 +221,11 @@ cargo add nitrite-tantivy-fts</code></pre>
 </doc-codeblock></div>
 <div id="optional-crates-code-2" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-toml"><code v-pre class="language-toml">[dependencies]
-nitrite = &quot;0.3&quot;
-nitrite-derive = &quot;0.3&quot;
-nitrite-fjall-adapter = &quot;0.3&quot;
-nitrite-spatial = &quot;0.3&quot;
-nitrite-tantivy-fts = &quot;0.3&quot;</code></pre>
+nitrite = &quot;0.4&quot;
+nitrite-derive = &quot;0.4&quot;
+nitrite-fjall-adapter = &quot;0.4&quot;
+nitrite-spatial = &quot;0.4&quot;
+nitrite-tantivy-fts = &quot;0.4&quot;</code></pre>
 </doc-codeblock></div>
 <h2 id="one-naming-detail-to-remember">One naming detail to remember</h2>
 <p>Cargo dependency names use hyphens, while Rust import paths use underscores.</p>
@@ -236,7 +236,24 @@ nitrite-tantivy-fts = &quot;0.3&quot;</code></pre>
 </ul>
 <p>The same pattern applies to <code translate="no" v-pre>nitrite-spatial</code> -&gt; <code translate="no" v-pre>nitrite_spatial</code> and <code translate="no" v-pre>nitrite-tantivy-fts</code> -&gt; <code translate="no" v-pre>nitrite_tantivy_fts</code>.</p>
 <h2 id="versioning-guidance">Versioning guidance</h2>
-<p>Keep the Nitrite crates on the same release line unless you have a specific compatibility reason not to. The current source tree uses <code translate="no" v-pre>0.3.x</code> across the core, derive, Fjall, spatial, and Tantivy FTS crates.</p>
+<p>Keep the Nitrite crates on the same release line unless you have a specific compatibility reason not to. The current source tree uses <code translate="no" v-pre>0.4.x</code> across the core, derive, Fjall, spatial, and Tantivy FTS crates.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
+    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="block text-callout-warning" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Upgrading from <code translate="no" v-pre>0.3.x</code></h5>
+<p><code translate="no" v-pre>0.4.0</code> changes the on-disk index and key format (see <a href="../../migration/index.html#upgrading-from-03x-to-04x">Schema Migration</a>). Rebuild a <code translate="no" v-pre>0.3.x</code> database before reading it with <code translate="no" v-pre>0.4.x</code>.</p>
+        </div>
+    </div>
+</div>
 
                 
                 <!-- Required only on API pages -->

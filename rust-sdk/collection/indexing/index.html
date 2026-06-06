@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.833978088544">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.834083451288">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -41,13 +41,13 @@
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
     <link id="retype-favicon" rel="icon" href="../../../assets/favicon.png" />
-    <link href="../../../resources/css/retype.css?v=4.6.0.833978088544" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=4.6.0.834083451288" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.834083451288" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../resources/js/search.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.833978088544" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/search.js?v=4.6.0.834083451288" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.834083451288" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.834083451288" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -222,6 +222,36 @@ collection.create_index(vec![&quot;last_name&quot;, &quot;first_name&quot;], &am
     .expect(&quot;compound index failed&quot;);</code></pre>
 </doc-codeblock></div>
 <p>Compound indexes are useful when your most selective queries combine the same fields repeatedly.</p>
+<h2 id="write-performance-and-low-cardinality-fields">Write performance and low-cardinality fields</h2>
+<p>Since <code translate="no" v-pre>0.4.0</code>, non-unique indexes (simple and compound) store one composite <code translate="no" v-pre>(value…, id)</code> row per entry instead of a single growing array of ids per value. Each insert and removal is an O(1) point write, and per-insert memory is flat.</p>
+<p>This matters most for <strong>low-cardinality</strong> fields — ones where many documents share the same value, such as a status, category, account, or folder id. Previously, bulk-loading such a field was O(n²) in time and O(n) in per-insert memory because every insert rewrote an ever-growing id array; it is now linear. You can index these fields freely without paying a quadratic write penalty:</p>
+<div id="write-performance-and-low-cardinality-fields-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-rust"><code v-pre class="language-rust">use nitrite::index::non_unique_index;
+
+// Low-cardinality, high-volume fields — cheap to keep indexed in 0.4.
+collection.create_index(vec![&quot;account_id&quot;], &amp;non_unique_index())
+    .expect(&quot;account index failed&quot;);
+collection.create_index(vec![&quot;folder_id&quot;], &amp;non_unique_index())
+    .expect(&quot;folder index failed&quot;);</code></pre>
+</doc-codeblock></div>
+<p>Equality lookups on a non-unique field are prefix range scans (O(matches)), and range/sorted scans are exact — see <a href="../read/index.html">Read Operations</a> and <a href="../../filter/index.html">Filters</a>.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
+    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="block text-callout-warning" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>On-disk format changed in <code translate="no" v-pre>0.4.0</code></h5>
+<p>The non-unique/compound index layout (and the Fjall key encoding) changed in <code translate="no" v-pre>0.4.0</code>. Indexes built by <code translate="no" v-pre>0.3.x</code> are not readable by <code translate="no" v-pre>0.4.x</code>; rebuild them on upgrade — see <a href="../../migration/index.html#upgrading-from-03x-to-04x">Schema Migration</a>. Indexes are derived data, so <code translate="no" v-pre>rebuild_index(...)</code> (or recreating the database) is all that is required.</p>
+        </div>
+    </div>
+</div>
 <h2 id="inspect-and-maintain-indexes">Inspect and maintain indexes</h2>
 <p>Persistent collections expose several maintenance methods:</p>
 <ul>

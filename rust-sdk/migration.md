@@ -1,5 +1,27 @@
 Nitrite for Rust supports versioned schema evolution through `Migration` and `InstructionSet`. Migrations are registered on the builder and run when the stored schema version differs from the version you request with `schema_version()`.
 
+These `Migration`/`InstructionSet` tools are for **your** schema changes (renaming fields, adding defaults, re-typing values). They are independent of the engine's own on-disk format. The next section covers the one-time storage-format change introduced by the `0.4.0` engine upgrade.
+
+## Upgrading from 0.3.x to 0.4.x
+
+`0.4.0` changes the engine's on-disk storage format, so a database written by `0.3.x` cannot be opened directly by `0.4.x`. Two things changed:
+
+- **Index layout.** Non-unique simple and compound indexes now store one composite `(field-values…, id)` row per entry instead of a single array (or nested map) of ids per value. This is what makes inserts O(1) and removes the old O(n²) bulk-load cost on low-cardinality fields.
+- **Key encoding (`nitrite-fjall-adapter`).** Keys are now serialized with an order-preserving codec so the store's byte order matches value order, which is what makes integer/float range and ascending/descending sorted index scans exact.
+
+Indexes are derived data, so recovering is straightforward — choose whichever fits your deployment:
+
+- **Re-create the database** from your source of truth (simplest for caches and re-syncable data such as an email client's mailbox).
+- **Rebuild indexes** on first open with `0.4.x` if you keep the data partitions:
+
+  ```rust
+  // After opening the 0.4.x database, rebuild each index you rely on.
+  collection.rebuild_index(vec!["account_id"]).expect("rebuild failed");
+  collection.rebuild_index(vec!["folder_id"]).expect("rebuild failed");
+  ```
+
+There is no automatic in-place converter for `0.3.x` databases; plan the rebuild as part of your upgrade. No application API changed — `create_index`, filters, `find`, and `order_by` are source-compatible; only the on-disk format and the (now correct) numeric ordering behavior differ.
+
 ## Define a migration
 
 Use `Migration::new(from_version, to_version, |instruction| { ... })` to define the transition.

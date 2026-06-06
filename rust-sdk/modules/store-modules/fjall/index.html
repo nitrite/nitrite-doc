@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.833978088544">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.834083451288">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -41,13 +41,13 @@
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
     <link id="retype-favicon" rel="icon" href="../../../../assets/favicon.png" />
-    <link href="../../../../resources/css/retype.css?v=4.6.0.833978088544" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=4.6.0.834083451288" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=4.6.0.834083451288" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../../resources/js/search.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=4.6.0.833978088544" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/search.js?v=4.6.0.834083451288" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=4.6.0.834083451288" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=4.6.0.834083451288" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -203,8 +203,8 @@
 <h2 id="add-the-dependency">Add the dependency</h2>
 <div id="add-the-dependency-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-toml"><code v-pre class="language-toml">[dependencies]
-nitrite = &quot;0.3&quot;
-nitrite-fjall-adapter = &quot;0.3&quot;</code></pre>
+nitrite = &quot;0.4&quot;
+nitrite-fjall-adapter = &quot;0.4&quot;</code></pre>
 </doc-codeblock></div>
 <h2 id="basic-configuration">Basic configuration</h2>
 <div id="basic-configuration-code-1" class="codeblock-wrapper"><doc-codeblock>
@@ -222,7 +222,7 @@ let db = Nitrite::builder()
 </doc-codeblock></div>
 <p><code translate="no" v-pre>db_path()</code> is the essential setting because it tells Fjall where to store the database files.</p>
 <h2 id="durability-modes">Durability modes</h2>
-<p>In the current 0.3 line, Fjall defaults to <code translate="no" v-pre>Durability::Periodic</code>. Commits are buffered to the OS and fsynced by a background timer within the configured <code translate="no" v-pre>fsync_frequency()</code> window, which is <code translate="no" v-pre>1000</code> ms by default. That keeps acknowledged writes safe across a process crash while trading a bounded power-loss window for much better throughput than fsyncing every commit.</p>
+<p>In the current 0.4 line, Fjall defaults to <code translate="no" v-pre>Durability::Periodic</code>. Commits are buffered to the OS and fsynced by a background timer within the configured <code translate="no" v-pre>fsync_frequency()</code> window, which is <code translate="no" v-pre>1000</code> ms by default. That keeps acknowledged writes safe across a process crash while trading a bounded power-loss window for much better throughput than fsyncing every commit.</p>
 <p>If you want every commit fsynced before it returns, opt into <code translate="no" v-pre>Durability::OnCommit</code> explicitly:</p>
 <div id="durability-modes-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-rust"><code v-pre class="language-rust">use nitrite::nitrite::Nitrite;
@@ -288,6 +288,26 @@ let module = FjallModule::with_config()
     .build();</code></pre>
 </doc-codeblock></div>
 <p>For most applications, start with <code translate="no" v-pre>production_preset()</code> and tune only after measuring your workload. If you stay on <code translate="no" v-pre>Durability::Periodic</code>, <code translate="no" v-pre>fsync_frequency(...)</code> controls the background fsync interval.</p>
+<h2 id="on-disk-key-ordering">On-disk key ordering</h2>
+<p>Fjall is an LSM-tree that keeps keys sorted by their raw bytes. Since <code translate="no" v-pre>0.4.0</code>, the adapter serializes keys with an <strong>order-preserving codec</strong> so that byte order matches Nitrite&#x27;s value ordering. This makes indexed range filters (<code translate="no" v-pre>between</code>, <code translate="no" v-pre>gte</code>/<code translate="no" v-pre>lte</code>) and sorted index scans exact for every comparable type — including negative and large integers (for example nanosecond timestamps order correctly, beyond <code translate="no" v-pre>f64</code> precision) — instead of the byte-order artifacts the previous encoding produced.</p>
+<p>This is a transparent change to your code, but it does change the on-disk format.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
+    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="block text-callout-warning" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Upgrading from <code translate="no" v-pre>0.3.x</code></h5>
+<p>A database written by <code translate="no" v-pre>0.3.x</code> cannot be opened by <code translate="no" v-pre>0.4.x</code> as-is: both the key encoding and the non-unique/compound index layout changed. Rebuild the database (or drop and re-create its indexes) on upgrade. See <a href="../../../migration/index.html#upgrading-from-03x-to-04x">Schema Migration</a>.</p>
+        </div>
+    </div>
+</div>
 
                 
                 <!-- Required only on API pages -->

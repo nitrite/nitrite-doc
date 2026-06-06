@@ -1,4 +1,4 @@
-Repository reads are the typed equivalent of collection reads. The result cursor converts each matching document back into your entity type lazily. In the current 0.3 line, the underlying `find()` cursor is streaming, so `reset()` reruns the query instead of replaying a cached snapshot.
+Repository reads are the typed equivalent of collection reads. The result cursor converts each matching document back into your entity type lazily. In the current 0.4 line, the underlying `find()` cursor is streaming, so `reset()` reruns the query instead of replaying a cached snapshot.
 
 ## Read by ID
 

@@ -4,8 +4,8 @@ The `nitrite-spatial` crate adds spatial indexes and spatial filter builders for
 
 ```toml
 [dependencies]
-nitrite = "0.3"
-nitrite-spatial = "0.3"
+nitrite = "0.4"
+nitrite-spatial = "0.4"
 ```
 
 ## Load the module

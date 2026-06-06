@@ -1,4 +1,4 @@
-Collections return `DocumentCursor` values for query results. In the current 0.3 line, the common `find()` cursor is streaming: it yields documents lazily and `reset()` rebuilds the query instead of replaying a cached snapshot. For a stable collection the observable results are the same; if the underlying data changes before `reset()`, the cursor reflects the current state.
+Collections return `DocumentCursor` values for query results. In the current 0.4 line, the common `find()` cursor is streaming: it yields documents lazily and `reset()` rebuilds the query instead of replaying a cached snapshot. For a stable collection the observable results are the same; if the underlying data changes before `reset()`, the cursor reflects the current state.
 
 ## Query with filters
 
@@ -40,7 +40,9 @@ let mut cursor = collection
 println!("page size: {}", cursor.size());
 ```
 
-When a query is fully covered by an index, `size()` can answer from the index metadata without materializing every matching document. Indexed bounded range filters also use bounded scans in the current 0.3 line, so narrow range queries stay narrow instead of scanning from one side and post-filtering.
+When a query is fully covered by an index, `size()` can answer from the index metadata without materializing every matching document. Indexed bounded range filters also use bounded scans in the current 0.4 line, so narrow range queries stay narrow instead of scanning from one side and post-filtering.
+
+Sorting is correct for both directions and is independent of whether an index covers the query. `SortOrder::Ascending` and `SortOrder::Descending` apply to the field you sort on — including descending sorts over an indexed field, which is the common "newest first" pattern (for example `order_by("received_at", SortOrder::Descending)`). Numeric sorts order by value, so negative and large integers sort correctly.
 
 There are also convenience constructors:
 

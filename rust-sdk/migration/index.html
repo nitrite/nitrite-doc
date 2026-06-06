@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.833978088544">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.834083451288">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -41,13 +41,13 @@
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
     <link id="retype-favicon" rel="icon" href="../../assets/favicon.png" />
-    <link href="../../resources/css/retype.css?v=4.6.0.833978088544" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.834083451288" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.834083451288" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.833978088544" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.833978088544" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=4.6.0.834083451288" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.834083451288" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.834083451288" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -200,6 +200,26 @@
                 <!-- Page content  -->
 <h1 id="schema-migration">Schema Migration</h1>
 <p>Nitrite for Rust supports versioned schema evolution through <code translate="no" v-pre>Migration</code> and <code translate="no" v-pre>InstructionSet</code>. Migrations are registered on the builder and run when the stored schema version differs from the version you request with <code translate="no" v-pre>schema_version()</code>.</p>
+<p>These <code translate="no" v-pre>Migration</code>/<code translate="no" v-pre>InstructionSet</code> tools are for <strong>your</strong> schema changes (renaming fields, adding defaults, re-typing values). They are independent of the engine&#x27;s own on-disk format. The next section covers the one-time storage-format change introduced by the <code translate="no" v-pre>0.4.0</code> engine upgrade.</p>
+<h2 id="upgrading-from-03x-to-04x">Upgrading from 0.3.x to 0.4.x</h2>
+<p><code translate="no" v-pre>0.4.0</code> changes the engine&#x27;s on-disk storage format, so a database written by <code translate="no" v-pre>0.3.x</code> cannot be opened directly by <code translate="no" v-pre>0.4.x</code>. Two things changed:</p>
+<ul>
+<li><strong>Index layout.</strong> Non-unique simple and compound indexes now store one composite <code translate="no" v-pre>(field-values…, id)</code> row per entry instead of a single array (or nested map) of ids per value. This is what makes inserts O(1) and removes the old O(n²) bulk-load cost on low-cardinality fields.</li>
+<li><strong>Key encoding (<code translate="no" v-pre>nitrite-fjall-adapter</code>).</strong> Keys are now serialized with an order-preserving codec so the store&#x27;s byte order matches value order, which is what makes integer/float range and ascending/descending sorted index scans exact.</li>
+</ul>
+<p>Indexes are derived data, so recovering is straightforward — choose whichever fits your deployment:</p>
+<ul>
+<li><strong>Re-create the database</strong> from your source of truth (simplest for caches and re-syncable data such as an email client&#x27;s mailbox).</li>
+<li>
+<p><strong>Rebuild indexes</strong> on first open with <code translate="no" v-pre>0.4.x</code> if you keep the data partitions:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-rust"><code v-pre class="language-rust">// After opening the 0.4.x database, rebuild each index you rely on.
+collection.rebuild_index(vec![&quot;account_id&quot;]).expect(&quot;rebuild failed&quot;);
+collection.rebuild_index(vec![&quot;folder_id&quot;]).expect(&quot;rebuild failed&quot;);</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+<p>There is no automatic in-place converter for <code translate="no" v-pre>0.3.x</code> databases; plan the rebuild as part of your upgrade. No application API changed — <code translate="no" v-pre>create_index</code>, filters, <code translate="no" v-pre>find</code>, and <code translate="no" v-pre>order_by</code> are source-compatible; only the on-disk format and the (now correct) numeric ordering behavior differ.</p>
 <h2 id="define-a-migration">Define a migration</h2>
 <p>Use <code translate="no" v-pre>Migration::new(from_version, to_version, |instruction| { ... })</code> to define the transition.</p>
 <div id="define-a-migration-code-1" class="codeblock-wrapper"><doc-codeblock>

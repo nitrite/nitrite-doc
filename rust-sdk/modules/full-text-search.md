@@ -10,8 +10,8 @@ The `nitrite-tantivy-fts` crate adds Tantivy-backed full-text indexing and a ded
 
 ```toml
 [dependencies]
-nitrite = "0.3"
-nitrite-tantivy-fts = "0.3"
+nitrite = "0.4"
+nitrite-tantivy-fts = "0.4"
 ```
 
 ## Load the module
@@ -70,7 +70,7 @@ let _ = exact_phrase.next();
 
 ## Batch commit behavior
 
-In the current 0.3 line, full-text writes and deletes are buffered and committed on the next search or on `db.close()` instead of once per document. Searches still observe their own writes because Nitrite commits the dirty batch and reloads the Tantivy reader before executing the query.
+In the current 0.4 line, full-text writes and deletes are buffered and committed on the next search or on `db.close()` instead of once per document. Searches still observe their own writes because Nitrite commits the dirty batch and reloads the Tantivy reader before executing the query.
 
 For bulk indexing this is much faster than committing every document individually. A clean close flushes any remaining FTS batch; an unclean crash can lose only the uncommitted derived index batch, which Nitrite can rebuild.
 

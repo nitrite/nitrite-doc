@@ -33,7 +33,9 @@ let same_rule = field("age").between_inclusive(18, 65, true);
 let custom = field("price").between(10, 20, true, false);
 ```
 
-On indexed fields in the current 0.3 line, bounded ranges such as `between(...)` and paired `gte(...)`/`lte(...)` filters use bounded index scans instead of a broad one-sided scan plus a post-filter.
+On indexed fields in the current 0.4 line, bounded ranges such as `between(...)` and paired `gte(...)`/`lte(...)` filters use bounded index scans instead of a broad one-sided scan plus a post-filter.
+
+Range results are also **exact** across every comparable type. Since `0.4.0` the persistent (Fjall) store encodes keys so byte order matches value order, so integer and floating-point ranges — including negative and large values such as nanosecond timestamps — return precisely the matching set. (Earlier releases could mis-order numeric keys on disk, for example returning the wrong rows for `field("seq").between(100, 199, true, true)`.)
 
 ## Text, regex, and array filters
 

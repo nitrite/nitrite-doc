@@ -131,7 +131,7 @@ db.with_session(|session| {
 
 ## Crash-atomic writes on Fjall
 
-On a Fjall-backed database in the current 0.3 line, a logical write now lands in one atomic store transaction. That includes:
+On a Fjall-backed database in the current 0.4 line, a logical write now lands in one atomic store transaction. That includes:
 
 - a transaction `commit()` across all touched collections and repositories
 - a single `insert`, `update`, or `remove` together with its index updates

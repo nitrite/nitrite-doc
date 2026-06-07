@@ -27,6 +27,9 @@ links:
 footer:
   copyright: "Made with ❤️ in India. Copyright &copy; {{ year }} Dizitart. All rights reserved."
   links:
+    - text: Dizitart
+      link: https://www.dizitart.com
+      target: blank
     - text: License
       link: license.md
 

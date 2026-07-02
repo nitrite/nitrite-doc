@@ -95,6 +95,7 @@
 - [Storage Module](https://nitrite.dizitart.com/rust-sdk/modules/store-modules/store-modules.md): Nitrite for Rust always has a store backend. If you do not register one explicitly, the plugin manager loads the built-in in-memory store. If you need persistence, add a store module.
 - [Fjall Module](https://nitrite.dizitart.com/rust-sdk/modules/store-modules/fjall.md): nitrite-fjall-adapter is the persistent store module in the current Rust Nitrite ecosystem. It uses Fjall as an embedded LSM-tree backend.
 - [Custom Storage Modules](https://nitrite.dizitart.com/rust-sdk/modules/store-modules/custom.md): Nitrite's storage layer is public and extensible. If Fjall is not the right persistence strategy for your application, you can build a custom store module.
+- [Vector Store (ANN / RAG)](https://nitrite.dizitart.com/rust-sdk/modules/vector-store.md): The nitrite-vector crate turns Nitrite into an embedded vector database. It adds approximate-nearest-neighbour (ANN) indexes and a fluent kNN query
 - [Spatial Module](https://nitrite.dizitart.com/rust-sdk/modules/spatial.md): The nitrite-spatial crate adds spatial indexes and spatial filter builders for geometry-aware queries.
 - [Full-Text Search](https://nitrite.dizitart.com/rust-sdk/modules/full-text-search.md): The nitrite-tantivy-fts crate adds Tantivy-backed full-text indexing and a dedicated full-text query DSL.
 

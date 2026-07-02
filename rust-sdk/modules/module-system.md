@@ -1,7 +1,7 @@
 ---
 label: Module System
 icon: workflow
-order: 4
+order: 5
 ---
 
 Nitrite for Rust is modular by design. Modules are how storage engines and specialized indexers are added to the core engine.

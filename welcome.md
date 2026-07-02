@@ -30,6 +30,7 @@ Nitrite database is designed to be simple and easy to use, making it a good choi
 - Schemaless document collection and object repository
 - Extensible storage engines
 - Indexing and full-text search
+- Vector similarity search (ANN) & RAG store (Rust SDK only)
 - Simple query API
 - In-memory and file-based store
 - Transaction support

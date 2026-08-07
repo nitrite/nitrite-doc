@@ -50,11 +50,10 @@ You can find a document using a filter and options. It takes a `Filter` object a
 - `skip`: It specifies the number of documents to be skipped from the beginning of the result set.
 - `orderBy`: It specifies a collection of fields to be sorted by, along with sort order for each field. The sort order can be `SortOrder.Ascending` or `SortOrder.Descending`.
 - `collator`: It specifies a collator to be used for sorting. If this option is not specified, then the default collator will be used.
-- `distinct`: It specifies if the find operation should return distinct documents. If this option is `true`, then it will return only the distinct documents. Otherwise, it will return all the documents matched by the filter.
 
 ```java
 FindOptions findOptions = new FindOptions();
-findOptions.skip(10).limit(10).thenOrderBy("firstName", SortOrder.Descending).withDistinct(true);
+findOptions.skip(10).limit(10).thenOrderBy("firstName", SortOrder.Descending);
 
 DocumentCursor cursor = collection.find(where("firstName").eq("John"), findOptions);
 ```
@@ -277,7 +276,6 @@ The result set will contain the following documents:
 - `blockingSortOrder`: It contains the sort order for finding a document using full scan.
 - `skip`: It contains the number of documents to be skipped from the beginning of the result set.
 - `limit`: It contains the maximum number of documents to be returned by the find operation.
-- `distinct`: It specifies if the find operation returns distinct documents. 
 - `collator`: It specifies a collator to be used for sorting.
 - `subPlans`: It contains the sub plans for finding a document using `or` filter.
 

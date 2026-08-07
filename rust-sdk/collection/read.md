@@ -25,7 +25,7 @@ if let Some(Ok(document)) = cursor.first() {
 
 To scan everything, use `nitrite::filter::all()`.
 
-## Sorting, pagination, and distinct queries
+## Sorting and pagination
 
 `find_with_options()` accepts a `FindOptions` value.
 
@@ -55,7 +55,6 @@ There are also convenience constructors:
 - `order_by(field, sort_order)`
 - `skip_by(count)`
 - `limit_to(count)`
-- `distinct()`
 
 ## Read by internal ID
 

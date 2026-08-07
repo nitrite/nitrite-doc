@@ -43,14 +43,12 @@ You can find a document using a filter and options. It takes a `Filter` object a
 - `limit`: It specifies the maximum number of documents to be returned by the find operation.
 - `skip`: It specifies the number of documents to be skipped from the beginning of the result set.
 - `orderBy`: It specifies a collection of fields to be sorted by, along with sort order for each field. The sort order can be `SortOrder.ascending` or `SortOrder.descending`.
-- `distinct`: It specifies if the find operation should return distinct documents. If this option is `true`, then it will return only the distinct documents. Otherwise, it will return all the documents matched by the filter.
 
 ```dart
 var findOptions = FindOptions();
 findOptions.setSkip(10)
     ..setLimit(10)
-    ..thenOrderBy("firstName", SortOrder.descending)
-    ..withDistinct(true);
+    ..thenOrderBy("firstName", SortOrder.descending);
 
 var cursor = collection.find(filter: where("firstName").eq("John"), findOptions: findOptions);
 ```
@@ -277,7 +275,6 @@ The result set will contain the following documents:
 - `blockingSortOrder`: It contains the sort order for finding a document using full scan.
 - `skip`: It contains the number of documents to be skipped from the beginning of the result set.
 - `limit`: It contains the maximum number of documents to be returned by the find operation.
-- `distinct`: It specifies if the find operation returns distinct documents. 
 - `subPlans`: It contains the sub plans for finding a document using `or` filter.
 
 You can get the execution plan of a find operation using `findPlan` getter. It returns a `Future<FindPlan>` object.

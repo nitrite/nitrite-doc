@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.836329663400">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.839402067798">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -41,13 +41,13 @@
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
     <link id="retype-favicon" rel="icon" href="../../assets/favicon.png" />
-    <link href="../../resources/css/retype.css?v=4.6.0.836329663400" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.839402067798" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.836329663400" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.839402067798" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=4.6.0.836329663400" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.836329663400" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.836329663400" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=4.6.0.839402067798" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.839402067798" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.839402067798" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -235,6 +235,20 @@ let roles = field(&quot;role&quot;).in_array(vec![&quot;admin&quot;, &quot;edito
 let excluded = field(&quot;status&quot;).not_in_array(vec![&quot;archived&quot;, &quot;deleted&quot;]);
 let matching_tags = field(&quot;tags&quot;).elem_match(field(&quot;name&quot;).eq(&quot;database&quot;));</code></pre>
 </doc-codeblock></div>
+<h2 id="field-presence">Field presence</h2>
+<p><code translate="no" v-pre>exists()</code> matches the documents which have the field at all, irrespective of the value stored in it.</p>
+<div id="field-presence-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-rust"><code v-pre class="language-rust">use nitrite::filter::field;
+
+let has_nickname = field(&quot;nickname&quot;).exists();
+let no_nickname = field(&quot;nickname&quot;).exists().not();</code></pre>
+</doc-codeblock></div>
+<p>A field explicitly set to <code translate="no" v-pre>Value::Null</code> is present, so it matches. This is the distinction no other filter can express: both <code translate="no" v-pre>eq(Value::Null)</code> and <code translate="no" v-pre>ne(Value::Null)</code> treat a missing field and a field holding null as the same thing, so &quot;has this document been given a value for this field at all&quot; is not answerable with them.</p>
+<p>Embedded fields are addressed by their dotted path, the same way document field lookup resolves them.</p>
+<div id="field-presence-code-2" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-rust"><code v-pre class="language-rust">let has_city = field(&quot;address.city&quot;).exists();</code></pre>
+</doc-codeblock></div>
+<p>This filter always runs as a collection scan and is never elected for an index scan. A missing field and a field holding null are stored under the same null key in an index, so an index scan could not tell them apart and would disagree with a collection scan.</p>
 <h2 id="logical-composition">Logical composition</h2>
 <p>You can compose filters either as methods on <code translate="no" v-pre>Filter</code> or with the top-level helpers.</p>
 <div id="logical-composition-code-1" class="codeblock-wrapper"><doc-codeblock>
@@ -252,6 +266,7 @@ let privileged = or(vec![
 let visible = and(vec![active_adults, not(field(&quot;deleted&quot;).eq(true)), privileged]);
 let everything = all();</code></pre>
 </doc-codeblock></div>
+<p>An <code translate="no" v-pre>or</code> is a set union. A document which satisfies more than one of the combined filters is still returned once. (Before <code translate="no" v-pre>0.7.0</code> such a document could be returned once per branch it matched.)</p>
 <h2 id="match-by-document-id">Match by document ID</h2>
 <p>If you already have a <code translate="no" v-pre>NitriteId</code>, you can query directly by internal document identifier.</p>
 <div id="match-by-document-id-code-1" class="codeblock-wrapper"><doc-codeblock>

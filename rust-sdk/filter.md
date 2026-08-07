@@ -46,6 +46,27 @@ let excluded = field("status").not_in_array(vec!["archived", "deleted"]);
 let matching_tags = field("tags").elem_match(field("name").eq("database"));
 ```
 
+## Field presence
+
+`exists()` matches the documents which have the field at all, irrespective of the value stored in it.
+
+```rust
+use nitrite::filter::field;
+
+let has_nickname = field("nickname").exists();
+let no_nickname = field("nickname").exists().not();
+```
+
+A field explicitly set to `Value::Null` is present, so it matches. This is the distinction no other filter can express: both `eq(Value::Null)` and `ne(Value::Null)` treat a missing field and a field holding null as the same thing, so "has this document been given a value for this field at all" is not answerable with them.
+
+Embedded fields are addressed by their dotted path, the same way document field lookup resolves them.
+
+```rust
+let has_city = field("address.city").exists();
+```
+
+This filter always runs as a collection scan and is never elected for an index scan. A missing field and a field holding null are stored under the same null key in an index, so an index scan could not tell them apart and would disagree with a collection scan.
+
 ## Logical composition
 
 You can compose filters either as methods on `Filter` or with the top-level helpers.
@@ -65,6 +86,8 @@ let privileged = or(vec![
 let visible = and(vec![active_adults, not(field("deleted").eq(true)), privileged]);
 let everything = all();
 ```
+
+An `or` is a set union. A document which satisfies more than one of the combined filters is still returned once. (Before `0.7.0` such a document could be returned once per branch it matched.)
 
 ## Match by document ID
 

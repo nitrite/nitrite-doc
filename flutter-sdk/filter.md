@@ -373,6 +373,10 @@ collection.find(filter: or(where('name').eq('John'), where('age').gt(18), where(
 
 In this example, the `or()` method is used to combine three filters into a single filter. The filter is then passed to the find method to retrieve the matching documents.
 
+!!!info
+An or filter is a set union. A document which satisfies more than one of the combined filters is still returned once.
+!!!
+
 ### Not Filter
 
 The not filter is used to match documents that do not satisfy the specified filter. The following example shows how to use the not filter:
@@ -449,6 +453,7 @@ Evaluation filters are used to match documents based on evaluating the value of 
 
 - Text (text): Matches all documents which contain a specified full-text search expression.
 - Regex (regex): Matches all documents where values contain a specified regular expression.
+- Exists (exists): Matches all documents which have the specified field, irrespective of its value.
 
 ### Text Filter
 
@@ -491,6 +496,51 @@ In this example, the `where()` and `regex()` methods are used to create a regex 
 
 !!!primary
 This filter scans the entire collection to find matching documents. It cannot take advantage of an index.
+!!!
+
+### Exists Filter
+
+The exists filter is used to match documents which have the specified field, irrespective of the value stored in it. The following example shows how to use the exists filter:
+
+```dart
+// find all documents which have a 'nickName' field
+collection.find(filter: where('nickName').exists());
+
+// or using string extension
+collection.find(filter: 'nickName'.exists());
+```
+
+Use `not()` - or the `~` operator - for the opposite, matching the documents which do not have the field:
+
+```dart
+// find all documents which do not have a 'nickName' field
+collection.find(filter: where('nickName').exists().not());
+
+// or using operator overloading
+collection.find(filter: ~'nickName'.exists());
+```
+
+A field which has been explicitly set to `null` is present, so it matches:
+
+```dart
+var withNull = emptyDocument().put('name', 'John').put('nickName', null);
+var withoutField = emptyDocument().put('name', 'Jane');
+
+// matches 'withNull' only
+collection.find(filter: where('nickName').exists());
+```
+
+This is the distinction no other filter can express. Both `eq(null)` and `notEq(null)` treat a missing field and a field holding `null` as the same thing, so "has this document been given a value for this field at all" is not answerable with them.
+
+Embedded fields are addressed by their dotted path, the same way `Document.containsField()` resolves them:
+
+```dart
+// find all documents which have a 'city' field inside the embedded 'address' document
+collection.find(filter: where('address.city').exists());
+```
+
+!!!primary
+This filter scans the entire collection to find matching documents. It cannot take advantage of an index. A missing field and a field holding `null` are stored under the same null key in an index, so an index scan could not tell them apart and would disagree with a collection scan.
 !!!
 
 ## Spatial Filters

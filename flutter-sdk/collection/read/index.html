@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.836329663400">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.839402067798">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -41,13 +41,13 @@
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
     <link id="retype-favicon" rel="icon" href="../../../assets/favicon.png" />
-    <link href="../../../resources/css/retype.css?v=4.6.0.836329663400" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=4.6.0.839402067798" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.836329663400" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.839402067798" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../resources/js/search.js?v=4.6.0.836329663400" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.836329663400" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.836329663400" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/search.js?v=4.6.0.839402067798" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.839402067798" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.839402067798" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -227,14 +227,12 @@
 <li><code translate="no" v-pre>limit</code>: It specifies the maximum number of documents to be returned by the find operation.</li>
 <li><code translate="no" v-pre>skip</code>: It specifies the number of documents to be skipped from the beginning of the result set.</li>
 <li><code translate="no" v-pre>orderBy</code>: It specifies a collection of fields to be sorted by, along with sort order for each field. The sort order can be <code translate="no" v-pre>SortOrder.ascending</code> or <code translate="no" v-pre>SortOrder.descending</code>.</li>
-<li><code translate="no" v-pre>distinct</code>: It specifies if the find operation should return distinct documents. If this option is <code translate="no" v-pre>true</code>, then it will return only the distinct documents. Otherwise, it will return all the documents matched by the filter.</li>
 </ul>
 <div id="findoptions-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-dart"><code v-pre class="language-dart">var findOptions = FindOptions();
 findOptions.setSkip(10)
     ..setLimit(10)
-    ..thenOrderBy(&quot;firstName&quot;, SortOrder.descending)
-    ..withDistinct(true);
+    ..thenOrderBy(&quot;firstName&quot;, SortOrder.descending);
 
 var cursor = collection.find(filter: where(&quot;firstName&quot;).eq(&quot;John&quot;), findOptions: findOptions);</code></pre>
 </doc-codeblock></div>
@@ -433,7 +431,6 @@ var joinedCursor = users.leftJoin(orders, lookup);</code></pre>
 <li><code translate="no" v-pre>blockingSortOrder</code>: It contains the sort order for finding a document using full scan.</li>
 <li><code translate="no" v-pre>skip</code>: It contains the number of documents to be skipped from the beginning of the result set.</li>
 <li><code translate="no" v-pre>limit</code>: It contains the maximum number of documents to be returned by the find operation.</li>
-<li><code translate="no" v-pre>distinct</code>: It specifies if the find operation returns distinct documents.</li>
 <li><code translate="no" v-pre>subPlans</code>: It contains the sub plans for finding a document using <code translate="no" v-pre>or</code> filter.</li>
 </ul>
 <p>You can get the execution plan of a find operation using <code translate="no" v-pre>findPlan</code> getter. It returns a <code translate="no" v-pre>Future&lt;FindPlan&gt;</code> object.</p>

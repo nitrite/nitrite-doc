@@ -59,6 +59,7 @@ You can configure the MVStore module as per your requirement. The following conf
 - `cacheConcurrency` - the read cache concurrency used by MVStore. Default is 16 segments.
 - `pageSplitSize` - the amount of memory a MVStore page should contain at most, in bytes, before it is split. The default is 16 KB.
 - `fileStore` - the file store used by MVStore.
+- `autoCompact` - if set to `true`, obsolete pages are reclaimed so the database file does not grow without bound under repeated updates. The default value is `true`. See [File Growth and Compaction](#file-growth-and-compaction) below for what it does and does not guarantee.
 
 Nitrite provides a builder pattern to configure the module. You can use the `MVStoreModule.withConfig()` method to get the builder instance. The builder has a `build()` method which returns the configured module.
 
@@ -68,6 +69,37 @@ MVStoreModule storeModule = MVStoreModule.withConfig()
             .compress(true)
             .build();
 ```
+
+## File Growth and Compaction
+
+Updating a document does not overwrite it in place. The old page becomes obsolete and the new
+one is appended, so a store that is written to far more often than it grows still accumulates
+chunks that are mostly dead pages. Without reclamation the file climbs while the live data stays
+small - the report in
+[gh-1284](https://github.com/nitrite/nitrite-java/issues/1284) reached ~800MB around 100 live
+documents.
+
+`autoCompact` is on by default and works in two places, which are worth telling apart:
+
+**On close, guaranteed.** `Nitrite.close()` compacts the file down to its live data before it
+lets go. This runs synchronously under a lock, so it always happens. An application that opens
+and closes the database gets its file back to size every time.
+
+**While running, best-effort.** MVStore also compacts on a background thread on a one-second
+tick. That work is attempted under a *try*-lock: if a writing thread holds the store lock at
+that moment, the round is skipped silently. So how much reclamation a long-running application
+gets depends on how much idle time the store has between writes and on how many cores are
+available to schedule the background thread on. A store under continuous write pressure on a
+small machine may get very little.
+
+!!!warning
+If your application holds the database open for weeks and writes to it constantly, do not rely
+on the background half alone. Reopening the database - or a scheduled restart - is what
+guarantees the file is compacted.
+!!!
+
+Setting `autoCompact(false)` restores the previous behaviour, where nothing reclaims obsolete
+chunks at all and the file only ever grows.
 
 ## Upgrading from 3.x
 

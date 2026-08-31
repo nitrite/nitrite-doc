@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.841486787305">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.841501065888">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -41,13 +41,13 @@
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
     <link id="retype-favicon" rel="icon" href="../../../../assets/favicon.png" />
-    <link href="../../../../resources/css/retype.css?v=4.6.0.841486787305" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=4.6.0.841501065888" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=4.6.0.841486787305" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=4.6.0.841501065888" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../../resources/js/search.js?v=4.6.0.841486787305" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=4.6.0.841486787305" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=4.6.0.841486787305" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/search.js?v=4.6.0.841501065888" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=4.6.0.841501065888" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=4.6.0.841501065888" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -246,6 +246,7 @@ Nitrite db = Nitrite.builder()
 <li><code translate="no" v-pre>cacheConcurrency</code> - the read cache concurrency used by MVStore. Default is 16 segments.</li>
 <li><code translate="no" v-pre>pageSplitSize</code> - the amount of memory a MVStore page should contain at most, in bytes, before it is split. The default is 16 KB.</li>
 <li><code translate="no" v-pre>fileStore</code> - the file store used by MVStore.</li>
+<li><code translate="no" v-pre>autoCompact</code> - if set to <code translate="no" v-pre>true</code>, obsolete pages are reclaimed so the database file does not grow without bound under repeated updates. The default value is <code translate="no" v-pre>true</code>. See <doc-anchor-trigger to="#file-growth-and-compaction">File Growth and Compaction</doc-anchor-trigger> below for what it does and does not guarantee.</li>
 </ul>
 <p>Nitrite provides a builder pattern to configure the module. You can use the <code translate="no" v-pre>MVStoreModule.withConfig()</code> method to get the builder instance. The builder has a <code translate="no" v-pre>build()</code> method which returns the configured module.</p>
 <div id="configuring-mvstore-module-code-1" class="codeblock-wrapper"><doc-codeblock>
@@ -254,6 +255,43 @@ Nitrite db = Nitrite.builder()
             .compress(true)
             .build();</code></pre>
 </doc-codeblock></div>
+<h2 id="file-growth-and-compaction">File Growth and Compaction</h2>
+<p>Updating a document does not overwrite it in place. The old page becomes obsolete and the new
+one is appended, so a store that is written to far more often than it grows still accumulates
+chunks that are mostly dead pages. Without reclamation the file climbs while the live data stays
+small - the report in
+<a href="https://github.com/nitrite/nitrite-java/issues/1284">gh-1284</a> reached ~800MB around 100 live
+documents.</p>
+<p><code translate="no" v-pre>autoCompact</code> is on by default and works in two places, which are worth telling apart:</p>
+<p><strong>On close, guaranteed.</strong> <code translate="no" v-pre>Nitrite.close()</code> compacts the file down to its live data before it
+lets go. This runs synchronously under a lock, so it always happens. An application that opens
+and closes the database gets its file back to size every time.</p>
+<p><strong>While running, best-effort.</strong> MVStore also compacts on a background thread on a one-second
+tick. That work is attempted under a <em>try</em>-lock: if a writing thread holds the store lock at
+that moment, the round is skipped silently. So how much reclamation a long-running application
+gets depends on how much idle time the store has between writes and on how many cores are
+available to schedule the background thread on. A store under continuous write pressure on a
+small machine may get very little.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
+    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="block text-callout-warning" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>If your application holds the database open for weeks and writes to it constantly, do not rely
+on the background half alone. Reopening the database - or a scheduled restart - is what
+guarantees the file is compacted.</p>
+        </div>
+    </div>
+</div>
+<p>Setting <code translate="no" v-pre>autoCompact(false)</code> restores the previous behaviour, where nothing reclaims obsolete
+chunks at all and the file only ever grows.</p>
 <h2 id="upgrading-from-3x">Upgrading from 3.x</h2>
 <p>If you are upgrading from Nitrite 3.x, you need to use the MVStore module as your storage module if you want to automatically upgrade your database. Any other storage module will not be able to upgrade your database automatically; you need to write your own upgrade logic.</p>
 <p>Nitrite 3.x uses MVStore version 1.4.x. Nitrite 4.x uses MVStore version 2.2.x. The MVStore version 2.2.x is not backward compatible with version 1.4.x. So, Nitrite 4.x will try to upgrade your database automatically when you open it for the first time on a <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-warning-text bg-badge-warning border border-badge-warning-border h-6 px-2 text-xs rounded-md">

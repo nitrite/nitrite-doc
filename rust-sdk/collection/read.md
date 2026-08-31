@@ -56,6 +56,21 @@ There are also convenience constructors:
 - `skip_by(count)`
 - `limit_to(count)`
 
+### Paging Cost
+
+`skip` is served by the storage engine wherever nothing between the store and the page
+drops or reorders rows - the offset is reached without reading the documents it passes
+over. That removes the fetch and decode of every skipped document, which is the larger half
+of what a deep page used to cost. The store still reaches the offset by stepping one key
+at a time, so a very deep page is not free - it is no longer paying for documents it
+throws away.
+
+Three plan shapes cannot take that route, because the store's Nth row is not the page's
+Nth row: a filter with no index behind it, a sort that cannot be answered from an index,
+and an `or` filter. Those still reach the offset by discarding rows, so a deep page over
+one of them stays proportional to the offset. Where paging is the access pattern and the
+collection is large, an index on the filtered or sorted field is what keeps it flat.
+
 ## Read by internal ID
 
 If you already have a `NitriteId`, `get_by_id()` is the most direct path.

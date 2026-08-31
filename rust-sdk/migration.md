@@ -2,6 +2,25 @@ Nitrite for Rust supports versioned schema evolution through `Migration` and `In
 
 These `Migration`/`InstructionSet` tools are for **your** schema changes (renaming fields, adding defaults, re-typing values). They are independent of the engine's own on-disk format. The next section covers the one-time storage-format change introduced by the `0.4.0` engine upgrade.
 
+## Upgrading from 0.10.x to 1.0.0
+
+`1.0.0` moves `nitrite-fjall-adapter` from **Fjall 2** to **Fjall 3**. Fjall 3 writes a different
+on-disk format and will not open a Fjall 2 database, so this is another one-time storage-format
+change — the same shape as the `0.4.0` one below, and handled the same way.
+
+Nothing in the document, collection, repository, filter, or transaction API changed. The only
+source-level breaks are on `FjallModuleBuilder`:
+
+- `compaction_strategy(...)` now takes `nitrite_fjall_adapter::Strategy` (`Leveled` or `Fifo`)
+  instead of `fjall::compaction::Strategy`. Size-tiered compaction no longer exists in Fjall 3.
+- `space_amp_factor(...)` was removed — Fjall 3 folds blob reclamation into ordinary compaction and
+  has no space-amplification target. `staleness_threshold(...)` still drives that reclamation.
+- `max_journaling_size(...)` has a 64 MiB floor (was 24 MiB). The default is 512 MiB.
+
+To upgrade, recreate the database from your source of truth, or export before upgrading and import
+after. There is no in-place converter — the format change is inside the storage engine, below any
+layer Nitrite could migrate.
+
 ## Upgrading from 0.3.x to 0.4.x
 
 `0.4.0` changes the engine's on-disk storage format, so a database written by `0.3.x` cannot be opened directly by `0.4.x`. Two things changed:

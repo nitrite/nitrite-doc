@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.841501065888">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.841518998405">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -41,13 +41,13 @@
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
     <link id="retype-favicon" rel="icon" href="../../assets/favicon.png" />
-    <link href="../../resources/css/retype.css?v=4.6.0.841501065888" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.841518998405" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.841501065888" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.841518998405" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=4.6.0.841501065888" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.841501065888" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.841501065888" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=4.6.0.841518998405" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.841518998405" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.841518998405" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -201,6 +201,28 @@
 <h1 id="schema-migration">Schema Migration</h1>
 <p>Nitrite for Rust supports versioned schema evolution through <code translate="no" v-pre>Migration</code> and <code translate="no" v-pre>InstructionSet</code>. Migrations are registered on the builder and run when the stored schema version differs from the version you request with <code translate="no" v-pre>schema_version()</code>.</p>
 <p>These <code translate="no" v-pre>Migration</code>/<code translate="no" v-pre>InstructionSet</code> tools are for <strong>your</strong> schema changes (renaming fields, adding defaults, re-typing values). They are independent of the engine&#x27;s own on-disk format. The next section covers the one-time storage-format change introduced by the <code translate="no" v-pre>0.4.0</code> engine upgrade.</p>
+<h2 id="upgrading-from-010x-to-100">Upgrading from 0.10.x to 1.0.0</h2>
+<p><code translate="no" v-pre>1.0.0</code> moves <code translate="no" v-pre>nitrite-fjall-adapter</code> from <strong>Fjall 2</strong> to <strong>Fjall 3</strong>. Fjall 3 writes a different
+on-disk format and will not open a Fjall 2 database, so this is another one-time storage-format
+change — the same shape as the <code translate="no" v-pre>0.4.0</code> one below, and handled the same way.</p>
+<p>Nothing in the document, collection, repository, filter, or transaction API changed. The only
+source-level breaks are on <code translate="no" v-pre>FjallModuleBuilder</code>:</p>
+<ul>
+<li>
+<p><code translate="no" v-pre>compaction_strategy(...)</code> now takes <code translate="no" v-pre>nitrite_fjall_adapter::Strategy</code> (<code translate="no" v-pre>Leveled</code> or <code translate="no" v-pre>Fifo</code>)
+instead of <code translate="no" v-pre>fjall::compaction::Strategy</code>. Size-tiered compaction no longer exists in Fjall 3.</p>
+</li>
+<li>
+<p><code translate="no" v-pre>space_amp_factor(...)</code> was removed — Fjall 3 folds blob reclamation into ordinary compaction and
+has no space-amplification target. <code translate="no" v-pre>staleness_threshold(...)</code> still drives that reclamation.</p>
+</li>
+<li>
+<p><code translate="no" v-pre>max_journaling_size(...)</code> has a 64 MiB floor (was 24 MiB). The default is 512 MiB.</p>
+</li>
+</ul>
+<p>To upgrade, recreate the database from your source of truth, or export before upgrading and import
+after. There is no in-place converter — the format change is inside the storage engine, below any
+layer Nitrite could migrate.</p>
 <h2 id="upgrading-from-03x-to-04x">Upgrading from 0.3.x to 0.4.x</h2>
 <p><code translate="no" v-pre>0.4.0</code> changes the engine&#x27;s on-disk storage format, so a database written by <code translate="no" v-pre>0.3.x</code> cannot be opened directly by <code translate="no" v-pre>0.4.x</code>. Two things changed:</p>
 <ul>

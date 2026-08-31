@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.839402067798">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.841486787305">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -41,13 +41,13 @@
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
     <link id="retype-favicon" rel="icon" href="../../../assets/favicon.png" />
-    <link href="../../../resources/css/retype.css?v=4.6.0.839402067798" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=4.6.0.841486787305" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.839402067798" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.841486787305" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../resources/js/search.js?v=4.6.0.839402067798" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.839402067798" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.839402067798" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/search.js?v=4.6.0.841486787305" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.841486787305" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.841486787305" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -399,6 +399,41 @@ boolean exists = collection.hasIndex(&quot;firstName&quot;);
 // check if an index exists on multiple fields
 boolean exists = collection.hasIndex(&quot;firstName&quot;, &quot;lastName&quot;);</code></pre>
 </doc-codeblock></div>
+<h2 id="numeric-index-keys">Numeric Index Keys</h2>
+<p>A number is stored in an index as a <code translate="no" v-pre>Double</code> wherever a <code translate="no" v-pre>Double</code> holds it exactly, so
+<code translate="no" v-pre>5</code>, <code translate="no" v-pre>5L</code>, <code translate="no" v-pre>(short) 5</code> and <code translate="no" v-pre>BigInteger.valueOf(5)</code> are the same index key and a query
+with any of them matches a document stored with any other. This matters on stores that
+compare the encoded key rather than calling <code translate="no" v-pre>compareTo</code> - the RocksDB adapter is one -
+where without it the same number written as two types would not match itself.</p>
+<p>Above 2<sup>53</sup> a <code translate="no" v-pre>Double</code> no longer steps by one, so numbers that far out keep
+their own type instead. Snowflake ids, TSIDs and ULID-style identifiers all live in that
+range: around 8.7 x 10<sup>17</sup> the nearest doubles are 128 apart, so folding them
+would give consecutive ids the same index key - a unique index would reject an id it had
+never seen, and a lookup would return rows belonging to a different one.</p>
+<p>The trade is that a <code translate="no" v-pre>Long</code> and a <code translate="no" v-pre>BigInteger</code> holding the same value above
+2<sup>53</sup> are no longer the same index key on a byte-comparing store. They only
+matched before because both had been rounded onto the same double, which is the same
+rounding that would have matched a <em>different</em> id, so prefer one numeric type per
+indexed field.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
+    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="block text-callout-warning" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p><strong>Upgrading.</strong> An index built by an earlier version over values above 2<sup>53</sup>
+holds the folded keys, and those entries were already colliding with each other. Rebuild
+such an index after upgrading. Values at or below 2<sup>53</sup> are unaffected and keep
+their existing on-disk form, so nothing else needs touching.</p>
+        </div>
+    </div>
+</div>
 <h2 id="error-scenarios">Error Scenarios</h2>
 <p>The following error scenarios are possible while creating an index:</p>
 <ul>

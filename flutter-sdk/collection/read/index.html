@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.839402067798">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.841486787305">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -41,13 +41,13 @@
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
     <link id="retype-favicon" rel="icon" href="../../../assets/favicon.png" />
-    <link href="../../../resources/css/retype.css?v=4.6.0.839402067798" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=4.6.0.841486787305" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.839402067798" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.841486787305" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../resources/js/search.js?v=4.6.0.839402067798" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.839402067798" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.839402067798" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/search.js?v=4.6.0.841486787305" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.841486787305" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.841486787305" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -236,6 +236,16 @@ findOptions.setSkip(10)
 
 var cursor = collection.find(filter: where(&quot;firstName&quot;).eq(&quot;John&quot;), findOptions: findOptions);</code></pre>
 </doc-codeblock></div>
+<h3 id="paging-cost">Paging Cost</h3>
+<p><code translate="no" v-pre>skip</code> is served by the storage engine wherever nothing between the store and the page
+drops or reorders rows - the offset is reached without reading the documents it passes
+over. Paging through a whole collection therefore costs about what one full scan costs,
+and a late page costs what an early one costs.</p>
+<p>Three plan shapes cannot take that route, because the store&#x27;s Nth row is not the page&#x27;s
+Nth row: a filter with no index behind it, a sort that cannot be answered from an index,
+and an <code translate="no" v-pre>or</code> filter. Those still reach the offset by discarding rows, so a deep page over
+one of them stays proportional to the offset. Where paging is the access pattern and the
+collection is large, an index on the filtered or sorted field is what keeps it flat.</p>
 <h2 id="documentcursor">DocumentCursor</h2>
 <p><code translate="no" v-pre>DocumentCursor</code> represents a result set of a find operation. It provides methods to iterate over the result of a find operation and retrieve the documents. It also provides methods like projection, join etc. to get the desired result.</p>
 <h3 id="iterating-over-documents">Iterating Over Documents</h3>

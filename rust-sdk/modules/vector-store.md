@@ -36,10 +36,10 @@ You choose a backend per database. Both expose the exact same query API.
 
 ```toml
 [dependencies]
-nitrite = "0.11"
-nitrite-vector = "0.11"
+nitrite = "1.0"
+nitrite-vector = "1.0"
 # a storage backend (also where the DiskANN files live):
-nitrite-fjall-adapter = "0.11"
+nitrite-fjall-adapter = "1.0"
 ```
 
 ## Load the module

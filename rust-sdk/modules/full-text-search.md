@@ -10,8 +10,8 @@ The `nitrite-tantivy-fts` crate adds Tantivy-backed full-text indexing and a ded
 
 ```toml
 [dependencies]
-nitrite = "0.11"
-nitrite-tantivy-fts = "0.11"
+nitrite = "1.0"
+nitrite-tantivy-fts = "1.0"
 ```
 
 ## Load the module

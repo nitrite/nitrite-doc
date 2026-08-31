@@ -10,13 +10,13 @@ order: 2
 
 ```toml
 [dependencies]
-nitrite = "0.11"
-nitrite-fjall-adapter = "0.11"
+nitrite = "1.0"
+nitrite-fjall-adapter = "1.0"
 ```
 
-Since `0.11.0` the adapter is built on **Fjall 3**. Fjall 3 changes the on-disk format, so a
+Since `1.0.0` the adapter is built on **Fjall 3**. Fjall 3 changes the on-disk format, so a
 database written by `0.10.x` or earlier cannot be opened — see
-[Schema Migration](../../migration.md#upgrading-from-010x-to-011x).
+[Schema Migration](../../migration.md#upgrading-from-010x-to-100).
 
 ## Basic configuration
 
@@ -40,7 +40,7 @@ let db = Nitrite::builder()
 
 The adapter defaults to `Durability::Periodic`. Commits are buffered to the OS and fsynced by a background timer within the configured `fsync_frequency()` window, which is `1000` ms by default. That keeps acknowledged writes safe across a process crash while trading a bounded power-loss window for much better throughput than fsyncing every commit.
 
-Fjall 3 removed its own background fsync timer, so since `0.11.0` the adapter runs that timer itself. The behaviour and the `fsync_frequency()` knob are unchanged; `fsync_frequency(0)` still disables the timer, and a `Periodic` write is then only fsynced on a clean close.
+Fjall 3 removed its own background fsync timer, so since `1.0.0` the adapter runs that timer itself. The behaviour and the `fsync_frequency()` knob are unchanged; `fsync_frequency(0)` still disables the timer, and a `Periodic` write is then only fsynced on a clean close.
 
 If you want every commit fsynced before it returns, opt into `Durability::OnCommit` explicitly:
 
@@ -119,7 +119,7 @@ let module = FjallModule::with_config()
 
 For most applications, start with `production_preset()` and tune only after measuring your workload. If you stay on `Durability::Periodic`, `fsync_frequency(...)` controls the background fsync interval.
 
-### What changed in `0.11.0`
+### What changed in `1.0.0`
 
 - `compaction_strategy(...)` takes `nitrite_fjall_adapter::Strategy` — `Leveled` (the default) or
   `Fifo` — instead of `fjall::compaction::Strategy`. Fjall 3 replaced that enum with a boxed
@@ -146,5 +146,5 @@ A database written by `0.3.x` cannot be opened by `0.4.x` as-is: both the key en
 !!!
 
 !!!warning Upgrading from `0.10.x`
-`0.11.0` moves to Fjall 3, whose own on-disk format is not readable by Fjall 2 and vice versa. This is a storage-engine change, not a Nitrite one — no application API changed beyond the tuning knobs listed above. See [Schema Migration](../../migration.md#upgrading-from-010x-to-011x).
+`1.0.0` moves to Fjall 3, whose own on-disk format is not readable by Fjall 2 and vice versa. This is a storage-engine change, not a Nitrite one — no application API changed beyond the tuning knobs listed above. See [Schema Migration](../../migration.md#upgrading-from-010x-to-100).
 !!!

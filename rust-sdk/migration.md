@@ -8,9 +8,9 @@ Nitrite for Rust supports versioned schema evolution through `Migration` and `In
 
 These `Migration`/`InstructionSet` tools are for **your** schema changes (renaming fields, adding defaults, re-typing values). They are independent of the engine's own on-disk format. The next section covers the one-time storage-format change introduced by the `0.4.0` engine upgrade.
 
-## Upgrading from 0.10.x to 0.11.x
+## Upgrading from 0.10.x to 1.0.0
 
-`0.11.0` moves `nitrite-fjall-adapter` from **Fjall 2** to **Fjall 3**. Fjall 3 writes a different
+`1.0.0` moves `nitrite-fjall-adapter` from **Fjall 2** to **Fjall 3**. Fjall 3 writes a different
 on-disk format and will not open a Fjall 2 database, so this is another one-time storage-format
 change — the same shape as the `0.4.0` one below, and handled the same way.
 

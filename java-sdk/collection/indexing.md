@@ -203,6 +203,33 @@ boolean exists = collection.hasIndex("firstName");
 boolean exists = collection.hasIndex("firstName", "lastName");
 ```
 
+## Numeric Index Keys
+
+A number is stored in an index as a `Double` wherever a `Double` holds it exactly, so
+`5`, `5L`, `(short) 5` and `BigInteger.valueOf(5)` are the same index key and a query
+with any of them matches a document stored with any other. This matters on stores that
+compare the encoded key rather than calling `compareTo` - the RocksDB adapter is one -
+where without it the same number written as two types would not match itself.
+
+Above 2<sup>53</sup> a `Double` no longer steps by one, so numbers that far out keep
+their own type instead. Snowflake ids, TSIDs and ULID-style identifiers all live in that
+range: around 8.7 x 10<sup>17</sup> the nearest doubles are 128 apart, so folding them
+would give consecutive ids the same index key - a unique index would reject an id it had
+never seen, and a lookup would return rows belonging to a different one.
+
+The trade is that a `Long` and a `BigInteger` holding the same value above
+2<sup>53</sup> are no longer the same index key on a byte-comparing store. They only
+matched before because both had been rounded onto the same double, which is the same
+rounding that would have matched a *different* id, so prefer one numeric type per
+indexed field.
+
+!!!warning
+**Upgrading.** An index built by an earlier version over values above 2<sup>53</sup>
+holds the folded keys, and those entries were already colliding with each other. Rebuild
+such an index after upgrading. Values at or below 2<sup>53</sup> are unaffected and keep
+their existing on-disk form, so nothing else needs touching.
+!!!
+
 ## Error Scenarios
 
 The following error scenarios are possible while creating an index:

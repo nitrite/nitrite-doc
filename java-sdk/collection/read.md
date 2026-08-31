@@ -58,6 +58,19 @@ findOptions.skip(10).limit(10).thenOrderBy("firstName", SortOrder.Descending);
 DocumentCursor cursor = collection.find(where("firstName").eq("John"), findOptions);
 ```
 
+### Paging Cost
+
+`skip` is served by the storage engine wherever nothing between the store and the page
+drops or reorders rows - the offset is reached without reading the documents it passes
+over. Paging through a whole collection therefore costs about what one full scan costs,
+and a late page costs what an early one costs.
+
+Three plan shapes cannot take that route, because the store's Nth row is not the page's
+Nth row: a filter with no index behind it, a sort that cannot be answered from an index,
+and an `or` filter. Those still reach the offset by discarding rows, so a deep page over
+one of them stays proportional to the offset. Where paging is the access pattern and the
+collection is large, an index on the filtered or sorted field is what keeps it flat.
+
 ## DocumentCursor
 
 `DocumentCursor` represents a result set of a find operation. It provides methods to iterate over the result of a find operation and retrieve the documents. It also provides methods like projection, join etc. to get the desired result.
